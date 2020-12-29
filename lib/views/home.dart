@@ -78,41 +78,38 @@ class _HomeState extends State<Home> {
       'assets/images/home2.png'
     ];
     return Scaffold(
-        body: _selectedIndex == -1
-            ? Stack(children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.only(top: 45),
-                      child: Image.asset(
-                        'assets/images/home3.png',
-                        height: 40,
-                      ),
-                    ),
-                  ],
-                ),
-                StaggeredGridView.countBuilder(
-                  crossAxisCount: 4,
-                  itemCount: 4,
-                  itemBuilder: (BuildContext context, int index) =>
-                      GestureDetector(
-                    onTap: () => _onItemTapped(index),
-                    child: Card(
-                      child: Column(
-                        children: <Widget>[
-                          Image.asset(img[index]),
-                        ],
-                      ),
-                    ),
-                  ),
-                  padding: EdgeInsets.only(top: 100),
-                  staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
-                  mainAxisSpacing: 1.0,
-                  crossAxisSpacing: 1.0,
-                ),
-              ])
-            : _cardSelected[_selectedIndex]);
+        body: Stack(children: [
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 45),
+            child: Image.asset(
+              'assets/images/home3.png',
+              height: 40,
+            ),
+          ),
+        ],
+      ),
+      StaggeredGridView.countBuilder(
+        crossAxisCount: 4,
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) => GestureDetector(
+          onTap: () => _onItemTapped(index),
+          child: Card(
+            child: Column(
+              children: <Widget>[
+                Image.asset(img[index]),
+              ],
+            ),
+          ),
+        ),
+        padding: EdgeInsets.only(top: 100),
+        staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
+        mainAxisSpacing: 1.0,
+        crossAxisSpacing: 1.0,
+      ),
+    ]));
   }
 }

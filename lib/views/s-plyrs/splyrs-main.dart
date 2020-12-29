@@ -8,12 +8,14 @@ class Splyrs extends StatefulWidget {
 class _SplyrsState extends State<Splyrs> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        's-plyrs',
-        style: TextStyle(fontSize: 20),
-      )),
+    return Scaffold(
+      body: Container(
+        child: Center(
+            child: Text(
+          's-plyrs',
+          style: TextStyle(fontSize: 20),
+        )),
+      ),
     );
   }
 }

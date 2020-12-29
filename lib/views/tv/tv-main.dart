@@ -8,12 +8,14 @@ class Tv extends StatefulWidget {
 class _TvState extends State<Tv> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        'tv',
-        style: TextStyle(fontSize: 30),
-      )),
+    return Scaffold(
+      body: Container(
+        child: Center(
+            child: Text(
+          'tv',
+          style: TextStyle(fontSize: 30),
+        )),
+      ),
     );
   }
 }

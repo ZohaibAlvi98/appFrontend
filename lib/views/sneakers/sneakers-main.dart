@@ -8,12 +8,14 @@ class Sneakers extends StatefulWidget {
 class _SneakersState extends State<Sneakers> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        'sneakers',
-        style: TextStyle(fontSize: 30),
-      )),
+    return Scaffold(
+      body: Container(
+        child: Center(
+            child: Text(
+          'sneakers',
+          style: TextStyle(fontSize: 30),
+        )),
+      ),
     );
   }
 }
