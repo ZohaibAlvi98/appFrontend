@@ -16,30 +16,49 @@ class _HomeState extends State<Home> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (BuildContext context) {
-            if (_selectedIndex == 0) {
-              return Splyrs();
-            } else if (_selectedIndex == 1) {
-              return Styles();
-            } else if (_selectedIndex == 2) {
-              return Tv();
-            } else if (_selectedIndex == 3) {
-              return Sneakers();
-            }
-          },
-        ),
-      );
+      _navigatorPage();
+      // Navigator.push(
+      //   context,
+      //   MaterialPageRoute(
+      //     builder: (BuildContext context) {
+      //       if (_selectedIndex == 0) {
+      //         return Splyrs();
+      //       } else if (_selectedIndex == 1) {
+      //         return Styles();
+      //       } else if (_selectedIndex == 2) {
+      //         return Tv();
+      //       } else if (_selectedIndex == 3) {
+      //         return Sneakers();
+      //       }
+      //     },
+      //   ),
+      // );
     });
   }
 
+  // void _navigatorPage() {
+  //   Navigator.pushReplacement(
+  //     context,
+  //     MaterialPageRoute(
+  //       builder: (BuildContext context) {
+  //         if (_selectedIndex == 0) {
+  //           return Splyrs();
+  //         } else if (_selectedIndex == 1) {
+  //           return Styles();
+  //         } else if (_selectedIndex == 2) {
+  //           return Tv();
+  //         } else if (_selectedIndex == 3) {
+  //           return Sneakers();
+  //         }
+  //       },
+  //     ),
+  //   );
+  // }
   void _navigatorPage() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (BuildContext context) {
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
           if (_selectedIndex == 0) {
             return Splyrs();
           } else if (_selectedIndex == 1) {
@@ -50,8 +69,15 @@ class _HomeState extends State<Home> {
             return Sneakers();
           }
         },
-      ),
-    );
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
   }
 
   static List<Widget> _cardSelected = [Splyrs(), Styles(), Tv(), Sneakers()];
@@ -78,26 +104,29 @@ class _HomeState extends State<Home> {
       'assets/images/home2.png'
     ];
     return Scaffold(
-        body: Stack(children: [
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: EdgeInsets.only(top: 45),
-            child: Image.asset(
-              'assets/images/home3.png',
-              height: 40,
-            ),
-          ),
-        ],
-      ),
-      StaggeredGridView.countBuilder(
+      body:
+          //   Stack(children: [
+          // Row(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Container(
+          //       padding: EdgeInsets.only(top: 45),
+          //       child: Image.asset(
+          //         'assets/images/home3.png',
+          //         height: 40,
+          //       ),
+          //     ),
+          //   ],
+          // ),
+          StaggeredGridView.countBuilder(
         crossAxisCount: 4,
         itemCount: 4,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
           onTap: () => _onItemTapped(index),
           child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
             child: Column(
               children: <Widget>[
                 Image.asset(img[index]),
@@ -105,11 +134,12 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-        padding: EdgeInsets.only(top: 100),
+        padding: EdgeInsets.only(top: 5),
         staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
         mainAxisSpacing: 1.0,
         crossAxisSpacing: 1.0,
       ),
-    ]));
+      //])
+    );
   }
 }
