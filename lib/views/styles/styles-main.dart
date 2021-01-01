@@ -6,6 +6,12 @@ class Styles extends StatefulWidget {
 }
 
 class _StylesState extends State<Styles> {
+  List img = [
+    'assets/images/list1.jpg',
+    'assets/images/list2.jpg',
+    'assets/images/list3.jpg',
+    'assets/images/list4.jpg'
+  ];
   @override
   Widget build(BuildContext context) {
     double height =
@@ -172,6 +178,60 @@ class _StylesState extends State<Styles> {
                     )
                   ],
                 ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 50, left: 30, right: 30),
+              child: Text(
+                'Thome Brown Winter Clothing Styling By End Clothing',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+              child: Text(
+                  'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content'),
+            ),
+            SizedBox(
+              height: 60,
+            ),
+            SizedBox(
+              height: 250,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                // physics: NeverScrollableScrollPhysics(),
+                // shrinkWrap: true,
+                itemCount: img.length,
+                padding: const EdgeInsets.only(right: 10.0, left: 3.5),
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      Container(
+                        child: Card(
+                          child: Wrap(children: [
+                            Image.asset(
+                              img[index],
+                              height: 170,
+                            ),
+                          ]),
+                        ),
+                        color: Colors.white12,
+                      ),
+                      Text(
+                        'Thome Brown Shirts',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          'price: \$230',
+                          style: TextStyle(fontSize: 15),
+                        ),
+                      )
+                    ],
+                  );
+                },
               ),
             ),
           ],
