@@ -7,8 +7,8 @@ class Styles extends StatefulWidget {
 
 class _StylesState extends State<Styles> {
   List img = [
-    'assets/images/list1.jpg',
-    'assets/images/list2.jpg',
+    'assets/images/list1.png',
+    'assets/images/list2.png',
     'assets/images/list3.jpg',
     'assets/images/list4.jpg'
   ];
@@ -22,11 +22,10 @@ class _StylesState extends State<Styles> {
       appBar: AppBar(
         actions: [
           IconButton(
-              padding: EdgeInsets.only(right: 10, bottom: 10),
-              icon: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.black,
-                size: 30,
+              padding: EdgeInsets.only(right: 20, bottom: 10),
+              icon: new Image.asset(
+                'assets/images/bag.png',
+                height: 30,
               ),
               onPressed: () {})
         ],
@@ -47,41 +46,20 @@ class _StylesState extends State<Styles> {
         child: Column(
           children: [
             Container(
-                // height: MediaQuery.of(context).size.height * 0.7,
-                width: MediaQuery.of(context).size.width * 1,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        // fit: BoxFit.contain,
-                        scale: 2.68,
-                        image: AssetImage('assets/images/styles2.jpg'))),
-                child: Container(
-                    padding: EdgeInsets.only(
-                        left: 50,
-                        top: MediaQuery.of(context).size.height * 0.43),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('\n\nSTYLE',
-                            style: TextStyle(
-                                fontSize: 60,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold)),
-                      ],
-                    ))),
-            Row(
-              // crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 50.0),
-                  child: Text(
-                    'DISCOVERY',
-                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
+              padding: EdgeInsets.only(right: 20, left: 20),
+              // height: MediaQuery.of(context).size.height * 0.7,
+              // width: MediaQuery.of(context).size.width * 0.9,
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //   scale: 2.68,
+              //   image: AssetImage('assets/images/styles2.png'),
+              // )),
+              child: Image.asset(
+                'assets/images/styles2.png',
+              ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20.0, left: 50),
+              padding: EdgeInsets.only(top: 20.0, left: 45),
               child: Text(
                   'Personalized style discovery and shopping as a service. Where style meets fashion.',
                   style: TextStyle(
@@ -112,74 +90,142 @@ class _StylesState extends State<Styles> {
               ),
             ]),
             Container(
-              height: MediaQuery.of(context).size.height * 1.2,
-              width: MediaQuery.of(context).size.width * 0.9,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage('assets/images/styles4.jpg'))),
-            ),
-            Card(
-              shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.grey[400], width: 1),
-                borderRadius: BorderRadius.circular(80),
-              ),
-              margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: Container(
-                height: 70,
-                child: Row(
-                  children: <Widget>[
-                    Container(
-                      width: 90,
-                      height: 60,
-                      decoration: new BoxDecoration(
-                        border: new Border.all(
-                          color: Colors.grey[400],
-                          width: 1.0,
-                        ),
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 25.0, top: 15),
-                        child: Text(
-                          'End',
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(left: 20, top: 20),
-                        child: Column(
-                          children: [
-                            Text(
-                              'End Clothing',
+              padding: EdgeInsets.only(right: 20, left: 20),
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: AssetImage('assets/images/styles4.jpg'))),
+              child: Stack(children: [
+                Image.asset('assets/images/styles4.jpg'),
+                Card(
+                  margin: EdgeInsets.fromLTRB(30, width / 0.96, 30, 0),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.grey[400], width: 1),
+                    borderRadius: BorderRadius.circular(70),
+                  ),
+                  child: Container(
+                    height: 70,
+                    width: height / 0.96,
+                    // width: 755,
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: 65,
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: new Border.all(
+                              color: Colors.grey[400],
+                              width: 1.0,
+                            ),
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 15.0, top: 13),
+                            child: Text(
+                              'End',
                               style: TextStyle(fontSize: 20),
                             ),
-                            Text('10 may 2020')
-                          ],
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(left: width * 0.07),
-                      child: Row(children: <Widget>[
-                        IconButton(
-                          icon: Icon(Icons.favorite_outline_outlined),
-                          color: Colors.grey[400],
-                          iconSize: 30,
-                          onPressed: () {},
+                          ),
                         ),
-                        IconButton(
-                          icon: Icon(Icons.bookmark_border),
-                          color: Colors.grey[400],
-                          iconSize: 30,
-                          onPressed: () {},
-                        ),
-                      ]),
-                    )
-                  ],
-                ),
-              ),
+                        Padding(
+                            padding: EdgeInsets.only(left: 5, top: 20),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'End Clothing',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                                Text('10 may 2020')
+                              ],
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(left: 0),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                IconButton(
+                                  padding: EdgeInsets.only(left: 10),
+                                  icon: Icon(Icons.favorite_outline_outlined),
+                                  color: Colors.grey[400],
+                                  iconSize: 25,
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.bookmark_border),
+                                  color: Colors.grey[400],
+                                  iconSize: 25,
+                                  onPressed: () {},
+                                ),
+                              ]),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ]),
             ),
+            // Card(
+            //   shape: RoundedRectangleBorder(
+            //     side: BorderSide(color: Colors.grey[400], width: 1),
+            //     borderRadius: BorderRadius.circular(80),
+            //   ),
+            //   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+            //   child: Container(
+            //     height: 70,
+            //     child: Row(
+            //       children: <Widget>[
+            //         Container(
+            //           width: 90,
+            //           height: 60,
+            //           decoration: new BoxDecoration(
+            //             border: new Border.all(
+            //               color: Colors.grey[400],
+            //               width: 1.0,
+            //             ),
+            //             color: Colors.white,
+            //             shape: BoxShape.circle,
+            //           ),
+            //           child: Padding(
+            //             padding: EdgeInsets.only(left: 25.0, top: 15),
+            //             child: Text(
+            //               'End',
+            //               style: TextStyle(fontSize: 20),
+            //             ),
+            //           ),
+            //         ),
+            //         Padding(
+            //             padding: EdgeInsets.only(left: 20, top: 20),
+            //             child: Column(
+            //               children: [
+            //                 Text(
+            //                   'End Clothing',
+            //                   style: TextStyle(fontSize: 20),
+            //                 ),
+            //                 Text('10 may 2020')
+            //               ],
+            //             )),
+            //         Padding(
+            //           padding: EdgeInsets.only(left: width * 0.07),
+            //           child: Row(children: <Widget>[
+            //             IconButton(
+            //               icon: Icon(Icons.favorite_outline_outlined),
+            //               color: Colors.grey[400],
+            //               iconSize: 30,
+            //               onPressed: () {},
+            //             ),
+            //             IconButton(
+            //               icon: Icon(Icons.bookmark_border),
+            //               color: Colors.grey[400],
+            //               iconSize: 30,
+            //               onPressed: () {},
+            //             ),
+            //           ]),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Padding(
               padding: EdgeInsets.only(top: 50, left: 30, right: 30),
               child: Text(
@@ -188,7 +234,7 @@ class _StylesState extends State<Styles> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 30, left: 30, right: 30),
+              padding: EdgeInsets.only(top: 18, left: 30, right: 30),
               child: Text(
                   'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content'),
             ),
@@ -202,7 +248,7 @@ class _StylesState extends State<Styles> {
                 // physics: NeverScrollableScrollPhysics(),
                 // shrinkWrap: true,
                 itemCount: img.length,
-                padding: const EdgeInsets.only(right: 10.0, left: 3.5),
+                padding: const EdgeInsets.only(right: 10.0, left: 5.5),
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -211,19 +257,19 @@ class _StylesState extends State<Styles> {
                           child: Wrap(children: [
                             Image.asset(
                               img[index],
-                              height: 170,
+                              height: 175,
                             ),
                           ]),
                         ),
                         color: Colors.white12,
                       ),
                       Text(
-                        'Thome Brown Shirts',
+                        'Thome Brown Four\n Bar Jackets',
                         style: TextStyle(
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 8.0),
+                        padding: EdgeInsets.only(top: 7.0),
                         child: Text(
                           'price: \$230',
                           style: TextStyle(fontSize: 15),
