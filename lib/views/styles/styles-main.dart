@@ -18,6 +18,7 @@ class _StylesState extends State<Styles> {
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
     double width = MediaQuery.of(context).size.width;
+    print(width);
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -98,19 +99,20 @@ class _StylesState extends State<Styles> {
               child: Stack(children: [
                 Image.asset('assets/images/styles4.jpg'),
                 Card(
-                  margin: EdgeInsets.fromLTRB(30, width / 0.96, 30, 0),
+                  margin: EdgeInsets.fromLTRB(0, width / 0.97, 0, 0),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey[400], width: 1),
-                    borderRadius: BorderRadius.circular(70),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   child: Container(
                     height: 70,
-                    width: height / 0.96,
+
+                    // width: height / 0.96,
                     // width: 755,
                     child: Row(
                       children: <Widget>[
                         Container(
-                          width: 65,
+                          width: width * 0.2,
                           height: 50,
                           decoration: new BoxDecoration(
                             border: new Border.all(
@@ -121,7 +123,9 @@ class _StylesState extends State<Styles> {
                             shape: BoxShape.circle,
                           ),
                           child: Padding(
-                            padding: EdgeInsets.only(left: 15.0, top: 13),
+                            padding: width < 400
+                                ? EdgeInsets.only(left: 18.0, top: 13)
+                                : EdgeInsets.only(left: 22.0, top: 13),
                             child: Text(
                               'End',
                               style: TextStyle(fontSize: 20),
@@ -129,7 +133,9 @@ class _StylesState extends State<Styles> {
                           ),
                         ),
                         Padding(
-                            padding: EdgeInsets.only(left: 5, top: 20),
+                            padding: width < 400
+                                ? EdgeInsets.only(left: 10, top: 20)
+                                : EdgeInsets.only(left: 20, top: 20),
                             child: Column(
                               children: [
                                 Text(
@@ -140,7 +146,9 @@ class _StylesState extends State<Styles> {
                               ],
                             )),
                         Padding(
-                          padding: EdgeInsets.only(left: 0),
+                          padding: width < 400
+                              ? EdgeInsets.only(left: width * 0.02)
+                              : EdgeInsets.only(left: width * 0.08),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: <Widget>[
@@ -148,13 +156,13 @@ class _StylesState extends State<Styles> {
                                   padding: EdgeInsets.only(left: 10),
                                   icon: Icon(Icons.favorite_outline_outlined),
                                   color: Colors.grey[400],
-                                  iconSize: 25,
+                                  iconSize: 26,
                                   onPressed: () {},
                                 ),
                                 IconButton(
                                   icon: Icon(Icons.bookmark_border),
                                   color: Colors.grey[400],
-                                  iconSize: 25,
+                                  iconSize: 26,
                                   onPressed: () {},
                                 ),
                               ]),
@@ -242,17 +250,18 @@ class _StylesState extends State<Styles> {
               height: 60,
             ),
             SizedBox(
-              height: 250,
+              height: 260,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 // physics: NeverScrollableScrollPhysics(),
                 // shrinkWrap: true,
                 itemCount: img.length,
-                padding: const EdgeInsets.only(right: 10.0, left: 5.5),
+                padding: const EdgeInsets.only(right: 20.0, left: 5.5),
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Container(
+                        padding: EdgeInsets.only(right: 10),
                         child: Card(
                           child: Wrap(children: [
                             Image.asset(
@@ -269,7 +278,7 @@ class _StylesState extends State<Styles> {
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 7.0),
+                        padding: EdgeInsets.only(top: 7.0, bottom: 5),
                         child: Text(
                           'price: \$230',
                           style: TextStyle(fontSize: 15),

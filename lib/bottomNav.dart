@@ -73,21 +73,44 @@ class _BottomNavState extends State<BottomNav> {
             padding: EdgeInsets.only(bottom: 3, left: 20, right: 20),
             child: ClipRRect(
               borderRadius: const BorderRadius.all(
-                const Radius.circular(30.0),
+                const Radius.circular(40.0),
               ),
               child: BottomNavigationBar(
                 backgroundColor: Colors.black54,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.home), label: 'Home'),
+                      icon: new Image.asset(
+                        'assets/images/homeIcon.png',
+                        height: 25,
+                      ),
+                      label: 'Home'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.search), label: 'Search'),
-                  BottomNavigationBarItem(icon: Icon(Icons.circle), label: 'S'),
+                      icon: Image.asset(
+                        'assets/images/searchIcon.png',
+                        height: 25,
+                      ),
+                      label: 'Search'),
                   BottomNavigationBarItem(
-                      icon: Icon(Icons.wifi), label: 'S-PLY RSS'),
+                      icon: Padding(
+                        padding: EdgeInsets.only(top: 3.0),
+                        child: Image.asset(
+                          'assets/images/homeIconLogo.png',
+                          height: 36,
+                        ),
+                      ),
+                      label: ''),
                   BottomNavigationBarItem(
-                      icon: Icon(
-                        Icons.person,
+                      icon: FittedBox(
+                        child: Image.asset(
+                          'assets/images/networkIcon.png',
+                          height: 25,
+                        ),
+                      ),
+                      label: 'SPLY RSS'),
+                  BottomNavigationBarItem(
+                      icon: Image.asset(
+                        'assets/images/profileIcon.png',
+                        height: 25,
                       ),
                       label: 'Profile'),
                 ],
