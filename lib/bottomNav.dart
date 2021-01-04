@@ -76,18 +76,26 @@ class _BottomNavState extends State<BottomNav> {
                 const Radius.circular(40.0),
               ),
               child: BottomNavigationBar(
-                backgroundColor: Colors.black54,
+                backgroundColor: Colors.black87,
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
-                      icon: new Image.asset(
+                      activeIcon: new Image.asset(
                         'assets/images/homeIcon.png',
-                        height: 25,
+                        height: 23,
+                      ),
+                      icon: new Image.asset(
+                        'assets/images/homeIconInactive.png',
+                        height: 23,
                       ),
                       label: 'Home'),
                   BottomNavigationBarItem(
-                      icon: Image.asset(
+                      activeIcon: Image.asset(
                         'assets/images/searchIcon.png',
-                        height: 25,
+                        height: 23,
+                      ),
+                      icon: Image.asset(
+                        'assets/images/searchIconInactive.png',
+                        height: 23,
                       ),
                       label: 'Search'),
                   BottomNavigationBarItem(
@@ -95,29 +103,35 @@ class _BottomNavState extends State<BottomNav> {
                         padding: EdgeInsets.only(top: 3.0),
                         child: Image.asset(
                           'assets/images/homeIconLogo.png',
-                          height: 36,
+                          height: 35,
                         ),
                       ),
                       label: ''),
                   BottomNavigationBarItem(
-                      icon: FittedBox(
-                        child: Image.asset(
-                          'assets/images/networkIcon.png',
-                          height: 25,
-                        ),
+                      activeIcon: Image.asset(
+                        'assets/images/networkIcon.png',
+                        height: 23,
+                      ),
+                      icon: Image.asset(
+                        'assets/images/networkIconInactive.png',
+                        height: 23,
                       ),
                       label: 'SPLY RSS'),
                   BottomNavigationBarItem(
-                      icon: Image.asset(
+                      activeIcon: Image.asset(
                         'assets/images/profileIcon.png',
-                        height: 25,
+                        height: 20,
+                      ),
+                      icon: Image.asset(
+                        'assets/images/profileIconInactive.png',
+                        height: 20,
                       ),
                       label: 'Profile'),
                 ],
                 currentIndex: _selectedIndex,
                 selectedLabelStyle: TextStyle(),
-                selectedItemColor: Colors.amber[800],
-                unselectedItemColor: Colors.white,
+                selectedItemColor: Colors.white,
+                unselectedItemColor: Colors.grey[500],
                 iconSize: 30,
                 onTap: _onItemTapped,
                 showUnselectedLabels: true,

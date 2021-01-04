@@ -60,9 +60,11 @@ class _StylesState extends State<Styles> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20.0, left: 45),
+              padding: width < 400
+                  ? EdgeInsets.only(top: 20.0, left: 41)
+                  : EdgeInsets.only(top: 20.0, left: 45),
               child: Text(
-                  'Personalized style discovery and shopping as a service. Where style meets fashion.',
+                  'Personalized style discovery and shopping as a service.\nWhere style meets fashion.',
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black,
@@ -80,7 +82,10 @@ class _StylesState extends State<Styles> {
                       height: 36,
                     )),
               ),
-              Text("FEATURED STYLES"),
+              Text(
+                "FEATURED STYLES",
+                style: TextStyle(fontWeight: FontWeight.w500, fontSize: 20),
+              ),
               Expanded(
                 child: new Container(
                     margin: const EdgeInsets.only(left: 20.0, right: 10.0),
@@ -99,7 +104,9 @@ class _StylesState extends State<Styles> {
               child: Stack(children: [
                 Image.asset('assets/images/styles4.jpg'),
                 Card(
-                  margin: EdgeInsets.fromLTRB(0, width / 0.97, 0, 0),
+                  margin: width < 400
+                      ? EdgeInsets.fromLTRB(5, width / 0.97, 5, 0)
+                      : EdgeInsets.fromLTRB(14, width / 0.97, 14, 0),
                   shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.grey[400], width: 1),
                     borderRadius: BorderRadius.circular(50),
@@ -124,25 +131,34 @@ class _StylesState extends State<Styles> {
                           ),
                           child: Padding(
                             padding: width < 400
-                                ? EdgeInsets.only(left: 18.0, top: 13)
+                                ? EdgeInsets.only(left: 17.0, top: 13)
                                 : EdgeInsets.only(left: 22.0, top: 13),
                             child: Text(
                               'End',
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
                             ),
                           ),
                         ),
                         Padding(
                             padding: width < 400
-                                ? EdgeInsets.only(left: 10, top: 20)
-                                : EdgeInsets.only(left: 20, top: 20),
+                                ? EdgeInsets.only(top: 16)
+                                : EdgeInsets.only(top: 16),
                             child: Column(
                               children: [
                                 Text(
                                   'End Clothing',
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                Text('10 may 2020')
+                                Text(
+                                  'Nov 4, 2020           ',
+                                  style: TextStyle(
+                                      color: Colors.grey[500],
+                                      fontWeight: FontWeight.w500),
+                                )
                               ],
                             )),
                         Padding(
@@ -155,13 +171,13 @@ class _StylesState extends State<Styles> {
                                 IconButton(
                                   padding: EdgeInsets.only(left: 10),
                                   icon: Icon(Icons.favorite_outline_outlined),
-                                  color: Colors.grey[400],
+                                  color: Colors.black,
                                   iconSize: 26,
                                   onPressed: () {},
                                 ),
                                 IconButton(
                                   icon: Icon(Icons.bookmark_border),
-                                  color: Colors.grey[400],
+                                  color: Colors.black,
                                   iconSize: 26,
                                   onPressed: () {},
                                 ),
@@ -173,84 +189,29 @@ class _StylesState extends State<Styles> {
                 )
               ]),
             ),
-            // Card(
-            //   shape: RoundedRectangleBorder(
-            //     side: BorderSide(color: Colors.grey[400], width: 1),
-            //     borderRadius: BorderRadius.circular(80),
-            //   ),
-            //   margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
-            //   child: Container(
-            //     height: 70,
-            //     child: Row(
-            //       children: <Widget>[
-            //         Container(
-            //           width: 90,
-            //           height: 60,
-            //           decoration: new BoxDecoration(
-            //             border: new Border.all(
-            //               color: Colors.grey[400],
-            //               width: 1.0,
-            //             ),
-            //             color: Colors.white,
-            //             shape: BoxShape.circle,
-            //           ),
-            //           child: Padding(
-            //             padding: EdgeInsets.only(left: 25.0, top: 15),
-            //             child: Text(
-            //               'End',
-            //               style: TextStyle(fontSize: 20),
-            //             ),
-            //           ),
-            //         ),
-            //         Padding(
-            //             padding: EdgeInsets.only(left: 20, top: 20),
-            //             child: Column(
-            //               children: [
-            //                 Text(
-            //                   'End Clothing',
-            //                   style: TextStyle(fontSize: 20),
-            //                 ),
-            //                 Text('10 may 2020')
-            //               ],
-            //             )),
-            //         Padding(
-            //           padding: EdgeInsets.only(left: width * 0.07),
-            //           child: Row(children: <Widget>[
-            //             IconButton(
-            //               icon: Icon(Icons.favorite_outline_outlined),
-            //               color: Colors.grey[400],
-            //               iconSize: 30,
-            //               onPressed: () {},
-            //             ),
-            //             IconButton(
-            //               icon: Icon(Icons.bookmark_border),
-            //               color: Colors.grey[400],
-            //               iconSize: 30,
-            //               onPressed: () {},
-            //             ),
-            //           ]),
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
             Padding(
-              padding: EdgeInsets.only(top: 50, left: 30, right: 30),
+              padding: EdgeInsets.only(top: 35, left: 30, right: 30),
               child: Text(
                 'Thome Brown Winter Clothing Styling By End Clothing',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 18, left: 30, right: 30),
+              padding: EdgeInsets.only(top: 18, left: 32, right: 30),
               child: Text(
-                  'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content'),
+                'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
+                style: TextStyle(
+                    fontSize: 16,
+                    height: 1.5,
+                    color: Colors.grey[600],
+                    fontWeight: FontWeight.w400),
+              ),
             ),
             SizedBox(
-              height: 60,
+              height: 50,
             ),
             SizedBox(
-              height: 260,
+              height: 270,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 // physics: NeverScrollableScrollPhysics(),
@@ -272,21 +233,153 @@ class _StylesState extends State<Styles> {
                         ),
                         color: Colors.white12,
                       ),
-                      Text(
-                        'Thome Brown Four\n Bar Jackets',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+                      Padding(
+                        padding: width < 400
+                            ? EdgeInsets.only(right: 15.0)
+                            : EdgeInsets.only(right: 18.0),
+                        child: Text(
+                          'Thome Brown 4 Bar \nJackets',
+                          style: TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.bold),
+                        ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 7.0, bottom: 5),
+                        padding: width < 400
+                            ? EdgeInsets.only(top: 7.0, bottom: 5, right: 15)
+                            : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
                         child: Text(
-                          'price: \$230',
-                          style: TextStyle(fontSize: 15),
+                          'Brand: Thome Brown',
+                          style: TextStyle(
+                              fontSize: 12.5, fontWeight: FontWeight.w500),
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: 85),
+                        child: Text('£759.00'),
+                      ),
                     ],
                   );
                 },
+              ),
+            ),
+            SizedBox(
+              height: 50,
+            ),
+            Container(
+              color: Colors.grey[100],
+              padding: EdgeInsets.only(right: 20, left: 20),
+              // decoration: BoxDecoration(
+              //     image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         image: AssetImage('assets/images/styles4.jpg'))),
+              child: Stack(children: [
+                Padding(
+                  padding: EdgeInsets.only(top: 35.0, bottom: 35),
+                  child: Image.asset('assets/images/style3.jpg'),
+                ),
+                Card(
+                  margin: width < 400
+                      ? EdgeInsets.fromLTRB(5, width / 0.9, 5, 0)
+                      : EdgeInsets.fromLTRB(14, width / 0.88, 14, 0),
+                  shape: RoundedRectangleBorder(
+                    side: BorderSide(color: Colors.grey[400], width: 1),
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Container(
+                    height: 70,
+
+                    // width: height / 0.96,
+                    // width: 755,
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          width: width * 0.2,
+                          height: 50,
+                          decoration: new BoxDecoration(
+                            border: new Border.all(
+                              color: Colors.grey[400],
+                              width: 1.0,
+                            ),
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Padding(
+                            padding: width < 400
+                                ? EdgeInsets.only(left: 17.0, top: 13)
+                                : EdgeInsets.only(left: 22.0, top: 13),
+                            child: Text(
+                              'End',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                            padding: width < 400
+                                ? EdgeInsets.only(top: 16)
+                                : EdgeInsets.only(top: 16),
+                            child: Column(
+                              children: [
+                                Text(
+                                  'End Clothing',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  'Nov 4, 2020           ',
+                                  style: TextStyle(
+                                      color: Colors.grey[500],
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            )),
+                        Padding(
+                          padding: width < 400
+                              ? EdgeInsets.only(left: width * 0.02)
+                              : EdgeInsets.only(left: width * 0.08),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                IconButton(
+                                  padding: EdgeInsets.only(left: 10),
+                                  icon: Icon(Icons.favorite_outline_outlined),
+                                  color: Colors.black,
+                                  iconSize: 26,
+                                  onPressed: () {},
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.bookmark_border),
+                                  color: Colors.black,
+                                  iconSize: 26,
+                                  onPressed: () {},
+                                ),
+                              ]),
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              ]),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 35, left: 30, right: 30),
+              child: Text(
+                'Thome Brown Winter Clothing Styling By End Clothing',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.only(top: 18, left: 32, right: 30, bottom: 15),
+              child: Text(
+                'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
+                style: TextStyle(
+                    fontSize: 16,
+                    height: 1.5,
+                    color: Colors.grey[600],
+                    fontWeight: FontWeight.w400),
               ),
             ),
           ],
