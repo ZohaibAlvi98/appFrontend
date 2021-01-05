@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import './s-plyrs/splyrs-main.dart';
 import './sneakers/sneakers-main.dart';
@@ -80,46 +79,18 @@ class _HomeState extends State<Home> {
         }));
   }
 
-  static List<Widget> _cardSelected = [Splyrs(), Styles(), Tv(), Sneakers()];
+  // static List<Widget> _cardSelected = [Splyrs(), Styles(), Tv(), Sneakers()];
 
   @override
   Widget build(BuildContext context) {
-    // final appBar = AppBar(
-    //   backgroundColor: Colors.white,
-    //   title: Center(
-    //     child: Text(
-    //       'S-PLY XP',
-    //       style: TextStyle(
-    //           color: Colors.black, fontSize: 28, fontWeight: FontWeight.w700),
-    //     ),
-    //   ),
-    // );
-    double height =
-        MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
-    double width = MediaQuery.of(context).size.width;
     List img = [
-      'assets/images/home4.png',
-      'assets/images/home1.png',
-      'assets/images/home5.png',
-      'assets/images/home2.png'
+      'assets/images/home/home4.png',
+      'assets/images/home/home1.png',
+      'assets/images/home/home5.png',
+      'assets/images/home/home2.png'
     ];
     return Scaffold(
-      body:
-          //   Stack(children: [
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     Container(
-          //       padding: EdgeInsets.only(top: 45),
-          //       child: Image.asset(
-          //         'assets/images/home3.png',
-          //         height: 40,
-          //       ),
-          //     ),
-          //   ],
-          // ),
-          StaggeredGridView.countBuilder(
+      body: StaggeredGridView.countBuilder(
         crossAxisCount: 4,
         itemCount: 4,
         itemBuilder: (BuildContext context, int index) => GestureDetector(
@@ -139,7 +110,6 @@ class _HomeState extends State<Home> {
         mainAxisSpacing: 1.0,
         crossAxisSpacing: 1.0,
       ),
-      //])
     );
   }
 }

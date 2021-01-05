@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
-import 'dart:collection';
 import 'views/home.dart';
 import 'views/search.dart';
 import 'views/profile.dart';
@@ -12,7 +10,6 @@ class BottomNav extends StatefulWidget {
 }
 
 class _BottomNavState extends State<BottomNav> {
-  ListQueue<int> _navigationQueue = ListQueue();
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -49,26 +46,7 @@ class _BottomNavState extends State<BottomNav> {
                   height: 40,
                 ),
               )),
-
           body: _bottomNavList.elementAt(_selectedIndex),
-          // bottomNavigationBar: BottomNavigationBar(
-          //     items: const <BottomNavigationBarItem>[
-          //       BottomNavigationBarItem(
-          //         icon: Icon(Icons.home),
-          //         label: 'Home',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon: Icon(Icons.search),
-          //         label: 'Search',
-          //       ),
-          //       BottomNavigationBarItem(
-          //         icon: Icon(Icons.shopping_cart_outlined),
-          //         label: 'Cart',
-          //       ),
-          //     ],
-          //     currentIndex: _selectedIndex,
-          //     selectedItemColor: Colors.amber[800],
-          //     onTap: _onItemTapped),
           bottomNavigationBar: Container(
             padding: EdgeInsets.only(bottom: 3, left: 20, right: 20),
             child: ClipRRect(
@@ -80,21 +58,21 @@ class _BottomNavState extends State<BottomNav> {
                 items: <BottomNavigationBarItem>[
                   BottomNavigationBarItem(
                       activeIcon: new Image.asset(
-                        'assets/images/homeIcon.png',
+                        'assets/images/home/homeIcon.png',
                         height: 23,
                       ),
                       icon: new Image.asset(
-                        'assets/images/homeIconInactive.png',
+                        'assets/images/home/homeIconInactive.png',
                         height: 23,
                       ),
                       label: 'Home'),
                   BottomNavigationBarItem(
                       activeIcon: Image.asset(
-                        'assets/images/searchIcon.png',
+                        'assets/images/home/searchIcon.png',
                         height: 23,
                       ),
                       icon: Image.asset(
-                        'assets/images/searchIconInactive.png',
+                        'assets/images/home/searchIconInactive.png',
                         height: 23,
                       ),
                       label: 'Search'),
@@ -102,28 +80,28 @@ class _BottomNavState extends State<BottomNav> {
                       icon: Padding(
                         padding: EdgeInsets.only(top: 3.0),
                         child: Image.asset(
-                          'assets/images/homeIconLogo.png',
+                          'assets/images/home/homeIconLogo.png',
                           height: 35,
                         ),
                       ),
                       label: ''),
                   BottomNavigationBarItem(
                       activeIcon: Image.asset(
-                        'assets/images/networkIcon.png',
+                        'assets/images/home/networkIcon.png',
                         height: 23,
                       ),
                       icon: Image.asset(
-                        'assets/images/networkIconInactive.png',
+                        'assets/images/home/networkIconInactive.png',
                         height: 23,
                       ),
                       label: 'SPLY RSS'),
                   BottomNavigationBarItem(
                       activeIcon: Image.asset(
-                        'assets/images/profileIcon.png',
+                        'assets/images/home/profileIcon.png',
                         height: 20,
                       ),
                       icon: Image.asset(
-                        'assets/images/profileIconInactive.png',
+                        'assets/images/home/profileIconInactive.png',
                         height: 20,
                       ),
                       label: 'Profile'),
