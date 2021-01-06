@@ -22,7 +22,11 @@ class _SneakersState extends State<Sneakers> {
     'assets/images/sneakers/carousel1.jpg',
     // 'assets/images/item4.jpg'
   ];
-
+  List trendingImg = [
+    'assets/images/sneakers/trendingList1.jpg',
+    'assets/images/sneakers/list3.jpg',
+    'assets/images/sneakers/list2.jpg',
+  ];
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -48,15 +52,23 @@ class _SneakersState extends State<Sneakers> {
                         color: Colors.black,
                         fontWeight: FontWeight.w400)),
               ),
+
               // Featured Style Heading
               Heading(context, 'New Arrivals'),
               SizedBox(height: 370, child: horizontalListWith2(context, img)),
               SizedBox(
-                height: 20,
+                height: 15,
               ),
               CarouselWithDots(
                 carouselImg: carouselImg,
               ),
+              SizedBox(
+                height: 40,
+              ),
+              Heading(context, 'TOP TRENDING'),
+              SizedBox(
+                  height: 370,
+                  child: horizontalListWith2(context, trendingImg)),
             ],
           ),
         ));

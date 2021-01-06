@@ -19,6 +19,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     double size = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         kToolbarHeight;
@@ -59,7 +60,9 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
             return Container(
               width: 10.0,
               height: 7.0,
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              margin: width < 400
+                  ? EdgeInsets.symmetric(vertical: 0.0, horizontal: 2.0)
+                  : EdgeInsets.symmetric(vertical: 6.0, horizontal: 2.0),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: _current == index ? Colors.black : Colors.grey,

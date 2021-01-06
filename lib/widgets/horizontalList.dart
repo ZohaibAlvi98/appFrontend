@@ -59,12 +59,14 @@ Widget horizontalListWith2(context, img) {
     // physics: NeverScrollableScrollPhysics(),
     // shrinkWrap: true,
     itemCount: img.length,
-    padding: EdgeInsets.only(right: 20.0, left: 23),
+    padding: EdgeInsets.only(right: 15.0, left: 18),
     itemBuilder: (context, index) {
       return Column(
         children: [
           Container(
-            padding: EdgeInsets.only(right: 10),
+            padding: width < 400
+                ? EdgeInsets.only(right: 5)
+                : EdgeInsets.only(right: 10),
             child: Card(
               child: Wrap(children: [
                 Image.asset(
@@ -78,15 +80,17 @@ Widget horizontalListWith2(context, img) {
           ),
           Padding(
             padding: width < 400
-                ? EdgeInsets.only(right: 87.0)
-                : EdgeInsets.only(right: 90.0),
+                ? EdgeInsets.only(right: width / 5.1)
+                : EdgeInsets.only(right: width / 4.5),
             child: Text(
               'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 170, top: 10),
+            padding: width < 400
+                ? EdgeInsets.only(right: 160, top: 10)
+                : EdgeInsets.only(right: 170, top: 10),
             child: Text(
               '\$ 400.00',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
