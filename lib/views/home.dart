@@ -16,44 +16,11 @@ class _HomeState extends State<Home> {
     setState(() {
       _selectedIndex = index;
       _navigatorPage();
-      // Navigator.push(
-      //   context,
-      //   MaterialPageRoute(
-      //     builder: (BuildContext context) {
-      //       if (_selectedIndex == 0) {
-      //         return Splyrs();
-      //       } else if (_selectedIndex == 1) {
-      //         return Styles();
-      //       } else if (_selectedIndex == 2) {
-      //         return Tv();
-      //       } else if (_selectedIndex == 3) {
-      //         return Sneakers();
-      //       }
-      //     },
-      //   ),
-      // );
     });
   }
 
-  // void _navigatorPage() {
-  //   Navigator.pushReplacement(
-  //     context,
-  //     MaterialPageRoute(
-  //       builder: (BuildContext context) {
-  //         if (_selectedIndex == 0) {
-  //           return Splyrs();
-  //         } else if (_selectedIndex == 1) {
-  //           return Styles();
-  //         } else if (_selectedIndex == 2) {
-  //           return Tv();
-  //         } else if (_selectedIndex == 3) {
-  //           return Sneakers();
-  //         }
-  //       },
-  //     ),
-  //   );
-  // }
   void _navigatorPage() {
+    // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
