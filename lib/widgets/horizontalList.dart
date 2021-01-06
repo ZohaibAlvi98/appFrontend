@@ -80,8 +80,8 @@ Widget horizontalListWith2(context, img) {
           ),
           Padding(
             padding: width < 400
-                ? EdgeInsets.only(right: width / 5.1)
-                : EdgeInsets.only(right: width / 4.5),
+                ? EdgeInsets.only(top: 10, right: width / 5.1)
+                : EdgeInsets.only(top: 10, right: width / 4.5),
             child: Text(
               'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
               style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
@@ -93,7 +93,10 @@ Widget horizontalListWith2(context, img) {
                 : EdgeInsets.only(right: 170, top: 10),
             child: Text(
               '\$ 400.00',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900),
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: Colors.grey[500]),
             ),
           ),
         ],

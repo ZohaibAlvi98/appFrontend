@@ -46,7 +46,7 @@ class _SneakersState extends State<Sneakers> {
                     ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
                     : EdgeInsets.only(top: 20.0, left: 55, right: 32),
                 child: Text(
-                    'A curated sneaker selection of new and popular drops. Personalized style discovery and shopping as a service.',
+                    'A curated sneaker selection of new and popular drops.',
                     style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
