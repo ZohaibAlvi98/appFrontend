@@ -3,6 +3,12 @@ import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/carousels.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
+import 'package:splyxp/widgets/navbar.dart';
+
+import '../../views/search.dart';
+import '../../views/profile.dart';
+import '../../views/sply-network.dart';
+import '../../views/home.dart';
 
 class Sneakers extends StatefulWidget {
   @override
@@ -27,50 +33,84 @@ class _SneakersState extends State<Sneakers> {
     'assets/images/sneakers/list3.jpg',
     'assets/images/sneakers/list2.jpg',
   ];
+  int index = 0;
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    if (_selectedIndex == 0 && index == 0) {
+      Navigator.of(context).pop();
+    }
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  static List<Widget> _bottomNavList = [
+    Sneakers(),
+    Search(),
+    Home(),
+    SplyNetwork(),
+    Profile()
+  ];
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return Scaffold(
-        appBar: Appbar(context),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.only(right: 20, left: 20),
-                child: Image.asset(
-                  'assets/images/sneakers/sneakers1.jpg',
-                ),
-              ),
-              Padding(
-                padding: width < 400
-                    ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
-                    : EdgeInsets.only(top: 20.0, left: 55, right: 32),
-                child: Text(
-                    'A curated sneaker selection of new and popular drops.',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400)),
-              ),
+    return WillPopScope(
+        onWillPop: () async {
+          if (_selectedIndex == 0) return true;
+          setState(() {
+            _selectedIndex = 0;
+          });
+          return false;
+        },
+        child: Scaffold(
+          // App bar
+          appBar: Appbar(context),
 
-              // Featured Style Heading
-              Heading(context, 'New Arrivals'),
-              SizedBox(height: 370, child: horizontalListWith2(context, img)),
-              SizedBox(
-                height: 15,
-              ),
-              CarouselWithDots(
-                carouselImg: carouselImg,
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Heading(context, 'TOP TRENDING'),
-              SizedBox(
-                  height: 370,
-                  child: horizontalListWith2(context, trendingImg)),
-            ],
-          ),
+          body: _selectedIndex == 0
+              ? SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.only(right: 20, left: 20),
+                        child: Image.asset(
+                          'assets/images/sneakers/sneakers1.jpg',
+                        ),
+                      ),
+                      Padding(
+                        padding: width < 400
+                            ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
+                            : EdgeInsets.only(top: 20.0, left: 55, right: 32),
+                        child: Text(
+                            'A curated sneaker selection of new and popular drops.',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400)),
+                      ),
+
+                      // Featured Style Heading
+                      Heading(context, 'New Arrivals'),
+                      SizedBox(
+                          height: 370,
+                          child: horizontalListWith2(context, img)),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      CarouselWithDots(
+                        carouselImg: carouselImg,
+                      ),
+                      SizedBox(
+                        height: 40,
+                      ),
+                      Heading(context, 'TOP TRENDING'),
+                      SizedBox(
+                          height: 370,
+                          child: horizontalListWith2(context, trendingImg)),
+                    ],
+                  ),
+                )
+              : _bottomNavList.elementAt(_selectedIndex),
+          bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
         ));
   }
 }
