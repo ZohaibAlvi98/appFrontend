@@ -54,6 +54,7 @@ class _SplyrsState extends State<Splyrs> {
   @override
   Widget build(BuildContext context) {
     int a = 0;
+    int b = 0;
     double height =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double width = MediaQuery.of(context).size.width;
@@ -124,18 +125,202 @@ class _SplyrsState extends State<Splyrs> {
                     itemBuilder: (_, index) {
                       if (index % 4 == 0 || (index - 3) % 4 == 0) {
                         if (a == 0 && index == 0) {
-                          return Image.asset(gridImg[a]);
+                          return Container(
+                              decoration: new BoxDecoration(
+                            image: new DecorationImage(
+                              image: ExactAssetImage(gridImg[a]),
+                              fit: BoxFit.contain,
+                            ),
+                          ));
                         }
 
                         a++;
-                        return Image.asset(gridImg[a]);
+                        return Container(
+                            decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: ExactAssetImage(gridImg[a]),
+                            fit: BoxFit.contain,
+                          ),
+                        ));
                       }
 
                       return Container(
-                        child: Center(child: Text('hello karak')),
+                        child: Padding(
+                          padding: width < 400
+                              ? EdgeInsets.only(left: 25, top: 25)
+                              : EdgeInsets.only(left: 25, top: 35),
+                          child: index == 1
+                              ? Stack(children: [
+                                  Text(
+                                    'MRKTDEUX',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(top: 30),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.location_pin,
+                                                size: 15,
+                                              ),
+                                              Text(
+                                                ' MIAMI, FLORIDA,\n UNITED STATES (US)',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        width < 400 ? 9 : 11,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              ),
+                                            ],
+                                          ),
+                                          Padding(
+                                            padding: width < 400
+                                                ? EdgeInsets.only(
+                                                    top: 6, left: 7, right: 5)
+                                                : EdgeInsets.only(
+                                                    top: 10, left: 7, right: 5),
+                                            child: Text(
+                                              'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                              style: TextStyle(
+                                                  fontSize:
+                                                      width < 400 ? 9 : 13,
+                                                  color: Colors.grey[600],
+                                                  fontWeight: FontWeight.w800,
+                                                  height: 1.15),
+                                            ),
+                                          )
+                                        ],
+                                      ))
+                                ])
+                              : index == 2
+                                  ? Stack(
+                                      children: [
+                                        Padding(
+                                          padding: width < 400
+                                              ? EdgeInsets.only(left: 10.0)
+                                              : EdgeInsets.only(left: 30.0),
+                                          child: Text('TOKENMIAMI',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 20)),
+                                        ),
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 30),
+                                              child: Stack(
+                                                children: [
+                                                  Icon(
+                                                    Icons.location_pin,
+                                                    size: 15,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 15.0),
+                                                    child: Text(
+                                                      'Address: 1537 NW 23rd Street florida, United States ((US), 33142)',
+                                                      style: TextStyle(
+                                                          fontSize: width < 400
+                                                              ? 9
+                                                              : 11,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: width < 400
+                                                  ? EdgeInsets.only(
+                                                      top: 6, left: 10)
+                                                  : EdgeInsets.only(
+                                                      top: 10, left: 10),
+                                              child: Text(
+                                                'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                                style: TextStyle(
+                                                    fontSize:
+                                                        width < 400 ? 9 : 13,
+                                                    color: Colors.grey[600],
+                                                    fontWeight: FontWeight.w800,
+                                                    height: 1.15),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      ],
+                                    )
+                                  : Stack(children: [
+                                      Text('ZOO FASHION',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: 20)),
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 30),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.location_pin,
+                                                    size: 15,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        right: 5.0),
+                                                    child: Text(
+                                                      'London United Kingdom\n (UK)',
+                                                      style: TextStyle(
+                                                          fontSize: width < 400
+                                                              ? 9
+                                                              : 11,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
+                                                padding: width < 400
+                                                    ? EdgeInsets.only(
+                                                        top: 6,
+                                                        left: 7,
+                                                        right: 5)
+                                                    : EdgeInsets.only(
+                                                        top: 10,
+                                                        left: 7,
+                                                        right: 5),
+                                                child: Text(
+                                                  'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          width < 400 ? 9 : 13,
+                                                      color: Colors.grey[600],
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                      height: 1.15),
+                                                ),
+                                              )
+                                            ],
+                                          ))
+                                    ]),
+                        ),
                       );
                     },
                   ),
+                  SizedBox(
+                    height: 20,
+                  )
                 ]))
               : _bottomNavList.elementAt(_selectedIndex),
           bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
