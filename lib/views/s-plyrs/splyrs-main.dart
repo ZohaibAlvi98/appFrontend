@@ -54,9 +54,6 @@ class _SplyrsState extends State<Splyrs> {
   @override
   Widget build(BuildContext context) {
     int a = 0;
-    int b = 0;
-    double height =
-        MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double width = MediaQuery.of(context).size.width;
     return WillPopScope(
         onWillPop: () async {

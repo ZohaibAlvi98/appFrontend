@@ -3,6 +3,7 @@ import 'package:splyxp/widgets/navbar.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
+import 'package:splyxp/widgets/videoList.dart';
 
 import '../../views/search.dart';
 import '../../views/profile.dart';
@@ -37,6 +38,18 @@ class _TvState extends State<Tv> {
     'assets/images/tv/list1.jpg',
     'assets/images/tv/list2.jpg',
     'assets/images/tv/list3.jpg',
+  ];
+  List thumbnail = [
+    'assets/images/tv/v1.png',
+    'assets/images/tv/v2.png',
+    'assets/images/tv/v3.png',
+    'assets/images/tv/v4.png'
+  ];
+  List videoUrl = [
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
   ];
   @override
   Widget build(BuildContext context) {
@@ -86,6 +99,9 @@ class _TvState extends State<Tv> {
                       height: 30,
                     ),
                     Heading(context, 'S-PLY TV'),
+                    SizedBox(
+                        height: 400,
+                        child: VideoList(thumbnail: thumbnail, videoUrl: videoUrl))
                   ],
                 ))
               : _bottomNavList.elementAt(_selectedIndex),
