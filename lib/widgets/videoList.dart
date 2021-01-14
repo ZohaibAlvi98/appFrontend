@@ -48,7 +48,9 @@ class _VideoListState extends State<VideoList> {
       // physics: NeverScrollableScrollPhysics(),
       // shrinkWrap: true,
       itemCount: widget.thumbnail.length,
-      padding: EdgeInsets.only(right: 20.0, left: 5.5),
+      padding: width < 400
+          ? EdgeInsets.only(right: 2, left: 5)
+          : EdgeInsets.only(right: 20.0, left: 5.5),
       itemBuilder: (context, index) {
         return Column(
           children: [
@@ -89,7 +91,6 @@ class _VideoListState extends State<VideoList> {
                                   future: _initializeVideoPlayerFuture,
                                   builder: (context, snapshot) {
                                     if (_controller == null) {
-                                      print('here');
                                       // If there was no controller, just create a new one
                                       _initController(widget.videoUrl[index]);
                                     } else {
@@ -154,7 +155,7 @@ class _VideoListState extends State<VideoList> {
                   child: Wrap(children: [
                     Image.asset(
                       widget.thumbnail[index],
-                      height: 110,
+                      height: width < 400 ? 90 : 110,
                       // width: imgwidth,
                     ),
                   ]),
@@ -164,22 +165,25 @@ class _VideoListState extends State<VideoList> {
             ),
             Padding(
               padding: width < 400
-                  ? EdgeInsets.only(right: 15.0)
-                  : EdgeInsets.only(right: 18.0),
+                  ? EdgeInsets.only(top: 5, right: 15.0)
+                  : EdgeInsets.only(top: 6, right: 60.0),
               child: Text(
                 'S-PLY Store Items',
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
-            // Padding(
-            //   padding: width < 400
-            //       ? EdgeInsets.only(top: 7.0, bottom: 5, right: 15)
-            //       : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
-            //   child: Text(
-            //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-            //     style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
-            //   ),
-            // ),
+            Padding(
+              padding: width < 400
+                  ? EdgeInsets.only(top: 7.0, bottom: 5)
+                  : EdgeInsets.only(top: 10.0, bottom: 5, left: 5),
+              child: Text(
+                'Lorem ipsum is a placeholder\n text commonly used to\n demonstrate the visual form of \n a document.',
+                style: TextStyle(
+                    fontSize: width < 400 ? 8 : 12,
+                    fontWeight: FontWeight.w800,
+                    height: width < 400 ? 1.15 : 1.3),
+              ),
+            ),
           ],
         );
       },

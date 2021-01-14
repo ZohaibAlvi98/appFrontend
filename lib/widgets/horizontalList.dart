@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget horizontalListWith3(context, img) {
+Widget horizontalListWith3(context, img, color) {
   double width = MediaQuery.of(context).size.width;
   return ListView.builder(
     scrollDirection: Axis.horizontal,
@@ -9,44 +9,47 @@ Widget horizontalListWith3(context, img) {
     itemCount: img.length,
     padding: EdgeInsets.only(right: 20.0, left: 5.5),
     itemBuilder: (context, index) {
-      return Column(
-        children: [
-          Container(
-            padding: EdgeInsets.only(right: 10),
-            child: Card(
-              child: Wrap(children: [
-                Image.asset(
-                  img[index],
-                  height: 175,
-                  // width: imgwidth,
-                ),
-              ]),
+      return Container(
+        color: color,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: Card(
+                child: Wrap(children: [
+                  Image.asset(
+                    img[index],
+                    height: 175,
+                    // width: imgwidth,
+                  ),
+                ]),
+              ),
+              color: color,
             ),
-            color: Colors.white12,
-          ),
-          Padding(
-            padding: width < 400
-                ? EdgeInsets.only(right: 15.0)
-                : EdgeInsets.only(right: 18.0),
-            child: Text(
-              'Thome Brown 4 Bar \nJackets',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+            Padding(
+              padding: width < 400
+                  ? EdgeInsets.only(right: 15.0)
+                  : EdgeInsets.only(right: 18.0),
+              child: Text(
+                'Thome Brown 4 Bar \nJackets',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-          Padding(
-            padding: width < 400
-                ? EdgeInsets.only(top: 7.0, bottom: 5, right: 15)
-                : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
-            child: Text(
-              'Brand: Thome Brown',
-              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
+            Padding(
+              padding: width < 400
+                  ? EdgeInsets.only(top: 7.0, bottom: 5, right: 15)
+                  : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
+              child: Text(
+                'Brand: Thome Brown',
+                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
+              ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 85),
-            child: Text('£759.00'),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.only(right: 85),
+              child: Text('£759.00'),
+            ),
+          ],
+        ),
       );
     },
   );

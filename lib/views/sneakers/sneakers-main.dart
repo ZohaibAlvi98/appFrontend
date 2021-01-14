@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/carousels.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
@@ -47,7 +48,7 @@ class _SneakersState extends State<Sneakers> {
   static List<Widget> _bottomNavList = [
     Sneakers(),
     Search(),
-    Home(),
+    ChatList(),
     SplyNetwork(),
     Profile()
   ];

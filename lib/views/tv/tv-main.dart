@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/chatList/chat-main.dart';
+import 'package:splyxp/widgets/carousels.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
@@ -30,7 +32,7 @@ class _TvState extends State<Tv> {
   static List<Widget> _bottomNavList = [
     Tv(),
     Search(),
-    Home(),
+    ChatList(),
     SplyNetwork(),
     Profile()
   ];
@@ -50,6 +52,12 @@ class _TvState extends State<Tv> {
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
+  ];
+  List carouselImg = [
+    'assets/images/tv/showCarousel1.jpg',
+    'assets/images/tv/showCarousel1.jpg',
+    'assets/images/tv/showCarousel1.jpg',
+    // 'assets/images/item4.jpg'
   ];
   @override
   Widget build(BuildContext context) {
@@ -100,8 +108,25 @@ class _TvState extends State<Tv> {
                     ),
                     Heading(context, 'S-PLY TV'),
                     SizedBox(
-                        height: 400,
-                        child: VideoList(thumbnail: thumbnail, videoUrl: videoUrl))
+                        height: 350,
+                        child: VideoList(
+                            thumbnail: thumbnail, videoUrl: videoUrl)),
+
+                    Text(
+                      'OUR SHOWS',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        'S-PLY TV ORIGINALS',
+                        style: TextStyle(fontSize: 19),
+                      ),
+                    ),
+                    CarouselWithDots(
+                      carouselImg: carouselImg,
+                    ),
                   ],
                 ))
               : _bottomNavList.elementAt(_selectedIndex),

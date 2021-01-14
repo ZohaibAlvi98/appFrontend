@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import 'views/home.dart';
 import 'views/search.dart';
@@ -22,7 +23,7 @@ class _BottomNavState extends State<BottomNav> {
   static List<Widget> _bottomNavList = [
     Home(),
     Search(),
-    Home(),
+    ChatList(),
     SplyNetwork(),
     Profile()
   ];

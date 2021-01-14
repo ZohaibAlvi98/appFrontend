@@ -6,7 +6,7 @@ Widget Heading(context, text) {
 
   return Row(children: <Widget>[
     SizedBox(
-      height: height * 0.15,
+      height: height * 0.09,
     ),
     Expanded(
       child: new Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
@@ -34,7 +35,7 @@ class _StylesState extends State<Styles> {
   static List<Widget> _bottomNavList = [
     Styles(),
     Search(),
-    Home(),
+    ChatList(),
     SplyNetwork(),
     Profile()
   ];
@@ -113,7 +114,8 @@ class _StylesState extends State<Styles> {
                       // horizontal Scrolling list
                       SizedBox(
                         height: 270,
-                        child: horizontalListWith3(context, img),
+                        child:
+                            horizontalListWith3(context, img, Colors.white12),
                       ),
                       // spacing
                       SizedBox(
@@ -152,6 +154,15 @@ class _StylesState extends State<Styles> {
                               height: 1.5,
                               color: Colors.grey[600],
                               fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(top: 50.0),
+                        color: Colors.grey[100],
+                        child: SizedBox(
+                          height: 270,
+                          child: horizontalListWith3(
+                              context, img, Colors.grey[100]),
                         ),
                       ),
                     ],
