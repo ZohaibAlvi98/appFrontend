@@ -1,4 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/products/product-detail.dart';
+
+void _navigatorPage(context) {
+  // Navigator.of(context).pop(new PageRouteBuilder());
+  Navigator.of(context).push(new PageRouteBuilder(
+      opaque: true,
+      transitionDuration: const Duration(),
+      pageBuilder: (BuildContext context, _, __) {
+        return ProductDetail();
+      },
+      transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+        return new SlideTransition(
+          child: child,
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+        );
+      }));
+}
 
 Widget horizontalListWith3(context, img, color) {
   double width = MediaQuery.of(context).size.width;
@@ -15,14 +35,17 @@ Widget horizontalListWith3(context, img, color) {
           children: [
             Container(
               padding: EdgeInsets.only(right: 10),
-              child: Card(
-                child: Wrap(children: [
-                  Image.asset(
-                    img[index],
-                    height: 175,
-                    // width: imgwidth,
-                  ),
-                ]),
+              child: InkWell(
+                onTap: () => _navigatorPage(context),
+                child: Card(
+                  child: Wrap(children: [
+                    Image.asset(
+                      img[index],
+                      height: 175,
+                      // width: imgwidth,
+                    ),
+                  ]),
+                ),
               ),
               color: color,
             ),
@@ -70,14 +93,17 @@ Widget horizontalListWith2(context, img) {
             padding: width < 400
                 ? EdgeInsets.only(right: 5)
                 : EdgeInsets.only(right: 10),
-            child: Card(
-              child: Wrap(children: [
-                Image.asset(
-                  img[index],
-                  height: 260,
-                  // width: imgwidth,
-                ),
-              ]),
+            child: InkWell(
+              onTap: () => _navigatorPage(context),
+              child: Card(
+                child: Wrap(children: [
+                  Image.asset(
+                    img[index],
+                    height: 260,
+                    // width: imgwidth,
+                  ),
+                ]),
+              ),
             ),
             color: Colors.white12,
           ),

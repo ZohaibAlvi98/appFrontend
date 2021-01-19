@@ -10,7 +10,6 @@ import 'package:splyxp/widgets/videoList.dart';
 import '../../views/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
-import '../../views/home.dart';
 
 class Tv extends StatefulWidget {
   @override
