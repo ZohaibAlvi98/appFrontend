@@ -76,14 +76,17 @@ class _ProductDetailState extends State<ProductDetail> {
                             padding: EdgeInsets.only(top: 10, left: 20),
                             child: Text(
                               '4 Bar Jacket',
-                              style: TextStyle(fontSize: 18),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10, left: 20),
                             child: Text('Price  £200',
                                 style: TextStyle(
-                                    fontSize: 18, color: Colors.grey[800])),
+                                    fontSize: 18,
+                                    color: Colors.grey[700],
+                                    fontWeight: FontWeight.w700)),
                           ),
                         ],
                       ),
@@ -124,9 +127,28 @@ class _ProductDetailState extends State<ProductDetail> {
                     SizedBox(
                       height: 30,
                     ),
-                    MyStatefulWidget(),
+                    Padding(
+                      padding: EdgeInsets.all(8),
+                      child: Container(
+                        height: 55,
+                        width: 250,
+                        child: FlatButton(
+                          color: Colors.black,
+                          // height: 40,
+                          onPressed: () {},
+                          child: Text(
+                            'BUY NOW',
+                            style: TextStyle(color: Colors.white, fontSize: 18),
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
-                      height: 300,
+                      height: 20,
+                    ),
+                    DropDown(brand: 'Thome Brown', link: ''),
+                    SizedBox(
+                      height: 25,
                     ),
                   ],
                 ),
