@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import 'views/home.dart';
 import 'views/search.dart';
@@ -38,16 +39,18 @@ class _BottomNavState extends State<BottomNav> {
           return false;
         },
         child: Scaffold(
-          appBar: AppBar(
-              toolbarHeight: 60,
-              elevation: 0,
-              backgroundColor: Colors.white12,
-              title: Center(
-                child: Image.asset(
-                  'assets/images/home3.png',
-                  height: 40,
-                ),
-              )),
+          appBar: _selectedIndex == 0
+              ? AppBar(
+                  toolbarHeight: 60,
+                  elevation: 0,
+                  backgroundColor: Colors.white12,
+                  title: Center(
+                    child: Image.asset(
+                      'assets/images/home3.png',
+                      height: 40,
+                    ),
+                  ))
+              : Appbar(context),
           body: _bottomNavList.elementAt(_selectedIndex),
           bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
         ));
