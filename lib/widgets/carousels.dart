@@ -130,7 +130,7 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                           Text(
                             'S-PLY STORE',
                             style: TextStyle(
-                                fontSize: 20,
+                                fontSize: width < 400 ? 20 : 24,
                                 color: Colors.white,
                                 fontWeight: FontWeight.w900),
                           ),

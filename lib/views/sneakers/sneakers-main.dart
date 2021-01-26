@@ -79,7 +79,7 @@ class _SneakersState extends State<Sneakers> {
                       ),
                       Padding(
                         padding: width < 400
-                            ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
+                            ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
                             : EdgeInsets.only(top: 20.0, left: 55, right: 32),
                         child: Text(
                             'A curated sneaker selection of new and popular drops.',

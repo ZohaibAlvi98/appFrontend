@@ -79,7 +79,7 @@ class _SplyrsState extends State<Splyrs> {
                   ),
                   Padding(
                     padding: width < 400
-                        ? EdgeInsets.only(top: 20.0, left: 50, right: 10)
+                        ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
                         : EdgeInsets.only(top: 20.0, left: 55, right: 65),
                     child: Text(
                         'Curated selection of fashion and lifestyle products from popular S-PLYRS from across the world',
@@ -90,7 +90,7 @@ class _SplyrsState extends State<Splyrs> {
                             fontWeight: FontWeight.w400)),
                   ),
                   SizedBox(
-                    height: 9,
+                    height: width < 400 ? 12 : 9,
                   ),
                   FlatButton(
                     shape: RoundedRectangleBorder(
