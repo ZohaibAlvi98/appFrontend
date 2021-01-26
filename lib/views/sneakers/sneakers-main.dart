@@ -108,7 +108,7 @@ class _SneakersState extends State<Sneakers> {
                             Image.asset('assets/images/sneakers/mens.gif'),
                             Padding(
                                 padding: width < 400
-                                    ? EdgeInsets.only(top: 150, left: 23)
+                                    ? EdgeInsets.only(top: 140, left: 25)
                                     : EdgeInsets.only(top: 170, left: 30),
                                 child: Stack(
                                   children: <Widget>[
@@ -116,7 +116,7 @@ class _SneakersState extends State<Sneakers> {
                                     Text(
                                       'SNEAKERS-PLY',
                                       style: TextStyle(
-                                        fontSize: width < 400 ? 25 : 40,
+                                        fontSize: width < 400 ? 30 : 40,
                                         foreground: Paint()
                                           ..style = PaintingStyle.stroke
                                           ..strokeWidth = 2
@@ -128,19 +128,21 @@ class _SneakersState extends State<Sneakers> {
                                     Text(
                                       'SNEAKERS-PLY',
                                       style: TextStyle(
-                                        fontSize: width < 400 ? 35 : 40,
+                                        fontSize: width < 400 ? 30 : 40,
                                         fontWeight: FontWeight.w800,
                                         color: Colors.transparent,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 50.0),
+                                      padding: width < 400
+                                          ? EdgeInsets.only(top: 40.0)
+                                          : EdgeInsets.only(top: 50.0),
                                       child: Center(
                                           child: Text(
                                         'MEN',
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 40,
+                                          fontSize: width < 400 ? 30 : 40,
                                           fontWeight: FontWeight.w900,
                                         ),
                                       )),
@@ -157,14 +159,16 @@ class _SneakersState extends State<Sneakers> {
                           children: [
                             Image.asset('assets/images/sneakers/womens.gif'),
                             Padding(
-                                padding: EdgeInsets.only(top: 140, left: 30),
+                                padding: width < 400
+                                    ? EdgeInsets.only(top: 140, left: 25)
+                                    : EdgeInsets.only(top: 170, left: 30),
                                 child: Stack(
                                   children: <Widget>[
                                     // Stroked text as border.
                                     Text(
                                       'SNEAKERS-PLY',
                                       style: TextStyle(
-                                        fontSize: 40,
+                                        fontSize: width < 400 ? 30 : 40,
                                         foreground: Paint()
                                           ..style = PaintingStyle.stroke
                                           ..strokeWidth = 2
@@ -176,19 +180,21 @@ class _SneakersState extends State<Sneakers> {
                                     Text(
                                       'SNEAKERS-PLY',
                                       style: TextStyle(
-                                        fontSize: 40,
+                                        fontSize: width < 400 ? 30 : 40,
                                         fontWeight: FontWeight.w800,
                                         color: Colors.transparent,
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 50.0),
+                                      padding: width < 400
+                                          ? EdgeInsets.only(top: 40.0)
+                                          : EdgeInsets.only(top: 50.0),
                                       child: Center(
                                           child: Text(
                                         'WOMEN',
                                         style: TextStyle(
                                           color: Colors.white,
-                                          fontSize: 40,
+                                          fontSize: width < 400 ? 30 : 40,
                                           fontWeight: FontWeight.w900,
                                         ),
                                       )),

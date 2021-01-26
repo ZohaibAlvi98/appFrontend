@@ -124,8 +124,57 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                               image: AssetImage(i), fit: BoxFit.fitWidth)),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 280, left: 20),
-                      child: Text('hello'),
+                      padding: EdgeInsets.only(top: 290, left: 20),
+                      child: Stack(
+                        children: [
+                          Text(
+                            'S-PLY STORE',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w900),
+                          ),
+                          Padding(
+                              padding: EdgeInsets.only(top: 26),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.location_pin,
+                                        color: Colors.white,
+                                        size: 12,
+                                      ),
+                                      Text(
+                                        ' S-PLY Store, London, United Kingdom(Uk)',
+                                        style: TextStyle(
+                                            fontSize: width < 400 ? 8 : 11,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  // Padding(
+                                  //   padding: width < 400
+                                  //       ? EdgeInsets.only(
+                                  //           top: 6, left: 7, right: 5)
+                                  //       : EdgeInsets.only(
+                                  //           top: 10, left: 7, right: 5),
+                                  //   child: Text(
+                                  //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                  //     style: TextStyle(
+                                  //         fontSize:
+                                  //             width < 400 ? 9 : 13,
+                                  //         color: Colors.grey[600],
+                                  //         fontWeight: FontWeight.w800,
+                                  //         height: 1.15),
+                                  //   ),
+                                  // )
+                                ],
+                              ))
+                        ],
+                      ),
                     )
                   ],
                 ),

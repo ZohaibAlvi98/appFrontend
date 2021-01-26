@@ -112,7 +112,7 @@ class _TvState extends State<Tv> {
                     ),
                     Heading(context, 'S-PLY TV'),
                     SizedBox(
-                        height: 240,
+                        height: width < 400 ? 230 : 240,
                         child: VideoList(
                             thumbnail: thumbnail, videoUrl: videoUrl)),
 

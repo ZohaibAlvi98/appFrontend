@@ -106,7 +106,7 @@ class _SplyrsState extends State<Splyrs> {
                     height: 50,
                   ),
                   SizedBox(
-                    height: 45,
+                    height: width < 400 ? 62 : 45,
                   ),
                   Heading(context, 'FEATURED S-PLYR'),
                   CarouselWithTextDots(

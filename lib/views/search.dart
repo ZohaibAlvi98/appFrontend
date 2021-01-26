@@ -77,46 +77,41 @@ class _SearchState extends State<Search> {
               itemCount: 2,
               padding: EdgeInsets.only(right: 20.0, left: 5.5),
               itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    _navigatorPage(heading[index]);
-                  },
-                  child: Container(
-                    height: 60,
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15),
-                              child: Stack(
-                                children: [
-                                  Text(
-                                    heading[index],
-                                    style: TextStyle(
-                                        fontSize: width < 400 ? 18 : 21,
-                                        fontWeight: FontWeight.w700),
+                return Container(
+                  height: 60,
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 15),
+                            child: Stack(
+                              children: [
+                                Text(
+                                  heading[index],
+                                  style: TextStyle(
+                                      fontSize: width < 400 ? 18 : 21,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                                Padding(
+                                  padding: width < 400
+                                      ? EdgeInsets.only(left: 280)
+                                      : EdgeInsets.only(left: 330),
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 16,
                                   ),
-                                  Padding(
-                                    padding: width < 400
-                                        ? EdgeInsets.only(left: 200)
-                                        : EdgeInsets.only(left: 330),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 16,
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             ),
-                          ]),
-                          new Divider(
-                            color: Colors.grey[500],
                           ),
-                        ],
-                      ),
+                        ]),
+                        new Divider(
+                          color: Colors.grey[500],
+                        ),
+                      ],
                     ),
                   ),
                 );

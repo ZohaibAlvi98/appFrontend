@@ -212,11 +212,13 @@ class _VideoListState extends State<VideoList> {
             ),
             Padding(
               padding: width < 400
-                  ? EdgeInsets.only(top: 5, right: 15.0)
+                  ? EdgeInsets.only(top: 5, right: 20.0)
                   : EdgeInsets.only(top: 6, right: 40.0),
               child: Text(
                 'S-PLY Store Items',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontSize: width < 400 ? 12 : 15,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Padding(

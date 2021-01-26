@@ -165,7 +165,7 @@ Widget sneakerListWith3(context, img, color) {
             ),
             Padding(
               padding: width < 400
-                  ? EdgeInsets.only(right: 25.0)
+                  ? EdgeInsets.only(right: 15.0)
                   : EdgeInsets.only(right: 30.0),
               child: Text(
                 'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
@@ -173,7 +173,7 @@ Widget sneakerListWith3(context, img, color) {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, right: 85),
+              padding: EdgeInsets.only(top: 10, right: 80),
               child: Text('\$ 400.00'),
             ),
           ],
