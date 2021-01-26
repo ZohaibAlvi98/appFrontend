@@ -81,10 +81,21 @@ class _ChatDetailState extends State<ChatDetail> {
           children: [
             Expanded(
                 child: Container(
-              color: Colors.grey[200],
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/chatDetail/background.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // color: Colors.grey[200],
             )),
             Container(
-              color: Colors.grey[200],
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/images/chatDetail/background.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
               child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
                 Expanded(
                     child: Padding(

@@ -98,7 +98,7 @@ class _SearchState extends State<Search> {
                                 Padding(
                                   padding: width < 400
                                       ? EdgeInsets.only(left: 291)
-                                      : EdgeInsets.only(left: 340),
+                                      : EdgeInsets.only(left: 343),
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 16,

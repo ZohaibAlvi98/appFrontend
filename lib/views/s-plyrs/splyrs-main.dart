@@ -158,13 +158,13 @@ class _SplyrsState extends State<Splyrs> {
                         child: Padding(
                           padding: width < 400
                               ? index % 2 != 0
-                                  ? EdgeInsets.only(left: 15, top: 25)
-                                  : EdgeInsets.only(left: 25, top: 25)
-                              : EdgeInsets.only(left: 25, top: 35),
+                                  ? EdgeInsets.only(left: 15, top: 45)
+                                  : EdgeInsets.only(left: 25, top: 45)
+                              : EdgeInsets.only(left: 25, top: 56),
                           child: index == 1
                               ? Stack(children: [
                                   Padding(
-                                    padding: EdgeInsets.only(top: 20.0),
+                                    padding: EdgeInsets.only(top: 10.0),
                                     child: Text(
                                       'MRKTDEUX',
                                       style: TextStyle(
@@ -173,7 +173,7 @@ class _SplyrsState extends State<Splyrs> {
                                     ),
                                   ),
                                   Padding(
-                                      padding: EdgeInsets.only(top: 50),
+                                      padding: EdgeInsets.only(top: 40),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -219,9 +219,9 @@ class _SplyrsState extends State<Splyrs> {
                                         Padding(
                                           padding: width < 400
                                               ? EdgeInsets.only(
-                                                  top: 20, left: 0.0)
+                                                  top: 15, left: 0.0)
                                               : EdgeInsets.only(
-                                                  top: 20, left: 15.0),
+                                                  top: 15, left: 0.0),
                                           child: Text('TOKENMIAMI',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
@@ -234,9 +234,9 @@ class _SplyrsState extends State<Splyrs> {
                                             Padding(
                                               padding: width < 400
                                                   ? EdgeInsets.only(
-                                                      top: 50, left: 0)
+                                                      top: 45, left: 0)
                                                   : EdgeInsets.only(
-                                                      top: 50, left: 15),
+                                                      top: 45, left: 0),
                                               child: Stack(
                                                 children: [
                                                   Icon(
