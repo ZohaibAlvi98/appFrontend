@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 Widget Heading(context, text) {
   double height =
       MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
-
+  double width = MediaQuery.of(context).size.width;
   return Row(children: <Widget>[
     SizedBox(
-      height: height * 0.09,
+      height: width < 400 ? 5 : 40,
     ),
     Expanded(
       child: new Container(

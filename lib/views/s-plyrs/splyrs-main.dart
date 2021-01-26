@@ -79,10 +79,10 @@ class _SplyrsState extends State<Splyrs> {
                   ),
                   Padding(
                     padding: width < 400
-                        ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
-                        : EdgeInsets.only(top: 20.0, left: 55, right: 32),
+                        ? EdgeInsets.only(top: 20.0, left: 50, right: 10)
+                        : EdgeInsets.only(top: 20.0, left: 55, right: 65),
                     child: Text(
-                        'Curated selection of fashion and lifestyle products from popular S PLYRS from across the world',
+                        'Curated selection of fashion and lifestyle products from popular S-PLYRS from across the world',
                         style: TextStyle(
                             height: 1.3,
                             fontSize: 20,
@@ -93,26 +93,32 @@ class _SplyrsState extends State<Splyrs> {
                     height: 9,
                   ),
                   FlatButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0),
+                        side: BorderSide(color: Colors.black87, width: 1.4)),
                     onPressed: () {},
                     child: Text(
                       'Become A S-PLYR',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
+                      style: TextStyle(color: Colors.black, fontSize: 20),
                     ),
-                    color: Colors.black,
-                    minWidth: 292,
+                    color: Colors.white,
+                    minWidth: 310,
                     height: 50,
                   ),
                   SizedBox(
                     height: 45,
                   ),
                   Heading(context, 'FEATURED S-PLYR'),
-                  CarouselWithDots(
+                  CarouselWithTextDots(
                     carouselImg: carouselImg,
                   ),
                   SizedBox(
                     height: 25,
                   ),
                   Heading(context, 'OTHER S-PLYR'),
+                  SizedBox(
+                    height: 15,
+                  ),
                   GridView.builder(
                     scrollDirection: Axis.vertical,
                     shrinkWrap: true,
@@ -124,22 +130,26 @@ class _SplyrsState extends State<Splyrs> {
                       if (index % 4 == 0 || (index - 3) % 4 == 0) {
                         if (a == 0 && index == 0) {
                           return Container(
+                              margin: EdgeInsets.symmetric(horizontal: 6),
                               decoration: new BoxDecoration(
-                            image: new DecorationImage(
-                              image: ExactAssetImage(gridImg[a]),
-                              fit: BoxFit.contain,
-                            ),
-                          ));
+                                borderRadius: BorderRadius.circular(8),
+                                image: new DecorationImage(
+                                  image: ExactAssetImage(gridImg[a]),
+                                  fit: BoxFit.fill,
+                                ),
+                              ));
                         }
 
                         a++;
                         return Container(
+                            margin: EdgeInsets.symmetric(horizontal: 6),
                             decoration: new BoxDecoration(
-                          image: new DecorationImage(
-                            image: ExactAssetImage(gridImg[a]),
-                            fit: BoxFit.contain,
-                          ),
-                        ));
+                              borderRadius: BorderRadius.circular(8),
+                              image: new DecorationImage(
+                                image: ExactAssetImage(gridImg[a]),
+                                fit: BoxFit.fill,
+                              ),
+                            ));
                       }
 
                       return Container(
@@ -149,14 +159,17 @@ class _SplyrsState extends State<Splyrs> {
                               : EdgeInsets.only(left: 25, top: 35),
                           child: index == 1
                               ? Stack(children: [
-                                  Text(
-                                    'MRKTDEUX',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 20.0),
+                                    child: Text(
+                                      'MRKTDEUX',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20),
+                                    ),
                                   ),
                                   Padding(
-                                      padding: EdgeInsets.only(top: 30),
+                                      padding: EdgeInsets.only(top: 50),
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
@@ -177,22 +190,22 @@ class _SplyrsState extends State<Splyrs> {
                                               ),
                                             ],
                                           ),
-                                          Padding(
-                                            padding: width < 400
-                                                ? EdgeInsets.only(
-                                                    top: 6, left: 7, right: 5)
-                                                : EdgeInsets.only(
-                                                    top: 10, left: 7, right: 5),
-                                            child: Text(
-                                              'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-                                              style: TextStyle(
-                                                  fontSize:
-                                                      width < 400 ? 9 : 13,
-                                                  color: Colors.grey[600],
-                                                  fontWeight: FontWeight.w800,
-                                                  height: 1.15),
-                                            ),
-                                          )
+                                          // Padding(
+                                          //   padding: width < 400
+                                          //       ? EdgeInsets.only(
+                                          //           top: 6, left: 7, right: 5)
+                                          //       : EdgeInsets.only(
+                                          //           top: 10, left: 7, right: 5),
+                                          //   child: Text(
+                                          //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                          //     style: TextStyle(
+                                          //         fontSize:
+                                          //             width < 400 ? 9 : 13,
+                                          //         color: Colors.grey[600],
+                                          //         fontWeight: FontWeight.w800,
+                                          //         height: 1.15),
+                                          //   ),
+                                          // )
                                         ],
                                       ))
                                 ])
@@ -201,8 +214,10 @@ class _SplyrsState extends State<Splyrs> {
                                       children: [
                                         Padding(
                                           padding: width < 400
-                                              ? EdgeInsets.only(left: 10.0)
-                                              : EdgeInsets.only(left: 30.0),
+                                              ? EdgeInsets.only(
+                                                  top: 20, left: 5.0)
+                                              : EdgeInsets.only(
+                                                  top: 20, left: 30.0),
                                           child: Text('TOKENMIAMI',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
@@ -213,7 +228,11 @@ class _SplyrsState extends State<Splyrs> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.only(top: 30),
+                                              padding: width < 400
+                                                  ? EdgeInsets.only(
+                                                      top: 50, left: 8)
+                                                  : EdgeInsets.only(
+                                                      top: 50, left: 30),
                                               child: Stack(
                                                 children: [
                                                   Icon(
@@ -236,33 +255,36 @@ class _SplyrsState extends State<Splyrs> {
                                                 ],
                                               ),
                                             ),
-                                            Padding(
-                                              padding: width < 400
-                                                  ? EdgeInsets.only(
-                                                      top: 6, left: 10)
-                                                  : EdgeInsets.only(
-                                                      top: 10, left: 10),
-                                              child: Text(
-                                                'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        width < 400 ? 9 : 13,
-                                                    color: Colors.grey[600],
-                                                    fontWeight: FontWeight.w800,
-                                                    height: 1.15),
-                                              ),
-                                            )
+                                            // Padding(
+                                            //   padding: width < 400
+                                            //       ? EdgeInsets.only(
+                                            //           top: 6, left: 20)
+                                            //       : EdgeInsets.only(
+                                            //           top: 10, left: 30),
+                                            //   child: Text(
+                                            //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                            //     style: TextStyle(
+                                            //         fontSize:
+                                            //             width < 400 ? 9 : 13,
+                                            //         color: Colors.grey[600],
+                                            //         fontWeight: FontWeight.w800,
+                                            //         height: 1.15),
+                                            //   ),
+                                            // )
                                           ],
                                         )
                                       ],
                                     )
                                   : Stack(children: [
-                                      Text('ZOO FASHION',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 20)),
                                       Padding(
-                                          padding: EdgeInsets.only(top: 30),
+                                        padding: EdgeInsets.only(top: 20),
+                                        child: Text('ZOO FASHION',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 20)),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 50),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -288,27 +310,27 @@ class _SplyrsState extends State<Splyrs> {
                                                   ),
                                                 ],
                                               ),
-                                              Padding(
-                                                padding: width < 400
-                                                    ? EdgeInsets.only(
-                                                        top: 6,
-                                                        left: 7,
-                                                        right: 5)
-                                                    : EdgeInsets.only(
-                                                        top: 10,
-                                                        left: 7,
-                                                        right: 5),
-                                                child: Text(
-                                                  'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-                                                  style: TextStyle(
-                                                      fontSize:
-                                                          width < 400 ? 9 : 13,
-                                                      color: Colors.grey[600],
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                      height: 1.15),
-                                                ),
-                                              )
+                                              // Padding(
+                                              //   padding: width < 400
+                                              //       ? EdgeInsets.only(
+                                              //           top: 6,
+                                              //           left: 7,
+                                              //           right: 5)
+                                              //       : EdgeInsets.only(
+                                              //           top: 10,
+                                              //           left: 7,
+                                              //           right: 5),
+                                              //   child: Text(
+                                              //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                              //     style: TextStyle(
+                                              //         fontSize:
+                                              //             width < 400 ? 9 : 13,
+                                              //         color: Colors.grey[600],
+                                              //         fontWeight:
+                                              //             FontWeight.w800,
+                                              //         height: 1.15),
+                                              //   ),
+                                              // )
                                             ],
                                           ))
                                     ]),

@@ -75,11 +75,18 @@ class _StylesState extends State<Styles> {
                             'Personalized style discovery and shopping as a service.\nWhere style meets fashion.',
                             style: TextStyle(
                                 fontSize: 20,
+                                height: 1.3,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400)),
                       ),
+                      SizedBox(
+                        height: 50,
+                      ),
                       // Featured Style Heading
                       Heading(context, 'FEATURED STYLES'),
+                      SizedBox(
+                        height: 20,
+                      ),
                       // Image and Rounded Card
                       Container(
                         padding: EdgeInsets.only(right: 20, left: 20),

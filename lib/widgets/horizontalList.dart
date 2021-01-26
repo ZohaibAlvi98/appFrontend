@@ -133,3 +133,52 @@ Widget horizontalListWith2(context, img) {
     },
   );
 }
+
+Widget sneakerListWith3(context, img, color) {
+  double width = MediaQuery.of(context).size.width;
+  return ListView.builder(
+    scrollDirection: Axis.horizontal,
+    // physics: NeverScrollableScrollPhysics(),
+    // shrinkWrap: true,
+    itemCount: img.length,
+    padding: EdgeInsets.only(right: 20.0, left: 5.5),
+    itemBuilder: (context, index) {
+      return Container(
+        color: color,
+        child: Column(
+          children: [
+            Container(
+              padding: EdgeInsets.only(right: 10),
+              child: InkWell(
+                onTap: () => _navigatorPage(context),
+                child: Card(
+                  child: Wrap(children: [
+                    Image.asset(
+                      img[index],
+                      height: 175,
+                      // width: imgwidth,
+                    ),
+                  ]),
+                ),
+              ),
+              color: color,
+            ),
+            Padding(
+              padding: width < 400
+                  ? EdgeInsets.only(right: 25.0)
+                  : EdgeInsets.only(right: 30.0),
+              child: Text(
+                'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 10, right: 85),
+              child: Text('\$ 400.00'),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}

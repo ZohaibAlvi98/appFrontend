@@ -137,7 +137,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           // height: 40,
                           onPressed: () {},
                           child: Text(
-                            'BUY NOW',
+                            'GET NOW',
                             style: TextStyle(color: Colors.white, fontSize: 18),
                           ),
                         ),

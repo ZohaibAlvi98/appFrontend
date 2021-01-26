@@ -213,23 +213,23 @@ class _VideoListState extends State<VideoList> {
             Padding(
               padding: width < 400
                   ? EdgeInsets.only(top: 5, right: 15.0)
-                  : EdgeInsets.only(top: 6, right: 60.0),
+                  : EdgeInsets.only(top: 6, right: 40.0),
               child: Text(
                 'S-PLY Store Items',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
               padding: width < 400
                   ? EdgeInsets.only(top: 7.0, bottom: 5)
                   : EdgeInsets.only(top: 10.0, bottom: 5, left: 5),
-              child: Text(
-                'Lorem ipsum is a placeholder\n text commonly used to\n demonstrate the visual form of \n a document.',
-                style: TextStyle(
-                    fontSize: width < 400 ? 8 : 12,
-                    fontWeight: FontWeight.w800,
-                    height: width < 400 ? 1.15 : 1.3),
-              ),
+              child: Text(''
+                  // 'Lorem ipsum is a placeholder\n text commonly used to\n demonstrate the visual form of \n a document.',
+                  // style: TextStyle(
+                  //     fontSize: width < 400 ? 8 : 12,
+                  //     fontWeight: FontWeight.w800,
+                  //     height: width < 400 ? 1.15 : 1.3),
+                  ),
             ),
           ],
         );

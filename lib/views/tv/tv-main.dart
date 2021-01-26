@@ -36,9 +36,10 @@ class _TvState extends State<Tv> {
     Profile()
   ];
   List img = [
-    'assets/images/tv/list1.jpg',
-    'assets/images/tv/list2.jpg',
-    'assets/images/tv/list3.jpg',
+    'assets/images/sneakers/list4.jpg',
+    'assets/images/sneakers/list2.jpg',
+    'assets/images/sneakers/list1.jpg',
+    'assets/images/sneakers/list3.jpg',
   ];
   List thumbnail = [
     'assets/images/tv/v1.png',
@@ -85,29 +86,33 @@ class _TvState extends State<Tv> {
                     ),
                     Padding(
                       padding: width < 400
-                          ? EdgeInsets.only(top: 20.0, left: 50, right: 30)
+                          ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
                           : EdgeInsets.only(top: 20.0, left: 55, right: 32),
                       child: Text(
-                          'S-ply seemlessly blends interaction and e commerce. Connect yourself to daily shoppables featuring.',
+                          'S-PLY seemlessly blends interaction and e commerce. Connect yourself to daily shoppables featuring.',
                           style: TextStyle(
                               fontSize: 20,
+                              height: 1.3,
                               color: Colors.black,
                               fontWeight: FontWeight.w400)),
                     ),
-
+                    SizedBox(
+                      height: 50,
+                    ),
                     // Featured Style Heading
                     Heading(context, 'FEATURED PRODUCTS'),
                     SizedBox(
-                      height: 5,
+                      height: 20,
                     ),
                     SizedBox(
-                        height: 370, child: horizontalListWith2(context, img)),
+                        height: 270,
+                        child: sneakerListWith3(context, img, Colors.white12)),
                     SizedBox(
                       height: 30,
                     ),
                     Heading(context, 'S-PLY TV'),
                     SizedBox(
-                        height: 350,
+                        height: 240,
                         child: VideoList(
                             thumbnail: thumbnail, videoUrl: videoUrl)),
 
@@ -117,7 +122,7 @@ class _TvState extends State<Tv> {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
+                      padding: const EdgeInsets.only(top: 5.0),
                       child: Text(
                         'S-PLY TV ORIGINALS',
                         style: TextStyle(fontSize: 19),

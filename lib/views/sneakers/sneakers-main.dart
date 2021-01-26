@@ -30,7 +30,7 @@ class _SneakersState extends State<Sneakers> {
     // 'assets/images/item4.jpg'
   ];
   List trendingImg = [
-    'assets/images/sneakers/trendingList1.jpg',
+    'assets/images/sneakers/list4.jpg',
     'assets/images/sneakers/list3.jpg',
     'assets/images/sneakers/list2.jpg',
   ];
@@ -88,25 +88,139 @@ class _SneakersState extends State<Sneakers> {
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400)),
                       ),
-
+                      SizedBox(
+                        height: 50,
+                      ),
                       // Featured Style Heading
                       Heading(context, 'New Arrivals'),
                       SizedBox(
-                          height: 370,
-                          child: horizontalListWith2(context, img)),
+                        height: 20,
+                      ),
                       SizedBox(
-                        height: 15,
+                          height: 320,
+                          child:
+                              sneakerListWith3(context, img, Colors.white12)),
+
+                      Container(
+                        padding: EdgeInsets.only(top: 20, right: 30, left: 30),
+                        child: Stack(
+                          children: [
+                            Image.asset('assets/images/sneakers/mens.gif'),
+                            Padding(
+                                padding: width < 400
+                                    ? EdgeInsets.only(top: 150, left: 23)
+                                    : EdgeInsets.only(top: 170, left: 30),
+                                child: Stack(
+                                  children: <Widget>[
+                                    // Stroked text as border.
+                                    Text(
+                                      'SNEAKERS-PLY',
+                                      style: TextStyle(
+                                        fontSize: width < 400 ? 25 : 40,
+                                        foreground: Paint()
+                                          ..style = PaintingStyle.stroke
+                                          ..strokeWidth = 2
+                                          ..color = Colors.white,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                    // Solid text as fill.
+                                    Text(
+                                      'SNEAKERS-PLY',
+                                      style: TextStyle(
+                                        fontSize: width < 400 ? 35 : 40,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 50.0),
+                                      child: Center(
+                                          child: Text(
+                                        'MEN',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      )),
+                                    )
+                                  ],
+                                )),
+                          ],
+                        ),
                       ),
-                      CarouselWithDots(
-                        carouselImg: carouselImg,
+                      Container(
+                        padding:
+                            EdgeInsets.only(right: 30, left: 30, bottom: 20),
+                        child: Stack(
+                          children: [
+                            Image.asset('assets/images/sneakers/womens.gif'),
+                            Padding(
+                                padding: EdgeInsets.only(top: 140, left: 30),
+                                child: Stack(
+                                  children: <Widget>[
+                                    // Stroked text as border.
+                                    Text(
+                                      'SNEAKERS-PLY',
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        foreground: Paint()
+                                          ..style = PaintingStyle.stroke
+                                          ..strokeWidth = 2
+                                          ..color = Colors.white,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                    // Solid text as fill.
+                                    Text(
+                                      'SNEAKERS-PLY',
+                                      style: TextStyle(
+                                        fontSize: 40,
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.transparent,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 50.0),
+                                      child: Center(
+                                          child: Text(
+                                        'WOMEN',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 40,
+                                          fontWeight: FontWeight.w900,
+                                        ),
+                                      )),
+                                    )
+                                  ],
+                                )
+                                // Center(
+                                //     child: Text(
+                                //   'hello',
+                                //   style: TextStyle(
+                                //     color: Colors.transparent,
+
+                                //   ),
+                                // )),
+                                )
+                          ],
+                        ),
                       ),
+                      // CarouselWithDots(
+                      //   carouselImg: carouselImg,
+                      // ),
                       SizedBox(
                         height: 40,
                       ),
                       Heading(context, 'TOP TRENDING'),
                       SizedBox(
-                          height: 370,
-                          child: horizontalListWith2(context, trendingImg)),
+                        height: 20,
+                      ),
+                      SizedBox(
+                          height: 320,
+                          child: sneakerListWith3(
+                              context, trendingImg, Colors.white12)),
                     ],
                   ),
                 )
