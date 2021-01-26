@@ -124,7 +124,7 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                               image: AssetImage(i), fit: BoxFit.fitWidth)),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 290, left: 20),
+                      padding: EdgeInsets.only(top: 270, left: 20),
                       child: Stack(
                         children: [
                           Text(

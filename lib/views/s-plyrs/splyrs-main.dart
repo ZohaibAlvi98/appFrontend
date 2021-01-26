@@ -130,7 +130,7 @@ class _SplyrsState extends State<Splyrs> {
                       if (index % 4 == 0 || (index - 3) % 4 == 0) {
                         if (a == 0 && index == 0) {
                           return Container(
-                              margin: EdgeInsets.symmetric(horizontal: 6),
+                              margin: EdgeInsets.only(left: 20),
                               decoration: new BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 image: new DecorationImage(
@@ -142,7 +142,9 @@ class _SplyrsState extends State<Splyrs> {
 
                         a++;
                         return Container(
-                            margin: EdgeInsets.symmetric(horizontal: 6),
+                            margin: index % 2 == 0
+                                ? EdgeInsets.only(left: 20)
+                                : EdgeInsets.only(right: 20),
                             decoration: new BoxDecoration(
                               borderRadius: BorderRadius.circular(8),
                               image: new DecorationImage(
@@ -155,7 +157,9 @@ class _SplyrsState extends State<Splyrs> {
                       return Container(
                         child: Padding(
                           padding: width < 400
-                              ? EdgeInsets.only(left: 25, top: 25)
+                              ? index % 2 != 0
+                                  ? EdgeInsets.only(left: 15, top: 25)
+                                  : EdgeInsets.only(left: 25, top: 25)
                               : EdgeInsets.only(left: 25, top: 35),
                           child: index == 1
                               ? Stack(children: [
@@ -215,9 +219,9 @@ class _SplyrsState extends State<Splyrs> {
                                         Padding(
                                           padding: width < 400
                                               ? EdgeInsets.only(
-                                                  top: 20, left: 5.0)
+                                                  top: 20, left: 0.0)
                                               : EdgeInsets.only(
-                                                  top: 20, left: 30.0),
+                                                  top: 20, left: 15.0),
                                           child: Text('TOKENMIAMI',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
@@ -230,9 +234,9 @@ class _SplyrsState extends State<Splyrs> {
                                             Padding(
                                               padding: width < 400
                                                   ? EdgeInsets.only(
-                                                      top: 50, left: 8)
+                                                      top: 50, left: 0)
                                                   : EdgeInsets.only(
-                                                      top: 50, left: 30),
+                                                      top: 50, left: 15),
                                               child: Stack(
                                                 children: [
                                                   Icon(
@@ -277,7 +281,8 @@ class _SplyrsState extends State<Splyrs> {
                                     )
                                   : Stack(children: [
                                       Padding(
-                                        padding: EdgeInsets.only(top: 20),
+                                        padding:
+                                            EdgeInsets.only(top: 20, right: 5),
                                         child: Text('ZOO FASHION',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,

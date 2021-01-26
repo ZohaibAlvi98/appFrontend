@@ -43,7 +43,7 @@ class _SearchState extends State<Search> {
           ),
           Container(
             width: 450,
-            padding: EdgeInsets.symmetric(vertical: 18, horizontal: 40),
+            padding: EdgeInsets.symmetric(vertical: 18, horizontal: 26),
             child: new TextField(
               cursorColor: Colors.black,
               decoration: new InputDecoration(
@@ -75,7 +75,7 @@ class _SearchState extends State<Search> {
               // physics: NeverScrollableScrollPhysics(),
               // shrinkWrap: true,
               itemCount: 2,
-              padding: EdgeInsets.only(right: 20.0, left: 5.5),
+              padding: EdgeInsets.only(right: 20.0, left: 7),
               itemBuilder: (context, index) {
                 return Container(
                   height: 60,
@@ -97,8 +97,8 @@ class _SearchState extends State<Search> {
                                 ),
                                 Padding(
                                   padding: width < 400
-                                      ? EdgeInsets.only(left: 280)
-                                      : EdgeInsets.only(left: 330),
+                                      ? EdgeInsets.only(left: 291)
+                                      : EdgeInsets.only(left: 340),
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 16,
