@@ -77,108 +77,101 @@ class _ChatDetailState extends State<ChatDetail> {
           ),
         ),
         body: SafeArea(
-            child: Column(
-          children: [
-            Expanded(
-                child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      "assets/images/chatDetail/backgroundImage.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              // color: Colors.grey[200],
-            )),
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      "assets/images/chatDetail/backgroundImage.png"),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                Expanded(
-                    child: Padding(
-                  padding: EdgeInsets.only(left: 8.0, right: 8, bottom: 4),
-                  child: Material(
-                    elevation: 1.5,
-                    borderRadius: BorderRadius.circular(25),
-                    child: Stack(
-                      children: [
-                        TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Type a message',
-                              fillColor: Colors.white,
-                              filled: true,
-                              contentPadding:
-                                  EdgeInsets.only(top: 6.0, left: 20),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                                borderSide: BorderSide.none,
-                              )),
-                          minLines: 1,
-                          maxLines: 10,
-                        ),
-                        Positioned(
-                          right: 40,
-                          child: Transform.rotate(
-                            angle: -math.pi / 1.5,
+            child: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/images/chatDetail/backgroundImage.png"),
+              fit: BoxFit.contain,
+            ),
+          ),
+          child: Column(
+            children: [
+              Expanded(child: Container()),
+              Container(
+                child:
+                    Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                  Expanded(
+                      child: Padding(
+                    padding: EdgeInsets.only(left: 8.0, right: 8, bottom: 4),
+                    child: Material(
+                      elevation: 1.5,
+                      borderRadius: BorderRadius.circular(25),
+                      child: Stack(
+                        children: [
+                          TextField(
+                            decoration: InputDecoration(
+                                hintText: 'Type a message',
+                                fillColor: Colors.white,
+                                filled: true,
+                                contentPadding:
+                                    EdgeInsets.only(top: 6.0, left: 20),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(25),
+                                  borderSide: BorderSide.none,
+                                )),
+                            minLines: 1,
+                            maxLines: 10,
+                          ),
+                          Positioned(
+                            right: 40,
+                            child: Transform.rotate(
+                              angle: -math.pi / 1.5,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.attachment,
+                                  color: Colors.grey[800],
+                                ),
+                                onPressed: () {
+                                  FocusScope.of(context)
+                                      .requestFocus(FocusNode());
+                                  print('hello');
+                                  chooseImage();
+                                },
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 5,
                             child: IconButton(
                               icon: Icon(
-                                Icons.attachment,
+                                Icons.camera_alt_rounded,
                                 color: Colors.grey[800],
                               ),
                               onPressed: () {
                                 FocusScope.of(context)
                                     .requestFocus(FocusNode());
                                 print('hello');
-                                chooseImage();
+                                chooseCamera();
                               },
                             ),
-                          ),
-                        ),
-                        Positioned(
-                          right: 5,
-                          child: IconButton(
-                            icon: Icon(
-                              Icons.camera_alt_rounded,
-                              color: Colors.grey[800],
-                            ),
-                            onPressed: () {
-                              FocusScope.of(context).requestFocus(FocusNode());
-                              print('hello');
-                              chooseCamera();
-                            },
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                )),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 3.0, right: 6),
-                  child: Container(
-                    height: 50,
-                    child: FloatingActionButton(
-                      // color: Colors.green,
-                      backgroundColor: Colors.green,
-                      onPressed: () {},
-                      shape: CircleBorder(),
-                      child: IconButton(
-                        icon: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
-                        onPressed: () {},
+                          )
+                        ],
                       ),
                     ),
-                  ),
-                )
-              ]),
-            )
-          ],
+                  )),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 3.0, right: 6),
+                    child: Container(
+                      height: 50,
+                      child: FloatingActionButton(
+                        // color: Colors.green,
+                        backgroundColor: Colors.green,
+                        onPressed: () {},
+                        shape: CircleBorder(),
+                        child: IconButton(
+                          icon: Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          ),
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                  )
+                ]),
+              )
+            ],
+          ),
         )));
   }
 }

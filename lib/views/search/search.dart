@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-detail.dart';
+import 'package:splyxp/views/search/categories/categories.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -7,13 +8,18 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  void _navigatorPage(user) {
+  void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ChatDetail(user: user);
+          print(index);
+          if (index == 'Categories') {
+            return Categories();
+          } else {
+            return Container();
+          }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -77,10 +83,12 @@ class _SearchState extends State<Search> {
               itemCount: 2,
               padding: EdgeInsets.only(right: 20.0, left: 7),
               itemBuilder: (context, index) {
-                return Container(
-                  height: 60,
-                  child: Padding(
-                    padding: EdgeInsets.all(5.0),
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(5.0, 5, 5, 8),
+                  child: InkWell(
+                    onTap: () {
+                      _navigatorPage(heading[index]);
+                    },
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -97,8 +105,8 @@ class _SearchState extends State<Search> {
                                 ),
                                 Padding(
                                   padding: width < 400
-                                      ? EdgeInsets.only(left: 291)
-                                      : EdgeInsets.only(left: 343),
+                                      ? EdgeInsets.only(left: 291, top: 3)
+                                      : EdgeInsets.only(left: 343, top: 1.2),
                                   child: Icon(
                                     Icons.arrow_forward_ios,
                                     size: 16,
@@ -108,8 +116,11 @@ class _SearchState extends State<Search> {
                             ),
                           ),
                         ]),
-                        new Divider(
-                          color: Colors.grey[500],
+                        Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: new Divider(
+                            color: Colors.grey[500],
+                          ),
                         ),
                       ],
                     ),

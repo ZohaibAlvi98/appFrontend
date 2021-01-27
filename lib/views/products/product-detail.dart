@@ -6,7 +6,7 @@ import 'package:splyxp/widgets/dropdown.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
 
-import '../../views/search.dart';
+import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';

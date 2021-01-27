@@ -7,7 +7,7 @@ import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/videoList.dart';
 
-import '../../views/search.dart';
+import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 

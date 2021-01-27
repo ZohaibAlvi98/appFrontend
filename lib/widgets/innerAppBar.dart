@@ -28,3 +28,30 @@ Widget Appbar(context) {
     ),
   );
 }
+
+Widget innerAppbar(context) {
+  double height =
+      MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+
+  return AppBar(
+    actions: [
+      IconButton(
+          padding: EdgeInsets.only(right: 20, bottom: 10),
+          icon: new Image.asset(
+            'assets/images/bag.png',
+            height: 30,
+          ),
+          onPressed: () {})
+    ],
+    toolbarHeight: 60,
+    elevation: 0,
+    backgroundColor: Colors.white12,
+    // automaticallyImplyLeading: false,
+    title: Padding(
+        padding: EdgeInsets.only(left: 5.0),
+        child: Text(
+          'Categories',
+          style: TextStyle(fontSize: 20, color: Colors.black),
+        )),
+  );
+}
