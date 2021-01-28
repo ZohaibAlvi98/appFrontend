@@ -82,7 +82,7 @@ Widget innerAppbar(context, list) {
               ),
               Tab(
                 child: Text(
-                  'Kid',
+                  'Kids',
                   style: TextStyle(color: Colors.black),
                 ),
               )
