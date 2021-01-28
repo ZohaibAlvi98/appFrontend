@@ -9,9 +9,12 @@ class Categories extends StatefulWidget {
 class _CategoriesState extends State<Categories> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: innerAppbar(context),
-      body: Text('hello'),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: innerAppbar(context, 'categories'),
+        body: Text(''),
+      ),
     );
   }
 }

@@ -29,7 +29,7 @@ Widget Appbar(context) {
   );
 }
 
-Widget innerAppbar(context) {
+Widget innerAppbar(context, list) {
   double height =
       MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
@@ -43,15 +43,51 @@ Widget innerAppbar(context) {
           ),
           onPressed: () {})
     ],
-    toolbarHeight: 60,
+    toolbarHeight: list == 'categories' ? 100 : 60,
     elevation: 0,
     backgroundColor: Colors.white12,
-    // automaticallyImplyLeading: false,
-    title: Padding(
-        padding: EdgeInsets.only(left: 5.0),
-        child: Text(
-          'Categories',
-          style: TextStyle(fontSize: 20, color: Colors.black),
-        )),
+    leading: Padding(
+      padding: EdgeInsets.only(left: 15.0, top: 2),
+      child: IconButton(
+        icon: Icon(Icons.arrow_back, color: Colors.black),
+        onPressed: () => Navigator.of(context).pop(),
+      ),
+    ),
+    title: list == 'categories'
+        ? Text(
+            'Categories',
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+          )
+        : Text(
+            'Designer',
+            style: TextStyle(
+                fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+          ),
+    bottom: list == 'categories'
+        ? TabBar(
+            indicatorColor: Colors.black54,
+            tabs: [
+              Tab(
+                child: Text(
+                  'Women',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Men',
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
+              Tab(
+                child: Text(
+                  'Kid',
+                  style: TextStyle(color: Colors.black),
+                ),
+              )
+            ],
+          )
+        : null,
   );
 }

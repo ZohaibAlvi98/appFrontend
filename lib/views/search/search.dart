@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-detail.dart';
 import 'package:splyxp/views/search/categories/categories.dart';
+import 'package:splyxp/views/search/designer/designer.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _SearchState extends State<Search> {
           if (index == 'Categories') {
             return Categories();
           } else {
-            return Container();
+            return Designer();
           }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
@@ -73,7 +74,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           SizedBox(
-            height: 30,
+            height: 20,
           ),
           ListView.builder(
               shrinkWrap: true,
