@@ -81,7 +81,7 @@ class _ChatDetailState extends State<ChatDetail> {
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/images/chatDetail/backgroundImage.png"),
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           ),
           child: Column(

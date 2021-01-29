@@ -80,12 +80,6 @@ Widget innerAppbar(context, list) {
                   style: TextStyle(color: Colors.black),
                 ),
               ),
-              Tab(
-                child: Text(
-                  'Kids',
-                  style: TextStyle(color: Colors.black),
-                ),
-              )
             ],
           )
         : null,

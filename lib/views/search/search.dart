@@ -15,7 +15,6 @@ class _SearchState extends State<Search> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          print(index);
           if (index == 'Categories') {
             return Categories();
           } else {
