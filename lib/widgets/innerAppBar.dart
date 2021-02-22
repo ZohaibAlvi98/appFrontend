@@ -1,4 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/cart/cart.dart';
+
+void _navigatorPage(context) {
+  // Navigator.of(context).pop(new PageRouteBuilder());
+  Navigator.of(context).push(new PageRouteBuilder(
+      opaque: true,
+      transitionDuration: const Duration(),
+      pageBuilder: (BuildContext context, _, __) {
+        return Cart();
+      },
+      transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+        return new SlideTransition(
+          child: child,
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+        );
+      }));
+}
 
 Widget Appbar(context) {
   double height =
@@ -12,7 +32,9 @@ Widget Appbar(context) {
             'assets/images/bag.png',
             height: 30,
           ),
-          onPressed: () {})
+          onPressed: () {
+            _navigatorPage(context);
+          })
     ],
     toolbarHeight: 60,
     elevation: 0,
@@ -41,7 +63,9 @@ Widget innerAppbar(context, list) {
             'assets/images/bag.png',
             height: 30,
           ),
-          onPressed: () {})
+          onPressed: () {
+            _navigatorPage(context);
+          })
     ],
     toolbarHeight: list == 'categories' ? 100 : 60,
     elevation: 0,

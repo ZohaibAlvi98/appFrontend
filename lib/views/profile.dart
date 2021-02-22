@@ -59,7 +59,7 @@ class _ProfileState extends State<Profile> {
               mainHeading('SUPPORT', Icon(Icons.people)),
               list(width, supportHeading, 4),
               mainHeading(
-                  'Log Out',
+                  ' Log Out',
                   Transform.rotate(
                       angle: -12.54 / 4, child: Icon(Icons.logout))),
               SizedBox(
@@ -100,7 +100,7 @@ Widget list(width, heading, length) {
       physics: NeverScrollableScrollPhysics(),
       // shrinkWrap: true,
       itemCount: length,
-      padding: EdgeInsets.only(right: 0.0, left: 7, top: 12),
+      padding: EdgeInsets.only(right: 0.0, left: 5, top: 12),
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.fromLTRB(5.0, 3, 5, 3),
@@ -125,7 +125,7 @@ Widget list(width, heading, length) {
                         Padding(
                           padding: width < 400
                               ? EdgeInsets.only(left: 280, top: 3)
-                              : EdgeInsets.only(left: 320, top: 1.2),
+                              : EdgeInsets.only(left: 325, top: 1.2),
                           child: Icon(
                             Icons.arrow_forward_ios,
                             size: 16,

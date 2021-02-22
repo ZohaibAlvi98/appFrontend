@@ -8,12 +8,129 @@ class SplyNetwork extends StatefulWidget {
 class _SplyNetworkState extends State<SplyNetwork> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-          child: Text(
-        's-ply network',
-        style: TextStyle(fontSize: 30),
-      )),
+    double width = MediaQuery.of(context).size.width;
+    return SingleChildScrollView(
+      child: Container(
+        child: Column(
+          children: [
+            cards(width, 'assets/images/rss/rss1.jpg'),
+            SizedBox(
+              height: 15,
+            ),
+            cards(width, 'assets/images/rss/rss2.jpg'),
+            SizedBox(
+              height: 15,
+            ),
+            cards(width, 'assets/images/rss/rss1.jpg'),
+          ],
+        ),
+      ),
     );
   }
+}
+
+Widget cards(width, img) {
+  return Container(
+      padding: EdgeInsets.only(right: 15, left: 15, top: 5),
+      child: InkResponse(
+        onTap: () {
+          print('hello');
+        },
+        child: Card(
+          elevation: 1,
+          child: Column(
+            children: [
+              Image.asset(
+                img,
+                fit: BoxFit.contain,
+              ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 1),
+                      width: width * 0.13,
+                      height: 50,
+                      decoration: new BoxDecoration(
+                        border: new Border.all(
+                          color: Colors.grey[400],
+                          width: 1.0,
+                        ),
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Padding(
+                        padding: width < 400
+                            ? EdgeInsets.only(left: 6.5, top: 13)
+                            : EdgeInsets.only(left: 8.0, top: 13),
+                        child: Text(
+                          'End',
+                          style: TextStyle(
+                              fontSize: width < 400 ? 16 : 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 5.0, left: 0),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: width < 400
+                                  ? EdgeInsets.only(right: 50.0)
+                                  : EdgeInsets.only(right: 55.0),
+                              child: Text(
+                                'END.',
+                                style:
+                                    TextStyle(fontSize: width < 400 ? 18 : 20),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 9.0),
+                              child: Text(
+                                'January 22, 2021',
+                                style:
+                                    TextStyle(fontSize: width < 400 ? 11 : 14),
+                              ),
+                            )
+                          ],
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 3),
+                child: Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 3.0),
+                          child: Text(
+                            '1017 Alyx 9sm x Stussy - Available Now',
+                            style: TextStyle(
+                                fontSize: width < 400 ? 22 : 25,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.black),
+                          ),
+                        )),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 6.0, left: 2.5),
+                        child: Text(
+                          ' Lorem ipsum is a placeholder text commonly used to demonstrate the visual....',
+                          style: TextStyle(height: 1.3),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ));
 }
