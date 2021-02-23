@@ -28,7 +28,7 @@ class _DesignerState extends State<Designer> {
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
 
     return Scaffold(
-      appBar: innerAppbar(context, 'designer'),
+      appBar: innerAppbar(context, 'DESIGNERS'),
       body: SingleChildScrollView(
         child: Column(
           children: [

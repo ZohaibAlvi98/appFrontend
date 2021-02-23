@@ -79,12 +79,12 @@ Widget innerAppbar(context, list) {
     ),
     title: list == 'categories'
         ? Text(
-            'Categories',
+            'CATEGORIES',
             style: TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
           )
         : Text(
-            'Designer',
+            list,
             style: TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
           ),
