@@ -49,7 +49,7 @@ Widget cards(width, img) {
                 child: Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 1),
+                      margin: EdgeInsets.symmetric(vertical: 15, horizontal: 2),
                       width: width * 0.13,
                       height: 50,
                       decoration: new BoxDecoration(
@@ -69,7 +69,7 @@ Widget cards(width, img) {
                           style: TextStyle(
                               fontSize: width < 400 ? 16 : 20,
                               color: Colors.black,
-                              fontWeight: FontWeight.w700),
+                              fontWeight: FontWeight.w400),
                         ),
                       ),
                     ),
@@ -79,16 +79,17 @@ Widget cards(width, img) {
                           children: [
                             Padding(
                               padding: width < 400
-                                  ? EdgeInsets.only(right: 50.0)
+                                  ? EdgeInsets.only(right: 45.0)
                                   : EdgeInsets.only(right: 55.0),
                               child: Text(
                                 'END.',
-                                style:
-                                    TextStyle(fontSize: width < 400 ? 18 : 20),
+                                style: TextStyle(
+                                    fontSize: width < 400 ? 18 : 20,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 9.0),
+                              padding: EdgeInsets.only(left: 8.0),
                               child: Text(
                                 'January 22, 2021',
                                 style:
@@ -121,7 +122,7 @@ Widget cards(width, img) {
                       child: Padding(
                         padding: EdgeInsets.only(top: 6.0, left: 2.5),
                         child: Text(
-                          ' Lorem ipsum is a placeholder text commonly used to demonstrate the visual....',
+                          'Lorem ipsum is a placeholder text commonly used to demonstrate the visual....',
                           style: TextStyle(height: 1.3),
                         ),
                       ),
