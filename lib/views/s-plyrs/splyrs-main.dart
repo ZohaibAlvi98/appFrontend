@@ -180,12 +180,16 @@ class _SplyrsState extends State<Splyrs> {
                                         children: [
                                           Row(
                                             children: [
-                                              Icon(
-                                                Icons.location_pin,
-                                                size: 15,
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 9.0),
+                                                child: Icon(
+                                                  Icons.location_pin,
+                                                  size: 15,
+                                                ),
                                               ),
                                               Text(
-                                                ' MIAMI, FLORIDA,\n UNITED STATES (US)',
+                                                'MIAMI, FLORIDA,\nUNITED STATES (US)',
                                                 style: TextStyle(
                                                     fontSize:
                                                         width < 400 ? 9 : 11,
@@ -296,9 +300,13 @@ class _SplyrsState extends State<Splyrs> {
                                             children: [
                                               Row(
                                                 children: [
-                                                  Icon(
-                                                    Icons.location_pin,
-                                                    size: 15,
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        bottom: 10.0),
+                                                    child: Icon(
+                                                      Icons.location_pin,
+                                                      size: 15,
+                                                    ),
                                                   ),
                                                   Padding(
                                                     padding: EdgeInsets.only(
