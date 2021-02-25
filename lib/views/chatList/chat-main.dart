@@ -66,7 +66,7 @@ class _ChatListState extends State<ChatList> {
                 children: [
                   Row(children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 10, left: 8.0),
+                      padding: EdgeInsets.only(top: 7, left: 8.0),
                       child: CircleAvatar(
                         radius: 30.0,
                         backgroundImage:
