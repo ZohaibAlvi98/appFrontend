@@ -36,14 +36,14 @@ class _ProfileState extends State<Profile> {
                 Center(
                   heightFactor: 2,
                   child: Text(
-                    'WASIQ HUSSAIN',
+                    'ALBION STAPLETON',
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
                   ),
                 ),
                 Center(
                   heightFactor: 0.2,
                   child: Text(
-                    'wasiq.smaztech.@gmail.com',
+                    'albion.stapleton@gmail.com',
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                   ),
                 ),
@@ -103,7 +103,7 @@ Widget list(width, heading, length) {
       padding: EdgeInsets.only(right: 0.0, left: 5, top: 12),
       itemBuilder: (context, index) {
         return Padding(
-          padding: const EdgeInsets.fromLTRB(5.0, 3, 5, 3),
+          padding: const EdgeInsets.fromLTRB(5.0, .25, 5, 3),
           child: InkWell(
             onTap: () {
               // _navigatorPage(heading[index]);
