@@ -27,14 +27,14 @@ Widget horizontalListWith3(context, img, color) {
     // physics: NeverScrollableScrollPhysics(),
     // shrinkWrap: true,
     itemCount: img.length,
-    padding: EdgeInsets.only(right: 20.0, left: 5.5),
+    padding: EdgeInsets.only(right: 20.0, left: 12),
     itemBuilder: (context, index) {
       return Container(
         color: color,
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(right: 10),
+              padding: EdgeInsets.only(right: 4),
               child: InkWell(
                 onTap: () => _navigatorPage(context),
                 child: Card(
@@ -51,7 +51,7 @@ Widget horizontalListWith3(context, img, color) {
             ),
             Padding(
               padding: width < 400
-                  ? EdgeInsets.only(right: 15.0)
+                  ? EdgeInsets.only(right: 7.0)
                   : EdgeInsets.only(right: 18.0),
               child: Text(
                 'Thome Brown 4 Bar \nJackets',
@@ -60,7 +60,7 @@ Widget horizontalListWith3(context, img, color) {
             ),
             Padding(
               padding: width < 400
-                  ? EdgeInsets.only(top: 7.0, bottom: 5, right: 15)
+                  ? EdgeInsets.only(top: 7.0, bottom: 5, right: 8)
                   : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
               child: Text(
                 'Brand: Thome Brown',
@@ -68,7 +68,7 @@ Widget horizontalListWith3(context, img, color) {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 85),
+              padding: EdgeInsets.only(right: 83),
               child: Text('£759.00'),
             ),
           ],
@@ -141,14 +141,14 @@ Widget sneakerListWith3(context, img, color) {
     // physics: NeverScrollableScrollPhysics(),
     // shrinkWrap: true,
     itemCount: img.length,
-    padding: EdgeInsets.only(right: 20.0, left: 5.5),
+    padding: EdgeInsets.only(right: 20.0, left: 12),
     itemBuilder: (context, index) {
       return Container(
         color: color,
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(right: 10),
+              padding: EdgeInsets.only(right: 4),
               child: InkWell(
                 onTap: () => _navigatorPage(context),
                 child: Card(
