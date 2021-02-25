@@ -39,7 +39,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
               return Container(
                 margin: EdgeInsets.symmetric(horizontal: 8),
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(35)),
+                    // borderRadius: BorderRadius.all(Radius.circular(35)),
                     image: DecorationImage(
                         image: AssetImage(i), fit: BoxFit.fitWidth)),
               );
@@ -47,7 +47,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
             options: CarouselOptions(
                 initialPage: 1,
                 enableInfiniteScroll: false,
-                height: size * 0.52,
+                height: size * 0.55,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },
