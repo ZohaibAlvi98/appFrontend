@@ -129,34 +129,58 @@ class _CartState extends State<Cart> {
               padding: EdgeInsets.only(top: 8, left: 15),
               child: Image.asset(img)),
         ),
-        Container(
-          alignment: Alignment.topCenter,
-          padding: width < 400
-              ? EdgeInsets.only(top: 8, left: 135)
-              : EdgeInsets.only(top: 10, left: 95),
-          child: Text(
-            'AIR JORDAN 1 MID \n"SISTERHOOD"',
-            style: TextStyle(
-                fontSize: width < 400 ? 14 : 18, fontWeight: FontWeight.w700),
-          ),
-        ),
+        // Container(
+        //   alignment: Alignment.topCenter,
+        //   padding: width < 400
+        //       ? EdgeInsets.only(top: 8, left: 135)
+        //       : EdgeInsets.only(top: 10, left: 95),
+        //   child: Text(
+        //     'AIR JORDAN 1 MID \n"SISTERHOOD"',
+        //     style: TextStyle(
+        //         fontSize: width < 400 ? 14 : 18, fontWeight: FontWeight.w700),
+        //   ),
+        // ),
+        // Padding(
+        //   padding: width < 400
+        //       ? EdgeInsets.only(top: 3, left: 120.0)
+        //       : EdgeInsets.only(top: 5, left: 58.0),
+        //   child: Center(
+        //     heightFactor: width < 400 ? 6 : 6.5,
+        //     child: Text(
+        //       'Item Id: 16455890',
+        //       style: TextStyle(
+        //           color: Colors.grey[700], fontSize: width < 400 ? 13.5 : 15),
+        //     ),
+        //   ),
+        // ),
         Padding(
-          padding: width < 400
-              ? EdgeInsets.only(top: 3, left: 120.0)
-              : EdgeInsets.only(top: 5, left: 55.0),
-          child: Center(
-            heightFactor: width < 400 ? 6 : 7,
-            child: Text(
-              'Item Id: 16455890',
-              style: TextStyle(
-                  color: Colors.grey[700], fontSize: width < 400 ? 13.5 : 15),
-            ),
-          ),
-        ),
-        Padding(
-            padding: EdgeInsets.only(left: 175, top: 80),
+            padding: EdgeInsets.only(left: 175, top: 8),
             child: Column(
               children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'AIR JORDAN 1 MID \n"SISTERHOOD"',
+                    style: TextStyle(
+                        fontSize: width < 400 ? 14 : 18,
+                        fontWeight: FontWeight.w700),
+                  ),
+                ),
+                SizedBox(
+                  height: 3,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Item Id: 16455890',
+                    style: TextStyle(
+                        color: Colors.grey[700],
+                        fontSize: width < 400 ? 13.5 : 15),
+                  ),
+                ),
+                SizedBox(
+                  height: 6,
+                ),
                 Align(
                     alignment: Alignment.centerLeft,
                     child: Text(
