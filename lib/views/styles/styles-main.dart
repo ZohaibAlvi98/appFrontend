@@ -172,6 +172,9 @@ class _StylesState extends State<Styles> {
                               context, img, Colors.grey[100]),
                         ),
                       ),
+                      SizedBox(
+                        height: 20,
+                      ),
                     ],
                   ),
                 )

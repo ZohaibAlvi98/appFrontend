@@ -224,7 +224,7 @@ class _SneakersState extends State<Sneakers> {
                         height: 20,
                       ),
                       SizedBox(
-                          height: 320,
+                          height: 280,
                           child: sneakerListWith3(
                               context, trendingImg, Colors.white12)),
                     ],
