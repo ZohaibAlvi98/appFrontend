@@ -127,7 +127,7 @@ Widget cards(width, img) {
                           padding:
                               EdgeInsets.only(top: 7.0, left: 13, bottom: 10),
                           child: Text(
-                            'Lorem ipsum is a placeholder text commonly used to demonstrate the visual....',
+                            'Lorem ipsum is a placeholder text commonly used to demonstrate the visual..',
                             style: TextStyle(height: 1.3),
                           ),
                         ),
