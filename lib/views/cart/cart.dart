@@ -15,50 +15,10 @@ class _CartState extends State<Cart> {
   List<String> _size4 = ['S', 'M', 'L', 'XL'];
 
   List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  List<String> _qty2 = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9'
-  ]; // Option 2
-  List<String> _qty3 = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9'
-  ]; // Option 2
-  List<String> _qty4 = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9'
-  ]; // Option 2
-  // Option 2
-  // Option 2
+
   String _selectedsize;
-  String _selectedsize2;
-  String _selectedsize3;
-  String _selectedsize4;
 
   String _selectedQty;
-  String _selectedQty2;
-  String _selectedQty3;
-  String _selectedQty4;
 
   // void variable() {
   //   for (var i = 0; i < arr.length; i++) {
@@ -152,13 +112,13 @@ class _CartState extends State<Cart> {
       children: [
         Padding(
           padding: width < 400
-              ? EdgeInsets.only(top: 15.0, right: 15)
+              ? EdgeInsets.only(top: 15.0, right: 10)
               : EdgeInsets.only(top: 15.0, right: 20),
           child: Align(
             alignment: Alignment.topRight,
             child: Icon(
               Icons.close,
-              size: 20,
+              size: width < 400 ? 15 : 19,
               color: Colors.grey[800],
             ),
           ),
@@ -172,7 +132,7 @@ class _CartState extends State<Cart> {
         Container(
           alignment: Alignment.topCenter,
           padding: width < 400
-              ? EdgeInsets.only(top: 10, left: 135)
+              ? EdgeInsets.only(top: 8, left: 135)
               : EdgeInsets.only(top: 10, left: 95),
           child: Text(
             'AIR JORDAN 1 MID \n"SISTERHOOD"',
@@ -182,13 +142,14 @@ class _CartState extends State<Cart> {
         ),
         Padding(
           padding: width < 400
-              ? EdgeInsets.only(top: 2.5, left: 125.0)
+              ? EdgeInsets.only(top: 3, left: 120.0)
               : EdgeInsets.only(top: 5, left: 55.0),
           child: Center(
-            heightFactor: width < 400 ? 6 : 7.2,
+            heightFactor: width < 400 ? 6 : 7,
             child: Text(
               'Item Id: 16455890',
-              style: TextStyle(color: Colors.grey[700]),
+              style: TextStyle(
+                  color: Colors.grey[700], fontSize: width < 400 ? 13.5 : 15),
             ),
           ),
         ),
@@ -230,8 +191,8 @@ class _CartState extends State<Cart> {
           padding: EdgeInsets.only(left: 175, top: 155),
           child: Text(
             'Price:  £400',
-            style:
-                TextStyle(color: Colors.black, fontSize: width < 400 ? 15 : 17),
+            style: TextStyle(
+                color: Colors.black, fontSize: width < 400 ? 14 : 16.5),
           ),
         )
       ],
@@ -242,7 +203,7 @@ class _CartState extends State<Cart> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: innerAppbar(context, 'SHOPPING BAG'),
+      appBar: innerAppbar(context, 'SHOPPING BAG (4)'),
       body: SingleChildScrollView(
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.start,
@@ -311,7 +272,7 @@ class _CartState extends State<Cart> {
             Padding(
               padding: EdgeInsets.only(top: 20),
               child: Container(
-                height: 58,
+                height: 56,
                 width: 347,
                 child: FlatButton(
                   color: Colors.black,
@@ -324,7 +285,7 @@ class _CartState extends State<Cart> {
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 18,
-                        letterSpacing: 0.6,
+                        // letterSpacing: 0.6,
                         fontWeight: FontWeight.w600),
                   ),
                 ),

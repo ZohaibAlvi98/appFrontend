@@ -116,13 +116,9 @@ class _TvState extends State<Tv> {
                         child: VideoList(
                             thumbnail: thumbnail, videoUrl: videoUrl)),
 
-                    Text(
-                      'OUR SHOWS',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                    Heading(context, 'OUR SHOWS'),
                     Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
+                      padding: const EdgeInsets.only(top: 2.0),
                       child: Text(
                         'S-PLY TV ORIGINALS',
                         style: TextStyle(fontSize: 19),

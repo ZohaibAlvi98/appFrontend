@@ -57,15 +57,17 @@ Widget innerAppbar(context, list) {
 
   return AppBar(
     actions: [
-      IconButton(
-          padding: EdgeInsets.only(right: 20, bottom: 10),
-          icon: new Image.asset(
-            'assets/images/bag.png',
-            height: 30,
-          ),
-          onPressed: () {
-            _navigatorPage(context);
-          })
+      list != 'SHOPPING BAG (4)'
+          ? IconButton(
+              padding: EdgeInsets.only(right: 20, bottom: 10),
+              icon: new Image.asset(
+                'assets/images/bag.png',
+                height: 30,
+              ),
+              onPressed: () {
+                _navigatorPage(context);
+              })
+          : SizedBox()
     ],
     toolbarHeight: list == 'categories' ? 100 : 60,
     elevation: 0,
