@@ -38,6 +38,9 @@ class _ProductDetailState extends State<ProductDetail> {
   List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
   String _selectedsize;
 
+  List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  String _selectedQty;
+
   static List<Widget> _bottomNavList = [
     ProductDetail(),
     Search(),
@@ -95,7 +98,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       height: 30,
                     ),
                     Container(
-                      width: 260.0,
+                      width: 230.0,
                       height: 45.0,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30.0),
@@ -106,7 +109,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           underline: SizedBox.shrink(),
                           iconSize: 30.0,
                           hint: Text(
-                            'Please choose a size',
+                            'Select a Size',
                             style: TextStyle(fontSize: 18),
                           ), // Not necessary for Option 1
                           value: _selectedsize,
@@ -125,13 +128,46 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                     ),
                     SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: 230.0,
+                      height: 45.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30.0),
+                          border: Border.all(color: Colors.blueGrey)),
+                      child: Center(
+                        child: DropdownButton(
+                          // itemHeight: 40,
+                          underline: SizedBox.shrink(),
+                          iconSize: 30.0,
+                          hint: Text(
+                            'Select Quantity',
+                            style: TextStyle(fontSize: 18),
+                          ), // Not necessary for Option 1
+                          value: _selectedQty,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedQty = newValue;
+                            });
+                          },
+                          items: _qty.map((sizes) {
+                            return DropdownMenuItem(
+                              child: new Text(sizes),
+                              value: sizes,
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
                       height: 30,
                     ),
                     Padding(
                       padding: EdgeInsets.all(8),
                       child: Container(
                         height: 55,
-                        width: 250,
+                        width: 230,
                         child: FlatButton(
                           color: Colors.black,
                           // height: 40,
