@@ -47,13 +47,16 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
             options: CarouselOptions(
                 initialPage: 1,
                 enableInfiniteScroll: false,
-                height: size * 0.54,
+                height: width < 400 ? size * 0.43 : size * 0.57,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },
                 // autoPlay: true,
                 autoPlayCurve: Curves.easeInOut,
                 enlargeCenterPage: false)),
+        SizedBox(
+          height: 10,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: map<Widget>(widget.carouselImg, (index, url) {
