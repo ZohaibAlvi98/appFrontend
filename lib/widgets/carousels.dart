@@ -47,7 +47,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
             options: CarouselOptions(
                 initialPage: 1,
                 enableInfiniteScroll: false,
-                height: width < 400 ? size * 0.43 : size * 0.57,
+                height: width < 400 ? size * 0.43 : size * 0.55,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },
