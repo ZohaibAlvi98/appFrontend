@@ -48,7 +48,7 @@ class _SearchState extends State<Search> {
             ),
           ),
           Container(
-            width: 450,
+            width: 460,
             padding: EdgeInsets.symmetric(vertical: 18, horizontal: 26),
             child: new TextField(
               cursorColor: Colors.black,
@@ -59,14 +59,20 @@ class _SearchState extends State<Search> {
                 ),
                 filled: true,
                 fillColor: Colors.grey[300],
-                focusedBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
+                // focusedBorder: InputBorder.none,
+                // enabledBorder: InputBorder.none,
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[300], width: 0.01),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: Colors.grey[300], width: 0.01),
+                ),
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
                 hintText: '  Search Products, Design & etc',
                 border: new OutlineInputBorder(
-                  borderRadius: const BorderRadius.all(
-                    const Radius.circular(10.0),
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(1.0),
                   ),
                 ),
               ),
