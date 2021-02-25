@@ -48,12 +48,12 @@ Widget cards(width, img) {
                   fit: BoxFit.contain,
                 ),
                 Align(
-                  alignment: Alignment.centerLeft,
+                  // alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
                       Container(
                         margin:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                         width: width * 0.13,
                         height: 50,
                         decoration: new BoxDecoration(
@@ -78,13 +78,13 @@ Widget cards(width, img) {
                         ),
                       ),
                       Padding(
-                          padding: EdgeInsets.only(top: 5.0, left: 0),
+                          padding: EdgeInsets.only(top: 5.0, left: .7),
                           child: Column(
                             children: [
                               Padding(
                                 padding: width < 400
-                                    ? EdgeInsets.only(right: 45.0)
-                                    : EdgeInsets.only(right: 55.0),
+                                    ? EdgeInsets.only(right: 55.0)
+                                    : EdgeInsets.only(right: 63.0),
                                 child: Text(
                                   'END.',
                                   style: TextStyle(
@@ -93,7 +93,7 @@ Widget cards(width, img) {
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(left: 8.0),
+                                padding: EdgeInsets.only(left: 0.0),
                                 child: Text(
                                   'January 22, 2021',
                                   style: TextStyle(
@@ -112,7 +112,7 @@ Widget cards(width, img) {
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: EdgeInsets.only(left: 3.0),
+                            padding: EdgeInsets.only(left: 13.0),
                             child: Text(
                               '1017 Alyx 9sm x Stussy - Available Now',
                               style: TextStyle(
@@ -124,7 +124,8 @@ Widget cards(width, img) {
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(top: 6.0, left: 2.5),
+                          padding:
+                              EdgeInsets.only(top: 7.0, left: 13, bottom: 10),
                           child: Text(
                             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual....',
                             style: TextStyle(height: 1.3),

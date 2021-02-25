@@ -208,7 +208,7 @@ class _CartState extends State<Cart> {
                       style: TextStyle(
                           fontSize: width < 400 ? 14 : 14.5,
                           color: Colors.black),
-                    ))
+                    )),
               ],
             )),
         Padding(
