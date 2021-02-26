@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/rss-detail/rss-detail.dart';
 
 class SplyNetwork extends StatefulWidget {
   @override
@@ -13,15 +14,15 @@ class _SplyNetworkState extends State<SplyNetwork> {
       child: Container(
         child: Column(
           children: [
-            cards(width, 'assets/images/rss/rss1.jpg'),
+            cards(width, 'assets/images/rss/rss1.jpg', context),
             SizedBox(
               height: 15,
             ),
-            cards(width, 'assets/images/rss/rss2.jpg'),
+            cards(width, 'assets/images/rss/rss2.jpg', context),
             SizedBox(
               height: 15,
             ),
-            cards(width, 'assets/images/rss/rss1.jpg'),
+            cards(width, 'assets/images/rss/rss1.jpg', context),
           ],
         ),
       ),
@@ -29,12 +30,31 @@ class _SplyNetworkState extends State<SplyNetwork> {
   }
 }
 
-Widget cards(width, img) {
+Widget cards(width, img, context) {
+  void _navigatorPage(index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return RssDetail();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   return Container(
       padding: EdgeInsets.only(right: 15, left: 15, top: 0),
-      child: InkResponse(
+      child: InkWell(
         onTap: () {
-          print('hello');
+          _navigatorPage(context);
         },
         child: Padding(
           padding: EdgeInsets.only(bottom: 7.0),
