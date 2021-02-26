@@ -6,6 +6,7 @@ import 'package:splyxp/views/sply-network.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
+import '../home.dart';
 
 class RssDetail extends StatefulWidget {
   @override
@@ -13,23 +14,24 @@ class RssDetail extends StatefulWidget {
 }
 
 class _RssDetailState extends State<RssDetail> {
-  int index = 0;
-  int _selectedIndex = 0;
+  int index = 3;
+  int _selectedIndex = 3;
   int counter = 0;
   void _onItemTapped(int index) {
-    if (_selectedIndex == 0 && index == 0) {
+    if (_selectedIndex == 3 && index == 3) {
       Navigator.of(context).pop();
     }
+
     setState(() {
       _selectedIndex = index;
     });
   }
 
   static List<Widget> _bottomNavList = [
-    RssDetail(),
+    Home(),
     Search(),
     ChatList(),
-    SplyNetwork(),
+    RssDetail(),
     Profile()
   ];
 
@@ -45,15 +47,15 @@ class _RssDetailState extends State<RssDetail> {
     double width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async {
-        if (_selectedIndex == 0) return true;
+        if (_selectedIndex == 3) return true;
         setState(() {
-          _selectedIndex = 0;
+          _selectedIndex = 3;
         });
         return false;
       },
       child: Scaffold(
         appBar: Appbar(context),
-        body: _selectedIndex == 0
+        body: _selectedIndex == 3
             ? SingleChildScrollView(
                 child: Container(
                     child: Column(
@@ -139,7 +141,7 @@ class _RssDetailState extends State<RssDetail> {
                       child: Text(
                         'Fusing Californian spirit with contemporary utilitarianism, Stüssy and 1017 ALYX 9SM present their latest capsule for SS20.',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18, height: 1.3),
+                            color: Colors.black, fontSize: 18, height: 1.5),
                       ),
                     ),
                     Padding(
@@ -154,7 +156,7 @@ class _RssDetailState extends State<RssDetail> {
                       child: Text(
                         'Two unique pillars of contemporary American menswear, 1017 ALYX 9SM and Stüssy, fuse their individual outlooks with their latest capsule collection. A workwear inspired selection from the Californian streetwear stalwarts and the luxury utilitarian outfit, classic design is coupled with exceptional fabric selections and a keen eye for detail to deliver an embodiment of both labels and their progressive attitudes to design.\n\nFeaturing a denim jacket and carpenter pant combination cut from premium cotton courtesy of Italy’s Loro Piana, this collaboration elevates classic style with a touch of subtle elegance and nods to the hard-wearing attributes of traditional workwear. Complete with two jersey long sleeve t-shirts, the duo pays homage to the late, great Bob Marley and his seminal piece, “No Woman, No Cry”. Emblazoned with the lyrics, “in this great future you can’t forget your past…”, the two brands celebrate reggae music and the importance of reflecting on the historical significance of cultural movements.',
                         style: TextStyle(
-                            fontSize: 18, color: Colors.black, height: 1.3),
+                            fontSize: 18, color: Colors.black, height: 1.5),
                       ),
                     ),
                     SizedBox(
