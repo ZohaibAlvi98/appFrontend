@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import 'package:splyxp/views/styles/style-detail.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/navbar.dart';
+import 'package:splyxp/widgets/roundedCard.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
@@ -40,10 +42,29 @@ class _StylesState extends State<Styles> {
     Profile()
   ];
 
+  void _navigatorPage(index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return StyleDetail();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    print(width);
+
     return WillPopScope(
         onWillPop: () async {
           if (_selectedIndex == 0) return true;
@@ -61,6 +82,9 @@ class _StylesState extends State<Styles> {
                   // key: new PageStorageKey('feed'),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         padding: EdgeInsets.only(right: 20, left: 20),
                         child: Image.asset(
@@ -80,20 +104,91 @@ class _StylesState extends State<Styles> {
                                 fontWeight: FontWeight.w400)),
                       ),
                       SizedBox(
+                        height: 70,
+                      ),
+                      Heading(context, 'STYLE BOXES'),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                          padding: EdgeInsets.only(right: 15, left: 15, top: 0),
+                          child: InkWell(
+                              onTap: () {
+                                _navigatorPage(context);
+                              },
+                              child: Padding(
+                                  padding: EdgeInsets.only(bottom: 7.0),
+                                  child: Card(
+                                      elevation: 1,
+                                      margin: EdgeInsets.only(bottom: 5),
+                                      child: Column(children: [
+                                        Image.asset(
+                                          'assets/images/styles/styleBox1.jpg',
+                                          fit: BoxFit.contain,
+                                        ),
+                                        Container(
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 3),
+                                            child: Column(children: [
+                                              Align(
+                                                  alignment:
+                                                      Alignment.centerLeft,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 13.0, top: 10),
+                                                    child: Text(
+                                                      'S-PLY CURATED STYLEBOXES',
+                                                      style: TextStyle(
+                                                          fontSize: width < 400
+                                                              ? 22
+                                                              : 25,
+                                                          fontWeight:
+                                                              FontWeight.w900,
+                                                          color: Colors.black),
+                                                    ),
+                                                  )),
+                                              Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 12.0,
+                                                      left: 13,
+                                                      bottom: 10,
+                                                      right: 10),
+                                                  child: Text(
+                                                    'A S-PLY StyleBoxe contains a curated selection of designer products, ranging from exclusives, archive and current season pieces selected by our team of experienced stylists.',
+                                                    style: TextStyle(
+                                                        height: 1.3,
+                                                        fontSize: 15),
+                                                  ),
+                                                ),
+                                              )
+                                            ])),
+                                      ]))))),
+                      SizedBox(
                         height: 50,
                       ),
+                      // Heading(context, 'WHY STYLE BOXES'),
+                      // SizedBox(
+                      //   height: 30,
+                      // ),
                       // Featured Style Heading
                       Heading(context, 'FEATURED STYLES'),
                       SizedBox(
                         height: 20,
                       ),
                       // Image and Rounded Card
-                      Container(
-                        padding: EdgeInsets.only(right: 20, left: 20),
-                        child: Stack(children: [
-                          Image.asset('assets/images/styles/styles4.jpg'),
-                          RoundedCard(context, 0.97, 0.97),
-                        ]),
+                      InkWell(
+                        onTap: () {
+                          _navigatorPage(index);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(right: 20, left: 20),
+                          child: Stack(children: [
+                            Image.asset('assets/images/styles/styles4.jpg'),
+                            RoundedCard(context, 0.97, 0.97),
+                          ]),
+                        ),
                       ),
                       // Thome Brown Content
                       Padding(
@@ -129,17 +224,22 @@ class _StylesState extends State<Styles> {
                         height: 50,
                       ),
                       // picture 2
-                      Container(
-                        color: Colors.grey[100],
-                        padding: EdgeInsets.only(right: 20, left: 20),
-                        child: Stack(children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 35.0, bottom: 35),
-                            child:
-                                Image.asset('assets/images/styles/style3.jpg'),
-                          ),
-                          RoundedCard(context, 0.9, 0.88)
-                        ]),
+                      InkWell(
+                        onTap: () {
+                          _navigatorPage(index);
+                        },
+                        child: Container(
+                          color: Colors.grey[100],
+                          padding: EdgeInsets.only(right: 20, left: 20),
+                          child: Stack(children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 35.0, bottom: 35),
+                              child: Image.asset(
+                                  'assets/images/styles/style3.jpg'),
+                            ),
+                            RoundedCard(context, 0.9, 0.88)
+                          ]),
+                        ),
                       ),
                       Container(
                         color: Colors.grey[100],
@@ -182,88 +282,4 @@ class _StylesState extends State<Styles> {
           bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
         ));
   }
-}
-
-Widget RoundedCard(context, dividingWidth1, dividingWidth2) {
-  double width = MediaQuery.of(context).size.width;
-  print(width);
-  return Card(
-    margin: width < 400
-        ? EdgeInsets.fromLTRB(5, width / dividingWidth1, 5, 0)
-        : EdgeInsets.fromLTRB(14, width / dividingWidth2, 14, 0),
-    shape: RoundedRectangleBorder(
-      side: BorderSide(color: Colors.grey[400], width: 1),
-      borderRadius: BorderRadius.circular(50),
-    ),
-    child: Container(
-      height: 70,
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: width * 0.2,
-            height: 50,
-            decoration: new BoxDecoration(
-              border: new Border.all(
-                color: Colors.grey[400],
-                width: 1.0,
-              ),
-              color: Colors.white,
-              shape: BoxShape.circle,
-            ),
-            child: Padding(
-              padding: width < 400
-                  ? EdgeInsets.only(left: 17.0, top: 13)
-                  : EdgeInsets.only(left: 22.0, top: 13),
-              child: Text(
-                'End',
-                style: TextStyle(fontSize: 20, color: Colors.black),
-              ),
-            ),
-          ),
-          Padding(
-              padding: width < 400
-                  ? EdgeInsets.only(top: 16)
-                  : EdgeInsets.only(top: 16),
-              child: Column(
-                children: [
-                  Text(
-                    'End Clothing',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    'Nov 4, 2020           ',
-                    style: TextStyle(
-                        color: Colors.grey[500], fontWeight: FontWeight.w500),
-                  )
-                ],
-              )),
-          Padding(
-            padding: width < 400
-                ? EdgeInsets.only(left: width * 0.02)
-                : EdgeInsets.only(left: width * 0.08),
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  IconButton(
-                    padding: EdgeInsets.only(left: 10),
-                    icon: Icon(Icons.favorite_outline_outlined),
-                    color: Colors.black,
-                    iconSize: 26,
-                    onPressed: () {},
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.bookmark_border),
-                    color: Colors.black,
-                    iconSize: 26,
-                    onPressed: () {},
-                  ),
-                ]),
-          )
-        ],
-      ),
-    ),
-  );
 }

@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import 'package:splyxp/views/requests/request-shopper.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
-import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/carousels.dart';
 
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
-import '../../views/home.dart';
 
 class Splyrs extends StatefulWidget {
   @override
@@ -52,6 +51,26 @@ class _SplyrsState extends State<Splyrs> {
     'assets/images/splyrs/grid2.jpg',
     'assets/images/splyrs/grid3.jpg',
   ];
+
+  void _navigatorPage() {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return RequestShopper();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     int a = 0;
@@ -96,7 +115,9 @@ class _SplyrsState extends State<Splyrs> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40.0),
                         side: BorderSide(color: Colors.black87, width: 1.4)),
-                    onPressed: () {},
+                    onPressed: () {
+                      _navigatorPage();
+                    },
                     child: Text(
                       'Become A S-PLYR',
                       style: TextStyle(color: Colors.black, fontSize: 20),

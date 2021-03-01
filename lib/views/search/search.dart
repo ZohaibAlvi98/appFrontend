@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:splyxp/views/chatList/chat-detail.dart';
 import 'package:splyxp/views/search/categories/categories.dart';
 import 'package:splyxp/views/search/designer/designer.dart';
 
