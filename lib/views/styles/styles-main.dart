@@ -10,6 +10,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import '../../views/home.dart';
+import 'package:splyxp/widgets/carousels.dart';
 
 class Styles extends StatefulWidget {
   @override
@@ -40,6 +41,12 @@ class _StylesState extends State<Styles> {
     ChatList(),
     SplyNetwork(),
     Profile()
+  ];
+
+  List styleBoxImg = [
+    'assets/images/styles/boxList2.jpg',
+    'assets/images/styles/boxList1.jpg',
+    'assets/images/styles/boxList3.jpg',
   ];
 
   void _navigatorPage(index) {
@@ -104,7 +111,7 @@ class _StylesState extends State<Styles> {
                                 fontWeight: FontWeight.w400)),
                       ),
                       SizedBox(
-                        height: 70,
+                        height: 60,
                       ),
                       Heading(context, 'STYLE BOXES'),
                       SizedBox(
@@ -165,6 +172,13 @@ class _StylesState extends State<Styles> {
                                               )
                                             ])),
                                       ]))))),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Heading(context, 'FEATURED STYLE BOXES'),
+                      CarouselWithDots(
+                        carouselImg: styleBoxImg,
+                      ),
                       SizedBox(
                         height: 50,
                       ),

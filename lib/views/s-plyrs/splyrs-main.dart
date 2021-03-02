@@ -9,6 +9,7 @@ import 'package:splyxp/widgets/carousels.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
+import 'channel/channel.dart';
 
 class Splyrs extends StatefulWidget {
   @override
@@ -52,13 +53,16 @@ class _SplyrsState extends State<Splyrs> {
     'assets/images/splyrs/grid3.jpg',
   ];
 
-  void _navigatorPage() {
+  void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return RequestShopper();
+          if (index != 'channel')
+            return RequestShopper();
+          else
+            return Channel();
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -116,7 +120,7 @@ class _SplyrsState extends State<Splyrs> {
                         borderRadius: BorderRadius.circular(40.0),
                         side: BorderSide(color: Colors.black87, width: 1.4)),
                     onPressed: () {
-                      _navigatorPage();
+                      _navigatorPage('request');
                     },
                     child: Text(
                       'Become A S-PLYR',
@@ -130,8 +134,13 @@ class _SplyrsState extends State<Splyrs> {
                     height: width < 400 ? 62 : 45,
                   ),
                   Heading(context, 'FEATURED S-PLYR'),
-                  CarouselWithTextDots(
-                    carouselImg: carouselImg,
+                  InkWell(
+                    onTap: () {
+                      _navigatorPage('channel');
+                    },
+                    child: CarouselWithTextDots(
+                      carouselImg: carouselImg,
+                    ),
                   ),
                   SizedBox(
                     height: 25,
