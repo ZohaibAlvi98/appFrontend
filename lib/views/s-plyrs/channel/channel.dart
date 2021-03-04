@@ -17,62 +17,15 @@ class _ChannelState extends State<Channel> {
     });
   }
 
-  // List<Widget> containers = [
-  //   SizedBox(
-  //     height: 100,
-  //     child: ListView.builder(
-  //         scrollDirection: Axis.vertical,
-  //         shrinkWrap: true,
-  //         itemCount: 12,
-  //         physics: AlwaysScrollableScrollPhysics(),
-  //         padding: EdgeInsets.only(right: 20.0, left: 7, top: 20),
-  //         itemBuilder: (context, index) {
-  //           List women = [
-  //             'New In',
-  //             'Shop By',
-  //             'Clothing',
-  //             'Bags',
-  //             'Jewelry',
-  //             'Accessories',
-  //             'Item 1',
-  //             'Item 2',
-  //             'Item 3',
-  //             'Item 4',
-  //             'Item 5',
-  //             'Item 6',
-  //           ];
-  //           double width = MediaQuery.of(context).size.width;
-  //           return Container();
-  //         }),
-  //   ),
-  //   SizedBox(
-  //     height: 100,
-  //     child: ListView.builder(
-  //         scrollDirection: Axis.vertical,
-  //         shrinkWrap: true,
-  //         itemCount: 12,
-  //         physics: AlwaysScrollableScrollPhysics(),
-  //         padding: EdgeInsets.only(right: 20.0, left: 7, top: 20),
-  //         itemBuilder: (context, index) {
-  //           List men = [
-  //             'Shop By',
-  //             'Clothing',
-  //             'Activewear',
-  //             'Shoes',
-  //             'Sneakers',
-  //             'Watches',
-  //             'Item 1',
-  //             'Item 2',
-  //             'Item 3',
-  //             'Item 4',
-  //             'Item 5',
-  //             'Item 6',
-  //           ];
-  //           double width = MediaQuery.of(context).size.width;
-  //           return Container();
-  //         }),
-  //   ),
-  // ];
+  List img = [
+    'assets/images/splyrs/channels/prod1.jpg',
+    'assets/images/splyrs/channels/prod2.jpg',
+    'assets/images/splyrs/channels/prod3.jpg',
+    'assets/images/splyrs/channels/prod4.jpg',
+    'assets/images/splyrs/channels/prod5.jpg',
+    'assets/images/splyrs/channels/prod6.jpg'
+  ];
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -230,6 +183,58 @@ class _ChannelState extends State<Channel> {
                 SizedBox(
                   height: 1,
                 ),
+                GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.49),
+                    ),
+                    // scrollDirection: Axis.vertical,
+                    itemCount: 6,
+                    itemBuilder: (context, index) {
+                      print(_pageIndex);
+                      return _pageIndex == 0
+                          ? Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 7.0, right: 7),
+                                  child: Image.asset(
+                                    img[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5, left: 10),
+                                    child: Text(
+                                      'S-PLY Supreme Jackets',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5, left: 10),
+                                    child: Text(
+                                      'Price \$290',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: Colors.grey[600],
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container();
+                    }),
               ],
             ),
           ),
