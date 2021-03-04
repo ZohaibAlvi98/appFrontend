@@ -96,7 +96,7 @@ Widget cards(width, img, context) {
                                 fontWeight: FontWeight.w400),
                           ),
                         ),
-                      ),
+                      ), 
                       Padding(
                           padding: EdgeInsets.only(top: 5.0, left: .7),
                           child: Column(

@@ -115,7 +115,8 @@ class _ChannelState extends State<Channel> {
                       ),
                       Center(
                         child: Padding(
-                          padding: EdgeInsets.only(top: width < 400 ? 210 : 225.0),
+                          padding:
+                              EdgeInsets.only(top: width < 400 ? 200 : 225.0),
                           child: Text(
                             'S-PLY STORE',
                             style: TextStyle(
@@ -126,7 +127,7 @@ class _ChannelState extends State<Channel> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(top: 270),
+                        padding: EdgeInsets.only(top: width < 400 ? 250 : 270),
                         child: Column(
                           children: [
                             Row(
@@ -142,7 +143,8 @@ class _ChannelState extends State<Channel> {
                                   padding: EdgeInsets.only(right: 18.0),
                                   child: Text(
                                     'S-PLY Store, London, United Kingdom',
-                                    style: TextStyle(fontSize: 15.5),
+                                    style: TextStyle(
+                                        fontSize: width < 400 ? 13.5 : 15.5),
                                   ),
                                 ),
                               ],
@@ -161,7 +163,8 @@ class _ChannelState extends State<Channel> {
                                 ),
                                 Text(
                                   ' s-plytv@s-plystyle.net',
-                                  style: TextStyle(fontSize: 15.5),
+                                  style: TextStyle(
+                                      fontSize: width < 400 ? 13.5 : 15.5),
                                 ),
                               ],
                             ),
