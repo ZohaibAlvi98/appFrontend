@@ -140,6 +140,15 @@ class Channel extends StatefulWidget {
 }
 
 class _ChannelState extends State<Channel> {
+  int _pageIndex = 0;
+  double height = 46;
+  void _onTapped(int value) {
+    print(value);
+    setState(() {
+      _pageIndex = value;
+    });
+  }
+
   // List<Widget> containers = [
   //   SizedBox(
   //     height: 100,
@@ -198,14 +207,6 @@ class _ChannelState extends State<Channel> {
   // ];
   @override
   Widget build(BuildContext context) {
-    int _pageIndex = 0;
-    double height = 46;
-    void _onTapped(int value) {
-      setState(() {
-        _pageIndex = value;
-      });
-    }
-
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: Appbar(context),
