@@ -8,16 +8,73 @@ class Channel extends StatefulWidget {
 }
 
 class _ChannelState extends State<Channel> {
+  int _pageIndex = 0;
+  double height = 46;
+  void _onTapped(int value) {
+    print(value);
+    setState(() {
+      _pageIndex = value;
+    });
+  }
+
+  // List<Widget> containers = [
+  //   SizedBox(
+  //     height: 100,
+  //     child: ListView.builder(
+  //         scrollDirection: Axis.vertical,
+  //         shrinkWrap: true,
+  //         itemCount: 12,
+  //         physics: AlwaysScrollableScrollPhysics(),
+  //         padding: EdgeInsets.only(right: 20.0, left: 7, top: 20),
+  //         itemBuilder: (context, index) {
+  //           List women = [
+  //             'New In',
+  //             'Shop By',
+  //             'Clothing',
+  //             'Bags',
+  //             'Jewelry',
+  //             'Accessories',
+  //             'Item 1',
+  //             'Item 2',
+  //             'Item 3',
+  //             'Item 4',
+  //             'Item 5',
+  //             'Item 6',
+  //           ];
+  //           double width = MediaQuery.of(context).size.width;
+  //           return Container();
+  //         }),
+  //   ),
+  //   SizedBox(
+  //     height: 100,
+  //     child: ListView.builder(
+  //         scrollDirection: Axis.vertical,
+  //         shrinkWrap: true,
+  //         itemCount: 12,
+  //         physics: AlwaysScrollableScrollPhysics(),
+  //         padding: EdgeInsets.only(right: 20.0, left: 7, top: 20),
+  //         itemBuilder: (context, index) {
+  //           List men = [
+  //             'Shop By',
+  //             'Clothing',
+  //             'Activewear',
+  //             'Shoes',
+  //             'Sneakers',
+  //             'Watches',
+  //             'Item 1',
+  //             'Item 2',
+  //             'Item 3',
+  //             'Item 4',
+  //             'Item 5',
+  //             'Item 6',
+  //           ];
+  //           double width = MediaQuery.of(context).size.width;
+  //           return Container();
+  //         }),
+  //   ),
+  // ];
   @override
   Widget build(BuildContext context) {
-    int _pageIndex = 0;
-    double height = 46;
-    void _onTapped(int value) {
-      setState(() {
-        _pageIndex = value;
-      });
-    }
-
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: Appbar(context),
