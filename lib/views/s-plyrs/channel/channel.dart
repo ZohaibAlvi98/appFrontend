@@ -259,41 +259,39 @@ Widget story(context) {
     children: [
       SizedBox(
         height: deviceSize.height * 0.2,
-        child: Flexible(
-            child: new ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 1,
-                itemBuilder: (context, index) => index == 0
-                    ? new SizedBox(
-                        height: 180,
-                        child: Container(
-                          margin: EdgeInsets.all(16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: new ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: 1,
+            itemBuilder: (context, index) => index == 0
+                ? new SizedBox(
+                    height: 180,
+                    child: Container(
+                      margin: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
                             children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Stories',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16),
-                                  ),
-                                ],
+                              Text(
+                                'Stories',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16),
                               ),
-                              stories,
-                              SizedBox(
-                                height: 25,
-                              )
                             ],
                           ),
-                        ),
-                      )
-                    : Column())),
+                          stories,
+                          SizedBox(
+                            height: 25,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : Column()),
       )
     ],
   );
