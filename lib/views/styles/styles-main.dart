@@ -9,7 +9,6 @@ import 'package:splyxp/widgets/roundedCard.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
-import '../../views/home.dart';
 import 'package:splyxp/widgets/carousels.dart';
 
 class Styles extends StatefulWidget {
