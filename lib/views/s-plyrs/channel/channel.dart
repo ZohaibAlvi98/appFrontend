@@ -322,7 +322,7 @@ class _ChannelState extends State<Channel> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                           childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 1.49),
+                              (MediaQuery.of(context).size.height / 1.3),
                         ),
                         // scrollDirection: Axis.vertical,
                         itemCount: 6,
