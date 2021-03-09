@@ -67,7 +67,7 @@ class _ArrivalsState extends State<Arrivals> {
                               child: Text(
                                 'NEW ARRIVALS',
                                 style: TextStyle(
-                                    fontSize: 30,
+                                    fontSize: width < 400 ? 23 : 30,
                                     fontWeight: FontWeight.w900,
                                     letterSpacing: 1.1),
                               ),
@@ -78,7 +78,8 @@ class _ArrivalsState extends State<Arrivals> {
                       Row(
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 10.0, top: 20),
+                            padding:
+                                EdgeInsets.only(left: 10.0, top: 20, right: 10),
                             child: FlatButton(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -124,7 +125,7 @@ class _ArrivalsState extends State<Arrivals> {
                       GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+                          padding: EdgeInsets.only(left: 1, right: 1, top: 20),
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,

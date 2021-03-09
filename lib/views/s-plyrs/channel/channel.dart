@@ -247,7 +247,7 @@ class _ChannelState extends State<Channel> {
                     padding: EdgeInsets.only(left: 15, right: 14),
                     child: Text(
                       'S-PLY is an online and retail concept store founded in London, with planned locations in Amsterdam, New York and Los Angeles',
-                      style: TextStyle(fontSize: 17, height: 1.3),
+                      style: TextStyle(fontSize: 14, height: 1.3),
                     ),
                   ),
                   SizedBox(
@@ -315,22 +315,35 @@ class _ChannelState extends State<Channel> {
                     height: 8,
                   ),
                   if (_pageIndex == 1)
-                    Column(
-                      children: [
-                        style(context, 'assets/images/styles/style3.jpg'),
-                        SizedBox(
-                          height: 25,
+                    GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width /
+                              (MediaQuery.of(context).size.height / 1.49),
                         ),
-                        style(context, 'assets/images/styles/styles4.jpg'),
-                        SizedBox(
-                          height: 25,
-                        ),
-                        style(context, 'assets/images/styles/style3.jpg'),
-                        SizedBox(
-                          height: 25,
-                        ),
-                      ],
-                    ),
+                        // scrollDirection: Axis.vertical,
+                        itemCount: 6,
+                        itemBuilder: (context, snapshot) {
+                          return Column(
+                            children: [
+                              style(context, 'assets/images/styles/style3.jpg'),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              // style(context, 'assets/images/styles/styles4.jpg'),
+                              // SizedBox(
+                              //   height: 25,
+                              // ),
+                              // style(context, 'assets/images/styles/style3.jpg'),
+                              // SizedBox(
+                              //   height: 25,
+                              // ),
+                            ],
+                          );
+                        }),
                   if (_pageIndex == 2)
                     Column(
                       children: [
@@ -408,10 +421,12 @@ Widget style(context, img) {
       _navigatorPage();
     },
     child: Container(
-      padding: EdgeInsets.only(right: 20, left: 20),
+      padding: EdgeInsets.only(right: 10, left: 10),
       child: Stack(children: [
-        Image.asset(img),
-        RoundedCard(context, 0.97, 0.97),
+        Image.asset(
+          img,
+        ),
+        RoundedCardForGrid(context, 2.05, 2.05),
       ]),
     ),
   );

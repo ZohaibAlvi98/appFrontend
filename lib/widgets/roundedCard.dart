@@ -83,3 +83,60 @@ Widget RoundedCard(context, dividingWidth1, dividingWidth2) {
     ),
   );
 }
+
+Widget RoundedCardForGrid(context, dividingWidth1, dividingWidth2) {
+  double width = MediaQuery.of(context).size.width;
+  print(width);
+  return Card(
+    margin: width < 400
+        ? EdgeInsets.fromLTRB(0, width / dividingWidth1, 0, 0)
+        : EdgeInsets.fromLTRB(14, width / dividingWidth2, 14, 0),
+    shape: RoundedRectangleBorder(
+      side: BorderSide(color: Colors.grey[400], width: 1),
+      borderRadius: BorderRadius.circular(20),
+    ),
+    child: Container(
+      height: 40,
+      child: Row(
+        children: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Container(
+                width: 31.7,
+                height: 38,
+                decoration: new BoxDecoration(
+                  border: new Border.all(
+                    color: Colors.grey[400],
+                    // width: 1.0,
+                  ),
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: Text(
+                    'END',
+                    style: TextStyle(fontSize: 9),
+                  ),
+                ),
+              )),
+          Padding(
+            padding: EdgeInsets.only(left: 10.0, top: 8),
+            child: Column(
+              children: [
+                Text(
+                  'END CLOTHING',
+                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                ),
+                Text('4 Nov 2020',
+                    style: TextStyle(
+                        fontSize: 8,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[600])),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
