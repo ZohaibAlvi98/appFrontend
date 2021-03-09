@@ -8,6 +8,9 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 
 class MenWoman extends StatefulWidget {
+  final String page;
+
+  MenWoman({Key key, @required this.page}) : super(key: key);
   @override
   _MenWomanState createState() => _MenWomanState();
 }
@@ -16,16 +19,27 @@ class _MenWomanState extends State<MenWoman> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
+    print(index);
+
     if (index == 0 && _selectedIndex == 0) {
       Navigator.of(context).pop();
     }
     setState(() {
       _selectedIndex = index;
     });
+    print(_selectedIndex);
+  }
+
+  static String checkPage;
+
+  @override
+  void initState() {
+    super.initState();
+    checkPage = widget.page;
   }
 
   static List<Widget> _bottomNavList = [
-    MenWoman(),
+    MenWoman(page: checkPage),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -35,54 +49,92 @@ class _MenWomanState extends State<MenWoman> {
   List<Widget> containers = [
     SizedBox(
       height: 300,
-      child: GridView.builder(
+      child: ListView.builder(
           shrinkWrap: true,
-          // physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.only(left: 5, right: 5, top: 0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 2 / 2.17,
-          ),
-          // scrollDirection: Axis.vertical,
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return list(context, 'men', index);
+          primary: false,
+          scrollDirection: Axis.vertical,
+          itemCount: 1,
+          itemBuilder: (context, snapshot) {
+            return GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.only(left: 5, right: 5, top: 0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.49),
+                ),
+                // scrollDirection: Axis.vertical,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return lists(context, 'men', index);
+                });
           }),
     ),
     SizedBox(
       height: 300,
-      child: GridView.builder(
+      child: ListView.builder(
           shrinkWrap: true,
-          // physics: const NeverScrollableScrollPhysics(),
-          padding: EdgeInsets.only(left: 5, right: 5, top: 0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 2 / 2.17,
-          ),
-          // scrollDirection: Axis.vertical,
-          itemCount: 6,
-          itemBuilder: (context, index) {
-            return list(context, 'woman', index);
+          primary: false,
+          scrollDirection: Axis.vertical,
+          itemCount: 1,
+          itemBuilder: (context, snapshot) {
+            return GridView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.only(left: 5, right: 5, top: 0),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      (MediaQuery.of(context).size.height / 1.49),
+                ),
+                // scrollDirection: Axis.vertical,
+                itemCount: 6,
+                itemBuilder: (context, index) {
+                  return lists(context, 'woman', index);
+                });
           }),
     ),
   ];
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      initialIndex: 1,
-      length: 2,
-      child: Scaffold(
-        appBar: drawerInnerAppbar(context, 'category'),
-        body: _selectedIndex == 0
-            ? TabBarView(children: containers)
-            : _bottomNavList.elementAt(_selectedIndex),
-        bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
-      ),
-    );
+    return _selectedIndex == 0
+        ? DefaultTabController(
+            initialIndex: checkPage == 'men' ? 1 : 0,
+            length: 2,
+            child: WillPopScope(
+              onWillPop: () async {
+                if (_selectedIndex == 0) return true;
+                setState(() {
+                  _selectedIndex = 0;
+                });
+                return false;
+              },
+              child: Scaffold(
+                appBar: drawerInnerAppbar(context, 'category'),
+                body: TabBarView(children: containers),
+                bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+              ),
+            ),
+          )
+        : WillPopScope(
+            onWillPop: () async {
+              if (_selectedIndex == 0) return true;
+              setState(() {
+                _selectedIndex = 0;
+              });
+              return false;
+            },
+            child: Scaffold(
+              appBar: drawerInnerAppbar(context, ''),
+              body: _bottomNavList.elementAt(_selectedIndex),
+              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+            ),
+          );
   }
 }
 
-Widget list(context, check, index) {
+Widget lists(context, check, index) {
   List img1 = [
     'assets/images/splyrs/channels/prod1.jpg',
     'assets/images/splyrs/channels/prod2.jpg',

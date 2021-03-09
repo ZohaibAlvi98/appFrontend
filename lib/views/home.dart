@@ -4,6 +4,7 @@ import './s-plyrs/splyrs-main.dart';
 import './sneakers/sneakers-main.dart';
 import './styles/styles-main.dart';
 import './tv/tv-main.dart';
+import '../widgets/innerAppBar.dart';
 
 class Home extends StatefulWidget {
   @override

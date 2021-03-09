@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/cart/cart.dart';
+import '../views/drawer/by-category.dart';
+import '../views/drawer/men&women.dart';
+import '../views/drawer/arrivals.dart';
 
-void _navigatorPage(context) {
+void _navigatorPage(context, index) {
   // Navigator.of(context).pop(new PageRouteBuilder());
   Navigator.of(context).push(new PageRouteBuilder(
       opaque: true,
       transitionDuration: const Duration(),
       pageBuilder: (BuildContext context, _, __) {
-        return Cart();
+        if (index == 'cart') {
+          return Cart();
+        } else if (index == 'categories') {
+          return ByCategory();
+        } else if (index == 'men') {
+          return MenWoman(
+            page: 'men',
+          );
+        } else if (index == 'women') {
+          return MenWoman(
+            page: 'women',
+          );
+        } else if (index == 'new') {
+          return Arrivals();
+        } else {
+          return null;
+        }
       },
       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
         return new SlideTransition(
@@ -33,7 +52,7 @@ Widget Appbar(context) {
             height: 30,
           ),
           onPressed: () {
-            _navigatorPage(context);
+            _navigatorPage(context, 'cart');
           })
     ],
     toolbarHeight: 60,
@@ -65,7 +84,7 @@ Widget innerAppbar(context, list) {
                 height: 30,
               ),
               onPressed: () {
-                _navigatorPage(context);
+                _navigatorPage(context, 'cart');
               })
           : SizedBox()
     ],
@@ -125,7 +144,7 @@ Widget drawerInnerAppbar(context, list) {
             height: 30,
           ),
           onPressed: () {
-            _navigatorPage(context);
+            _navigatorPage(context, 'cart');
           })
     ],
     elevation: 0,
@@ -159,4 +178,66 @@ Widget drawerInnerAppbar(context, list) {
           )
         : null,
   );
+}
+
+Widget drawerAppBar(context) {
+  return Drawer(
+      child: Column(
+    children: [
+      Padding(
+        padding: EdgeInsets.only(
+            top: (MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top) *
+                0.06),
+        child: Center(
+          child: Image.asset(
+            'assets/images/drawerImg.jpg',
+            height: 35,
+          ),
+        ),
+      ),
+      ListView(
+          shrinkWrap: true,
+          children: ListTile.divideTiles(
+              //          <-- ListTile.divideTiles
+              context: context,
+              color: Colors.white,
+              tiles: [
+                InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'new');
+                  },
+                  child: ListTile(
+                    title: Text('NEW ADDITION',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'categories');
+                  },
+                  child: ListTile(
+                    title: Text('CATEGORIES',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'men');
+                  },
+                  child: ListTile(
+                    title: Text('MEN', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'women');
+                  },
+                  child: ListTile(
+                    title: Text('WOMAN', style: TextStyle(color: Colors.white)),
+                  ),
+                ),
+              ]).toList()),
+    ],
+  ));
 }

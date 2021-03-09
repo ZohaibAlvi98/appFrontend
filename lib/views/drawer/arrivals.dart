@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import 'package:splyxp/views/drawer/men&women.dart';
+import 'package:splyxp/widgets/innerAppBar.dart';
+import 'package:splyxp/widgets/navbar.dart';
+
+import '../../views/search/search.dart';
+import '../../views/profile.dart';
+import '../../views/sply-network.dart';
+import 'package:splyxp/views/chatList/chat-main.dart';
+
+class Arrivals extends StatefulWidget {
+  @override
+  _ArrivalsState createState() => _ArrivalsState();
+}
+
+class _ArrivalsState extends State<Arrivals> {
+  int index = 0;
+  int _selectedIndex = 0;
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  static List<Widget> _bottomNavList = [
+    Arrivals(),
+    Search(),
+    ChatList(),
+    SplyNetwork(),
+    Profile()
+  ];
+
+  List img = [
+    'assets/images/splyrs/channels/prod1.jpg',
+    'assets/images/splyrs/channels/prod2.jpg',
+    'assets/images/splyrs/channels/prod3.jpg',
+    'assets/images/splyrs/channels/prod4.jpg',
+    'assets/images/splyrs/channels/prod5.jpg',
+    'assets/images/splyrs/channels/prod6.jpg'
+  ];
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    return WillPopScope(
+      onWillPop: () async {
+        if (_selectedIndex == 0) return true;
+        setState(() {
+          _selectedIndex = 0;
+        });
+        return false;
+      },
+      child: Scaffold(
+        appBar: Appbar(context),
+        body: _selectedIndex == 0
+            ? SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: Stack(
+                          children: [
+                            Image.asset('assets/images/arrivals/main.jpg'),
+                            Padding(
+                              padding:
+                                  EdgeInsets.only(left: 10, top: width / 3.6),
+                              child: Text(
+                                'NEW ARRIVALS',
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1.1),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 10.0, top: 20),
+                            child: FlatButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: BorderSide(
+                                      color: Colors.black87, width: 1.4)),
+                              onPressed: () {
+                                // _navigatorPage();
+                              },
+                              child: Text(
+                                'FILTER',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 17),
+                              ),
+                              color: Colors.white,
+                              minWidth: 150,
+                              height: 45,
+                            ),
+                          ),
+                          Spacer(),
+                          Padding(
+                            padding:
+                                EdgeInsets.only(left: 10.0, top: 20, right: 10),
+                            child: FlatButton(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                  side: BorderSide(
+                                      color: Colors.black87, width: 1.4)),
+                              onPressed: () {
+                                // _navigatorPage();
+                              },
+                              child: Text(
+                                'SORT BY',
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 17),
+                              ),
+                              color: Colors.white,
+                              minWidth: 150,
+                              height: 45,
+                            ),
+                          ),
+                        ],
+                      ),
+                      GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(left: 5, right: 5, top: 20),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.49),
+                          ),
+                          // scrollDirection: Axis.vertical,
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return lists(context, 'men', index);
+                          }),
+                      SizedBox(
+                        height: 15,
+                      )
+                    ],
+                  ),
+                ),
+              )
+            : _bottomNavList.elementAt(_selectedIndex),
+        bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+      ),
+    );
+  }
+}

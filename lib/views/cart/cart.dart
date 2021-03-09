@@ -10,16 +10,16 @@ class Cart extends StatefulWidget {
 class _CartState extends State<Cart> {
   // var arr = [4];
   // List<String> a = new List<String>(5);
-  List<String> _size = ['S', 'M', 'L', 'XL'];
-  List<String> _size2 = ['S', 'M', 'L', 'XL'];
-  List<String> _size3 = ['S', 'M', 'L', 'XL'];
-  List<String> _size4 = ['S', 'M', 'L', 'XL'];
+  // List<String> _size = ['S', 'M', 'L', 'XL'];
+  // List<String> _size2 = ['S', 'M', 'L', 'XL'];
+  // List<String> _size3 = ['S', 'M', 'L', 'XL'];
+  // List<String> _size4 = ['S', 'M', 'L', 'XL'];
 
-  List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+  // List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
-  String _selectedsize;
+  // String _selectedsize;
 
-  String _selectedQty;
+  // String _selectedQty;
 
   // void variable() {
   //   for (var i = 0; i < arr.length; i++) {

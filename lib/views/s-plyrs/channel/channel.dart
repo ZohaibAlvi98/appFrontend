@@ -24,24 +24,24 @@ class _ChannelState extends State<Channel> {
     });
   }
 
-  void _navigatorPage() {
-    // Navigator.of(context).pop(new PageRouteBuilder());
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: true,
-        transitionDuration: const Duration(),
-        pageBuilder: (BuildContext context, _, __) {
-          return MenWoman();
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new SlideTransition(
-            child: child,
-            position: new Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(animation),
-          );
-        }));
-  }
+  // void _navigatorPage() {
+  //   // Navigator.of(context).pop(new PageRouteBuilder());
+  //   Navigator.of(context).push(new PageRouteBuilder(
+  //       opaque: true,
+  //       transitionDuration: const Duration(),
+  //       pageBuilder: (BuildContext context, _, __) {
+  //         return MenWoman();
+  //       },
+  //       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+  //         return new SlideTransition(
+  //           child: child,
+  //           position: new Tween<Offset>(
+  //             begin: const Offset(1.0, 0.0),
+  //             end: Offset.zero,
+  //           ).animate(animation),
+  //         );
+  //       }));
+  // }
 
   List img = [
     'assets/images/splyrs/channels/prod1.jpg',
@@ -223,15 +223,15 @@ class _ChannelState extends State<Channel> {
                           borderRadius: BorderRadius.circular(30.0),
                           side: BorderSide(color: Colors.black87, width: 1.4)),
                       onPressed: () {
-                        _navigatorPage();
+                        // _navigatorPage();
                       },
                       child: Text(
                         'SUBSCRIBE NOW',
-                        style: TextStyle(color: Colors.black, fontSize: 20),
+                        style: TextStyle(color: Colors.black, fontSize: 17),
                       ),
                       color: Colors.white,
-                      minWidth: 200,
-                      height: 54,
+                      minWidth: 160,
+                      height: 45,
                     ),
                   ),
                   SizedBox(
