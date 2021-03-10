@@ -55,14 +55,18 @@ class _MenWomanState extends State<MenWoman> {
           scrollDirection: Axis.vertical,
           itemCount: 1,
           itemBuilder: (context, snapshot) {
+            double width = MediaQuery.of(context).size.width;
             return GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(left: 5, right: 5, top: 0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.49),
+                  childAspectRatio: width < 400
+                      ? MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.49)
+                      : MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.45),
                 ),
                 // scrollDirection: Axis.vertical,
                 itemCount: 6,
@@ -79,14 +83,18 @@ class _MenWomanState extends State<MenWoman> {
           scrollDirection: Axis.vertical,
           itemCount: 1,
           itemBuilder: (context, snapshot) {
+            double width = MediaQuery.of(context).size.width;
             return GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(left: 5, right: 5, top: 0),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: MediaQuery.of(context).size.width /
-                      (MediaQuery.of(context).size.height / 1.49),
+                  childAspectRatio: width < 400
+                      ? MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.49)
+                      : MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.45),
                 ),
                 // scrollDirection: Axis.vertical,
                 itemCount: 6,

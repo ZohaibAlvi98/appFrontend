@@ -186,7 +186,7 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
             options: CarouselOptions(
                 initialPage: 1,
                 enableInfiniteScroll: false,
-                height: size * 0.57,
+                height: width < 400 ? size * 0.57 : size * 0.59,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },

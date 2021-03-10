@@ -70,7 +70,9 @@ class _BottomNavState extends State<BottomNav> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: _selectedIndex == 0 ? drawerAppBar(context) : Container()),
+              child: _selectedIndex == 0
+                  ? drawerAppBar(context, '')
+                  : Container()),
           body: _bottomNavList.elementAt(_selectedIndex),
           bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
         ));

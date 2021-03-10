@@ -6,6 +6,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import './category-detail/tops.dart';
 
 class ByCategory extends StatefulWidget {
   @override
@@ -22,6 +23,28 @@ class _ByCategoryState extends State<ByCategory> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void _navigatorPage(index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          if (index == 'tops')
+            return Tops();
+          else
+            return null;
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
   }
 
   List img = [
@@ -54,7 +77,16 @@ class _ByCategoryState extends State<ByCategory> {
         return false;
       },
       child: Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: _selectedIndex == 0
+                ? drawerAppBar(context, 'category')
+                : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Column(
@@ -73,9 +105,14 @@ class _ByCategoryState extends State<ByCategory> {
                             padding: index != 0 && index != 1
                                 ? EdgeInsets.only(left: 7.0, right: 7, top: 10)
                                 : EdgeInsets.only(left: 7.0, right: 7, top: 4),
-                            child: Image.asset(
-                              img[index],
-                              fit: BoxFit.cover,
+                            child: InkWell(
+                              onTap: () {
+                                _navigatorPage('tops');
+                              },
+                              child: Image.asset(
+                                img[index],
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           );
                         }),

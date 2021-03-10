@@ -88,9 +88,7 @@ Widget RoundedCardForGrid(context, dividingWidth1, dividingWidth2) {
   double width = MediaQuery.of(context).size.width;
   print(width);
   return Card(
-    margin: width < 400
-        ? EdgeInsets.fromLTRB(0, width / dividingWidth1, 0, 0)
-        : EdgeInsets.fromLTRB(14, width / dividingWidth2, 14, 0),
+    margin: EdgeInsets.fromLTRB(0, width / dividingWidth1, 0, 0),
     shape: RoundedRectangleBorder(
       side: BorderSide(color: Colors.grey[400], width: 1),
       borderRadius: BorderRadius.circular(20),
@@ -100,7 +98,9 @@ Widget RoundedCardForGrid(context, dividingWidth1, dividingWidth2) {
       child: Row(
         children: <Widget>[
           Padding(
-              padding: EdgeInsets.only(left: 10),
+              padding: width < 400
+                  ? EdgeInsets.only(left: 10)
+                  : EdgeInsets.only(left: 15),
               child: Container(
                 width: 31.7,
                 height: 38,
@@ -115,21 +115,27 @@ Widget RoundedCardForGrid(context, dividingWidth1, dividingWidth2) {
                 child: Center(
                   child: Text(
                     'END',
-                    style: TextStyle(fontSize: 9),
+                    style: TextStyle(
+                        fontSize: width < 400 ? 9 : 12,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
               )),
           Padding(
-            padding: EdgeInsets.only(left: 10.0, top: 8),
+            padding: width < 400
+                ? EdgeInsets.only(left: 10.0, top: 8)
+                : EdgeInsets.only(left: 12.0, top: 9),
             child: Column(
               children: [
                 Text(
                   'END CLOTHING',
-                  style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: width < 400 ? 9 : 12,
+                      fontWeight: FontWeight.bold),
                 ),
                 Text('4 Nov 2020',
                     style: TextStyle(
-                        fontSize: 8,
+                        fontSize: width < 400 ? 9 : 11,
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[600])),
               ],

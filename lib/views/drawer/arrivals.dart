@@ -50,7 +50,16 @@ class _ArrivalsState extends State<Arrivals> {
         return false;
       },
       child: Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: _selectedIndex == 0
+                ? drawerAppBar(context, 'new')
+                : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Container(
@@ -60,10 +69,12 @@ class _ArrivalsState extends State<Arrivals> {
                       Center(
                         child: Stack(
                           children: [
-                            Image.asset('assets/images/arrivals/main.jpg'),
+                            Image.asset(
+                              'assets/images/arrivals/main.jpg',
+                            ),
                             Padding(
                               padding:
-                                  EdgeInsets.only(left: 10, top: width / 3.6),
+                                  EdgeInsets.only(left: 10, top: width / 4.6),
                               child: Text(
                                 'NEW ARRIVALS',
                                 style: TextStyle(
@@ -77,6 +88,7 @@ class _ArrivalsState extends State<Arrivals> {
                       ),
                       Row(
                         children: [
+                          Spacer(),
                           Padding(
                             padding:
                                 EdgeInsets.only(left: 10.0, top: 20, right: 10),
@@ -91,32 +103,10 @@ class _ArrivalsState extends State<Arrivals> {
                               child: Text(
                                 'FILTER',
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 17),
+                                    color: Colors.black, fontSize: 16),
                               ),
                               color: Colors.white,
-                              minWidth: 150,
-                              height: 45,
-                            ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding:
-                                EdgeInsets.only(left: 10.0, top: 20, right: 10),
-                            child: FlatButton(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  side: BorderSide(
-                                      color: Colors.black87, width: 1.4)),
-                              onPressed: () {
-                                // _navigatorPage();
-                              },
-                              child: Text(
-                                'SORT BY',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 17),
-                              ),
-                              color: Colors.white,
-                              minWidth: 150,
+                              minWidth: 140,
                               height: 45,
                             ),
                           ),

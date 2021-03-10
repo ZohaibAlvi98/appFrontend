@@ -10,6 +10,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'channel/channel.dart';
+import '../requests/request-splyr.dart';
 
 class Splyrs extends StatefulWidget {
   @override
@@ -59,8 +60,8 @@ class _SplyrsState extends State<Splyrs> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          if (index != 'channel')
-            return RequestShopper();
+          if (index == 'requestSplyr')
+            return RequestSupplier();
           else
             return Channel();
         },
@@ -120,7 +121,7 @@ class _SplyrsState extends State<Splyrs> {
                         borderRadius: BorderRadius.circular(40.0),
                         side: BorderSide(color: Colors.black87, width: 1.4)),
                     onPressed: () {
-                      _navigatorPage('request');
+                      _navigatorPage('requestSplyr');
                     },
                     child: Text(
                       'Become A S-PLYR',

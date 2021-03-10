@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/profileTabs.dart';
+import 'package:splyxp/widgets/videoList.dart';
 import '../../../widgets/innerAppBar.dart';
 import 'package:splyxp/views/styles/style-detail.dart';
 import 'package:splyxp/widgets/roundedCard.dart';
 import '../../sply-network.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
-import '../../drawer/by-category.dart';
-import '../../drawer/men&women.dart';
 
 class Channel extends StatefulWidget {
   @override
@@ -23,6 +22,19 @@ class _ChannelState extends State<Channel> {
       _pageIndex = value;
     });
   }
+
+  List thumbnail = [
+    'assets/images/tv/v1.png',
+    'assets/images/tv/v2.png',
+    'assets/images/tv/v3.png',
+    'assets/images/tv/v4.png'
+  ];
+  List videoUrl = [
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
+    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
+  ];
 
   // void _navigatorPage() {
   //   // Navigator.of(context).pop(new PageRouteBuilder());
@@ -255,7 +267,7 @@ class _ChannelState extends State<Channel> {
                   ),
                   story(context),
                   SizedBox(
-                    height: 25,
+                    height: width < 400 ? 25 : 30,
                   ),
                   ProfileTabBar(height, _onTapped),
                   SizedBox(
@@ -321,8 +333,11 @@ class _ChannelState extends State<Channel> {
                         padding: EdgeInsets.only(left: 5, right: 5, top: 10),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
-                          childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 1.3),
+                          childAspectRatio: width < 400
+                              ? MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 1.49)
+                              : MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 1.23),
                         ),
                         // scrollDirection: Axis.vertical,
                         itemCount: 6,
@@ -345,34 +360,36 @@ class _ChannelState extends State<Channel> {
                           );
                         }),
                   if (_pageIndex == 2)
-                    Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: 20.0, right: 40, left: 40, top: 10),
-                          child: YoutubePlayerIFrame(
-                            aspectRatio: 10 / 6,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: 20.0, right: 40, left: 40, top: 10),
-                          child: YoutubePlayerIFrame(
-                            aspectRatio: 10 / 6,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                              bottom: 20.0, right: 40, left: 40, top: 10),
-                          child: YoutubePlayerIFrame(
-                            aspectRatio: 10 / 6,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 5,
-                        ),
-                      ],
-                    ),
+                    VideoListHorizontal(
+                        thumbnail: thumbnail, videoUrl: videoUrl),
+                  // Column(
+                  //   children: [
+                  //     Padding(
+                  //       padding: EdgeInsets.only(
+                  //           bottom: 20.0, right: 40, left: 40, top: 10),
+                  //       child: YoutubePlayerIFrame(
+                  //         aspectRatio: 10 / 6,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: EdgeInsets.only(
+                  //           bottom: 20.0, right: 40, left: 40, top: 10),
+                  //       child: YoutubePlayerIFrame(
+                  //         aspectRatio: 10 / 6,
+                  //       ),
+                  //     ),
+                  //     Padding(
+                  //       padding: EdgeInsets.only(
+                  //           bottom: 20.0, right: 40, left: 40, top: 10),
+                  //       child: YoutubePlayerIFrame(
+                  //         aspectRatio: 10 / 6,
+                  //       ),
+                  //     ),
+                  //     SizedBox(
+                  //       height: 5,
+                  //     ),
+                  //   ],
+                  // ),
                   if (_pageIndex == 3)
                     Column(
                       children: [
