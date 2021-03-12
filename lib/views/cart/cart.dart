@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/cart/purchase/checkout.dart';
 import 'package:splyxp/widgets/cart-item.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 
@@ -108,6 +109,25 @@ class _CartState extends State<Cart> {
   //   );
   // }
 
+  void _navigatorPage(context, index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return CheckOut();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -192,7 +212,9 @@ class _CartState extends State<Cart> {
                   shape: new RoundedRectangleBorder(
                       borderRadius: new BorderRadius.circular(30.0)),
                   // height: 40,
-                  onPressed: () {},
+                  onPressed: () {
+                    _navigatorPage(context, '');
+                  },
                   child: Text(
                     'Proceed to checkout',
                     style: TextStyle(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:splyxp/views/styles/style-detail.dart';
+import 'package:splyxp/views/vendor-channel/stylist-channel.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
@@ -54,7 +55,11 @@ class _StylesState extends State<Styles> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return StyleDetail();
+          if (index == 'styleDetail') {
+            return StyleDetail();
+          } else {
+            return StylistChannel();
+          }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -120,7 +125,7 @@ class _StylesState extends State<Styles> {
                           padding: EdgeInsets.only(right: 15, left: 15, top: 0),
                           child: InkWell(
                               onTap: () {
-                                _navigatorPage(context);
+                                _navigatorPage('styleDetail');
                               },
                               child: Padding(
                                   padding: EdgeInsets.only(bottom: 7.0),
@@ -175,8 +180,13 @@ class _StylesState extends State<Styles> {
                         height: 50,
                       ),
                       Heading(context, 'FEATURED STYLE BOXES'),
-                      CarouselWithDots(
-                        carouselImg: styleBoxImg,
+                      InkWell(
+                        onTap: () {
+                          _navigatorPage('styleBox');
+                        },
+                        child: CarouselWithDots(
+                          carouselImg: styleBoxImg,
+                        ),
                       ),
                       SizedBox(
                         height: 50,
@@ -193,7 +203,7 @@ class _StylesState extends State<Styles> {
                       // Image and Rounded Card
                       InkWell(
                         onTap: () {
-                          _navigatorPage(index);
+                          _navigatorPage('styleDetail');
                         },
                         child: Container(
                           padding: EdgeInsets.only(right: 20, left: 20),
@@ -239,7 +249,7 @@ class _StylesState extends State<Styles> {
                       // picture 2
                       InkWell(
                         onTap: () {
-                          _navigatorPage(index);
+                          _navigatorPage('styleDetail');
                         },
                         child: Container(
                           color: Colors.grey[100],

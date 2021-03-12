@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/products/product-detail.dart';
 import 'package:splyxp/widgets/profileTabs.dart';
 import 'package:splyxp/widgets/videoList.dart';
-import '../../../widgets/innerAppBar.dart';
+import '../../widgets/innerAppBar.dart';
+import '../../widgets/vendor-channel/content.dart';
+
 import 'package:splyxp/views/styles/style-detail.dart';
-import 'package:splyxp/widgets/roundedCard.dart';
-import '../../sply-network.dart';
+import '../sply-network.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
 
-class Channel extends StatefulWidget {
+class ShopperChannel extends StatefulWidget {
   @override
-  _ChannelState createState() => _ChannelState();
+  _ShopperChannelState createState() => _ShopperChannelState();
 }
 
-class _ChannelState extends State<Channel> {
+class _ShopperChannelState extends State<ShopperChannel> {
   int _pageIndex = 0;
   double height = 46;
   void _onTapped(int value) {
@@ -36,24 +38,24 @@ class _ChannelState extends State<Channel> {
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
   ];
 
-  // void _navigatorPage() {
-  //   // Navigator.of(context).pop(new PageRouteBuilder());
-  //   Navigator.of(context).push(new PageRouteBuilder(
-  //       opaque: true,
-  //       transitionDuration: const Duration(),
-  //       pageBuilder: (BuildContext context, _, __) {
-  //         return MenWoman();
-  //       },
-  //       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-  //         return new SlideTransition(
-  //           child: child,
-  //           position: new Tween<Offset>(
-  //             begin: const Offset(1.0, 0.0),
-  //             end: Offset.zero,
-  //           ).animate(animation),
-  //         );
-  //       }));
-  // }
+  void _navigatorPage() {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return ProductDetail();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
 
   List img = [
     'assets/images/splyrs/channels/prod1.jpg',
@@ -62,6 +64,15 @@ class _ChannelState extends State<Channel> {
     'assets/images/splyrs/channels/prod4.jpg',
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
+  ];
+
+  List styleBox = [
+    'assets/images/styles/boxList2.jpg',
+    'assets/images/styles/boxList1.jpg',
+    'assets/images/styles/boxList3.jpg',
+    'assets/images/styles/boxList2.jpg',
+    'assets/images/styles/boxList1.jpg',
+    'assets/images/styles/boxList3.jpg',
   ];
 
   final url = 'https://www.youtube.com/watch?v=sR-PCwu9SBw&feature=youtu.be';
@@ -127,7 +138,7 @@ class _ChannelState extends State<Channel> {
                     child: Stack(
                       children: [
                         Image.asset(
-                          'assets/images/splyrs/channels/main2.jpg',
+                          'assets/images/vendor-channel/shopper/cover.jpg',
                           fit: BoxFit.contain,
                         ),
                         Center(
@@ -137,8 +148,8 @@ class _ChannelState extends State<Channel> {
                             height: width / 3,
                             decoration: new BoxDecoration(
                                 border: new Border.all(
-                                  color: Colors.grey[200],
-                                  width: 1.0,
+                                  color: Colors.white,
+                                  width: 5.0,
                                 ),
                                 color: Colors.white,
                                 shape: BoxShape.circle,
@@ -152,13 +163,15 @@ class _ChannelState extends State<Channel> {
                                   )
                                 ]),
                             child: Center(
-                              child: Text(
-                                'S-PLY',
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 34 : 41,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: 1.2),
+                              child: Padding(
+                                padding: EdgeInsets.only(top: 0, left: 0.0),
+                                child: CircleAvatar(
+                                  radius: 100.0,
+                                  // minRadius: 20,
+                                  backgroundImage: AssetImage(
+                                      'assets/images/vendor-channel/shopper/dp.jpg'),
+                                  backgroundColor: Colors.transparent,
+                                ),
                               ),
                             ),
                           ),
@@ -168,7 +181,7 @@ class _ChannelState extends State<Channel> {
                             padding:
                                 EdgeInsets.only(top: width < 400 ? 200 : 225.0),
                             child: Text(
-                              'S-PLY STORE',
+                              'SHOPPER',
                               style: TextStyle(
                                   fontSize: 27,
                                   fontWeight: FontWeight.w900,
@@ -185,17 +198,17 @@ class _ChannelState extends State<Channel> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: 10.0),
+                                    padding: EdgeInsets.only(left: 5.0),
                                     child: Icon(
                                       Icons.location_pin,
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(right: 18.0),
-                                    child: Text(
-                                      'S-PLY Store, London, United Kingdom',
-                                      style: TextStyle(
-                                          fontSize: width < 400 ? 13.5 : 15.5),
+                                    padding: EdgeInsets.only(right: 0.0),
+                                    child: FittedBox(
+                                      child: Text(
+                                        'Willow House 72-74 Paul St., London, United Kingdom(UK)',
+                                      ),
                                     ),
                                   ),
                                 ],
@@ -213,7 +226,7 @@ class _ChannelState extends State<Channel> {
                                     ),
                                   ),
                                   Text(
-                                    ' s-plytv@s-plystyle.net',
+                                    ' stylist01@s-plystyle.com',
                                     style: TextStyle(
                                         fontSize: width < 400 ? 13.5 : 15.5),
                                   ),
@@ -258,10 +271,29 @@ class _ChannelState extends State<Channel> {
                   Padding(
                     padding: EdgeInsets.only(left: 15, right: 14),
                     child: Text(
-                      'S-PLY is an online and retail concept store founded in London, with planned locations in Amsterdam, New York and Los Angeles',
+                      'I am a certified S-PLY i-Stylist. Have 12 years of experience in Fashion and Style Industry having the pashion to help customers in seleting the modern styles and products that suit best to their personalities.',
                       style: TextStyle(fontSize: 14, height: 1.3),
                     ),
                   ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 15.0, right: 14, bottom: 10),
+                    child: Divider(
+                      thickness: 2,
+                    ),
+                  ),
+                  content('Spoken Languages', 'English', 'Arabic'),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  content('Brands, I deal with', 'Nike', 'Addidas'),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  content('My Retailers/S-PLYRS,', 'S-PLY', ''),
+
                   SizedBox(
                     height: 15,
                   ),
@@ -269,7 +301,7 @@ class _ChannelState extends State<Channel> {
                   SizedBox(
                     height: width < 400 ? 25 : 30,
                   ),
-                  ProfileTabBar(height, _onTapped, 'splyr'),
+                  ProfileTabBar(height, _onTapped, 'shopper'),
                   SizedBox(
                     height: 1,
                   ),
@@ -326,7 +358,40 @@ class _ChannelState extends State<Channel> {
                   SizedBox(
                     height: 8,
                   ),
-                  if (_pageIndex == 1)
+                  // if (_pageIndex == 1)
+                  //   GridView.builder(
+                  //       shrinkWrap: true,
+                  //       physics: const NeverScrollableScrollPhysics(),
+                  //       padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+                  //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //         crossAxisCount: 2,
+                  //         childAspectRatio: width < 400
+                  //             ? MediaQuery.of(context).size.width /
+                  //                 (MediaQuery.of(context).size.height / 1.49)
+                  //             : MediaQuery.of(context).size.width /
+                  //                 (MediaQuery.of(context).size.height / 1.23),
+                  //       ),
+                  //       // scrollDirection: Axis.vertical,
+                  //       itemCount: 6,
+                  //       itemBuilder: (context, snapshot) {
+                  //         return Column(
+                  //           children: [
+                  //             style(context, 'assets/images/styles/style3.jpg'),
+                  //             SizedBox(
+                  //               height: 10,
+                  //             ),
+                  //             // style(context, 'assets/images/styles/styles4.jpg'),
+                  //             // SizedBox(
+                  //             //   height: 25,
+                  //             // ),
+                  //             // style(context, 'assets/images/styles/style3.jpg'),
+                  //             // SizedBox(
+                  //             //   height: 25,
+                  //             // ),
+                  //           ],
+                  //         );
+                  //       }),
+                  if (_pageIndex == 2)
                     GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -339,27 +404,52 @@ class _ChannelState extends State<Channel> {
                               : MediaQuery.of(context).size.width /
                                   (MediaQuery.of(context).size.height / 1.23),
                         ),
-                        // scrollDirection: Axis.vertical,
                         itemCount: 6,
-                        itemBuilder: (context, snapshot) {
-                          return Column(
-                            children: [
-                              style(context, 'assets/images/styles/style3.jpg'),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              // style(context, 'assets/images/styles/styles4.jpg'),
-                              // SizedBox(
-                              //   height: 25,
-                              // ),
-                              // style(context, 'assets/images/styles/style3.jpg'),
-                              // SizedBox(
-                              //   height: 25,
-                              // ),
-                            ],
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                            // onTap: () => _navigatorPage(),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(left: 7.0, right: 7),
+                                  child: Image.asset(
+                                    styleBox[index],
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5, left: 10),
+                                    child: Text(
+                                      'MRKT Combo Pack',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5, left: 10),
+                                    child: Text(
+                                      'Price \$290',
+                                      style: TextStyle(
+                                          fontSize: 15.5,
+                                          color: Colors.grey[600],
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
                           );
                         }),
-                  if (_pageIndex == 2)
+                  if (_pageIndex == 3)
                     VideoListHorizontal(
                         thumbnail: thumbnail, videoUrl: videoUrl),
                   // Column(
@@ -390,7 +480,7 @@ class _ChannelState extends State<Channel> {
                   //     ),
                   //   ],
                   // ),
-                  if (_pageIndex == 3)
+                  if (_pageIndex == 4)
                     Column(
                       children: [
                         cards(width, 'assets/images/rss/rss1.jpg', context),
@@ -410,43 +500,6 @@ class _ChannelState extends State<Channel> {
           ),
         ));
   }
-}
-
-Widget style(context, img) {
-  void _navigatorPage() {
-    // Navigator.of(context).pop(new PageRouteBuilder());
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: true,
-        transitionDuration: const Duration(),
-        pageBuilder: (BuildContext context, _, __) {
-          return StyleDetail();
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new SlideTransition(
-            child: child,
-            position: new Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(animation),
-          );
-        }));
-  }
-
-  print('here');
-  return InkWell(
-    onTap: () {
-      _navigatorPage();
-    },
-    child: Container(
-      padding: EdgeInsets.only(right: 10, left: 10),
-      child: Stack(children: [
-        Image.asset(
-          img,
-        ),
-        RoundedCardForGrid(context, 2.05, 2.05),
-      ]),
-    ),
-  );
 }
 
 Widget story(context) {

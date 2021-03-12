@@ -5,9 +5,11 @@ class ProfileTabBar extends StatefulWidget implements PreferredSizeWidget {
   final double height;
   // final ValueChanged<int> onTap;
   final Function _onTapped;
+  final String index;
   ProfileTabBar(
     this.height,
     this._onTapped,
+    this.index,
   );
 
   @override
@@ -22,9 +24,18 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
   bool isStyle = false;
   bool isTv = false;
   bool isRss = false;
+  bool isStyleBox = false;
 
   final Color _selectedColor = Colors.black;
   final Color _unSelectedColor = Colors.grey;
+
+  double checkWidth(_screenWidth) {
+    if (widget.index == 'style') {
+      return _screenWidth / 5;
+    } else {
+      return _screenWidth / 4;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +48,7 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
           GestureDetector(
               child: Container(
                 color: Colors.white12,
-                width: _screenWidth / 4,
+                width: checkWidth(_screenWidth),
                 height: widget.height,
                 child: Stack(
                   children: <Widget>[
@@ -67,44 +78,79 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
                   });
                 }
               }),
-          GestureDetector(
-            child: Container(
-              color: Colors.white12,
-              width: _screenWidth / 4,
-              height: widget.height,
-              child: Stack(
-                children: <Widget>[
-                  Align(
-                    child: Icon(
-                      Icons.style_outlined,
-                      color: isStyle ? _selectedColor : _unSelectedColor,
+          if (widget.index != 'shopper')
+            GestureDetector(
+              child: Container(
+                color: Colors.white12,
+                width: checkWidth(_screenWidth),
+                height: widget.height,
+                child: Stack(
+                  children: <Widget>[
+                    Align(
+                      child: Icon(
+                        Icons.style_outlined,
+                        color: isStyle ? _selectedColor : _unSelectedColor,
+                      ),
                     ),
-                  ),
-                  isStyle
-                      ? Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            height: 2,
-                            color: Colors.black,
-                          ),
-                        )
-                      : SizedBox(),
-                ],
+                    isStyle
+                        ? Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Container(
+                              height: 2,
+                              color: Colors.black,
+                            ),
+                          )
+                        : SizedBox(),
+                  ],
+                ),
               ),
+              onTap: () {
+                if (!isStyle) {
+                  setState(() {
+                    setFlags(tabName: 'style');
+                    widget._onTapped(1);
+                  });
+                }
+              },
             ),
-            onTap: () {
-              if (!isStyle) {
-                setState(() {
-                  setFlags(tabName: 'style');
-                  widget._onTapped(1);
-                });
-              }
-            },
-          ),
+          if (widget.index == 'style' || widget.index == 'shopper')
+            GestureDetector(
+                child: Container(
+                  color: Colors.white12,
+                  width: checkWidth(_screenWidth),
+                  height: widget.height,
+                  child: Stack(
+                    children: <Widget>[
+                      Align(
+                        child: Icon(
+                          Icons.grid_view,
+                          color: isStyleBox ? _selectedColor : _unSelectedColor,
+                        ),
+                      ),
+                      isStyleBox
+                          ? Align(
+                              alignment: Alignment.bottomCenter,
+                              child: Container(
+                                height: 2,
+                                color: Colors.black,
+                              ),
+                            )
+                          : SizedBox(),
+                    ],
+                  ),
+                ),
+                onTap: () {
+                  if (!isStyleBox) {
+                    setState(() {
+                      setFlags(tabName: 'isStyleBox');
+                      widget._onTapped(2);
+                    });
+                  }
+                }),
           GestureDetector(
             child: Container(
               color: Colors.white12,
-              width: _screenWidth / 4,
+              width: checkWidth(_screenWidth),
               height: widget.height,
               child: Stack(
                 children: <Widget>[
@@ -130,7 +176,7 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
               if (!isTv) {
                 setState(() {
                   setFlags(tabName: 'tv');
-                  widget._onTapped(2);
+                  widget._onTapped(3);
                 });
               }
             },
@@ -138,7 +184,7 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
           GestureDetector(
             child: Container(
               color: Colors.white12,
-              width: _screenWidth / 4,
+              width: checkWidth(_screenWidth),
               height: widget.height,
               child: Stack(
                 children: <Widget>[
@@ -164,7 +210,7 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
               if (!isRss) {
                 setState(() {
                   setFlags(tabName: 'rss');
-                  widget._onTapped(3);
+                  widget._onTapped(4);
                 });
               }
             },
@@ -181,24 +227,35 @@ class _ProfileTabBarState extends State<ProfileTabBar> {
         isStyle = false;
         isRss = false;
         isPost = true;
+        isStyleBox = false;
         break;
       case 'style':
         isStyle = true;
         isTv = false;
         isRss = false;
         isPost = false;
+        isStyleBox = false;
         break;
       case 'tv':
         isTv = true;
         isStyle = false;
         isRss = false;
         isPost = false;
+        isStyleBox = false;
         break;
 
       case 'rss':
         isStyle = false;
         isTv = false;
         isRss = true;
+        isPost = false;
+        isStyleBox = false;
+        break;
+      case 'isStyleBox':
+        isStyleBox = true;
+        isStyle = false;
+        isTv = false;
+        isRss = false;
         isPost = false;
         break;
     }

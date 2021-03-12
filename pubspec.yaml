@@ -30,6 +30,7 @@ dependencies:
   image_picker: ^0.6.7+7
   youtube_player_flutter: ^7.0.0+7
   youtube_player_iframe: ^1.2.0+2
+  country_code_picker: ^1.7.0
   
 
 
@@ -68,6 +69,9 @@ flutter:
     - assets/images/styleDetail/
     - assets/images/ByCategories/
     - assets/images/arrivals/
+    - assets/images/vendor-channel/stylist/
+    - assets/images/vendor-channel/shopper/
+
 
 
   # To add assets to your application, add an assets section, like this:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:splyxp/views/requests/request-shopper.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 
 class RequestSupplier extends StatefulWidget {
@@ -94,28 +95,4 @@ class _RequestSupplierState extends State<RequestSupplier> {
       ),
     );
   }
-}
-
-Widget textfields(text) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Padding(
-        padding: EdgeInsets.only(left: 20),
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-        ),
-      ),
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: 22),
-        child: TextFormField(
-          cursorColor: Colors.black54,
-          decoration: InputDecoration(
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.black87, width: 2))),
-        ),
-      )
-    ],
-  );
 }
