@@ -5,7 +5,7 @@ import 'package:splyxp/widgets/navbar.dart';
 import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/carousels.dart';
-
+import '../vendor-channel/shopper-channel.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
@@ -62,7 +62,9 @@ class _SplyrsState extends State<Splyrs> {
         pageBuilder: (BuildContext context, _, __) {
           if (index == 'requestSplyr')
             return RequestSupplier();
-          else
+          else if (index == 'shopper') {
+            return ShopperChannel();
+          } else
             return Channel();
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
@@ -193,61 +195,66 @@ class _SplyrsState extends State<Splyrs> {
                                   : EdgeInsets.only(left: 25, top: 45)
                               : EdgeInsets.only(left: 25, top: 56),
                           child: index == 1
-                              ? Stack(children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 10.0),
-                                    child: Text(
-                                      'MRKTDEUX',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 20),
+                              ? InkWell(
+                                  onTap: () {
+                                    _navigatorPage('shopper');
+                                  },
+                                  child: Stack(children: [
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 10.0),
+                                      child: Text(
+                                        'MRKTDEUX',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20),
+                                      ),
                                     ),
-                                  ),
-                                  Padding(
-                                      padding: EdgeInsets.only(top: 40),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 9.0),
-                                                child: Icon(
-                                                  Icons.location_pin,
-                                                  size: 15,
+                                    Padding(
+                                        padding: EdgeInsets.only(top: 40),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      bottom: 9.0),
+                                                  child: Icon(
+                                                    Icons.location_pin,
+                                                    size: 15,
+                                                  ),
                                                 ),
-                                              ),
-                                              Text(
-                                                'MIAMI, FLORIDA,\nUNITED STATES (US)',
-                                                style: TextStyle(
-                                                    fontSize:
-                                                        width < 400 ? 9 : 11,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              ),
-                                            ],
-                                          ),
-                                          // Padding(
-                                          //   padding: width < 400
-                                          //       ? EdgeInsets.only(
-                                          //           top: 6, left: 7, right: 5)
-                                          //       : EdgeInsets.only(
-                                          //           top: 10, left: 7, right: 5),
-                                          //   child: Text(
-                                          //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-                                          //     style: TextStyle(
-                                          //         fontSize:
-                                          //             width < 400 ? 9 : 13,
-                                          //         color: Colors.grey[600],
-                                          //         fontWeight: FontWeight.w800,
-                                          //         height: 1.15),
-                                          //   ),
-                                          // )
-                                        ],
-                                      ))
-                                ])
+                                                Text(
+                                                  'MIAMI, FLORIDA,\nUNITED STATES (US)',
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          width < 400 ? 9 : 11,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                              ],
+                                            ),
+                                            // Padding(
+                                            //   padding: width < 400
+                                            //       ? EdgeInsets.only(
+                                            //           top: 6, left: 7, right: 5)
+                                            //       : EdgeInsets.only(
+                                            //           top: 10, left: 7, right: 5),
+                                            //   child: Text(
+                                            //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
+                                            //     style: TextStyle(
+                                            //         fontSize:
+                                            //             width < 400 ? 9 : 13,
+                                            //         color: Colors.grey[600],
+                                            //         fontWeight: FontWeight.w800,
+                                            //         height: 1.15),
+                                            //   ),
+                                            // )
+                                          ],
+                                        ))
+                                  ]),
+                                )
                               : index == 2
                                   ? Stack(
                                       children: [

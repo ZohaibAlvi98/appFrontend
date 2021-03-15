@@ -123,7 +123,7 @@ Widget innerAppbar(context, list) {
 
   return AppBar(
     actions: [
-      list != 'SHOPPING BAG (4)'
+      list != 'SHOPPING BAG (4)' && list != 'REVIEW'
           ? IconButton(
               padding: EdgeInsets.only(right: 20, bottom: 10),
               icon: new Image.asset(

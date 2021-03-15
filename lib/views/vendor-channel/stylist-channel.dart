@@ -248,7 +248,7 @@ class _StylistChannelState extends State<StylistChannel> {
                           borderRadius: BorderRadius.circular(30.0),
                           side: BorderSide(color: Colors.black87, width: 1.4)),
                       onPressed: () {
-                        _navigatorPage();
+                        // _navigatorPage();
                       },
                       child: Text(
                         'SUBSCRIBE NOW',

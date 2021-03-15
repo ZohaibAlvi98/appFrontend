@@ -359,7 +359,7 @@ class _ChannelState extends State<Channel> {
                             ],
                           );
                         }),
-                  if (_pageIndex == 2)
+                  if (_pageIndex == 3)
                     VideoListHorizontal(
                         thumbnail: thumbnail, videoUrl: videoUrl),
                   // Column(
@@ -390,7 +390,7 @@ class _ChannelState extends State<Channel> {
                   //     ),
                   //   ],
                   // ),
-                  if (_pageIndex == 3)
+                  if (_pageIndex == 4)
                     Column(
                       children: [
                         cards(width, 'assets/images/rss/rss1.jpg', context),
