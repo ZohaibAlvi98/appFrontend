@@ -369,7 +369,7 @@ class _StylistChannelState extends State<StylistChannel> {
                               ? MediaQuery.of(context).size.width /
                                   (MediaQuery.of(context).size.height / 1.49)
                               : MediaQuery.of(context).size.width /
-                                  (MediaQuery.of(context).size.height / 1.23),
+                                  (MediaQuery.of(context).size.height / 1.17),
                         ),
                         // scrollDirection: Axis.vertical,
                         itemCount: 6,
@@ -402,7 +402,7 @@ class _StylistChannelState extends State<StylistChannel> {
                               ? MediaQuery.of(context).size.width /
                                   (MediaQuery.of(context).size.height / 1.49)
                               : MediaQuery.of(context).size.width /
-                                  (MediaQuery.of(context).size.height / 1.23),
+                                  (MediaQuery.of(context).size.height / 1.18),
                         ),
                         itemCount: 6,
                         itemBuilder: (context, index) {

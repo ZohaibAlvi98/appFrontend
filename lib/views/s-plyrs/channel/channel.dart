@@ -337,7 +337,7 @@ class _ChannelState extends State<Channel> {
                               ? MediaQuery.of(context).size.width /
                                   (MediaQuery.of(context).size.height / 1.49)
                               : MediaQuery.of(context).size.width /
-                                  (MediaQuery.of(context).size.height / 1.23),
+                                  (MediaQuery.of(context).size.height / 1.17),
                         ),
                         // scrollDirection: Axis.vertical,
                         itemCount: 6,
@@ -346,7 +346,7 @@ class _ChannelState extends State<Channel> {
                             children: [
                               style(context, 'assets/images/styles/style3.jpg'),
                               SizedBox(
-                                height: 10,
+                                height: 30,
                               ),
                               // style(context, 'assets/images/styles/styles4.jpg'),
                               // SizedBox(
@@ -529,7 +529,7 @@ Widget story(context) {
                           ),
                           stories,
                           SizedBox(
-                            height: 25,
+                            height: 35,
                           )
                         ],
                       ),

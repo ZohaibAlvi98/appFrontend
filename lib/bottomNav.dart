@@ -6,6 +6,7 @@ import 'views/home.dart';
 import 'views/search/search.dart';
 import 'views/profile.dart';
 import 'views/sply-network.dart';
+import './views/auth/signup/signup.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _BottomNavState extends State<BottomNav> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   @override
   Widget build(BuildContext context) {
