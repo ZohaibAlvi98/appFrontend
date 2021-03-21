@@ -3,7 +3,12 @@ import '../../../widgets/innerAppBar.dart';
 import '../signup/signup.dart';
 import '../../../widgets/innerAppBar.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     double size =

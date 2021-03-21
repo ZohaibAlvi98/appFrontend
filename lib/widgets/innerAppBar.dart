@@ -227,6 +227,87 @@ Widget drawerInnerAppbar(context, list) {
   );
 }
 
+Widget dashboardDrawer(context, index) {
+  return Drawer(
+      child: Column(
+    children: [
+      Padding(
+        padding: EdgeInsets.only(
+            top: (MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top) *
+                0.06),
+        child: Center(
+          child: Image.asset(
+            'assets/images/drawerImg.jpg',
+            height: 35,
+          ),
+        ),
+      ),
+      ListView(
+          shrinkWrap: true,
+          children: ListTile.divideTiles(
+              //          <-- ListTile.divideTiles
+              context: context,
+              color: Colors.white,
+              tiles: [
+                index != 'new'
+                    ? InkWell(
+                        onTap: () {
+                          _navigatorPage(context, 'new');
+                        },
+                        child: ListTile(
+                          title: Text('NEW ADDITION',
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      )
+                    : null,
+                index != 'category'
+                    ? InkWell(
+                        onTap: () {
+                          _navigatorPage(context, 'categories');
+                        },
+                        child: ListTile(
+                          title: Text('CATEGORIES',
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      )
+                    : null,
+                index != 'men&women'
+                    ? InkWell(
+                        onTap: () {
+                          _navigatorPage(context, 'men');
+                        },
+                        child: ListTile(
+                          title: Text('MEN',
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      )
+                    : null,
+                index != 'men&women'
+                    ? InkWell(
+                        onTap: () {
+                          _navigatorPage(context, 'women');
+                        },
+                        child: ListTile(
+                          title: Text('WOMAN',
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      )
+                    : null,
+                InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'request');
+                  },
+                  child: ListTile(
+                    title: Text('REQUEST TO I-SHOPPER',
+                        style: TextStyle(color: Colors.white)),
+                  ),
+                )
+              ]).toList()),
+    ],
+  ));
+}
+
 Widget drawerAppBar(context, index) {
   return Drawer(
       child: Column(

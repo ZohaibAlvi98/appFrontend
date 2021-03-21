@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
-import '../../../widgets/innerAppBar.dart';
 import '../login/login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../bottomNav.dart';
 
 class Signup extends StatelessWidget {
+  Future<bool> saveAuth() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool("auth", true);
+    return _prefs.commit();
+  }
+
+  void setAuth(context) {
+    saveAuth().then((value) => {
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (BuildContext context) {
+            return new BottomNav();
+          }))
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     double size =
@@ -40,6 +56,7 @@ class Signup extends StatelessWidget {
                 onPressed: () {
                   // Navigate back to first route when tapped.
                   // Navigator.pop(context);
+                  setAuth(context);
                 },
                 child: Text('Sign Up'),
               ),
