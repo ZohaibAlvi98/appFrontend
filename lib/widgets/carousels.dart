@@ -81,6 +81,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
   }
 }
 
+//copy this class
 class CarouselWithTextDots extends StatefulWidget {
   final List carouselImg;
 
@@ -193,6 +194,7 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                 // autoPlay: true,
                 autoPlayCurve: Curves.easeInOut,
                 enlargeCenterPage: false)),
+// work for text
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: map<Widget>(widget.carouselImg, (index, url) {

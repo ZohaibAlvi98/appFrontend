@@ -11,6 +11,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
+  // Add images
   List carouselImg = [
     'assets/images/splyrs/carousel1.jpg',
     'assets/images/splyrs/carousel1.jpg',
