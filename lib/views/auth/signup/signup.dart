@@ -2,8 +2,14 @@ import 'package:flutter/material.dart';
 import '../login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../bottomNav.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
-class Signup extends StatelessWidget {
+class Signup extends StatefulWidget {
+  @override
+  _SignupState createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
   Future<bool> saveAuth() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool("auth", true);
@@ -17,6 +23,47 @@ class Signup extends StatelessWidget {
             return new BottomNav();
           }))
         });
+  }
+
+  @override
+  void initState() {
+    if (check == 0) {
+      init(appId, authKey, authSecret);
+      setState(() {
+        check = 1;
+      });
+    }
+    super.initState();
+    // DO YOUR STUFF
+  }
+
+  String appId = "4451";
+
+  String authKey = "nL5Ba8ywSMu-rGq";
+
+  String authSecret = "vXM9T-QUXdx44pz";
+  static int check = 0;
+  Future signup() {
+    createSession().then((cubeSession) {
+      print(cubeSession);
+      // return cubeSession;
+      CubeUser user = CubeUser(
+          login: 'marvi',
+          password: 'supersecurepwd',
+          email: 'awesome@gmail.com',
+          fullName: 'Marvin Simon',
+          phone: '4782323143',
+          website: 'https://dozensofdreams.com',
+          customData: "{middle_name: 'Bartoleo'}");
+
+      signUp(user).then((cubeUser) {
+        print('HEYY');
+      }).catchError((error) {
+        print(error);
+      });
+    }).catchError((error) {
+      print(error);
+    });
   }
 
   @override
@@ -56,7 +103,8 @@ class Signup extends StatelessWidget {
                 onPressed: () {
                   // Navigate back to first route when tapped.
                   // Navigator.pop(context);
-                  setAuth(context);
+                  // setAuth(context);
+                  signup();
                 },
                 child: Text('Sign Up'),
               ),

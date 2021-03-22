@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../widgets/innerAppBar.dart';
 import '../signup/signup.dart';
 import '../../../widgets/innerAppBar.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -9,6 +10,44 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    if (check == 0) {
+      init(appId, authKey, authSecret);
+      setState(() {
+        check = 1;
+      });
+    }
+
+    super.initState();
+    // DO YOUR STUFF
+  }
+
+  String appId = "4451";
+
+  String authKey = "nL5Ba8ywSMu-rGq";
+
+  String authSecret = "vXM9T-QUXdx44pz";
+
+  static int check = 0;
+  Future login() {
+    createSession().then((cubeSession) {
+      print(cubeSession);
+      // return cubeSession;
+      CubeUser user = CubeUser(
+        login: 'marvi',
+        password: 'supersecurepwd',
+      );
+// CubeUser user = CubeUser(email: "cubeuser@gmail.com", password: "super_sequre_password");
+
+      signIn(user).then((cubeUser) {
+        print(cubeUser);
+      }).catchError((error) {});
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double size =
@@ -42,6 +81,7 @@ class _LoginState extends State<Login> {
                 onPressed: () {
                   // Navigate back to first route when tapped.
                   // Navigator.pop(context);
+                  login();
                 },
                 child: Text('Login'),
               ),

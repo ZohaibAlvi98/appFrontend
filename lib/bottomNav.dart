@@ -57,7 +57,7 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     check();
     double width = MediaQuery.of(context).size.width;
-    return authenticated == false
+    return authenticated == null
         ? WillPopScope(
             onWillPop: () async {
               if (_selectedIndex == 0) return true;

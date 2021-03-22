@@ -24,6 +24,7 @@ class _DashboardState extends State<Dashboard> {
     'assets/images/styles/list3.jpg',
     'assets/images/styles/list4.jpg'
   ];
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
