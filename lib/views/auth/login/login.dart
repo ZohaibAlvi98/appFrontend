@@ -3,6 +3,9 @@ import '../../../widgets/innerAppBar.dart';
 import '../signup/signup.dart';
 import '../../../widgets/innerAppBar.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../bottomNav.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,6 +13,32 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final TextEditingController username = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+
+  Future<bool> saveAuth() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setBool("auth", true);
+    return _prefs.commit();
+  }
+
+  void setAuth(context) {
+    saveAuth().then((value) => {
+          Navigator.of(context).pushReplacement(
+              new MaterialPageRoute(builder: (BuildContext context) {
+            return new BottomNav();
+          }))
+        });
+  }
+
+  Future<bool> saveLoginPass(login, pass) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    _prefs.setString("login", login);
+    _prefs.setString("pass", pass);
+
+    return _prefs.commit();
+  }
+
   @override
   void initState() {
     if (check == 0) {
@@ -35,14 +64,17 @@ class _LoginState extends State<Login> {
       print(cubeSession);
       // return cubeSession;
       CubeUser user = CubeUser(
-        login: 'marvi',
-        password: 'supersecurepwd',
+        login: username.text,
+        password: pass.text,
       );
 // CubeUser user = CubeUser(email: "cubeuser@gmail.com", password: "super_sequre_password");
-
-      signIn(user).then((cubeUser) {
-        print(cubeUser);
-      }).catchError((error) {});
+// 'marvi' supersecurepwd
+      if (pass.text != '') {
+        createSession(user).then((cubeSession) {
+          print(cubeSession);
+          saveLoginPass(username.text, pass.text);
+        }).catchError((error) {});
+      }
     }).catchError((error) {
       print(error);
     });
@@ -68,11 +100,53 @@ class _LoginState extends State<Login> {
             SizedBox(
               height: size * 0.05,
             ),
-            usernameTextField('Email', size, width, 'login'),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Username',
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey),
+                  ),
+                  TextFormField(
+                    controller: username,
+                    decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black87, width: 2))),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            usernameTextField('Password', size, width, 'login'),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Password',
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey),
+                  ),
+                  TextFormField(
+                    controller: pass,
+                    decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black87, width: 2))),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: size * 0.05,
             ),
@@ -81,6 +155,7 @@ class _LoginState extends State<Login> {
                 onPressed: () {
                   // Navigate back to first route when tapped.
                   // Navigator.pop(context);
+                  setAuth(context);
                   login();
                 },
                 child: Text('Login'),
@@ -119,4 +194,37 @@ class _LoginState extends State<Login> {
       )),
     );
   }
+}
+
+Widget usernameTextFields(String label, size, width, String page, controller) {
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20.0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          label,
+          style: TextStyle(
+              fontSize: width * 0.04,
+              fontWeight: FontWeight.w700,
+              color: Colors.blueGrey),
+        ),
+        if (label == 'Password' && page == 'signup')
+          TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+                helperText: '* Password should greater than 6 characters',
+                helperStyle: TextStyle(color: Colors.red),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 2))),
+          ),
+        if (label != 'Password' || page == 'login')
+          TextFormField(
+            decoration: InputDecoration(
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.black87, width: 2))),
+          ),
+      ],
+    ),
+  );
 }

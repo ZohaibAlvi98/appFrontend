@@ -25,6 +25,11 @@ class _SignupState extends State<Signup> {
         });
   }
 
+  final TextEditingController username = TextEditingController();
+  final TextEditingController pass = TextEditingController();
+  final TextEditingController email = TextEditingController();
+  final TextEditingController conPass = TextEditingController();
+
   @override
   void initState() {
     if (check == 0) {
@@ -48,10 +53,10 @@ class _SignupState extends State<Signup> {
       print(cubeSession);
       // return cubeSession;
       CubeUser user = CubeUser(
-          login: 'marvi',
-          password: 'supersecurepwd',
-          email: 'awesome@gmail.com',
-          fullName: 'Marvin Simon',
+          login: username.text,
+          password: pass.text,
+          email: email.text,
+          fullName: 'hehehe',
           phone: '4782323143',
           website: 'https://dozensofdreams.com',
           customData: "{middle_name: 'Bartoleo'}");
@@ -85,13 +90,133 @@ class _SignupState extends State<Signup> {
             SizedBox(
               height: size * 0.05,
             ),
-            oppositeTextfields('First Name', width, 'signup', 'Last Name'),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'first Name',
+                        style: TextStyle(
+                            fontSize: width * 0.04,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blueGrey),
+                      ),
+                      SizedBox(
+                        width: 115,
+                      ),
+                      Text(
+                        'last Name',
+                        style: TextStyle(
+                            fontSize: width * 0.04,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.blueGrey),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 0.0, right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        new Flexible(
+                            child: new TextField(
+                                decoration: InputDecoration(
+                                    contentPadding:
+                                        EdgeInsets.only(left: 20, right: 5)))),
+                        SizedBox(
+                          width: 30,
+                        ),
+                        new Flexible(
+                          child: new TextField(
+                              decoration: InputDecoration(
+                                  contentPadding:
+                                      EdgeInsets.only(left: 20, right: 5))),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
-            usernameTextField('Email', size, width, 'signup'),
-            oppositeTextfields(
-                'Password', width, 'signup', '  Confirm Password'),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Email',
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey),
+                  ),
+                  TextFormField(
+                    controller: email,
+                    decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black87, width: 2))),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Username',
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey),
+                  ),
+                  TextFormField(
+                    controller: username,
+                    decoration: InputDecoration(
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black87, width: 2))),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Password',
+                    style: TextStyle(
+                        fontSize: width * 0.04,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.blueGrey),
+                  ),
+                  TextFormField(
+                    controller: pass,
+                    decoration: InputDecoration(
+                        helperText:
+                            '* Password should be greater than 8 characters',
+                        helperStyle: TextStyle(color: Colors.red),
+                        focusedBorder: UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.black87, width: 2))),
+                  ),
+                ],
+              ),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -103,7 +228,7 @@ class _SignupState extends State<Signup> {
                 onPressed: () {
                   // Navigate back to first route when tapped.
                   // Navigator.pop(context);
-                  // setAuth(context);
+                  setAuth(context);
                   signup();
                 },
                 child: Text('Sign Up'),

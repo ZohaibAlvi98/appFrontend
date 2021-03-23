@@ -5,6 +5,8 @@ import './sneakers/sneakers-main.dart';
 import './styles/styles-main.dart';
 import './tv/tv-main.dart';
 import '../widgets/innerAppBar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../dashboard.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -18,6 +20,25 @@ class _HomeState extends State<Home> {
       _selectedIndex = index;
       _navigatorPage();
     });
+  }
+
+  Future<bool> getAuth() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    bool name = _prefs.getBool("auth");
+    return name;
+  }
+
+  bool authenticated;
+
+  @override
+  void initState() {
+    getAuth().then((bool val) => {
+          // print(val),
+          setState(() {
+            this.authenticated = val;
+          })
+        });
+    super.initState();
   }
 
   void _navigatorPage() {
@@ -57,27 +78,29 @@ class _HomeState extends State<Home> {
       'assets/images/home/home5.png',
       'assets/images/home/home2.png'
     ];
-    return Scaffold(
-      body: StaggeredGridView.countBuilder(
-        crossAxisCount: 4,
-        itemCount: 4,
-        itemBuilder: (BuildContext context, int index) => GestureDetector(
-          onTap: () => _onItemTapped(index),
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
-            child: Column(
-              children: <Widget>[
-                Image.asset(img[index]),
-              ],
+    return authenticated == null
+        ? Scaffold(
+            body: StaggeredGridView.countBuilder(
+              crossAxisCount: 4,
+              itemCount: 4,
+              itemBuilder: (BuildContext context, int index) => GestureDetector(
+                onTap: () => _onItemTapped(index),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25)),
+                  child: Column(
+                    children: <Widget>[
+                      Image.asset(img[index]),
+                    ],
+                  ),
+                ),
+              ),
+              padding: EdgeInsets.only(top: 5),
+              staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
+              mainAxisSpacing: 1.0,
+              crossAxisSpacing: 1.0,
             ),
-          ),
-        ),
-        padding: EdgeInsets.only(top: 5),
-        staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
-        mainAxisSpacing: 1.0,
-        crossAxisSpacing: 1.0,
-      ),
-    );
+          )
+        : Dashboard();
   }
 }

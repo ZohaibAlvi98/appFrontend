@@ -29,33 +29,74 @@ class _BottomNavState extends State<BottomNav> {
     Search(),
     ChatList(),
     SplyNetwork(),
+    Profile()
+  ];
+
+  static List<Widget> _bottomNavDashboardList = [
+    Dashboard(),
+    Search(),
+    ChatList(),
+    SplyNetwork(),
     Signup()
   ];
+
   bool authenticated;
+  String login;
+  String pass;
+
+  Future<String> getPass() async {
+    SharedPreferences _prefs2 = await SharedPreferences.getInstance();
+
+    String pass = _prefs2.getString("pass");
+
+    return pass;
+  }
+
+  Future<String> getLogin() async {
+    SharedPreferences _prefs2 = await SharedPreferences.getInstance();
+    String login = _prefs2.getString("login");
+
+    return login;
+  }
+
   Future<bool> getAuth() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     bool name = _prefs.getBool("auth");
+
     return name;
+  }
+
+  void clear() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    await _prefs.clear();
   }
 
   @override
   void initState() {
-    getAuth().then((bool val) => {
-          // print(val),
-          setState(() {
-            this.authenticated = val;
-          })
+    // clear();
+    getAuth().then((bool val) async => {
+          getLogin().then((String log) => {
+                getPass().then((String pass) => {
+                      setState(() {
+                        this.login = log;
+                        this.pass = pass;
+                        this.authenticated = val;
+                      })
+                    })
+              }) // print(val),
         });
     super.initState();
   }
 
   void check() {
     print(authenticated);
+    print(login);
+    print('login');
   }
 
   @override
   Widget build(BuildContext context) {
-    check();
+    // check();
     double width = MediaQuery.of(context).size.width;
     return authenticated == null
         ? WillPopScope(
@@ -103,6 +144,17 @@ class _BottomNavState extends State<BottomNav> {
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ))
-        : Dashboard();
+        : Scaffold(
+            appBar: appbarWithMenu(context),
+            drawer: Theme(
+                data: Theme.of(context).copyWith(
+                  canvasColor: Colors
+                      .black, //This will change the drawer background to blue.
+                  //other styles
+                ),
+                child: drawerAppBar(context, '')),
+            body: _bottomNavDashboardList.elementAt(_selectedIndex),
+            bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+          );
   }
 }
