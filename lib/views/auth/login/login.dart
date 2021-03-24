@@ -23,19 +23,14 @@ class _LoginState extends State<Login> {
   }
 
   void setAuth(context) {
-    saveAuth().then((value) => {
-          Navigator.of(context).pushReplacement(
-              new MaterialPageRoute(builder: (BuildContext context) {
-            return new BottomNav();
-          }))
-        });
+    saveAuth();
   }
 
-  Future<bool> saveLoginPass(login, pass) async {
+  Future<bool> saveLoginPass(login, pass, id) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setString("login", login);
     _prefs.setString("pass", pass);
-
+    _prefs.setInt("id", id);
     return _prefs.commit();
   }
 
@@ -71,8 +66,14 @@ class _LoginState extends State<Login> {
 // 'marvi' supersecurepwd
       if (pass.text != '') {
         createSession(user).then((cubeSession) {
-          print(cubeSession);
-          saveLoginPass(username.text, pass.text);
+          print(cubeSession.userId);
+          saveLoginPass(username.text, pass.text, cubeSession.userId)
+              .then((value) => {
+                    Navigator.of(context).pushReplacement(
+                        new MaterialPageRoute(builder: (BuildContext context) {
+                      return new BottomNav();
+                    }))
+                  });
         }).catchError((error) {});
       }
     }).catchError((error) {
@@ -80,6 +81,7 @@ class _LoginState extends State<Login> {
     });
   }
 
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     double size =
@@ -90,78 +92,94 @@ class _LoginState extends State<Login> {
       body: SingleChildScrollView(
           child: Stack(
         children: [
-          Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Text("Sign In",
-                style: TextStyle(
-                    height: size * 0.004,
-                    color: Colors.black,
-                    fontSize: width * 0.1,
-                    fontWeight: FontWeight.w700)),
-            SizedBox(
-              height: size * 0.05,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Username',
-                    style: TextStyle(
-                        fontSize: width * 0.04,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.blueGrey),
-                  ),
-                  TextFormField(
-                    controller: username,
-                    decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black87, width: 2))),
-                  ),
-                ],
+          Form(
+            key: formKey,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              Text("Sign In",
+                  style: TextStyle(
+                      height: size * 0.004,
+                      color: Colors.black,
+                      fontSize: width * 0.1,
+                      fontWeight: FontWeight.w700)),
+              SizedBox(
+                height: size * 0.05,
               ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Password',
-                    style: TextStyle(
-                        fontSize: width * 0.04,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.blueGrey),
-                  ),
-                  TextFormField(
-                    controller: pass,
-                    decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.black87, width: 2))),
-                  ),
-                ],
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Username',
+                      style: TextStyle(
+                          fontSize: width * 0.04,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.blueGrey),
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        return val.isEmpty || val.length < 2
+                            ? "Please Provide Username"
+                            : null;
+                      },
+                      controller: username,
+                      decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black87, width: 2))),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            SizedBox(
-              height: size * 0.05,
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate back to first route when tapped.
-                  // Navigator.pop(context);
-                  setAuth(context);
-                  login();
-                },
-                child: Text('Login'),
+              SizedBox(
+                height: 20,
               ),
-            ),
-          ]),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Password',
+                      style: TextStyle(
+                          fontSize: width * 0.04,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.blueGrey),
+                    ),
+                    TextFormField(
+                      validator: (val) {
+                        return val.length >= 8
+                            ? null
+                            : "Please provide a password greater than 8 characters";
+                      },
+                      controller: pass,
+                      decoration: InputDecoration(
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black87, width: 2))),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: size * 0.05,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Navigate back to first route when tapped.
+                    // Navigator.pop(context);
+                    if (formKey.currentState.validate()) {
+                      setAuth(context);
+                      login();
+                    }
+                  },
+                  child: Text('Login'),
+                ),
+              ),
+            ]),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(width * 0.1, size * 0.8, 0, 0),
             child: GestureDetector(

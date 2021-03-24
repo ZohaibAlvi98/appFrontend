@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/views/chatList/chat-detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../auth/signup/signup.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
 class ChatList extends StatefulWidget {
   @override
@@ -48,21 +49,90 @@ class _ChatListState extends State<ChatList> {
         }));
   }
 
+  String login;
+  String pass;
+  int id;
+  Future<String> getPass() async {
+    SharedPreferences _prefs2 = await SharedPreferences.getInstance();
+
+    String pass = _prefs2.getString("pass");
+
+    return pass;
+  }
+
+  Future<String> getLogin() async {
+    SharedPreferences _prefs2 = await SharedPreferences.getInstance();
+    String login = _prefs2.getString("login");
+
+    return login;
+  }
+
   Future<bool> getAuth() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     bool name = _prefs.getBool("auth");
+
     return name;
+  }
+
+  Future<int> getId() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    int id = _prefs.getInt("id");
+
+    return id;
   }
 
   bool authenticated;
 
+  Future chat() {
+    CubeUser user = CubeUser(id: id, password: pass);
+
+    CubeChatConnection.instance.login(user).then((loggedUser) {
+      print('here2');
+      CubeDialog newDialog =
+          CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
+
+      createDialog(newDialog).then((createdDialog) {
+        print('here');
+        print(createdDialog);
+        CubeDialog
+            cubeDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+        CubeMessage message = CubeMessage();
+        message.body = "How are you today?";
+        message.dateSent = DateTime.now().millisecondsSinceEpoch;
+        message.markable = true;
+        message.saveToHistory = true;
+        print('yo');
+        cubeDialog
+            .sendMessage(message)
+            .then((cubeMessage) {})
+            .catchError((error) {});
+      }).catchError((error) {
+        print(error);
+      });
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
   @override
   void initState() {
-    getAuth().then((bool val) => {
-          // print(val),
-          setState(() {
-            this.authenticated = val;
-          })
+    getAuth().then((bool val) async => {
+          getId().then((int id) => {
+                getLogin().then((String log) => {
+                      print(log),
+                      getPass()
+                          .then((String pass) => {
+                                print(pass),
+                                setState(() {
+                                  this.id = id;
+                                  this.login = log;
+                                  this.pass = pass;
+                                  this.authenticated = val;
+                                })
+                              })
+                          .then((value) => {chat()})
+                    })
+              }) // print(val),
         });
     super.initState();
   }

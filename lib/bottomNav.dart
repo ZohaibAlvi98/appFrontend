@@ -37,13 +37,13 @@ class _BottomNavState extends State<BottomNav> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Signup()
+    Profile()
   ];
 
   bool authenticated;
   String login;
   String pass;
-
+  int id;
   Future<String> getPass() async {
     SharedPreferences _prefs2 = await SharedPreferences.getInstance();
 
@@ -66,25 +66,39 @@ class _BottomNavState extends State<BottomNav> {
     return name;
   }
 
-  void clear() async {
+  Future<int> getId() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    int id = _prefs.getInt("id");
+
+    return id;
+  }
+
+  Future<bool> clear() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     await _prefs.clear();
+    return _prefs.commit();
   }
 
   @override
   void initState() {
-    // clear();
+    // clear().then((bool value) async => {
     getAuth().then((bool val) async => {
-          getLogin().then((String log) => {
-                getPass().then((String pass) => {
-                      setState(() {
-                        this.login = log;
-                        this.pass = pass;
-                        this.authenticated = val;
-                      })
+          getId().then((int id) => {
+                getLogin().then((String log) => {
+                      print(log),
+                      getPass().then((String pass) => {
+                            print(pass),
+                            setState(() {
+                              this.id = id;
+                              this.login = log;
+                              this.pass = pass;
+                              this.authenticated = val;
+                            })
+                          })
                     })
               }) // print(val),
         });
+    // });
     super.initState();
   }
 
@@ -92,11 +106,13 @@ class _BottomNavState extends State<BottomNav> {
     print(authenticated);
     print(login);
     print('login');
+    print(pass);
+    print(id);
   }
 
   @override
   Widget build(BuildContext context) {
-    // check();
+    check();
     double width = MediaQuery.of(context).size.width;
     return authenticated == null
         ? WillPopScope(
