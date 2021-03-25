@@ -322,31 +322,6 @@ class _SubscriptionCarouselWithTextDotsState
                         ],
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: width / 1.08),
-                        child: Container(
-                          height: 29.5,
-                          width: 96,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                side:
-                                    BorderSide(color: Colors.black, width: 2)),
-                            onPressed: () {
-                              // _navigatorPage(true);
-                            },
-                            child: Text(
-                              'SUBSCRIBE',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: width < 400 ? 10 : 12),
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
                   ],
                 ),
               );

@@ -184,7 +184,7 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: 60,
             ),
-            Heading(context, 'SUBSCRIPTION'),
+            Heading(context, 'MY SUBSCRIPTIONS'),
             InkWell(
               onTap: () {
                 // _navigatorPage('channel');
