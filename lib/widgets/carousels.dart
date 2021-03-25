@@ -418,8 +418,8 @@ class _RectangularSliderState extends State<RectangularSlider> {
                 ),
                 child: Padding(
                   padding: width < 400
-                      ? EdgeInsets.only(left: 6.5, top: 13)
-                      : EdgeInsets.only(left: 12.0, top: 18),
+                      ? EdgeInsets.only(left: 6.5, top: 15)
+                      : EdgeInsets.only(left: 10.0, top: 18),
                   child: Text(
                     'End',
                     style: TextStyle(
