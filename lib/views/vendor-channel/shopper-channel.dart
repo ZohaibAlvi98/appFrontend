@@ -207,7 +207,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                     padding: EdgeInsets.only(right: 0.0),
                                     child: FittedBox(
                                       child: Text(
-                                        'Willow House 72-74 Paul St., London, United Kingdom(UK)',
+                                        'Willow House 72-74 Paul St., London',
                                       ),
                                     ),
                                   ),
@@ -400,7 +400,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
                           crossAxisCount: 2,
                           childAspectRatio: width < 400
                               ? MediaQuery.of(context).size.width /
-                                  (MediaQuery.of(context).size.height / 1.49)
+                                  (MediaQuery.of(context).size.height / 1.39)
                               : MediaQuery.of(context).size.width /
                                   (MediaQuery.of(context).size.height / 1.23),
                         ),

@@ -191,51 +191,52 @@ class _SplyrsState extends State<Splyrs> {
                           itemCount: 1,
                           itemBuilder: (context, i) => Padding(
                               padding: EdgeInsets.only(top: 5.0),
-                              child: Card(
-                                  child: ExpansionTile(
-                                      title: Center(
-                                        child: new Text(
-                                          'OTHER SPLYRS',
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                      ),
-                                      children: [
-                                    GridView.builder(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        padding: EdgeInsets.only(
-                                            left: 1, right: 1, top: 20),
-                                        gridDelegate:
-                                            SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          childAspectRatio: width < 400
-                                              ? MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  (MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      2.3)
-                                              : MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  (MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      1.17),
-                                        ),
-                                        // scrollDirection: Axis.vertical,
-                                        itemCount: 6,
-                                        itemBuilder: (context, index) {
-                                          return lists(context, 'men', index);
-                                        }),
-                                    SizedBox(
-                                      height: 15,
-                                    )
-                                  ]))))),
+                              child: Theme(
+                                data: Theme.of(context)
+                                    .copyWith(accentColor: Colors.black),
+                                child: ExpansionTile(
+                                    title: new Text(
+                                      'OTHER SPLYRS',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    children: [
+                                      GridView.builder(
+                                          shrinkWrap: true,
+                                          physics:
+                                              const NeverScrollableScrollPhysics(),
+                                          padding: EdgeInsets.only(
+                                              left: 1, right: 1, top: 20),
+                                          gridDelegate:
+                                              SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            childAspectRatio: width < 400
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    (MediaQuery.of(context)
+                                                            .size
+                                                            .height /
+                                                        2.3)
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width /
+                                                    (MediaQuery.of(context)
+                                                            .size
+                                                            .height /
+                                                        1.17),
+                                          ),
+                                          // scrollDirection: Axis.vertical,
+                                          itemCount: 6,
+                                          itemBuilder: (context, index) {
+                                            return lists(context, 'men', index);
+                                          }),
+                                      SizedBox(
+                                        height: 15,
+                                      )
+                                    ]),
+                              )))),
                   // GridView.builder(
                   //   scrollDirection: Axis.vertical,
                   //   shrinkWrap: true,
@@ -442,18 +443,41 @@ Widget lists(context, check, index) {
     'assets/images/splyrs/grid5.jpg',
     'assets/images/splyrs/grid1.jpg',
   ];
+  void _navigatorPage(index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return ShopperChannel();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
 
-  return Column(
-    children: [
-      Padding(
-          padding: index != 0 && index != 1
-              ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
-              : EdgeInsets.only(left: 7.0, right: 7, top: 4),
-          child: Image.asset(
-            gridImg[index],
-            fit: BoxFit.cover,
-          )),
-    ],
+  return InkWell(
+    onTap: () {
+      _navigatorPage(index);
+    },
+    child: Column(
+      children: [
+        Padding(
+            padding: index != 0 && index != 1
+                ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
+                : EdgeInsets.only(left: 7.0, right: 7, top: 4),
+            child: Image.asset(
+              gridImg[index],
+              fit: BoxFit.cover,
+            )),
+      ],
+    ),
   );
 }
 

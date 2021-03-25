@@ -81,7 +81,7 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   void initState() {
-    clear().then((bool value) async => {
+    // clear().then((bool value) async => {
     getAuth().then((bool val) async => {
           getId().then((int id) => {
                 getLogin().then((String log) => {
@@ -98,7 +98,7 @@ class _BottomNavState extends State<BottomNav> {
                     })
               }) // print(val),
         });
-    });
+    // });
     super.initState();
   }
 

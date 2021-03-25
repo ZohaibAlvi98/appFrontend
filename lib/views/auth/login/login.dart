@@ -166,7 +166,8 @@ class _LoginState extends State<Login> {
                 height: size * 0.05,
               ),
               Center(
-                child: ElevatedButton(
+                child: FlatButton(
+                  color: Colors.black,
                   onPressed: () {
                     // Navigate back to first route when tapped.
                     // Navigator.pop(context);
@@ -175,7 +176,10 @@ class _LoginState extends State<Login> {
                       login();
                     }
                   },
-                  child: Text('Login'),
+                  child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ),
             ]),
@@ -183,7 +187,7 @@ class _LoginState extends State<Login> {
           Padding(
             padding: EdgeInsets.fromLTRB(width * 0.1, size * 0.8, 0, 0),
             child: GestureDetector(
-                child: Text("Go Back!", style: TextStyle(color: Colors.blue)),
+                child: Text("Go Back!", style: TextStyle(color: Colors.black)),
                 onTap: () {
                   Navigator.pop(context);
                 }),

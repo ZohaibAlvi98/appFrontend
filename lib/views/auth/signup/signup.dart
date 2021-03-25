@@ -102,7 +102,7 @@ class _SignupState extends State<Signup> {
                       // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'first Name',
+                          'First Name',
                           style: TextStyle(
                               fontSize: width * 0.04,
                               fontWeight: FontWeight.w700,
@@ -112,7 +112,7 @@ class _SignupState extends State<Signup> {
                           width: 115,
                         ),
                         Text(
-                          'last Name',
+                          'Last Name',
                           style: TextStyle(
                               fontSize: width * 0.04,
                               fontWeight: FontWeight.w700,
@@ -244,16 +244,22 @@ class _SignupState extends State<Signup> {
                 height: size * 0.05,
               ),
               Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigate back to first route when tapped.
-                    // Navigator.pop(context);
-                    if (formKey.currentState.validate()) {
-                      // setAuth(context);
-                      signup();
-                    }
-                  },
-                  child: Text('Sign Up'),
+                child: Container(
+                  child: FlatButton(
+                    color: Colors.black,
+                    onPressed: () {
+                      // Navigate back to first route when tapped.
+                      // Navigator.pop(context);
+                      if (formKey.currentState.validate()) {
+                        // setAuth(context);
+                        signup();
+                      }
+                    },
+                    child: Text(
+                      'Sign Up',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
               ),
             ]),
@@ -269,7 +275,7 @@ class _SignupState extends State<Signup> {
                       child: Text("Login",
                           style: TextStyle(
                               decoration: TextDecoration.underline,
-                              color: Colors.blue)),
+                              color: Colors.black)),
                       onTap: () => Navigator.push(
                             context,
                             PageRouteBuilder(
