@@ -17,9 +17,10 @@ class Dashboard extends StatefulWidget {
 class _DashboardState extends State<Dashboard> {
   // Add images
   List carouselImg = [
+    'assets/images/splyrs/carousel3.jpg',
     'assets/images/splyrs/carousel1.jpg',
-    'assets/images/splyrs/carousel1.jpg',
-    'assets/images/splyrs/carousel1.jpg',
+    'assets/images/splyrs/carousel2.jpg',
+
     // 'assets/images/item4.jpg'
   ];
   List img = [
@@ -27,6 +28,11 @@ class _DashboardState extends State<Dashboard> {
     'assets/images/styles/list2.png',
     'assets/images/styles/list3.jpg',
     'assets/images/styles/list4.jpg'
+  ];
+  List subscriptionCarouselImg = [
+    'assets/images/splyrs/carousel4.jpg',
+    'assets/images/splyrs/carousel1.jpg',
+    'assets/images/splyrs/carousel5.jpg'
   ];
   int index = 0;
   int _selectedIndex = 0;
@@ -112,19 +118,79 @@ class _DashboardState extends State<Dashboard> {
             ),
             Heading(context, 'RECENT UPDATES'),
             SizedBox(
-              height: 270,
+              height: 20,
+            ),
+            SizedBox(
+              height: 280,
               child: horizontalListWith3(context, img, Colors.white12),
             ),
             SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10, right: 10, top: 0),
+                child: Container(
+                  height: 50,
+                  width: 220,
+                  child: FlatButton(
+                    color: Colors.black,
+                    // height: 40,
+                    onPressed: () {
+                      // _navigatorPage(true);
+                    },
+                    child: Text(
+                      'DISCOVER MORE',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Heading(context, 'EDITORIAL'),
+            SizedBox(
               height: 20,
+            ),
+            SizedBox(
+              height: 460,
+              child: RectangularSlider(),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Center(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10, right: 10, top: 0),
+                child: Container(
+                  height: 50,
+                  width: 220,
+                  child: FlatButton(
+                    color: Colors.black,
+                    // height: 40,
+                    onPressed: () {
+                      // _navigatorPage(true);
+                    },
+                    child: Text(
+                      'DISCOVER MORE',
+                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
             ),
             Heading(context, 'SUBSCRIPTION'),
             InkWell(
               onTap: () {
                 // _navigatorPage('channel');
               },
-              child: CarouselWithTextDots(
-                carouselImg: carouselImg,
+              child: SubscriptionCarouselWithTextDots(
+                carouselImg: subscriptionCarouselImg,
               ),
             ),
           ],

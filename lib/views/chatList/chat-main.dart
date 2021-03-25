@@ -88,27 +88,28 @@ class _ChatListState extends State<ChatList> {
 
     CubeChatConnection.instance.login(user).then((loggedUser) {
       print('here2');
-      CubeDialog newDialog =
-          CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
+      print(loggedUser);
+      // CubeDialog newDialog =
+      //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
 
-      createDialog(newDialog).then((createdDialog) {
-        print('here');
-        print(createdDialog);
-        CubeDialog
-            cubeDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
-        CubeMessage message = CubeMessage();
-        message.body = "How are you today?";
-        message.dateSent = DateTime.now().millisecondsSinceEpoch;
-        message.markable = true;
-        message.saveToHistory = true;
-        print('yo');
-        cubeDialog
-            .sendMessage(message)
-            .then((cubeMessage) {})
-            .catchError((error) {});
-      }).catchError((error) {
-        print(error);
-      });
+      // createDialog(newDialog).then((createdDialog) {
+      //   print('here');
+      //   print(createdDialog);
+      //   CubeDialog
+      //       cubeDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+      //   CubeMessage message = CubeMessage();
+      //   message.body = "How are you today?";
+      //   message.dateSent = DateTime.now().millisecondsSinceEpoch;
+      //   message.markable = true;
+      //   message.saveToHistory = true;
+      //   print('yo');
+      //   cubeDialog
+      //       .sendMessage(message)
+      //       .then((cubeMessage) {})
+      //       .catchError((error) {});
+      // }).catchError((error) {
+      //   print(error);
+      // });
     }).catchError((error) {
       print(error);
     });
