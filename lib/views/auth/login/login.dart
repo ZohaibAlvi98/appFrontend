@@ -188,26 +188,6 @@ class _LoginState extends State<Login> {
                   Navigator.pop(context);
                 }),
           ),
-          Center(
-            heightFactor: size * 0.085,
-            child: Text('Or Don\'t have an account ? '),
-          ),
-          Padding(
-              padding: EdgeInsets.fromLTRB(width * 0.72, size * 0.667, 0, 0),
-              child: GestureDetector(
-                  child: Text("SignUp",
-                      style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          color: Colors.blue)),
-                  onTap: () => Navigator.push(
-                        context,
-                        PageRouteBuilder(
-                          pageBuilder: (c, a1, a2) => Signup(),
-                          transitionsBuilder: (c, anim, a2, child) =>
-                              FadeTransition(opacity: anim, child: child),
-                          transitionDuration: Duration(milliseconds: 2),
-                        ),
-                      ))),
         ],
       )),
     );

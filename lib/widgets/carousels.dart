@@ -339,8 +339,9 @@ class _SubscriptionCarouselWithTextDotsState
                             },
                             child: Text(
                               'SUBSCRIBE',
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 12),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: width < 400 ? 10 : 12),
                             ),
                           ),
                         ),
@@ -353,14 +354,14 @@ class _SubscriptionCarouselWithTextDotsState
             options: CarouselOptions(
                 initialPage: 1,
                 enableInfiniteScroll: false,
-                height: width < 400 ? size * 0.60 : size * 0.71,
+                height: width < 400 ? size * 0.56 : size * 0.71,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },
                 // autoPlay: true,
                 autoPlayCurve: Curves.easeInOut,
                 enlargeCenterPage: false)),
-        SizedBox(height: 20),
+        width < 400 ? SizedBox(height: 50) : SizedBox(height: 30),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: map<Widget>(widget.carouselImg, (index, url) {

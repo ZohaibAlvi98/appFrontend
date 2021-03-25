@@ -98,7 +98,7 @@ class _BottomNavState extends State<BottomNav> {
                     })
               }) // print(val),
         });
-    // });
+    // })
     super.initState();
   }
 
