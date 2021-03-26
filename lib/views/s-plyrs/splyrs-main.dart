@@ -225,7 +225,7 @@ class _SplyrsState extends State<Splyrs> {
                                                     (MediaQuery.of(context)
                                                             .size
                                                             .height /
-                                                        1.17),
+                                                        1.7),
                                           ),
                                           // scrollDirection: Axis.vertical,
                                           itemCount: 6,

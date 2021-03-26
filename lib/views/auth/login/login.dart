@@ -3,7 +3,6 @@ import '../../../widgets/innerAppBar.dart';
 import '../signup/signup.dart';
 import '../../../widgets/innerAppBar.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
-import 'package:connectycube_sdk/connectycube_sdk.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../bottomNav.dart';
 
@@ -66,6 +65,7 @@ class _LoginState extends State<Login> {
 // 'marvi' supersecurepwd
       if (pass.text != '') {
         createSession(user).then((cubeSession) {
+          print('here');
           print(cubeSession.userId);
           saveLoginPass(username.text, pass.text, cubeSession.userId)
               .then((value) => {

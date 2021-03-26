@@ -4,10 +4,14 @@ import 'dart:math' as math;
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:io';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
 class ChatDetail extends StatefulWidget {
   final String user;
-  ChatDetail({Key key, @required this.user}) : super(key: key);
+  final int userId;
+
+  ChatDetail({Key key, @required this.user, @required this.userId})
+      : super(key: key);
   @override
   _ChatDetailState createState() => _ChatDetailState();
 }
@@ -39,6 +43,64 @@ class _ChatDetailState extends State<ChatDetail> {
       status = message;
     });
   }
+
+  // @override
+  // void initState() {
+  //   CubeDialog newDialog =
+  //       CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
+
+  //   createDialog(newDialog).then((createdDialog) {
+  //     print('here');
+  //     print(createdDialog);
+  //     CubeDialog cubeDialog =
+  //         newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+  //     CubeMessage message = CubeMessage();
+  //     message.body = "lo bhaee";
+  //     message.dateSent = DateTime.now().millisecondsSinceEpoch;
+  //     message.markable = true;
+  //     message.saveToHistory = true;
+  //     print('yo');
+  //     print(message);
+  //     cubeDialog.occupantsIds = [widget.userId];
+  //     print(cubeDialog);
+  //     cubeDialog
+  //         .sendMessage(message)
+  //         .then((cubeMessage) {})
+  //         .catchError((error) {});
+  //   }).catchError((error) {
+  //     print(error);
+  //   });
+  //   super.initState();
+  // }
+
+  Future send(text) {
+    CubeDialog newDialog =
+        CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
+
+    createDialog(newDialog).then((createdDialog) {
+      print('here');
+      print(createdDialog);
+      CubeDialog cubeDialog =
+          newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+      CubeMessage message = CubeMessage();
+      message.body = text;
+      message.dateSent = DateTime.now().millisecondsSinceEpoch;
+      message.markable = true;
+      message.saveToHistory = true;
+      print('yo');
+      print(message);
+      cubeDialog.occupantsIds = [widget.userId];
+      print(cubeDialog);
+      cubeDialog
+          .sendMessage(message)
+          .then((cubeMessage) {})
+          .catchError((error) {});
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
+  final TextEditingController text = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -99,6 +161,7 @@ class _ChatDetailState extends State<ChatDetail> {
                       child: Stack(
                         children: [
                           TextField(
+                            controller: text,
                             decoration: InputDecoration(
                                 hintText: 'Type a message',
                                 fillColor: Colors.white,
@@ -163,7 +226,11 @@ class _ChatDetailState extends State<ChatDetail> {
                             Icons.send,
                             color: Colors.white,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            print(text.text);
+                            await send(text.text);
+                            text.text = '';
+                          },
                         ),
                       ),
                     ),
