@@ -148,7 +148,7 @@ class _DashboardState extends State<Dashboard> {
               ),
             ),
             SizedBox(
-              height: 31,
+              height: 30,
             ),
             Heading(context, 'EDITORIAL'),
             SizedBox(
