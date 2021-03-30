@@ -115,7 +115,14 @@ class _ChannelState extends State<Channel> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: drawerAppBar(context, '')),
         body: SingleChildScrollView(
           child: Container(
             child: YoutubePlayerControllerProvider(
@@ -452,7 +459,7 @@ Widget style(context, img) {
 Widget story(context) {
   final stories = Expanded(
     child: Padding(
-      padding: EdgeInsets.only(top: 2.0),
+      padding: EdgeInsets.only(top: 5.0),
       child: new ListView.builder(
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
@@ -464,7 +471,7 @@ Widget story(context) {
                     margin: index != 0
                         ? EdgeInsets.symmetric(horizontal: 6)
                         : EdgeInsets.only(right: 6),
-                    width: 90,
+                    width: 85,
                     height: 120,
                     decoration: BoxDecoration(
                       border: Border.all(

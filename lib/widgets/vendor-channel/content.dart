@@ -8,11 +8,7 @@ Widget content(heading, text1, text2) {
         padding: EdgeInsets.only(left: 15, right: 14),
         child: Text(
           heading,
-          style: TextStyle(
-              fontSize: 20,
-              height: 1.3,
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[800]),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
         ),
       ),
     ),
@@ -24,33 +20,55 @@ Widget content(heading, text1, text2) {
           children: [
             if (text1 != '')
               Container(
-                width: 80,
-                color: Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
-                child: Center(
-                  child: Text(
+                height: 22.0,
+                width: 100,
+                color: Colors.transparent,
+                child: new Container(
+                  decoration: new BoxDecoration(
+                      color:
+                          Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
+                      borderRadius: new BorderRadius.only(
+                        topLeft: const Radius.circular(4.5),
+                        topRight: const Radius.circular(4.5),
+                        bottomRight: const Radius.circular(4.5),
+                        bottomLeft: const Radius.circular(4.5),
+                      )),
+                  child: Center(
+                      child: Text(
                     text1,
                     style: TextStyle(
-                      fontSize: 17,
-                      height: 1.3,
+                      fontSize: 15.5,
+                      height: 1.1,
                       color: Colors.grey[800],
                     ),
-                  ),
+                  )),
                 ),
               ),
-            SizedBox(width: 20),
+            SizedBox(width: 15),
             if (text2 != '')
               Container(
-                width: 80,
-                color: Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
-                child: Center(
-                  child: Text(
+                height: 22.0,
+                width: 100,
+                color: Colors.transparent,
+                child: new Container(
+                  decoration: new BoxDecoration(
+                      color:
+                          Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
+                      borderRadius: new BorderRadius.only(
+                        topLeft: const Radius.circular(4.5),
+                        topRight: const Radius.circular(4.5),
+                        bottomRight: const Radius.circular(4.5),
+                        bottomLeft: const Radius.circular(4.5),
+                      )),
+                  child: Center(
+                      child: Text(
                     text2,
                     style: TextStyle(
-                      fontSize: 17,
-                      height: 1.3,
+                      fontSize: 15.5,
+                      height: 1.1,
                       color: Colors.grey[800],
                     ),
-                  ),
+                  )),
                 ),
               ),
           ],

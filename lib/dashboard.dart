@@ -8,7 +8,10 @@ import 'views/search/search.dart';
 import 'views/profile.dart';
 import 'views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+<<<<<<< HEAD
 import 'package:connectycube_sdk/connectycube_sdk.dart';
+=======
+>>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
 
 class Dashboard extends StatefulWidget {
   @override
@@ -43,6 +46,7 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+<<<<<<< HEAD
   @override
   void initState() {
     if (check == 0) {
@@ -64,6 +68,8 @@ class _DashboardState extends State<Dashboard> {
 
   static int check = 0;
 
+=======
+>>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
   static List<Widget> _bottomNavList = [
     Dashboard(),
     Search(),
@@ -79,6 +85,74 @@ class _DashboardState extends State<Dashboard> {
       child: Container(
         child: Column(
           children: [
+<<<<<<< HEAD
+=======
+            Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: 16, top: 10),
+                        child: Text(
+                          'HELLO',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 10, left: 14),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 3,
+                                  color: Colors.grey[500],
+                                  spreadRadius: 1.3)
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            radius: 32.0,
+                            backgroundImage: AssetImage(
+                                'assets/images/profile/profileDashboard.png'),
+                            backgroundColor: Colors.transparent,
+                          ),
+                        ),
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(left: 14, top: 15),
+                            child: Text(
+                              'MAR',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 14, top: 2),
+                            child: Text(
+                              'Customer',
+                              style: TextStyle(
+                                  fontSize: 12.5, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+>>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
             InkWell(
               onTap: () {
                 // _navigatorPage('channel');

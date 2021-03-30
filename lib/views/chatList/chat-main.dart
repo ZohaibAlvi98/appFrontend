@@ -14,11 +14,11 @@ class _ChatListState extends State<ChatList> {
     'Manager',
     'Volunteer',
     'Designer',
+    'ABC Shop Owner',
+    'Stylist',
     'Person 1',
     'Person 2',
-    'Person 3',
-    'Person 4',
-    'Person 5'
+    'Person 3'
   ];
   List msg = [
     'Hello!',
@@ -29,6 +29,16 @@ class _ChatListState extends State<ChatList> {
     'Yo',
     'I need a favor.',
     'Hiii'
+  ];
+  List chatDp = [
+    'assets/images/chatList/chat7.jpg',
+    'assets/images/chatList/chat5.jpg',
+    'assets/images/chatList/chat6.png',
+    'assets/images/chatList/chat9.jpg',
+    'assets/images/chatList/chat10.jpg',
+    'assets/images/chatList/chat4.jpg',
+    'assets/images/chatList/chat8.jpg',
+    'assets/images/chatList/chat5.jpg'
   ];
   void _navigatorPage(user, index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
@@ -186,30 +196,42 @@ class _ChatListState extends State<ChatList> {
                     children: [
                       Row(children: [
                         Padding(
-                          padding: EdgeInsets.only(top: 7, left: 8.0),
-                          child: CircleAvatar(
-                            radius: 30.0,
-                            backgroundImage: AssetImage(
-                                'assets/images/chatList/default.jpg'),
-                            backgroundColor: Colors.transparent,
+                          padding:
+                              EdgeInsets.only(top: 9, left: 8.0, bottom: 9),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 3,
+                                    color: Colors.grey[500],
+                                    spreadRadius: 1.3)
+                              ],
+                            ),
+                            child: CircleAvatar(
+                              radius: 32,
+                              backgroundImage: AssetImage(chatDp[index]),
+                              backgroundColor: Colors.transparent,
+                            ),
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 12),
+                          padding: EdgeInsets.only(left: 15, top: 2),
                           child: Stack(
                             children: [
                               Text(
                                 user[index],
                                 style: TextStyle(
-                                    fontSize: width < 400 ? 13 : 16,
+                                    fontSize: width < 400 ? 14 : 18,
                                     fontWeight: FontWeight.w700),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 25),
+                                padding: EdgeInsets.only(top: 26.5),
                                 child: Text(
                                   msg[index],
                                   style: TextStyle(
-                                      color: Colors.grey[800],
+                                      color: Colors.grey[500],
                                       fontWeight: FontWeight.w600,
                                       fontSize: width < 400 ? 12 : 15),
                                 ),
@@ -221,7 +243,8 @@ class _ChatListState extends State<ChatList> {
                                 child: Text(
                                   'Yesterday',
                                   style: TextStyle(
-                                      fontSize: width < 400 ? 10 : 13),
+                                      fontSize: width < 400 ? 10 : 13,
+                                      color: Colors.grey[600]),
                                 ),
                               )
                             ],

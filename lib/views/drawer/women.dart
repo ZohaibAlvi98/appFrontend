@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/views/drawer/men&women.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
-
 import '../../views/search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 
-class Arrivals extends StatefulWidget {
+class Womens extends StatefulWidget {
   @override
-  _ArrivalsState createState() => _ArrivalsState();
+  _WomensState createState() => _WomensState();
 }
 
-class _ArrivalsState extends State<Arrivals> {
+class _WomensState extends State<Womens> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -23,7 +22,7 @@ class _ArrivalsState extends State<Arrivals> {
   }
 
   static List<Widget> _bottomNavList = [
-    Arrivals(),
+    Womens(),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -58,7 +57,7 @@ class _ArrivalsState extends State<Arrivals> {
               //other styles
             ),
             child: _selectedIndex == 0
-                ? drawerAppBar(context, 'new')
+                ? drawerAppBar(context, 'womens')
                 : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
@@ -70,18 +69,18 @@ class _ArrivalsState extends State<Arrivals> {
                         child: Stack(
                           children: [
                             Image.asset(
-                              'assets/images/arrivals/main.jpg',
+                              'assets/images/womans/cover1.jpg',
                             ),
                             Padding(
                               padding:
-                                  EdgeInsets.only(left: 20, top: width / 4.6),
-                              child: Text(
-                                'NEW ARRIVALS',
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 23 : 30,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 1.1),
-                              ),
+                                  EdgeInsets.only(left: 40, top: width / 4.6),
+                              // child: Text(
+                              //   '',
+                              //   style: TextStyle(
+                              //       fontSize: width < 400 ? 23 : 30,
+                              //       fontWeight: FontWeight.w900,
+                              //       letterSpacing: 1.1),
+                              // ),
                             )
                           ],
                         ),

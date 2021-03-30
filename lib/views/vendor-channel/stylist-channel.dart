@@ -127,7 +127,14 @@ class _StylistChannelState extends State<StylistChannel> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: drawerAppBar(context, '')),
         body: SingleChildScrollView(
           child: Container(
             child: YoutubePlayerControllerProvider(
@@ -299,7 +306,7 @@ class _StylistChannelState extends State<StylistChannel> {
                   ),
                   story(context),
                   SizedBox(
-                    height: width < 400 ? 25 : 30,
+                    height: width < 400 ? 35 : 30,
                   ),
                   ProfileTabBar(height, _onTapped, 'style'),
                   SizedBox(

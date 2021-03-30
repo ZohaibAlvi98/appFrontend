@@ -62,6 +62,12 @@ class _SplyrsState extends State<Splyrs> {
     'assets/images/styles/list4.jpg'
   ];
 
+  List imgProduct = [
+    'assets/images/styles/list5.jpg',
+    'assets/images/styles/list6.jpg',
+    'assets/images/styles/list7.jpg',
+    'assets/images/styles/list8.jpg'
+  ];
   void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
@@ -100,7 +106,14 @@ class _SplyrsState extends State<Splyrs> {
         },
         child: Scaffold(
           // App bar
-          appBar: Appbar(context),
+          appBar: appbarWithMenu(context),
+          drawer: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Colors
+                    .black, //This will change the drawer background to blue.
+                //other styles
+              ),
+              child: drawerAppBar(context, '')),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(
@@ -157,7 +170,28 @@ class _SplyrsState extends State<Splyrs> {
                   //   height: 25,
                   // ),
                   featuredSplyrs(
-                      width, _navigatorPage, "assets/images/splyrs/splyr1.jpg"),
+                      width,
+                      _navigatorPage,
+                      "assets/images/splyrs/splyr3.jpg",
+                      "SPLY STORE",
+                      "SPLY Store, London, United Kingdom (UK)"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  SizedBox(
+                    height: 270,
+                    child: horizontalListWith3(
+                        context, imgProduct, Colors.white12),
+                  ),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  featuredSplyrs(
+                      width,
+                      _navigatorPage,
+                      "assets/images/splyrs/splyr1.jpg",
+                      "FLIGHT CLUB",
+                      "535 N Fairfax Ave, Los Angeles, California, (US)"),
                   SizedBox(
                     height: 30,
                   ),
@@ -169,10 +203,11 @@ class _SplyrsState extends State<Splyrs> {
                     height: 25,
                   ),
                   featuredSplyrs(
-                    width,
-                    _navigatorPage,
-                    "assets/images/splyrs/splyr2.jpg",
-                  ),
+                      width,
+                      _navigatorPage,
+                      "assets/images/splyrs/splyr2.jpg",
+                      "ZOO FASHION",
+                      "London, United Kingdom (UK)"),
                   SizedBox(
                     height: 30,
                   ),
@@ -225,7 +260,7 @@ class _SplyrsState extends State<Splyrs> {
                                                     (MediaQuery.of(context)
                                                             .size
                                                             .height /
-                                                        1.7),
+                                                        1.17),
                                           ),
                                           // scrollDirection: Axis.vertical,
                                           itemCount: 6,
@@ -481,7 +516,7 @@ Widget lists(context, check, index) {
   );
 }
 
-Widget featuredSplyrs(width, _navigatorPage, img) {
+Widget featuredSplyrs(width, _navigatorPage, img, name, location) {
   return InkWell(
     onTap: () {
       _navigatorPage('channel');
@@ -495,7 +530,7 @@ Widget featuredSplyrs(width, _navigatorPage, img) {
       Padding(
         padding: EdgeInsets.only(top: width / 1.8, left: 30),
         child: Text(
-          'Flight Club',
+          name,
           style: TextStyle(
               fontSize: width < 400 ? 22 : 25,
               color: Colors.white,
@@ -503,7 +538,7 @@ Widget featuredSplyrs(width, _navigatorPage, img) {
         ),
       ),
       Padding(
-          padding: EdgeInsets.only(top: width / 1.55, left: 30),
+          padding: EdgeInsets.only(top: width / 1.55, left: 28.2),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -515,7 +550,7 @@ Widget featuredSplyrs(width, _navigatorPage, img) {
                     size: 12,
                   ),
                   Text(
-                    ' 535 N Fairfax Ave, Los Angeles, California, (US)',
+                    location,
                     style: TextStyle(
                         fontSize: width < 400 ? 9 : 12,
                         fontWeight: FontWeight.w700,
