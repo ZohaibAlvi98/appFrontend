@@ -154,16 +154,25 @@ class _ChatListState extends State<ChatList> {
     getAuth().then((bool val) async => {
           getId().then((int id) => {
                 getLogin().then((String log) => {
-                      print(log),
                       getPass()
                           .then((String pass) => {
-                                print(pass),
-                                setState(() {
-                                  this.id = id;
-                                  this.login = log;
-                                  this.pass = pass;
-                                  this.authenticated = val;
-                                })
+                                print('here karak be'),
+                                if (pass != null)
+                                  {
+                                    setState(() {
+                                      this.id = id;
+                                      this.login = log;
+                                      this.pass = pass;
+                                      this.authenticated = val;
+                                    })
+                                  }
+                                else
+                                  {
+                                    print('here'),
+                                    setState(() {
+                                      this.authenticated = false;
+                                    })
+                                  }
                               })
                           .then((value) => {
                                 if (authenticated == true) {chat()}
@@ -177,6 +186,7 @@ class _ChatListState extends State<ChatList> {
 
   @override
   Widget build(BuildContext context) {
+    print(authenticated);
     double width = MediaQuery.of(context).size.width;
     return authenticated == true
         ? ListView.builder(
@@ -259,6 +269,8 @@ class _ChatListState extends State<ChatList> {
                 ),
               );
             })
-        : Signup();
+        : authenticated == false
+            ? Signup()
+            : Container();
   }
 }
