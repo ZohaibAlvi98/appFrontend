@@ -8,10 +8,7 @@ import 'views/search/search.dart';
 import 'views/profile.dart';
 import 'views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
-<<<<<<< HEAD
 import 'package:connectycube_sdk/connectycube_sdk.dart';
-=======
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
 
 class Dashboard extends StatefulWidget {
   @override

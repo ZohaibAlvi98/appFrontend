@@ -16,6 +16,9 @@ class _WomensState extends State<Womens> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
+    if (_selectedIndex == 0 && index == 0) {
+      Navigator.of(context).pop();
+    }
     setState(() {
       _selectedIndex = index;
     });
