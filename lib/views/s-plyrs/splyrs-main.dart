@@ -12,6 +12,7 @@ import '../../views/sply-network.dart';
 import 'channel/channel.dart';
 import '../requests/request-splyr.dart';
 import '../../widgets/horizontalList.dart';
+import '../auth/signup/signup.dart';
 
 class Splyrs extends StatefulWidget {
   @override
@@ -36,7 +37,7 @@ class _SplyrsState extends State<Splyrs> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   List carouselImg = [
     'assets/images/splyrs/carousel1.jpg',
@@ -113,7 +114,7 @@ class _SplyrsState extends State<Splyrs> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '')),
+              child: drawerAppBar(context, '', false)),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(

@@ -270,7 +270,7 @@ class _SubscriptionCarouselWithTextDotsState
                               image: AssetImage(i), fit: BoxFit.fitWidth)),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: width / 0.99, left: 0),
+                      padding: EdgeInsets.only(top: width / 1.07, left: 0),
                       child: Stack(
                         children: [
                           Text(

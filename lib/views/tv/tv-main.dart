@@ -10,6 +10,7 @@ import 'package:splyxp/widgets/videoList.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
+import '../auth/signup/signup.dart';
 
 class Tv extends StatefulWidget {
   @override
@@ -33,7 +34,7 @@ class _TvState extends State<Tv> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   List img = [
     'assets/images/sneakers/list4.jpg',
@@ -79,7 +80,7 @@ class _TvState extends State<Tv> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '')),
+              child: drawerAppBar(context, '', false)),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(

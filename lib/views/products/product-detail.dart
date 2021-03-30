@@ -8,6 +8,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import '../auth/signup/signup.dart';
 
 class ProductDetail extends StatefulWidget {
   @override
@@ -44,7 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: drawerAppBar(context, '')),
+            child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Column(

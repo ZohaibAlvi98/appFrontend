@@ -133,7 +133,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: drawerAppBar(context, '')),
+            child: drawerAppBar(context, '', false)),
         body: SingleChildScrollView(
           child: Container(
             child: YoutubePlayerControllerProvider(

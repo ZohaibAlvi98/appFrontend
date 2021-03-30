@@ -131,7 +131,7 @@ class _BottomNavState extends State<BottomNav> {
                         .black, //This will change the drawer background to blue.
                     //other styles
                   ),
-                  child: drawerAppBar(context, '')),
+                  child: drawerAppBar(context, '', false)),
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ))
@@ -151,7 +151,7 @@ class _BottomNavState extends State<BottomNav> {
                         .black, //This will change the drawer background to blue.
                     //other styles
                   ),
-                  child: drawerAppBar(context, '')),
+                  child: drawerAppBar(context, '', true)),
               body: _bottomNavDashboardList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ),

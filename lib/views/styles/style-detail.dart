@@ -73,7 +73,7 @@ class _StyleDetailState extends State<StyleDetail> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '')),
+              child: drawerAppBar(context, '', false)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   child: Column(

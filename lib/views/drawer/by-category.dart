@@ -7,8 +7,11 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import './category-detail/tops.dart';
+import '../auth/signup/signup.dart';
 
 class ByCategory extends StatefulWidget {
+  final bool authenticated;
+  ByCategory({Key key, this.authenticated}) : super(key: key);
   @override
   _ByCategoryState createState() => _ByCategoryState();
 }
@@ -64,6 +67,14 @@ class _ByCategoryState extends State<ByCategory> {
     Search(),
     ChatList(),
     SplyNetwork(),
+    Signup()
+  ];
+
+  static List<Widget> _bottomNavDashboardList = [
+    ByCategory(),
+    Search(),
+    ChatList(),
+    SplyNetwork(),
     Profile()
   ];
   @override
@@ -85,7 +96,7 @@ class _ByCategoryState extends State<ByCategory> {
               //other styles
             ),
             child: _selectedIndex == 0
-                ? drawerAppBar(context, 'category')
+                ? drawerAppBar(context, 'category', widget.authenticated)
                 : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
@@ -122,7 +133,9 @@ class _ByCategoryState extends State<ByCategory> {
                   ],
                 ),
               )
-            : _bottomNavList.elementAt(_selectedIndex),
+            : widget.authenticated == true
+                ? _bottomNavDashboardList.elementAt(_selectedIndex)
+                : _bottomNavList.elementAt(_selectedIndex),
         bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
       ),
     );
