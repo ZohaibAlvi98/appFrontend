@@ -73,6 +73,18 @@ class _ChatDetailState extends State<ChatDetail> {
   //   super.initState();
   // }
 
+  @override
+  void initState() {
+    getMessagesList();
+    super.initState();
+  }
+
+  Stream chatmessages;
+
+  Widget chatMessagesList() {
+    return Container();
+  }
+
   Future send(text) {
     CubeDialog newDialog =
         CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
@@ -98,6 +110,29 @@ class _ChatDetailState extends State<ChatDetail> {
     }).catchError((error) {
       print(error);
     });
+  }
+
+  Future getMessagesList() {
+    String dialogId = "605dc985ca8bf45e84921d0c";
+    print('yayy2');
+    GetMessagesParameters params = GetMessagesParameters();
+    params.limit = 100;
+    params.filters = [RequestFilter("", "date_sent", QueryRule.GT, 1583402980)];
+    params.markAsRead = true;
+    params.sorter = RequestSorter(OrderType.DESC, "", "date_sent");
+
+    getMessages(dialogId, params.getRequestParameters()).then((pagedResult) {
+      print('yayy');
+      // print(pagedResult.items[0].body);
+
+      (pagedResult.items as List)
+          .map((e) => {
+                setState(() {
+                  chatmessages = e.body;
+                })
+              })
+          .toList();
+    }).catchError((error) {});
   }
 
   final TextEditingController text = TextEditingController();

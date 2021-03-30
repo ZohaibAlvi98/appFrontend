@@ -160,17 +160,26 @@ class _BottomNavState extends State<BottomNav> {
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ))
-        : Scaffold(
-            appBar: appbarWithMenu(context),
-            drawer: Theme(
-                data: Theme.of(context).copyWith(
-                  canvasColor: Colors
-                      .black, //This will change the drawer background to blue.
-                  //other styles
-                ),
-                child: drawerAppBar(context, '')),
-            body: _bottomNavDashboardList.elementAt(_selectedIndex),
-            bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+        : WillPopScope(
+            onWillPop: () async {
+              if (_selectedIndex == 0) return true;
+              setState(() {
+                _selectedIndex = 0;
+              });
+              return false;
+            },
+            child: Scaffold(
+              appBar: appbarWithMenu(context),
+              drawer: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors
+                        .black, //This will change the drawer background to blue.
+                    //other styles
+                  ),
+                  child: drawerAppBar(context, '')),
+              body: _bottomNavDashboardList.elementAt(_selectedIndex),
+              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+            ),
           );
   }
 }
