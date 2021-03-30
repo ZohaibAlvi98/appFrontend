@@ -81,7 +81,6 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   void initState() {
-<<<<<<< HEAD
     // clear().then((bool value) async => {
     getAuth().then((bool val) async => {
           getId().then((int id) => {
@@ -100,26 +99,6 @@ class _BottomNavState extends State<BottomNav> {
               }) // print(val),
         });
     // });
-=======
-    clear().then((bool value) async => {
-          getAuth().then((bool val) async => {
-                getId().then((int id) => {
-                      getLogin().then((String log) => {
-                            print(log),
-                            getPass().then((String pass) => {
-                                  print(pass),
-                                  setState(() {
-                                    this.id = id;
-                                    this.login = log;
-                                    this.pass = pass;
-                                    this.authenticated = val;
-                                  })
-                                })
-                          })
-                    }) // print(val),
-              })
-        });
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
     super.initState();
   }
 
@@ -145,54 +124,6 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-<<<<<<< HEAD
-              appBar: _selectedIndex == 0
-                  ? AppBar(
-                      leading: Builder(
-                        builder: (context) => IconButton(
-                          icon: new Icon(
-                            Icons.menu,
-                            color: Colors.black,
-                            size: width * 0.11,
-                          ),
-                          onPressed: () => Scaffold.of(context).openDrawer(),
-                        ),
-                      ),
-                      toolbarHeight: 60,
-                      elevation: 0,
-                      centerTitle: true,
-                      backgroundColor: Colors.white12,
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: Image.asset(
-                          'assets/images/home3.png',
-                          height: 40,
-                        ),
-                      ))
-                  : Appbar(context),
-              drawer: Theme(
-                  data: Theme.of(context).copyWith(
-                    canvasColor: Colors
-                        .black, //This will change the drawer background to blue.
-                    //other styles
-                  ),
-                  child: _selectedIndex == 0
-                      ? drawerAppBar(context, '')
-                      : Container()),
-              body: _bottomNavList.elementAt(_selectedIndex),
-              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
-            ))
-        : WillPopScope(
-            onWillPop: () async {
-              if (_selectedIndex == 0) return true;
-              setState(() {
-                _selectedIndex = 0;
-              });
-              return false;
-            },
-            child: Scaffold(
-=======
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
               appBar: appbarWithMenu(context),
               drawer: Theme(
                   data: Theme.of(context).copyWith(
@@ -201,11 +132,6 @@ class _BottomNavState extends State<BottomNav> {
                     //other styles
                   ),
                   child: drawerAppBar(context, '')),
-<<<<<<< HEAD
-              body: _bottomNavDashboardList.elementAt(_selectedIndex),
-              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
-            ),
-=======
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ))
@@ -220,7 +146,6 @@ class _BottomNavState extends State<BottomNav> {
                 child: drawerAppBar(context, '')),
             body: _bottomNavDashboardList.elementAt(_selectedIndex),
             bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
           );
   }
 }

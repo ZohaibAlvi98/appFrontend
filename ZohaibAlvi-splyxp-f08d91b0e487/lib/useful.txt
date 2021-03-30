@@ -1,3 +1,0 @@
-getBool(auth) // TO check user regisered // used in bottomNav.dart home.dart chatlist.dart signup.dart
-getString(pass) // login.dart
-getString(login) making session and for checking

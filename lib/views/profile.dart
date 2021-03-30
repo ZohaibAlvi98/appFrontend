@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import '../bottomNav.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-=======
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
 
 class Profile extends StatefulWidget {
   @override

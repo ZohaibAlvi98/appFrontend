@@ -46,7 +46,6 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
-<<<<<<< HEAD
   @override
   void initState() {
     if (check == 0) {
@@ -68,8 +67,6 @@ class _DashboardState extends State<Dashboard> {
 
   static int check = 0;
 
-=======
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
   static List<Widget> _bottomNavList = [
     Dashboard(),
     Search(),
@@ -85,8 +82,6 @@ class _DashboardState extends State<Dashboard> {
       child: Container(
         child: Column(
           children: [
-<<<<<<< HEAD
-=======
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +147,6 @@ class _DashboardState extends State<Dashboard> {
                 ],
               ),
             ),
->>>>>>> c08e3acb4e981e08cdcec7d056f367524bc5bad2
             InkWell(
               onTap: () {
                 // _navigatorPage('channel');
