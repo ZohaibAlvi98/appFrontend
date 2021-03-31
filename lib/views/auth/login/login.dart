@@ -15,6 +15,8 @@ class _LoginState extends State<Login> {
   final TextEditingController username = TextEditingController();
   final TextEditingController pass = TextEditingController();
 
+  bool isHiddenPassword = true;
+
   Future<bool> saveAuth() async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     _prefs.setBool("auth", true);
@@ -87,6 +89,7 @@ class _LoginState extends State<Login> {
     double size =
         MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
     double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: appbarWithMenu(context),
       drawer: Theme(
@@ -161,6 +164,7 @@ class _LoginState extends State<Login> {
                             : "Please provide a password greater than 8 characters";
                       },
                       controller: pass,
+                      obscureText: isHiddenPassword,
                       decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
                               borderSide:
