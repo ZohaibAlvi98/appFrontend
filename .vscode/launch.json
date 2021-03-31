@@ -5,8 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ZohaibAlvi-splyxp-f08d91b0e487",
-            "cwd": "ZohaibAlvi-splyxp-f08d91b0e487",
+            "name": "splyxp",
             "request": "launch",
             "type": "dart"
         }
