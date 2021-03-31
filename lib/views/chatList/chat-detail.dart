@@ -85,8 +85,48 @@ class _ChatDetailState extends State<ChatDetail> {
 
   Stream chatmessages;
 
+  Future<PagedResult<CubeMessage>> getArtist() async {
+    String dialogId = "605dc985ca8bf45e84921d0c";
+    print('yayy2');
+    GetMessagesParameters params = GetMessagesParameters();
+    params.limit = 100;
+    params.filters = [RequestFilter("", "date_sent", QueryRule.GT, 1583402980)];
+    params.markAsRead = true;
+    params.sorter = RequestSorter(OrderType.DESC, "", "date_sent");
+    print('sbyyyyy');
+    PagedResult<CubeMessage> result;
+    result = await getMessages(dialogId, params.getRequestParameters());
+    return result;
+    // .then((pagedResult) {
+    // return List<Map<String, dynamic>>.from(pagedResult.items);
+    // })
+    // .catchError((error) {});
+  }
+
   Widget chatMessagesList() {
-    return Container();
+    return StreamBuilder(
+      stream: chatmessages,
+      builder: (context, snapshot) {
+        print(snapshot.data);
+        if (snapshot.hasData) {
+          return ListView.builder(
+            shrinkWrap: true,
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return Container(
+                child: Text(snapshot.data.documents[index].data["body"]),
+              );
+            },
+          );
+        } else if (snapshot.hasError) {
+          print(snapshot.error);
+          print('karask');
+          return Container();
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 
   Future send(text) {
@@ -143,6 +183,7 @@ class _ChatDetailState extends State<ChatDetail> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height / 30;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(
@@ -189,6 +230,37 @@ class _ChatDetailState extends State<ChatDetail> {
           ),
           child: Column(
             children: [
+              FutureBuilder(
+                  future: getArtist(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<PagedResult<CubeMessage>> snapshot) {
+                    print('yoyo');
+                    print(snapshot.data);
+                    if (snapshot.hasData) {
+                      // List<ArtistModel> artist = snapshot.data;
+                      return Expanded(
+                        flex: height.toInt(),
+                        child: ListView.builder(
+                          reverse: true,
+                          scrollDirection: Axis.vertical,
+                          // physics: NeverScrollableScrollPhysics(),
+                          // shrinkWrap: true,
+                          itemCount: snapshot.data.items.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = snapshot.data.items[index].body;
+                            return ListTile(
+                              title: Text(item),
+                            );
+                          },
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      print(snapshot.error);
+                      print('karask');
+                    }
+
+                    return Center(child: CircularProgressIndicator());
+                  }),
               Expanded(child: Container()),
               Container(
                 child:
