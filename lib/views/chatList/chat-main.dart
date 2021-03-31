@@ -104,7 +104,8 @@ class _ChatListState extends State<ChatList> {
   }
 
   bool authenticated;
-
+  bool isReady = false;
+  bool done = false;
   Future chat() {
     createSession().then((cubeSession) {
       CubeUser user = CubeUser(
@@ -115,10 +116,15 @@ class _ChatListState extends State<ChatList> {
 // 'marvi' supersecurepwd
       createSession(user).then((cubeSession) {
         CubeUser aUser = CubeUser(id: id, password: pass);
-
+        setState(() {
+          this.isReady = true;
+        });
         CubeChatConnection.instance.login(aUser).then((loggedUser) {
           print('here2');
           print(loggedUser);
+          setState(() {
+            this.isReady = true;
+          });
           // CubeDialog newDialog =
           //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
 
@@ -180,6 +186,9 @@ class _ChatListState extends State<ChatList> {
                                   }
                               })
                           .then((value) => {
+                                setState(() {
+                                  this.done = true;
+                                }),
                                 if (authenticated == true) {chat()}
                               })
                     })
@@ -193,7 +202,7 @@ class _ChatListState extends State<ChatList> {
   Widget build(BuildContext context) {
     print(authenticated);
     double width = MediaQuery.of(context).size.width;
-    return authenticated == true
+    return authenticated == true && isReady && done
         ? ListView.builder(
             scrollDirection: Axis.vertical,
             // physics: NeverScrollableScrollPhysics(),
@@ -276,6 +285,7 @@ class _ChatListState extends State<ChatList> {
             })
         : authenticated == false
             ? Signup()
-            : Container();
+            : Center(child: CircularProgressIndicator());
+    ;
   }
 }

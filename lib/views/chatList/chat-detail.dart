@@ -79,21 +79,22 @@ class _ChatDetailState extends State<ChatDetail> {
 
   @override
   void initState() {
-    getMessagesList();
+    // getMessagesList();
+    createChat();
     super.initState();
   }
 
   Stream chatmessages;
 
-  Future<PagedResult<CubeMessage>> getArtist() async {
-    String dialogId = "605dc985ca8bf45e84921d0c";
-    print('yayy2');
+  Future<PagedResult<CubeMessage>> getMessagesList() async {
+    String dialogId = dialodId;
+
     GetMessagesParameters params = GetMessagesParameters();
     params.limit = 100;
     params.filters = [RequestFilter("", "date_sent", QueryRule.GT, 1583402980)];
     params.markAsRead = true;
     params.sorter = RequestSorter(OrderType.DESC, "", "date_sent");
-    print('sbyyyyy');
+
     PagedResult<CubeMessage> result;
     result = await getMessages(dialogId, params.getRequestParameters());
     return result;
@@ -119,8 +120,6 @@ class _ChatDetailState extends State<ChatDetail> {
             },
           );
         } else if (snapshot.hasError) {
-          print(snapshot.error);
-          print('karask');
           return Container();
         } else {
           return Container();
@@ -129,55 +128,59 @@ class _ChatDetailState extends State<ChatDetail> {
     );
   }
 
-  Future send(text) {
+  String dialodId;
+  CubeDialog globalCreatedDialog;
+  CubeDialog globalDialog;
+  Future createChat() {
     CubeDialog newDialog =
         CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
 
     createDialog(newDialog).then((createdDialog) {
-      print('here');
-      print(createdDialog);
-      CubeDialog cubeDialog =
-          newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
-      CubeMessage message = CubeMessage();
-      message.body = text;
-      message.dateSent = DateTime.now().millisecondsSinceEpoch;
-      message.markable = true;
-      message.saveToHistory = true;
-      print('yo');
-      print(message);
-      cubeDialog.occupantsIds = [widget.userId];
-      print(cubeDialog);
-      cubeDialog
-          .sendMessage(message)
-          .then((cubeMessage) {})
-          .catchError((error) {});
+      setState(() {
+        this.dialodId = createdDialog.dialogId;
+        this.globalCreatedDialog = createdDialog;
+        this.globalDialog =
+            CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
+      });
     }).catchError((error) {
       print(error);
     });
   }
 
-  Future getMessagesList() {
-    String dialogId = "605dc985ca8bf45e84921d0c";
-    print('yayy2');
-    GetMessagesParameters params = GetMessagesParameters();
-    params.limit = 100;
-    params.filters = [RequestFilter("", "date_sent", QueryRule.GT, 1583402980)];
-    params.markAsRead = true;
-    params.sorter = RequestSorter(OrderType.DESC, "", "date_sent");
+  Future send(text) {
+    // CubeDialog newDialog =
+    //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
 
-    getMessages(dialogId, params.getRequestParameters()).then((pagedResult) {
-      print('yayy');
-      // print(pagedResult.items[0].body);
+    // createDialog(newDialog).then((createdDialog) {
 
-      (pagedResult.items as List)
-          .map((e) => {
-                setState(() {
-                  chatmessages = e.body;
-                })
-              })
-          .toList();
-    }).catchError((error) {});
+    CubeDialog cubeDialog =
+        globalDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+    CubeMessage message = CubeMessage();
+    message.body = text;
+    message.dateSent = DateTime.now().millisecondsSinceEpoch;
+    message.markable = true;
+    message.saveToHistory = true;
+
+    cubeDialog.occupantsIds = [widget.userId];
+
+    cubeDialog
+        .sendMessage(message)
+        .then((cubeMessage) {})
+        .catchError((error) {});
+    // }).catchError((error) {
+    //   print(error);
+    // });
   }
+
+  // Future<PagedResult<CubeMessage>> getMessagesList() {
+  //   ChatMessagesManager chatMessagesManager =
+  //       CubeChatConnection.instance.chatMessagesManager;
+  //   chatMessagesManager.chatMessagesStream.listen((newMessage) {
+  //     return newMessage;
+  //   }).onError((error) {
+  //     // error received
+  //   });
+  // }
 
   final TextEditingController text = TextEditingController();
 
@@ -231,7 +234,7 @@ class _ChatDetailState extends State<ChatDetail> {
           child: Column(
             children: [
               FutureBuilder(
-                  future: getArtist(),
+                  future: getMessagesList(),
                   builder: (BuildContext context,
                       AsyncSnapshot<PagedResult<CubeMessage>> snapshot) {
                     print('yoyo');
@@ -248,8 +251,45 @@ class _ChatDetailState extends State<ChatDetail> {
                           itemCount: snapshot.data.items.length,
                           itemBuilder: (BuildContext context, int index) {
                             final item = snapshot.data.items[index].body;
-                            return ListTile(
-                              title: Text(item),
+                            final time = snapshot.data.items[index].createdAt;
+                            final senderId =
+                                snapshot.data.items[index].senderId;
+                            return Container(
+                              padding: EdgeInsets.only(
+                                  left: 14, right: 14, top: 15, bottom: 15),
+                              child: Align(
+                                alignment: (senderId == widget.userId
+                                    ? Alignment.topLeft
+                                    : Alignment.topRight),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: (senderId == widget.userId
+                                        ? Colors.white70
+                                        : Color(0xffdcf8c6)),
+                                  ),
+                                  padding: EdgeInsets.all(13),
+                                  child: Column(
+                                    children: [
+                                      Text(
+                                        item,
+                                        style: TextStyle(fontSize: 15),
+                                      ),
+                                      // Text(
+                                      //   time.hour > 12
+                                      //       ? (time.toLocal().hour - 12)
+                                      //               .toString() +
+                                      //           ':' +
+                                      //           time.minute.toString()
+                                      //       : time.hour.toString() +
+                                      //           ':' +
+                                      //           time.minute.toString(),
+                                      //   style: TextStyle(fontSize: 15),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                              ),
                             );
                           },
                         ),
@@ -259,7 +299,8 @@ class _ChatDetailState extends State<ChatDetail> {
                       print('karask');
                     }
 
-                    return Center(child: CircularProgressIndicator());
+                    return Center(
+                        heightFactor: 5, child: CircularProgressIndicator());
                   }),
               Expanded(child: Container()),
               Container(
@@ -343,6 +384,7 @@ class _ChatDetailState extends State<ChatDetail> {
                             print(text.text);
                             await send(text.text);
                             text.text = '';
+                            FocusScope.of(context).unfocus();
                           },
                         ),
                       ),
