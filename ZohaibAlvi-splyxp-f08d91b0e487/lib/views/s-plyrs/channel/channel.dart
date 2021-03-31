@@ -115,7 +115,14 @@ class _ChannelState extends State<Channel> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: drawerAppBar(context, '')),
         body: SingleChildScrollView(
           child: Container(
             child: YoutubePlayerControllerProvider(

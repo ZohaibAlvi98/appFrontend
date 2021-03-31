@@ -128,7 +128,7 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                               image: AssetImage(i), fit: BoxFit.fitWidth)),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 270, left: 20),
+                      padding: EdgeInsets.only(top: width / 1.35, left: 20),
                       child: Stack(
                         children: [
                           Text(
@@ -270,7 +270,7 @@ class _SubscriptionCarouselWithTextDotsState
                               image: AssetImage(i), fit: BoxFit.fitWidth)),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: width / 1.08, left: 0),
+                      padding: EdgeInsets.only(top: width / 0.99, left: 0),
                       child: Stack(
                         children: [
                           Text(
@@ -373,8 +373,8 @@ class _RectangularSliderState extends State<RectangularSlider> {
     double width = MediaQuery.of(context).size.width;
     Container EditorialImages(String imageVal) {
       return Container(
-        padding: EdgeInsets.only(right: 8, left: 9, top: 0),
-        width: 420.0,
+        padding: EdgeInsets.only(right: 0, left: 5, top: 0, bottom: 45),
+        width: 315.0,
         child: Card(
           child: Wrap(
             children: <Widget>[
@@ -435,7 +435,8 @@ class _RectangularSliderState extends State<RectangularSlider> {
                     Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
-                          padding: EdgeInsets.only(left: 13.0),
+                          padding:
+                              EdgeInsets.only(left: 13.0, right: 13, top: 0),
                           child: Text(
                             '1017 Alyx 9sm x Stussy - Available Now',
                             style: TextStyle(
@@ -448,7 +449,7 @@ class _RectangularSliderState extends State<RectangularSlider> {
                       alignment: Alignment.centerLeft,
                       child: Padding(
                         padding: EdgeInsets.only(
-                            top: 7.0, left: 13, bottom: 10, right: 10),
+                            top: 7.0, left: 13, bottom: 10, right: 13),
                         child: Text(
                           'Lorem ipsum is a placeholder text commonly used to demonstrate the visual document...',
                           style: TextStyle(height: 1.3),

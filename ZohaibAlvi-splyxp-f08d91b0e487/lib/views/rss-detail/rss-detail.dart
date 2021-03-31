@@ -54,7 +54,14 @@ class _RssDetailState extends State<RssDetail> {
         return false;
       },
       child: Scaffold(
-        appBar: Appbar(context),
+        appBar: appbarWithMenu(context),
+        drawer: Theme(
+            data: Theme.of(context).copyWith(
+              canvasColor: Colors
+                  .black, //This will change the drawer background to blue.
+              //other styles
+            ),
+            child: drawerAppBar(context, '')),
         body: _selectedIndex == 3
             ? SingleChildScrollView(
                 child: Container(

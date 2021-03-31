@@ -81,24 +81,24 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   void initState() {
-    // clear().then((bool value) async => {
-    getAuth().then((bool val) async => {
-          getId().then((int id) => {
-                getLogin().then((String log) => {
-                      print(log),
-                      getPass().then((String pass) => {
-                            print(pass),
-                            setState(() {
-                              this.id = id;
-                              this.login = log;
-                              this.pass = pass;
-                              this.authenticated = val;
-                            })
+    clear().then((bool value) async => {
+          getAuth().then((bool val) async => {
+                getId().then((int id) => {
+                      getLogin().then((String log) => {
+                            print(log),
+                            getPass().then((String pass) => {
+                                  print(pass),
+                                  setState(() {
+                                    this.id = id;
+                                    this.login = log;
+                                    this.pass = pass;
+                                    this.authenticated = val;
+                                  })
+                                })
                           })
-                    })
-              }) // print(val),
+                    }) // print(val),
+              })
         });
-    // });
     super.initState();
   }
 
@@ -124,39 +124,14 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              appBar: _selectedIndex == 0
-                  ? AppBar(
-                      leading: Builder(
-                        builder: (context) => IconButton(
-                          icon: new Icon(
-                            Icons.menu,
-                            color: Colors.black,
-                            size: width * 0.11,
-                          ),
-                          onPressed: () => Scaffold.of(context).openDrawer(),
-                        ),
-                      ),
-                      toolbarHeight: 60,
-                      elevation: 0,
-                      centerTitle: true,
-                      backgroundColor: Colors.white12,
-                      title: Padding(
-                        padding: EdgeInsets.only(left: 15.0),
-                        child: Image.asset(
-                          'assets/images/home3.png',
-                          height: 40,
-                        ),
-                      ))
-                  : Appbar(context),
+              appBar: appbarWithMenu(context),
               drawer: Theme(
                   data: Theme.of(context).copyWith(
                     canvasColor: Colors
                         .black, //This will change the drawer background to blue.
                     //other styles
                   ),
-                  child: _selectedIndex == 0
-                      ? drawerAppBar(context, '')
-                      : Container()),
+                  child: drawerAppBar(context, '')),
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
             ))

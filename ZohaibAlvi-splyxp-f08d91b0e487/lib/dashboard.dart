@@ -64,11 +64,11 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 15, top: 10),
+                        padding: EdgeInsets.only(left: 16, top: 10),
                         child: Text(
                           'HELLO',
                           style: TextStyle(
-                              fontSize: 28, fontWeight: FontWeight.w700),
+                              fontSize: 24, fontWeight: FontWeight.w700),
                         ),
                       ),
                     ],
@@ -76,31 +76,43 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 14, top: 15),
-                        child: CircleAvatar(
-                          radius: 40.0,
-                          backgroundImage: AssetImage(
-                              'assets/images/profile/profileDashboard.png'),
-                          backgroundColor: Colors.transparent,
+                        padding: EdgeInsets.only(top: 10, left: 14),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                  blurRadius: 3,
+                                  color: Colors.grey[500],
+                                  spreadRadius: 1.3)
+                            ],
+                          ),
+                          child: CircleAvatar(
+                            radius: 32.0,
+                            backgroundImage: AssetImage(
+                                'assets/images/profile/profileDashboard.png'),
+                            backgroundColor: Colors.transparent,
+                          ),
                         ),
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 11, top: 20),
+                            padding: EdgeInsets.only(left: 14, top: 15),
                             child: Text(
                               'MAR',
                               style: TextStyle(
-                                  fontSize: 24, fontWeight: FontWeight.w600),
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 11, top: 2),
+                            padding: EdgeInsets.only(left: 14, top: 2),
                             child: Text(
                               'Customer',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                                  fontSize: 12.5, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ],

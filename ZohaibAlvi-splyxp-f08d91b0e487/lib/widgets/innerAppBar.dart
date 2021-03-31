@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/cart/cart.dart';
 import '../views/drawer/by-category.dart';
-import '../views/drawer/men&women.dart';
+import '../views/drawer/men.dart';
+import '../views/drawer/women.dart';
 import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
 
@@ -16,13 +17,9 @@ void _navigatorPage(context, index) {
         } else if (index == 'categories') {
           return ByCategory();
         } else if (index == 'men') {
-          return MenWoman(
-            page: 'men',
-          );
+          return Mens();
         } else if (index == 'women') {
-          return MenWoman(
-            page: 'women',
-          );
+          return Womens();
         } else if (index == 'new') {
           return Arrivals();
         } else if (index == 'request') {
@@ -353,7 +350,7 @@ Widget drawerAppBar(context, index) {
                         ),
                       )
                     : null,
-                index != 'men&women'
+                index != 'mens'
                     ? InkWell(
                         onTap: () {
                           _navigatorPage(context, 'men');
@@ -364,7 +361,7 @@ Widget drawerAppBar(context, index) {
                         ),
                       )
                     : null,
-                index != 'men&women'
+                index != 'womens'
                     ? InkWell(
                         onTap: () {
                           _navigatorPage(context, 'women');

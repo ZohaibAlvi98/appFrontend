@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/views/drawer/men&women.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
-
 import '../../views/search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 
-class Arrivals extends StatefulWidget {
+class Mens extends StatefulWidget {
   @override
-  _ArrivalsState createState() => _ArrivalsState();
+  _MensState createState() => _MensState();
 }
 
-class _ArrivalsState extends State<Arrivals> {
+class _MensState extends State<Mens> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -23,7 +22,7 @@ class _ArrivalsState extends State<Arrivals> {
   }
 
   static List<Widget> _bottomNavList = [
-    Arrivals(),
+    Mens(),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -31,9 +30,9 @@ class _ArrivalsState extends State<Arrivals> {
   ];
 
   List img = [
-    'assets/images/splyrs/channels/prod1.jpg',
-    'assets/images/splyrs/channels/prod2.jpg',
     'assets/images/splyrs/channels/prod3.jpg',
+    'assets/images/splyrs/channels/prod2.jpg',
+    'assets/images/splyrs/channels/prod1.jpg',
     'assets/images/splyrs/channels/prod4.jpg',
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
@@ -58,7 +57,7 @@ class _ArrivalsState extends State<Arrivals> {
               //other styles
             ),
             child: _selectedIndex == 0
-                ? drawerAppBar(context, 'new')
+                ? drawerAppBar(context, 'mens')
                 : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
@@ -70,18 +69,18 @@ class _ArrivalsState extends State<Arrivals> {
                         child: Stack(
                           children: [
                             Image.asset(
-                              'assets/images/arrivals/main.jpg',
+                              'assets/images/mans/cover1.jpg',
                             ),
                             Padding(
                               padding:
-                                  EdgeInsets.only(left: 20, top: width / 4.6),
-                              child: Text(
-                                'NEW ARRIVALS',
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 23 : 30,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 1.1),
-                              ),
+                                  EdgeInsets.only(left: 40, top: width / 4.6),
+                              // child: Text(
+                              //   'MENS',
+                              //   style: TextStyle(
+                              //       fontSize: width < 400 ? 23 : 30,
+                              //       fontWeight: FontWeight.w900,
+                              //       letterSpacing: 1.1),
+                              // ),
                             )
                           ],
                         ),

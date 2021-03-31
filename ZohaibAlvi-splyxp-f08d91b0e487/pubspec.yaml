@@ -71,7 +71,8 @@ flutter:
     - assets/images/arrivals/
     - assets/images/vendor-channel/stylist/
     - assets/images/vendor-channel/shopper/
-
+    - assets/images/mans/
+    - assets/images/womans/
 
 
   # To add assets to your application, add an assets section, like this:

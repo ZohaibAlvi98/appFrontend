@@ -72,7 +72,14 @@ class _TvState extends State<Tv> {
         },
         child: Scaffold(
           // App bar
-          appBar: Appbar(context),
+          appBar: appbarWithMenu(context),
+          drawer: Theme(
+              data: Theme.of(context).copyWith(
+                canvasColor: Colors
+                    .black, //This will change the drawer background to blue.
+                //other styles
+              ),
+              child: drawerAppBar(context, '')),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(
