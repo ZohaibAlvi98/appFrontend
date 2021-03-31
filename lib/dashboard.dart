@@ -86,7 +86,7 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 16, top: 10),
+                        padding: EdgeInsets.only(left: 18, top: 10),
                         child: Text(
                           'HELLO',
                           style: TextStyle(
@@ -98,7 +98,7 @@ class _DashboardState extends State<Dashboard> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 10, left: 14),
+                        padding: EdgeInsets.only(top: 10, left: 18),
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.grey,
@@ -124,7 +124,7 @@ class _DashboardState extends State<Dashboard> {
                           Padding(
                             padding: EdgeInsets.only(left: 14, top: 15),
                             child: Text(
-                              'MAR',
+                              'MAR SIMONS TAYLOR',
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.w600),
                             ),
