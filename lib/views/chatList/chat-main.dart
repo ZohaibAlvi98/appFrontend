@@ -40,13 +40,16 @@ class _ChatListState extends State<ChatList> {
     'assets/images/chatList/chat8.jpg',
     'assets/images/chatList/chat5.jpg'
   ];
-  void _navigatorPage(user) {
+  void _navigatorPage(user, chatDp) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ChatDetail(user: user);
+          return ChatDetail(
+            user: user,
+            chatDp: chatDp,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -161,7 +164,7 @@ class _ChatListState extends State<ChatList> {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  _navigatorPage(user[index]);
+                  _navigatorPage(user[index], chatDp[index]);
                 },
                 child: Container(
                   child: Column(

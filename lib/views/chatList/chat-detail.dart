@@ -6,8 +6,8 @@ import 'dart:convert';
 import 'dart:io';
 
 class ChatDetail extends StatefulWidget {
-  final String user;
-  ChatDetail({Key key, @required this.user}) : super(key: key);
+  final String user, chatDp;
+  ChatDetail({Key key, @required this.user, this.chatDp}) : super(key: key);
   @override
   _ChatDetailState createState() => _ChatDetailState();
 }
@@ -61,16 +61,18 @@ class _ChatDetailState extends State<ChatDetail> {
                 padding: EdgeInsets.only(top: 6, left: 0.0),
                 child: CircleAvatar(
                   radius: 22.0,
-                  backgroundImage:
-                      AssetImage('assets/images/chatList/default.jpg'),
+                  backgroundImage: AssetImage(widget.chatDp),
                   backgroundColor: Colors.transparent,
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8.0),
+                padding: EdgeInsets.only(left: 9.0, top: 4.5),
                 child: Text(
                   widget.user,
-                  style: TextStyle(color: Colors.black87),
+                  style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: width < 400 ? 14 : 18,
+                      fontWeight: FontWeight.w700),
                 ),
               )
             ],

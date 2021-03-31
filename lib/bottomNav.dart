@@ -81,23 +81,23 @@ class _BottomNavState extends State<BottomNav> {
 
   @override
   void initState() {
-    clear().then((bool value) async => {
-          getAuth().then((bool val) async => {
-                getId().then((int id) => {
-                      getLogin().then((String log) => {
-                            print(log),
-                            getPass().then((String pass) => {
-                                  print(pass),
-                                  setState(() {
-                                    this.id = id;
-                                    this.login = log;
-                                    this.pass = pass;
-                                    this.authenticated = val;
-                                  })
-                                })
+    // clear().then((bool value) async => {
+    getAuth().then((bool val) async => {
+          getId().then((int id) => {
+                getLogin().then((String log) => {
+                      print(log),
+                      getPass().then((String pass) => {
+                            print(pass),
+                            setState(() {
+                              this.id = id;
+                              this.login = log;
+                              this.pass = pass;
+                              this.authenticated = val;
+                            })
                           })
-                    }) // print(val),
-              })
+                    })
+              }), // print(val),
+          // })
         });
     super.initState();
   }
