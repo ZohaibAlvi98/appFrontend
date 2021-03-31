@@ -61,7 +61,7 @@ class _RssDetailState extends State<RssDetail> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: drawerAppBar(context, '')),
+            child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 3
             ? SingleChildScrollView(
                 child: Container(

@@ -8,6 +8,7 @@ import '../../search/search.dart';
 import '../../profile.dart';
 import '../../sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import '../../auth/signup/signup.dart';
 
 class Tops extends StatefulWidget {
   @override
@@ -31,7 +32,7 @@ class _TopsState extends State<Tops> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   @override
   Widget build(BuildContext context) {

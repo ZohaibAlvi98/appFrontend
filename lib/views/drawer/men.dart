@@ -6,8 +6,11 @@ import '../../views/search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import '../auth/signup/signup.dart';
 
 class Mens extends StatefulWidget {
+  final bool authenticated;
+  Mens({Key key, this.authenticated}) : super(key: key);
   @override
   _MensState createState() => _MensState();
 }
@@ -29,7 +32,7 @@ class _MensState extends State<Mens> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
 
   List img = [
@@ -40,8 +43,18 @@ class _MensState extends State<Mens> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
+
+  static List<Widget> _bottomNavDashboardList = [
+    Mens(),
+    Search(),
+    ChatList(),
+    SplyNetwork(),
+    Profile()
+  ];
+
   @override
   Widget build(BuildContext context) {
+    print(widget.authenticated);
     double width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async {
@@ -60,7 +73,7 @@ class _MensState extends State<Mens> {
               //other styles
             ),
             child: _selectedIndex == 0
-                ? drawerAppBar(context, 'mens')
+                ? drawerAppBar(context, 'mens', widget.authenticated)
                 : Container()),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
@@ -137,7 +150,9 @@ class _MensState extends State<Mens> {
                   ),
                 ),
               )
-            : _bottomNavList.elementAt(_selectedIndex),
+            : widget.authenticated == true
+                ? _bottomNavDashboardList.elementAt(_selectedIndex)
+                : _bottomNavList.elementAt(_selectedIndex),
         bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
       ),
     );

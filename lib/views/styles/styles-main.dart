@@ -11,6 +11,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/widgets/carousels.dart';
+import '../auth/signup/signup.dart';
 
 class Styles extends StatefulWidget {
   @override
@@ -40,7 +41,7 @@ class _StylesState extends State<Styles> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
 
   List styleBoxImg = [
@@ -93,7 +94,7 @@ class _StylesState extends State<Styles> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '')),
+              child: drawerAppBar(context, '', false)),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(

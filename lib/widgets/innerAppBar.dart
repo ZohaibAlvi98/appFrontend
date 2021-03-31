@@ -6,7 +6,7 @@ import '../views/drawer/women.dart';
 import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
 
-void _navigatorPage(context, index) {
+void _navigatorPage(context, index, auth) {
   // Navigator.of(context).pop(new PageRouteBuilder());
   Navigator.of(context).push(new PageRouteBuilder(
       opaque: true,
@@ -15,13 +15,21 @@ void _navigatorPage(context, index) {
         if (index == 'cart') {
           return Cart();
         } else if (index == 'categories') {
-          return ByCategory();
+          return ByCategory(
+            authenticated: auth,
+          );
         } else if (index == 'men') {
-          return Mens();
+          return Mens(
+            authenticated: auth,
+          );
         } else if (index == 'women') {
-          return Womens();
+          return Womens(
+            authenticated: auth,
+          );
         } else if (index == 'new') {
-          return Arrivals();
+          return Arrivals(
+            authenticated: auth,
+          );
         } else if (index == 'request') {
           return RequestShopper();
         } else {
@@ -52,7 +60,7 @@ Widget Appbar(context) {
             height: 30,
           ),
           onPressed: () {
-            _navigatorPage(context, 'cart');
+            _navigatorPage(context, 'cart', '');
           })
     ],
     toolbarHeight: 60,
@@ -94,7 +102,7 @@ Widget appbarWithMenu(context) {
             height: 30,
           ),
           onPressed: () {
-            _navigatorPage(context, 'cart');
+            _navigatorPage(context, 'cart', '');
           })
     ],
     toolbarHeight: 60,
@@ -128,7 +136,7 @@ Widget innerAppbar(context, list) {
                 height: 30,
               ),
               onPressed: () {
-                _navigatorPage(context, 'cart');
+                _navigatorPage(context, 'cart', '');
               })
           : SizedBox()
     ],
@@ -188,7 +196,7 @@ Widget drawerInnerAppbar(context, list) {
             height: 30,
           ),
           onPressed: () {
-            _navigatorPage(context, 'cart');
+            _navigatorPage(context, 'cart', '');
           })
     ],
     elevation: 0,
@@ -250,7 +258,7 @@ Widget dashboardDrawer(context, index) {
                 index != 'new'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'new');
+                          _navigatorPage(context, 'new', '');
                         },
                         child: ListTile(
                           title: Text('NEW ADDITION',
@@ -261,7 +269,7 @@ Widget dashboardDrawer(context, index) {
                 index != 'category'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'categories');
+                          _navigatorPage(context, 'categories', '');
                         },
                         child: ListTile(
                           title: Text('CATEGORIES',
@@ -272,7 +280,7 @@ Widget dashboardDrawer(context, index) {
                 index != 'men&women'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'men');
+                          _navigatorPage(context, 'men', '');
                         },
                         child: ListTile(
                           title: Text('MEN',
@@ -283,7 +291,7 @@ Widget dashboardDrawer(context, index) {
                 index != 'men&women'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'women');
+                          _navigatorPage(context, 'women', '');
                         },
                         child: ListTile(
                           title: Text('WOMAN',
@@ -293,7 +301,7 @@ Widget dashboardDrawer(context, index) {
                     : null,
                 InkWell(
                   onTap: () {
-                    _navigatorPage(context, 'request');
+                    _navigatorPage(context, 'request', '');
                   },
                   child: ListTile(
                     title: Text('REQUEST TO I-SHOPPER',
@@ -305,7 +313,7 @@ Widget dashboardDrawer(context, index) {
   ));
 }
 
-Widget drawerAppBar(context, index) {
+Widget drawerAppBar(context, index, authenticated) {
   return Drawer(
       child: Column(
     children: [
@@ -331,7 +339,7 @@ Widget drawerAppBar(context, index) {
                 index != 'new'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'new');
+                          _navigatorPage(context, 'new', authenticated);
                         },
                         child: ListTile(
                           title: Text('NEW ADDITION',
@@ -342,7 +350,7 @@ Widget drawerAppBar(context, index) {
                 index != 'category'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'categories');
+                          _navigatorPage(context, 'categories', authenticated);
                         },
                         child: ListTile(
                           title: Text('CATEGORIES',
@@ -353,7 +361,7 @@ Widget drawerAppBar(context, index) {
                 index != 'mens'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'men');
+                          _navigatorPage(context, 'men', authenticated);
                         },
                         child: ListTile(
                           title: Text('MEN',
@@ -364,7 +372,7 @@ Widget drawerAppBar(context, index) {
                 index != 'womens'
                     ? InkWell(
                         onTap: () {
-                          _navigatorPage(context, 'women');
+                          _navigatorPage(context, 'women', authenticated);
                         },
                         child: ListTile(
                           title: Text('WOMAN',
@@ -374,7 +382,7 @@ Widget drawerAppBar(context, index) {
                     : null,
                 InkWell(
                   onTap: () {
-                    _navigatorPage(context, 'request');
+                    _navigatorPage(context, 'request', '');
                   },
                   child: ListTile(
                     title: Text('REQUEST TO I-SHOPPER',

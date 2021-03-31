@@ -10,6 +10,7 @@ import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import '../../views/home.dart';
+import '../auth/signup/signup.dart';
 
 class Sneakers extends StatefulWidget {
   @override
@@ -50,7 +51,7 @@ class _SneakersState extends State<Sneakers> {
     Search(),
     ChatList(),
     SplyNetwork(),
-    Profile()
+    Signup()
   ];
   @override
   Widget build(BuildContext context) {
@@ -72,7 +73,7 @@ class _SneakersState extends State<Sneakers> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '')),
+              child: drawerAppBar(context, '', false)),
 
           body: _selectedIndex == 0
               ? SingleChildScrollView(
