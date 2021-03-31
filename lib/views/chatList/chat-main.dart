@@ -40,16 +40,25 @@ class _ChatListState extends State<ChatList> {
     'assets/images/chatList/chat8.jpg',
     'assets/images/chatList/chat5.jpg'
   ];
-  void _navigatorPage(user, chatDp) {
+  void _navigatorPage(user, chatDp, index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ChatDetail(
-            user: user,
-            chatDp: chatDp,
-          );
+          if (index % 2 == 0) {
+            return ChatDetail(
+              user: user,
+              userId: 3806210,
+              chatDp: chatDp,
+            );
+          } else {
+            return ChatDetail(
+              user: user,
+              userId: 3806880,
+              chatDp: chatDp,
+            );
+          }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -97,32 +106,49 @@ class _ChatListState extends State<ChatList> {
   bool authenticated;
 
   Future chat() {
-    CubeUser user = CubeUser(id: id, password: pass);
+    createSession().then((cubeSession) {
+      CubeUser user = CubeUser(
+        login: login,
+        password: pass,
+      );
+// CubeUser user = CubeUser(email: "cubeuser@gmail.com", password: "super_sequre_password");
+// 'marvi' supersecurepwd
+      createSession(user).then((cubeSession) {
+        CubeUser aUser = CubeUser(id: id, password: pass);
 
-    CubeChatConnection.instance.login(user).then((loggedUser) {
-      print('here2');
-      print(loggedUser);
-      // CubeDialog newDialog =
-      //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
+        CubeChatConnection.instance.login(aUser).then((loggedUser) {
+          print('here2');
+          print(loggedUser);
+          // CubeDialog newDialog =
+          //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
 
-      // createDialog(newDialog).then((createdDialog) {
-      //   print('here');
-      //   print(createdDialog);
-      //   CubeDialog
-      //       cubeDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
-      //   CubeMessage message = CubeMessage();
-      //   message.body = "How are you today?";
-      //   message.dateSent = DateTime.now().millisecondsSinceEpoch;
-      //   message.markable = true;
-      //   message.saveToHistory = true;
-      //   print('yo');
-      //   cubeDialog
-      //       .sendMessage(message)
-      //       .then((cubeMessage) {})
-      //       .catchError((error) {});
-      // }).catchError((error) {
-      //   print(error);
-      // });
+          // createDialog(newDialog).then((createdDialog) {
+          //   print('here');
+          //   print(createdDialog);
+          //   CubeDialog cubeDialog =
+          //       newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+          //   CubeMessage message = CubeMessage();
+          //   message.body = "karak";
+          //   message.dateSent = DateTime.now().millisecondsSinceEpoch;
+          //   message.markable = true;
+          //   message.saveToHistory = true;
+          //   print('yo');
+          //   print(message);
+          //   cubeDialog.occupantsIds = [3806210];
+          //   print(cubeDialog);
+          //   cubeDialog
+          //       .sendMessage(message)
+          //       .then((cubeMessage) {})
+          //       .catchError((error) {});
+          // }).catchError((error) {
+          //   print(error);
+          // });
+        }).catchError((error) {
+          print(error);
+        });
+      }).catchError((error) {
+        print(error);
+      });
     }).catchError((error) {
       print(error);
     });
@@ -144,10 +170,13 @@ class _ChatListState extends State<ChatList> {
                                   this.authenticated = val;
                                 })
                               })
-                          .then((value) => {chat()})
+                          .then((value) => {
+                                if (authenticated == true) {chat()}
+                              })
                     })
               }) // print(val),
         });
+
     super.initState();
   }
 
@@ -164,7 +193,7 @@ class _ChatListState extends State<ChatList> {
             itemBuilder: (context, index) {
               return InkWell(
                 onTap: () {
-                  _navigatorPage(user[index], chatDp[index]);
+                  _navigatorPage(user[index], chatDp[index], index);
                 },
                 child: Container(
                   child: Column(

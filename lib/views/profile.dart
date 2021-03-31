@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../bottomNav.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -14,6 +16,24 @@ class _ProfileState extends State<Profile> {
     'FAQ\'s',
     'Terms & Conditions'
   ];
+
+  Future<bool> clear() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    await _prefs.clear();
+    return _prefs.commit();
+  }
+
+  void _navigatorPage(context, index) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    if (index == 'logout') {
+      clear().then((bool value) async => {
+            Navigator.of(context).pushReplacement(
+                new MaterialPageRoute(builder: (BuildContext context) {
+              return new BottomNav();
+            }))
+          });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +78,15 @@ class _ProfileState extends State<Profile> {
               list(width, settingsHeading, 1),
               mainHeading('SUPPORT', Icon(Icons.people)),
               list(width, supportHeading, 4),
-              mainHeading(
-                  ' Log Out',
-                  Transform.rotate(
-                      angle: -12.54 / 4, child: Icon(Icons.logout))),
+              InkWell(
+                onTap: () {
+                  _navigatorPage(context, 'logout');
+                },
+                child: mainHeading(
+                    ' Log Out',
+                    Transform.rotate(
+                        angle: -12.54 / 4, child: Icon(Icons.logout))),
+              ),
               SizedBox(
                 height: 30,
               )
@@ -106,7 +131,7 @@ Widget list(width, heading, length) {
           padding: const EdgeInsets.fromLTRB(5.0, .25, 5, 3),
           child: InkWell(
             onTap: () {
-              // _navigatorPage(heading[index]);
+              // _navigatorPage(context, heading[index]);
             },
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

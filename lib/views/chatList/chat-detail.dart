@@ -4,10 +4,18 @@ import 'dart:math' as math;
 import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:io';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
 class ChatDetail extends StatefulWidget {
+  final int userId;
   final String user, chatDp;
-  ChatDetail({Key key, @required this.user, this.chatDp}) : super(key: key);
+  ChatDetail({
+    Key key,
+    @required this.user,
+    @required this.userId,
+    this.chatDp,
+  }) : super(key: key);
+
   @override
   _ChatDetailState createState() => _ChatDetailState();
 }
@@ -39,6 +47,99 @@ class _ChatDetailState extends State<ChatDetail> {
       status = message;
     });
   }
+
+  // @override
+  // void initState() {
+  //   CubeDialog newDialog =
+  //       CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
+
+  //   createDialog(newDialog).then((createdDialog) {
+  //     print('here');
+  //     print(createdDialog);
+  //     CubeDialog cubeDialog =
+  //         newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+  //     CubeMessage message = CubeMessage();
+  //     message.body = "lo bhaee";
+  //     message.dateSent = DateTime.now().millisecondsSinceEpoch;
+  //     message.markable = true;
+  //     message.saveToHistory = true;
+  //     print('yo');
+  //     print(message);
+  //     cubeDialog.occupantsIds = [widget.userId];
+  //     print(cubeDialog);
+  //     cubeDialog
+  //         .sendMessage(message)
+  //         .then((cubeMessage) {})
+  //         .catchError((error) {});
+  //   }).catchError((error) {
+  //     print(error);
+  //   });
+  //   super.initState();
+  // }
+
+  @override
+  void initState() {
+    getMessagesList();
+    super.initState();
+  }
+
+  Stream chatmessages;
+
+  Widget chatMessagesList() {
+    return Container();
+  }
+
+  Future send(text) {
+    CubeDialog newDialog =
+        CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [widget.userId]);
+
+    createDialog(newDialog).then((createdDialog) {
+      print('here');
+      print(createdDialog);
+      CubeDialog cubeDialog =
+          newDialog; // some dialog, which must contains opponent's id in 'occupantsIds'
+      CubeMessage message = CubeMessage();
+      message.body = text;
+      message.dateSent = DateTime.now().millisecondsSinceEpoch;
+      message.markable = true;
+      message.saveToHistory = true;
+      print('yo');
+      print(message);
+      cubeDialog.occupantsIds = [widget.userId];
+      print(cubeDialog);
+      cubeDialog
+          .sendMessage(message)
+          .then((cubeMessage) {})
+          .catchError((error) {});
+    }).catchError((error) {
+      print(error);
+    });
+  }
+
+  Future getMessagesList() {
+    String dialogId = "605dc985ca8bf45e84921d0c";
+    print('yayy2');
+    GetMessagesParameters params = GetMessagesParameters();
+    params.limit = 100;
+    params.filters = [RequestFilter("", "date_sent", QueryRule.GT, 1583402980)];
+    params.markAsRead = true;
+    params.sorter = RequestSorter(OrderType.DESC, "", "date_sent");
+
+    getMessages(dialogId, params.getRequestParameters()).then((pagedResult) {
+      print('yayy');
+      // print(pagedResult.items[0].body);
+
+      (pagedResult.items as List)
+          .map((e) => {
+                setState(() {
+                  chatmessages = e.body;
+                })
+              })
+          .toList();
+    }).catchError((error) {});
+  }
+
+  final TextEditingController text = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -101,6 +202,7 @@ class _ChatDetailState extends State<ChatDetail> {
                       child: Stack(
                         children: [
                           TextField(
+                            controller: text,
                             decoration: InputDecoration(
                                 hintText: 'Type a message',
                                 fillColor: Colors.white,
@@ -165,7 +267,11 @@ class _ChatDetailState extends State<ChatDetail> {
                             Icons.send,
                             color: Colors.white,
                           ),
-                          onPressed: () {},
+                          onPressed: () async {
+                            print(text.text);
+                            await send(text.text);
+                            text.text = '';
+                          },
                         ),
                       ),
                     ),

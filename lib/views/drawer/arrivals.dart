@@ -17,6 +17,9 @@ class _ArrivalsState extends State<Arrivals> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
+    if (_selectedIndex == 0 && index == 0) {
+      Navigator.of(context).pop();
+    }
     setState(() {
       _selectedIndex = index;
     });
@@ -57,9 +60,7 @@ class _ArrivalsState extends State<Arrivals> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: _selectedIndex == 0
-                ? drawerAppBar(context, 'new')
-                : Container()),
+            child: drawerAppBar(context, 'new')),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Container(

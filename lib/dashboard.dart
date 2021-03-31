@@ -8,6 +8,7 @@ import 'views/search/search.dart';
 import 'views/profile.dart';
 import 'views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
+import 'package:connectycube_sdk/connectycube_sdk.dart';
 
 class Dashboard extends StatefulWidget {
   @override
@@ -41,6 +42,27 @@ class _DashboardState extends State<Dashboard> {
       _selectedIndex = index;
     });
   }
+
+  @override
+  void initState() {
+    if (check == 0) {
+      init(appId, authKey, authSecret);
+      setState(() {
+        check = 1;
+      });
+    }
+
+    super.initState();
+    // DO YOUR STUFF
+  }
+
+  String appId = "4451";
+
+  String authKey = "nL5Ba8ywSMu-rGq";
+
+  String authSecret = "vXM9T-QUXdx44pz";
+
+  static int check = 0;
 
   static List<Widget> _bottomNavList = [
     Dashboard(),
