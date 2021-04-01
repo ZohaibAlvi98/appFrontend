@@ -342,7 +342,7 @@ Widget drawerAppBar(context, index, authenticated) {
                           _navigatorPage(context, 'new', authenticated);
                         },
                         child: ListTile(
-                          title: Text('NEW ADDITION',
+                          title: Text('New Addition',
                               style: TextStyle(color: Colors.white)),
                         ),
                       )
@@ -353,7 +353,7 @@ Widget drawerAppBar(context, index, authenticated) {
                           _navigatorPage(context, 'categories', authenticated);
                         },
                         child: ListTile(
-                          title: Text('CATEGORIES',
+                          title: Text('Categories',
                               style: TextStyle(color: Colors.white)),
                         ),
                       )
@@ -364,7 +364,7 @@ Widget drawerAppBar(context, index, authenticated) {
                           _navigatorPage(context, 'men', authenticated);
                         },
                         child: ListTile(
-                          title: Text('MEN',
+                          title: Text('Men',
                               style: TextStyle(color: Colors.white)),
                         ),
                       )
@@ -375,7 +375,7 @@ Widget drawerAppBar(context, index, authenticated) {
                           _navigatorPage(context, 'women', authenticated);
                         },
                         child: ListTile(
-                          title: Text('WOMAN',
+                          title: Text('Women',
                               style: TextStyle(color: Colors.white)),
                         ),
                       )
@@ -385,7 +385,7 @@ Widget drawerAppBar(context, index, authenticated) {
                     _navigatorPage(context, 'request', '');
                   },
                   child: ListTile(
-                    title: Text('REQUEST TO I-SHOPPER',
+                    title: Text('Request to i-Shopper',
                         style: TextStyle(color: Colors.white)),
                   ),
                 )

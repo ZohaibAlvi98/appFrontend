@@ -196,9 +196,29 @@ class _LoginState extends State<Login> {
             ]),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(width * 0.1, size * 0.8, 0, 0),
+            padding: EdgeInsets.fromLTRB(width * 0.05, size * 0.8, 0, 0),
             child: GestureDetector(
-                child: Text("Go Back!", style: TextStyle(color: Colors.black)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back_ios,
+                          color: Colors.black,
+                          size: 12,
+                        ),
+                        Text(
+                          "Go Back!",
+                          style: TextStyle(
+                            color: Colors.black,
+                            decoration: TextDecoration.underline,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
                 onTap: () {
                   Navigator.pop(context);
                 }),
