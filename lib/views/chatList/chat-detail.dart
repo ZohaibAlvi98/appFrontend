@@ -5,16 +5,19 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
+import './chat-main.dart';
 
 class ChatDetail extends StatefulWidget {
   final int userId;
   final String user, chatDp;
-  ChatDetail({
-    Key key,
-    @required this.user,
-    @required this.userId,
-    this.chatDp,
-  }) : super(key: key);
+  final Function refresh;
+  ChatDetail(
+      {Key key,
+      @required this.user,
+      @required this.userId,
+      this.chatDp,
+      this.refresh})
+      : super(key: key);
 
   @override
   _ChatDetailState createState() => _ChatDetailState();
@@ -196,9 +199,11 @@ class _ChatDetailState extends State<ChatDetail> {
           leading: Padding(
             padding: EdgeInsets.only(left: 15.0),
             child: IconButton(
-              icon: Icon(Icons.arrow_back, color: Colors.black),
-              onPressed: () => Navigator.of(context).pop(),
-            ),
+                icon: Icon(Icons.arrow_back, color: Colors.black),
+                onPressed: () {
+                  widget.refresh(); // just refresh() if its statelesswidget
+                  Navigator.pop(context);
+                }),
           ),
           title: Row(
             children: [
