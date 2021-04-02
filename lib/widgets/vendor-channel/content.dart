@@ -20,13 +20,13 @@ Widget content(heading, text1, text2) {
           children: [
             if (text1 != '')
               Container(
-                height: 22.0,
-                width: 100,
+                height: 26.0,
+                width: 90,
                 color: Colors.transparent,
                 child: new Container(
                   decoration: new BoxDecoration(
                       color:
-                          Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
+                          Color(int.parse('#ededed'.replaceAll('#', '0xff'))),
                       borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(4.5),
                         topRight: const Radius.circular(4.5),
@@ -37,7 +37,7 @@ Widget content(heading, text1, text2) {
                       child: Text(
                     text1,
                     style: TextStyle(
-                      fontSize: 15.5,
+                      fontSize: 14,
                       height: 1.1,
                       color: Colors.grey[800],
                     ),
@@ -47,13 +47,13 @@ Widget content(heading, text1, text2) {
             SizedBox(width: 15),
             if (text2 != '')
               Container(
-                height: 22.0,
-                width: 100,
+                height: 26.0,
+                width: 90,
                 color: Colors.transparent,
                 child: new Container(
                   decoration: new BoxDecoration(
                       color:
-                          Color(int.parse('#F2E1F2'.replaceAll('#', '0xff'))),
+                          Color(int.parse('#ededed'.replaceAll('#', '0xff'))),
                       borderRadius: new BorderRadius.only(
                         topLeft: const Radius.circular(4.5),
                         topRight: const Radius.circular(4.5),
@@ -64,7 +64,7 @@ Widget content(heading, text1, text2) {
                       child: Text(
                     text2,
                     style: TextStyle(
-                      fontSize: 15.5,
+                      fontSize: 14,
                       height: 1.1,
                       color: Colors.grey[800],
                     ),

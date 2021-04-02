@@ -124,8 +124,9 @@ Widget RoundedCardForGrid(context, dividingWidth1, dividingWidth2) {
           Padding(
             padding: width < 400
                 ? EdgeInsets.only(left: 10.0, top: 8)
-                : EdgeInsets.only(left: 12.0, top: 9),
+                : EdgeInsets.only(left: 11.0, top: 9),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'END CLOTHING',
