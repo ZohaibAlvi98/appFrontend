@@ -40,23 +40,32 @@ class _ChatListState extends State<ChatList> {
     'assets/images/chatList/chat8.jpg',
     'assets/images/chatList/chat5.jpg'
   ];
+
+  refresh() {
+    setState(() {
+//all the reload processes
+    });
+  }
+
   void _navigatorPage(user, chatDp, index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          if (index % 2 == 0) {
+          if (index == 3806210) {
             return ChatDetail(
-              user: user,
+              user: 'Manager',
               userId: 3806210,
-              chatDp: chatDp,
+              chatDp: 'assets/images/chatList/chat7.jpg',
+              refresh: refresh,
             );
           } else {
             return ChatDetail(
-              user: user,
+              user: 'Volunteer',
               userId: 3806880,
-              chatDp: chatDp,
+              chatDp: 'assets/images/chatList/chat5.jpg',
+              refresh: refresh,
             );
           }
         },
@@ -103,8 +112,15 @@ class _ChatListState extends State<ChatList> {
     return id;
   }
 
-  bool authenticated;
+  Future<PagedResult<CubeDialog>> lastMessage() async {
+    PagedResult<CubeDialog> result;
+    result = await getDialogs();
+    return result;
+  }
 
+  bool authenticated;
+  bool isReady = false;
+  bool done = false;
   Future chat() {
     createSession().then((cubeSession) {
       CubeUser user = CubeUser(
@@ -115,10 +131,16 @@ class _ChatListState extends State<ChatList> {
 // 'marvi' supersecurepwd
       createSession(user).then((cubeSession) {
         CubeUser aUser = CubeUser(id: id, password: pass);
-
+        setState(() {
+          this.isReady = true;
+        });
         CubeChatConnection.instance.login(aUser).then((loggedUser) {
           print('here2');
           print(loggedUser);
+          setState(() {
+            this.isReady = true;
+          });
+
           // CubeDialog newDialog =
           //     CubeDialog(CubeDialogType.PRIVATE, occupantsIds: [3806210]);
 
@@ -180,7 +202,11 @@ class _ChatListState extends State<ChatList> {
                                   }
                               })
                           .then((value) => {
-                                if (authenticated == true) {chat()}
+                                setState(() {
+                                  this.done = true;
+                                }),
+                                if (authenticated == true)
+                                  {chat(), lastMessage()}
                               })
                     })
               }) // print(val),
@@ -193,89 +219,94 @@ class _ChatListState extends State<ChatList> {
   Widget build(BuildContext context) {
     print(authenticated);
     double width = MediaQuery.of(context).size.width;
-    return authenticated == true
-        ? ListView.builder(
-            scrollDirection: Axis.vertical,
-            // physics: NeverScrollableScrollPhysics(),
-            // shrinkWrap: true,
-            itemCount: user.length,
-            padding: EdgeInsets.only(right: 20.0, left: 5.5),
-            itemBuilder: (context, index) {
-              return InkWell(
-                onTap: () {
-                  _navigatorPage(user[index], chatDp[index], index);
-                },
-                child: Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(children: [
-                        Padding(
-                          padding:
-                              EdgeInsets.only(top: 9, left: 8.0, bottom: 9),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 3,
-                                    color: Colors.grey[500],
-                                    spreadRadius: 1.3)
-                              ],
-                            ),
-                            child: CircleAvatar(
-                              radius: 32,
-                              backgroundImage: AssetImage(chatDp[index]),
-                              backgroundColor: Colors.transparent,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 15, top: 2),
-                          child: Stack(
+    return authenticated == true && isReady && done
+        ? FutureBuilder(
+            future: lastMessage(),
+            builder:
+                (context, AsyncSnapshot<PagedResult<CubeDialog>> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    // physics: NeverScrollableScrollPhysics(),
+                    // shrinkWrap: true,
+                    itemCount: snapshot.data.items.length,
+                    padding: EdgeInsets.only(right: 20.0, left: 5.5),
+                    itemBuilder: (context, index) {
+                      final lstMsg = snapshot.data.items[index].lastMessage;
+                      final id = snapshot.data.items[index].occupantsIds[0];
+                      final time =
+                          snapshot.data.items[index].lastMessageDateSent;
+                      return InkWell(
+                        onTap: () {
+                          _navigatorPage(user[index], chatDp[index], id);
+                        },
+                        child: Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                user[index],
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 14 : 18,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 26.5),
-                                child: Text(
-                                  msg[index],
-                                  style: TextStyle(
-                                      color: Colors.grey[500],
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: width < 400 ? 12 : 15),
+                              Row(children: [
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 9, left: 8.0, bottom: 9),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      shape: BoxShape.circle,
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 3,
+                                            color: Colors.grey[500],
+                                            spreadRadius: 1.3)
+                                      ],
+                                    ),
+                                    child: CircleAvatar(
+                                      radius: 32,
+                                      backgroundImage: AssetImage(id == 3806210
+                                          ? 'assets/images/chatList/chat7.jpg'
+                                          : 'assets/images/chatList/chat5.jpg'),
+                                      backgroundColor: Colors.transparent,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: width < 400
-                                    ? EdgeInsets.only(left: 200)
-                                    : EdgeInsets.only(left: 240),
-                                child: Text(
-                                  'Yesterday',
-                                  style: TextStyle(
-                                      fontSize: width < 400 ? 10 : 13,
-                                      color: Colors.grey[600]),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 15, top: 2),
+                                  child: Stack(
+                                    children: [
+                                      Text(
+                                        id == 3806210 ? 'Manager' : 'Volunteer',
+                                        style: TextStyle(
+                                            fontSize: width < 400 ? 14 : 18,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 26.5),
+                                        child: Text(
+                                          lstMsg,
+                                          style: TextStyle(
+                                              color: Colors.grey[500],
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: width < 400 ? 12 : 15),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              )
+                              ]),
+                              new Divider(
+                                color: Colors.grey[500],
+                              ),
                             ],
                           ),
                         ),
-                      ]),
-                      new Divider(
-                        color: Colors.grey[500],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            })
+                      );
+                    });
+              }
+
+              return Center(child: CircularProgressIndicator());
+            },
+          )
         : authenticated == false
             ? Signup()
-            : Container();
+            : Center(child: CircularProgressIndicator());
   }
 }
