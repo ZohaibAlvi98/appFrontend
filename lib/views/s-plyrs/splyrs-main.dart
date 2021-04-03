@@ -59,8 +59,8 @@ class _SplyrsState extends State<Splyrs> {
   List img = [
     'assets/images/styles/list1.png',
     'assets/images/styles/list2.png',
-    'assets/images/styles/list3.jpg',
-    'assets/images/styles/list4.jpg'
+    'assets/images/styles/list7.jpg',
+    'assets/images/styles/list8.jpg'
   ];
 
   List imgProduct = [

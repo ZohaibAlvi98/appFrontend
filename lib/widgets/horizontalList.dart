@@ -47,29 +47,30 @@ Widget horizontalListWith3(context, img, color) {
                   ]),
                 ),
               ),
-              color: color,
             ),
             Padding(
-              padding: width < 400
-                  ? EdgeInsets.only(right: 7.0)
-                  : EdgeInsets.only(right: 18.0),
+              // padding: width < 400
+              //     ? EdgeInsets.only(right: 7.0)
+              //     : EdgeInsets.only(right: 19.0),
+              padding: EdgeInsets.only(right: 23),
               child: Text(
                 'Thome Brown 4 Bar \nJackets',
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: width < 400
-                  ? EdgeInsets.only(top: 7.0, bottom: 5, right: 8)
-                  : EdgeInsets.only(top: 7.0, bottom: 5, right: 18),
+              // padding: width < 400
+              //     ? EdgeInsets.only(top: 7.0, bottom: 5)
+              //     : EdgeInsets.only(top: 7.0, bottom: 5, right: width / 17),
+              padding: EdgeInsets.only(right: 23),
               child: Text(
                 'Brand: Thome Brown',
                 style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 83),
-              child: Text('£759.00'),
+              padding: EdgeInsets.only(right: 87),
+              child: Text('\$ 759.00'),
             ),
           ],
         ),
@@ -164,16 +165,17 @@ Widget sneakerListWith3(context, img, color) {
               color: color,
             ),
             Padding(
-              padding: width < 400
-                  ? EdgeInsets.only(right: 15.0)
-                  : EdgeInsets.only(right: 30.0),
+              // padding: width < 400
+              //     ? EdgeInsets.only(right: 15.0)
+              //     : EdgeInsets.only(right: 32.0),
+              padding: EdgeInsets.only(right: 28),
               child: Text(
                 'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 10, right: 80),
+              padding: EdgeInsets.only(top: 5, right: 87),
               child: Text('\$ 400.00'),
             ),
           ],

@@ -8,6 +8,14 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import './category-detail/tops.dart';
 import '../auth/signup/signup.dart';
+import './category-detail/bottom.dart';
+import './category-detail/hoodies.dart';
+import './category-detail/jackets-and-coats.dart';
+import './category-detail/acessories.dart';
+import './category-detail/sneakers.dart';
+import './category-detail/shoes.dart';
+import './category-detail/shorts.dart';
+import './category-detail/sweaters.dart';
 
 class ByCategory extends StatefulWidget {
   final bool authenticated;
@@ -34,10 +42,24 @@ class _ByCategoryState extends State<ByCategory> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          if (index == 'tops')
+          if (index == 0)
             return Tops();
-          else
-            return null;
+          else if (index == 1)
+            return Bottoms();
+          else if (index == 2)
+            return Hoodies();
+          else if (index == 3)
+            return Sneakers();
+          else if (index == 4)
+            return Shoes();
+          else if (index == 5)
+            return JacketCoats();
+          else if (index == 6)
+            return Shorts();
+          else if (index == 7)
+            return Accessories();
+          else if (index == 8) return Sweaters();
+          return null;
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -118,7 +140,7 @@ class _ByCategoryState extends State<ByCategory> {
                                 : EdgeInsets.only(left: 7.0, right: 7, top: 4),
                             child: InkWell(
                               onTap: () {
-                                _navigatorPage('tops');
+                                _navigatorPage(index);
                               },
                               child: Image.asset(
                                 img[index],

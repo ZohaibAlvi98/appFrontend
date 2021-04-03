@@ -12,12 +12,12 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import '../../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 
-class Tops extends StatefulWidget {
+class Bottoms extends StatefulWidget {
   @override
-  _TopsState createState() => _TopsState();
+  _BottomsState createState() => _BottomsState();
 }
 
-class _TopsState extends State<Tops> {
+class _BottomsState extends State<Bottoms> {
   int index = 0;
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
@@ -30,7 +30,7 @@ class _TopsState extends State<Tops> {
   }
 
   static List<Widget> _bottomNavList = [
-    Tops(),
+    Bottoms(),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -60,7 +60,7 @@ class _TopsState extends State<Tops> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: innerAppbar(context, 'TOPS'),
+      appBar: innerAppbar(context, 'Bottoms'),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -83,7 +83,7 @@ class _TopsState extends State<Tops> {
               //       return lists(context, 'woman', index);
               //     })
               FutureBuilder(
-                  future: data.getDrawrProducts("364"),
+                  future: data.getDrawrProducts("1374"),
                   // artistService.getArtist(page),
 
                   builder: (BuildContext context,

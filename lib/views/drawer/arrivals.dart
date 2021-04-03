@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:splyxp/views/drawer/men&women.dart';
+import '../../services/drawr-services.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
-
 import '../../views/search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
+import 'package:splyxp/views/products/product-detail-withapi.dart';
 
 class Arrivals extends StatefulWidget {
   final bool authenticated;
@@ -43,7 +43,7 @@ class _ArrivalsState extends State<Arrivals> {
     SplyNetwork(),
     Profile()
   ];
-
+  DrawrServices data = DrawrServices();
   List img = [
     'assets/images/splyrs/channels/prod1.jpg',
     'assets/images/splyrs/channels/prod2.jpg',
@@ -52,6 +52,25 @@ class _ArrivalsState extends State<Arrivals> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
+  void _navigatorPage(context) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return ProductDetail();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -124,21 +143,57 @@ class _ArrivalsState extends State<Arrivals> {
                           ),
                         ],
                       ),
-                      GridView.builder(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          padding: EdgeInsets.only(left: 1, right: 1, top: 20),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2,
-                            childAspectRatio:
-                                MediaQuery.of(context).size.width /
-                                    (MediaQuery.of(context).size.height / 1.49),
-                          ),
-                          // scrollDirection: Axis.vertical,
-                          itemCount: 6,
-                          itemBuilder: (context, index) {
-                            return lists(context, 'men', index);
+                      FutureBuilder(
+                          future: data.getDrawrProducts("589"),
+                          // artistService.getArtist(page),
+
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<Map<String, dynamic>>>
+                                  snapshot) {
+                            if (snapshot.hasData) {
+                              // List<ArtistModel> artist = snapshot.data;
+                              return GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.only(
+                                      left: 1, right: 1, top: 20),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    childAspectRatio: MediaQuery.of(context)
+                                            .size
+                                            .width /
+                                        (MediaQuery.of(context).size.height /
+                                            1.22),
+                                  ),
+                                  // scrollDirection: Axis.vertical,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final item = snapshot.data[index];
+
+                                    return InkWell(
+                                      onTap: () => _navigatorPage(context),
+                                      child: lists(
+                                        context,
+                                        'men',
+                                        item['images'][0]['src'],
+                                        index,
+                                        item['name'],
+                                        item['price'],
+                                        item['id'].toString(),
+                                        // item['meta_data'
+                                        //         .contains("_select_brand")]
+                                        //     ['value'],
+                                      ),
+                                    );
+                                  });
+                            } else if (snapshot.hasError) {
+                              print(snapshot.error);
+                              print('Sorry');
+                            }
+
+                            return Center(child: CircularProgressIndicator());
                           }),
                       SizedBox(
                         height: 15,
@@ -154,4 +209,59 @@ class _ArrivalsState extends State<Arrivals> {
       ),
     );
   }
+}
+
+Widget lists(context, check, image, index, name, price, id) {
+  return Column(
+    children: [
+      // Align(
+      //   alignment: Alignment.topLeft,
+      //   child: Padding(
+      //     padding: EdgeInsets.only(top: 5, left: 10),
+      //     child: Text(
+      //       metadata,
+      //       style: TextStyle(
+      //           fontSize: 15.5,
+      //           color: Colors.grey[600],
+      //           fontWeight: FontWeight.bold),
+      //     ),
+      //   ),
+      // ),
+      Padding(
+          padding: index != 0 && index != 1
+              ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
+              : EdgeInsets.only(left: 7.0, right: 7, top: 4),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(12.0),
+            child: Image.network(
+              image,
+              fit: BoxFit.cover,
+            ),
+          )),
+      Align(
+        alignment: Alignment.topLeft,
+        child: Padding(
+          padding: EdgeInsets.only(top: 5, left: 10, right: 10),
+          child: Text(
+            name,
+            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            maxLines: 2,
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.topLeft,
+        child: Padding(
+          padding: EdgeInsets.only(top: 5, left: 10),
+          child: Text(
+            'Price: \$' + price,
+            style: TextStyle(
+                fontSize: 15.5,
+                color: Colors.grey[600],
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+    ],
+  );
 }

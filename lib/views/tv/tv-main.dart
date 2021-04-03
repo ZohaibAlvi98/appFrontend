@@ -108,7 +108,7 @@ class _TvState extends State<Tv> {
                       height: 50,
                     ),
                     // Featured Style Heading
-                    Heading(context, 'FEATURED PRODUCTS'),
+                    Heading2(context, 'FEATURED PRODUCTS'),
                     SizedBox(
                       height: 20,
                     ),
