@@ -244,7 +244,7 @@ Widget lists(context, check, image, index, name, price, id) {
           padding: EdgeInsets.only(top: 5, left: 10, right: 10),
           child: Text(
             name,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             maxLines: 2,
           ),
         ),

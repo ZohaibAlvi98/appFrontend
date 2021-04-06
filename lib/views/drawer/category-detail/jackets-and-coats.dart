@@ -65,50 +65,50 @@ class _JacketCoatsState extends State<JacketCoats> {
         child: Container(
           child: Column(
             children: [
-              // FutureBuilder(
-              //     future: data.getDrawrProducts("86"),
-              //     // artistService.getArtist(page),
+              FutureBuilder(
+                  future: data.getDrawrProducts("87"),
+                  // artistService.getArtist(page),
 
-              //     builder: (BuildContext context,
-              //         AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-              //       if (snapshot.hasData) {
-              //         // List<ArtistModel> artist = snapshot.data;
-              //         return GridView.builder(
-              //             shrinkWrap: true,
-              //             physics: const NeverScrollableScrollPhysics(),
-              //             padding: EdgeInsets.only(left: 1, right: 1, top: 20),
-              //             gridDelegate:
-              //                 SliverGridDelegateWithFixedCrossAxisCount(
-              //               crossAxisCount: 2,
-              //               childAspectRatio:
-              //                   MediaQuery.of(context).size.width /
-              //                       (MediaQuery.of(context).size.height / 1.22),
-              //             ),
-              //             // scrollDirection: Axis.vertical,
-              //             itemCount: snapshot.data.length,
-              //             itemBuilder: (BuildContext context, int index) {
-              //               final item = snapshot.data[index];
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.hasData) {
+                      // List<ArtistModel> artist = snapshot.data;
+                      return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(left: 1, right: 1, top: 20),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.22),
+                          ),
+                          // scrollDirection: Axis.vertical,
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = snapshot.data[index];
 
-              //               return InkWell(
-              //                 onTap: () => _navigatorPage(context),
-              //                 child: lists(
-              //                   context,
-              //                   'men',
-              //                   item['images'][0]['src'],
-              //                   index,
-              //                   item['name'],
-              //                   item['price'],
-              //                   item['id'].toString(),
-              //                 ),
-              //               );
-              //             });
-              //       } else if (snapshot.hasError) {
-              //         print(snapshot.error);
-              //         print('Sorry');
-              //       }
+                            return InkWell(
+                              onTap: () => _navigatorPage(context),
+                              child: lists(
+                                context,
+                                'men',
+                                item['images'][0]['src'],
+                                index,
+                                item['name'],
+                                item['price'],
+                                item['id'].toString(),
+                              ),
+                            );
+                          });
+                    } else if (snapshot.hasError) {
+                      print(snapshot.error);
+                      print('Sorry');
+                    }
 
-              //       return Center(child: CircularProgressIndicator());
-              //     }),
+                    return Center(child: CircularProgressIndicator());
+                  }),
             ],
           ),
         ),
