@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/views/drawer/men&women.dart';
-import '../../../services/drawr-services-sneaker.dart';
+import '../../../services/drawr-services-sneakers-all.dart';
 
 import 'package:splyxp/widgets/navbar.dart';
 

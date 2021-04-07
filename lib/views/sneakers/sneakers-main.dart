@@ -104,11 +104,7 @@ class _SneakersState extends State<Sneakers> {
                       SizedBox(
                         height: 20,
                       ),
-                      SizedBox(
-                          height: 320,
-                          child:
-                              sneakerListWith3(context, img, Colors.white12)),
-
+                      SizedBox(height: 320, child: sneakerListWith4(context)),
                       Container(
                         padding: EdgeInsets.only(top: 20, right: 30, left: 30),
                         child: Stack(
