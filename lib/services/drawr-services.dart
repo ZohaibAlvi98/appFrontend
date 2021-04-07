@@ -6,7 +6,7 @@ class DrawrServices {
     String ck = 'ck_dfa336f01dea059c26a82f16e1b547edf1fc7aa7';
     String cs = 'cs_2ad62fc78e4ec304311ede859aff8fc44a480646';
     String catID = id;
-    String numprod = "20";
+    String numprod = "26";
     final String url =
         "https://splystyle.net/wp-json/wc/v2/products?consumer_key=" +
             ck +

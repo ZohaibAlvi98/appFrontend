@@ -238,7 +238,7 @@ Widget sneakerListWith4(context) {
                         child: Text(
                           item['name'],
                           style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 9.75,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -249,7 +249,7 @@ Widget sneakerListWith4(context) {
                       child: Text(
                         'Price: \$' + item['price'],
                         style: TextStyle(
-                            fontSize: 14,
+                            fontSize: 9,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                       ),
