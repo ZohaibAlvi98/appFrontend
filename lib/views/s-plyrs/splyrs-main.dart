@@ -13,6 +13,7 @@ import 'channel/channel.dart';
 import '../requests/request-splyr.dart';
 import '../../widgets/horizontalList.dart';
 import '../auth/signup/signup.dart';
+import '../../services/splyrs/featured-splyr-services.dart';
 
 class Splyrs extends StatefulWidget {
   @override
@@ -69,6 +70,7 @@ class _SplyrsState extends State<Splyrs> {
     'assets/images/styles/list7.jpg',
     'assets/images/styles/list8.jpg'
   ];
+  FeaturedSplyrs data = new FeaturedSplyrs();
   void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
@@ -130,15 +132,16 @@ class _SplyrsState extends State<Splyrs> {
                         ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
                         : EdgeInsets.only(top: 20.0, left: 55, right: 65),
                     child: Text(
-                        'Curated selection of fashion and lifestyle products from popular SPLYRS from across the world',
+                        'Curated selection of fashion and lifestyle products from popular SPLYRS from across the world.',
                         style: TextStyle(
+                            fontFamily: 'RMNUEUREGULAR',
                             height: 1.3,
                             fontSize: 20,
                             color: Colors.black,
                             fontWeight: FontWeight.w400)),
                   ),
                   SizedBox(
-                    height: width < 400 ? 12 : 9,
+                    height: width < 400 ? 12 : 10,
                   ),
                   FlatButton(
                     shape: RoundedRectangleBorder(
@@ -159,56 +162,52 @@ class _SplyrsState extends State<Splyrs> {
                     height: width < 400 ? 62 : 45,
                   ),
                   Heading(context, 'FEATURED SPLYRS'),
-                  // InkWell(
-                  //   onTap: () {
-                  //     _navigatorPage('channel');
-                  //   },
-                  //   child: CarouselWithTextDots(
-                  //     carouselImg: carouselImg,
-                  //   ),
-                  // ),
-                  // SizedBox(
-                  //   height: 25,
-                  // ),
-                  featuredSplyrs(
-                      width,
-                      _navigatorPage,
-                      "assets/images/splyrs/splyr3.jpg",
-                      "SPLY STORE",
-                      "SPLY Store, London, United Kingdom (UK)"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 270,
-                    child: horizontalListWith3(
-                        context, imgProduct, Colors.white12),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  featuredSplyrs(
-                      width,
-                      _navigatorPage,
-                      "assets/images/splyrs/splyr1.jpg",
-                      "FLIGHT CLUB",
-                      "535 N Fairfax Ave, Los Angeles, California, (US)"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 270,
-                    child: horizontalListWith3(context, img, Colors.white12),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  featuredSplyrs(
-                      width,
-                      _navigatorPage,
-                      "assets/images/splyrs/splyr2.jpg",
-                      "ZOO FASHION",
-                      "London, United Kingdom (UK)"),
+                  FutureBuilder(
+                      future: data.getFeaturedSplyrs(),
+                      // artistService.getArtist(page),
+
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                        if (snapshot.hasData) {
+                          // List<ArtistModel> artist = snapshot.data;
+                          return GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              padding:
+                                  EdgeInsets.only(left: 0, right: 0, top: 2),
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 1,
+                                childAspectRatio: MediaQuery.of(context)
+                                        .size
+                                        .width /
+                                    (MediaQuery.of(context).size.height / 2.6),
+                              ),
+                              // scrollDirection: Axis.vertical,
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                final item = snapshot.data[index];
+                                return InkWell(
+                                  onTap: () => _navigatorPage(context),
+                                  child: featuredSplyrs(
+                                    width,
+                                    context,
+                                    'men',
+                                    _navigatorPage,
+                                    item['image'],
+                                    index,
+                                    item['title'],
+                                    item['splyr_cities'],
+                                    item['short_text'],
+                                  ),
+                                );
+                              });
+                        } else if (snapshot.hasError) {
+                          print(snapshot.error);
+                          print('Sorry');
+                        }
+                        return Center(child: CircularProgressIndicator());
+                      }),
                   SizedBox(
                     height: 30,
                   ),
@@ -273,193 +272,6 @@ class _SplyrsState extends State<Splyrs> {
                                       )
                                     ]),
                               )))),
-                  // GridView.builder(
-                  //   scrollDirection: Axis.vertical,
-                  //   shrinkWrap: true,
-                  //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  //       crossAxisCount: 2),
-                  //   itemCount: obj.length * 2,
-                  //   physics: NeverScrollableScrollPhysics(),
-                  //   itemBuilder: (_, index) {
-                  //     if (index % 4 == 0 || (index - 3) % 4 == 0) {
-                  //       if (a == 0 && index == 0) {
-                  //         return Container(
-                  //             margin: EdgeInsets.only(left: 20),
-                  //             decoration: new BoxDecoration(
-                  //               borderRadius: BorderRadius.circular(8),
-                  //               image: new DecorationImage(
-                  //                 image: ExactAssetImage(gridImg[a]),
-                  //                 fit: BoxFit.fill,
-                  //               ),
-                  //             ));
-                  //       }
-
-                  //       a++;
-                  //       return Container(
-                  //           margin: index % 2 == 0
-                  //               ? EdgeInsets.only(left: 20)
-                  //               : EdgeInsets.only(right: 20),
-                  //           decoration: new BoxDecoration(
-                  //             borderRadius: BorderRadius.circular(8),
-                  //             image: new DecorationImage(
-                  //               image: ExactAssetImage(gridImg[a]),
-                  //               fit: BoxFit.fill,
-                  //             ),
-                  //           ));
-                  //     }
-
-                  //     return Container(
-                  //       child: Padding(
-                  //         padding: width < 400
-                  //             ? index % 2 != 0
-                  //                 ? EdgeInsets.only(left: 15, top: 45)
-                  //                 : EdgeInsets.only(left: 25, top: 45)
-                  //             : EdgeInsets.only(left: 25, top: 56),
-                  //         child: index == 1
-                  //             ? InkWell(
-                  //                 onTap: () {
-                  //                   _navigatorPage('shopper');
-                  //                 },
-                  //                 child: Stack(children: [
-                  //                   Padding(
-                  //                     padding: EdgeInsets.only(top: 10.0),
-                  //                     child: Text(
-                  //                       'MRKTDEUX',
-                  //                       style: TextStyle(
-                  //                           fontWeight: FontWeight.w700,
-                  //                           fontSize: 20),
-                  //                     ),
-                  //                   ),
-                  //                   Padding(
-                  //                       padding: EdgeInsets.only(top: 40),
-                  //                       child: Column(
-                  //                         crossAxisAlignment:
-                  //                             CrossAxisAlignment.start,
-                  //                         children: [
-                  //                           Row(
-                  //                             children: [
-                  //                               Padding(
-                  //                                 padding: EdgeInsets.only(
-                  //                                     bottom: 9.0),
-                  //                                 child: Icon(
-                  //                                   Icons.location_pin,
-                  //                                   size: 15,
-                  //                                 ),
-                  //                               ),
-                  //                               Text(
-                  //                                 'MIAMI, FLORIDA,\nUNITED STATES (US)',
-                  //                                 style: TextStyle(
-                  //                                     fontSize:
-                  //                                         width < 400 ? 9 : 11,
-                  //                                     fontWeight:
-                  //                                         FontWeight.w700),
-                  //                               ),
-                  //                             ],
-                  //                           ),
-
-                  //                         ],
-                  //                       ))
-                  //                 ]),
-                  //               )
-                  //             : index == 2
-                  //                 ? Stack(
-                  //                     children: [
-                  //                       Padding(
-                  //                         padding: width < 400
-                  //                             ? EdgeInsets.only(
-                  //                                 top: 15, left: 0.0)
-                  //                             : EdgeInsets.only(
-                  //                                 top: 15, left: 0.0),
-                  //                         child: Text('TOKENMIAMI',
-                  //                             style: TextStyle(
-                  //                                 fontWeight: FontWeight.w700,
-                  //                                 fontSize: 20)),
-                  //                       ),
-                  //                       Column(
-                  //                         crossAxisAlignment:
-                  //                             CrossAxisAlignment.start,
-                  //                         children: [
-                  //                           Padding(
-                  //                             padding: width < 400
-                  //                                 ? EdgeInsets.only(
-                  //                                     top: 45, left: 0)
-                  //                                 : EdgeInsets.only(
-                  //                                     top: 45, left: 0),
-                  //                             child: Stack(
-                  //                               children: [
-                  //                                 Icon(
-                  //                                   Icons.location_pin,
-                  //                                   size: 15,
-                  //                                 ),
-                  //                                 Padding(
-                  //                                   padding: EdgeInsets.only(
-                  //                                       left: 15.0),
-                  //                                   child: Text(
-                  //                                     'Address: 1537 NW 23rd Street florida, United States ((US), 33142)',
-                  //                                     style: TextStyle(
-                  //                                         fontSize: width < 400
-                  //                                             ? 9
-                  //                                             : 11,
-                  //                                         fontWeight:
-                  //                                             FontWeight.w700),
-                  //                                   ),
-                  //                                 ),
-                  //                               ],
-                  //                             ),
-                  //                           ),
-
-                  //                         ],
-                  //                       )
-                  //                     ],
-                  //                   )
-                  //                 : Stack(children: [
-                  //                     Padding(
-                  //                       padding:
-                  //                           EdgeInsets.only(top: 20, right: 5),
-                  //                       child: Text('ZOO FASHION',
-                  //                           style: TextStyle(
-                  //                               fontWeight: FontWeight.w700,
-                  //                               fontSize: 20)),
-                  //                     ),
-                  //                     Padding(
-                  //                         padding: EdgeInsets.only(top: 50),
-                  //                         child: Column(
-                  //                           crossAxisAlignment:
-                  //                               CrossAxisAlignment.start,
-                  //                           children: [
-                  //                             Row(
-                  //                               children: [
-                  //                                 Padding(
-                  //                                   padding: EdgeInsets.only(
-                  //                                       bottom: 10.0),
-                  //                                   child: Icon(
-                  //                                     Icons.location_pin,
-                  //                                     size: 15,
-                  //                                   ),
-                  //                                 ),
-                  //                                 Padding(
-                  //                                   padding: EdgeInsets.only(
-                  //                                       right: 5.0),
-                  //                                   child: Text(
-                  //                                     'London United Kingdom\n (UK)',
-                  //                                     style: TextStyle(
-                  //                                         fontSize: width < 400
-                  //                                             ? 9
-                  //                                             : 11,
-                  //                                         fontWeight:
-                  //                                             FontWeight.w700),
-                  //                                   ),
-                  //                                 ),
-                  //                               ],
-                  //                             ),
-
-                  //                           ],
-                  //                         ))
-                  //                   ]),
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
                   SizedBox(
                     height: 20,
                   )
@@ -517,7 +329,8 @@ Widget lists(context, check, index) {
   );
 }
 
-Widget featuredSplyrs(width, _navigatorPage, img, name, location) {
+Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
+    title, location, shorttext) {
   return InkWell(
     onTap: () {
       _navigatorPage('channel');
@@ -525,13 +338,16 @@ Widget featuredSplyrs(width, _navigatorPage, img, name, location) {
     child: Container(
         child: Stack(children: [
       Container(
-        child: Image.asset(img),
-        padding: EdgeInsets.only(top: width / 12),
+        child: Image.network(
+          image,
+          fit: BoxFit.cover,
+        ),
+        padding: EdgeInsets.only(top: width / 15),
       ),
       Padding(
-        padding: EdgeInsets.only(top: width / 1.8, left: 30),
+        padding: EdgeInsets.only(top: width / 2.55, left: 20),
         child: Text(
-          name,
+          title,
           style: TextStyle(
               fontSize: width < 400 ? 22 : 25,
               color: Colors.white,
@@ -539,23 +355,34 @@ Widget featuredSplyrs(width, _navigatorPage, img, name, location) {
         ),
       ),
       Padding(
-          padding: EdgeInsets.only(top: width / 1.55, left: 28.2),
+        padding: EdgeInsets.only(top: width / 2.2, left: 20),
+        child: Text(
+          shorttext,
+          style: TextStyle(
+              fontSize: width < 400 ? 9 : 12,
+              color: Colors.white,
+              fontWeight: FontWeight.w600),
+        ),
+      ),
+      Padding(
+          padding: EdgeInsets.only(top: width / 2, left: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  Icon(
-                    Icons.location_pin,
-                    color: Colors.white,
-                    size: 12,
-                  ),
+                  // Icon(
+                  //   Icons.location_pin,
+                  //   color: Colors.black,
+                  //   size: 12,
+                  // ),
                   Text(
-                    location,
+                    location.toUpperCase(),
                     style: TextStyle(
-                        fontSize: width < 400 ? 9 : 12,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
+                      fontSize: width < 400 ? 9 : 12,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
                   ),
                 ],
               ),

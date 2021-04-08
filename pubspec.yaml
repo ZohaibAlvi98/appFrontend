@@ -98,6 +98,9 @@ flutter:
     - family: RMNUEU
       fonts:
         - asset: assets/fonts/RMNeue-Bold.ttf
+    - family: RMNUEUREGULAR
+      fonts:
+        - asset: assets/fonts/RMNeue-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

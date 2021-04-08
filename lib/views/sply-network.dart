@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/rss-detail/rss-detail.dart';
+import '../services/editorials/editoirals.dart';
 
 class SplyNetwork extends StatefulWidget {
   @override

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/products/product-detail.dart';
 import '../services/drawr-services-sneaker.dart';
+import '../services/sneakers/sneakers-top-trending.dart';
 
-DrawrServices data = DrawrServices();
+TrendingSneakers data = TrendingSneakers();
+DrawrServices collect = DrawrServices();
 void _navigatorPage(context) {
   // Navigator.of(context).pop(new PageRouteBuilder());
   Navigator.of(context).push(new PageRouteBuilder(
@@ -191,7 +193,7 @@ Widget sneakerListWith3(context, img, color) {
 Widget sneakerListWith4(context) {
   double width = MediaQuery.of(context).size.width;
   return FutureBuilder(
-      future: data.getDrawrProducts("15"),
+      future: collect.getDrawrProducts("15"),
       builder: (BuildContext context,
           AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
         if (!snapshot.hasData) {
@@ -237,6 +239,81 @@ Widget sneakerListWith4(context) {
                       child: Container(
                         child: Text(
                           item['name'],
+                          style: TextStyle(
+                            fontSize: 9.75,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: 9, top: 4),
+                      child: Text(
+                        'Price: \$' + item['price'],
+                        style: TextStyle(
+                            fontSize: 9,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.grey),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        }
+      });
+}
+
+Widget sneakerListTopTrending(context) {
+  double width = MediaQuery.of(context).size.width;
+  return FutureBuilder(
+      future: data.getTrendingSneakers(),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            // physics: NeverScrollableScrollPhysics(),
+            // shrinkWrap: true,
+
+            padding: EdgeInsets.only(right: 20.0, left: 12),
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              final item = snapshot.data[index];
+              return Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(right: 2, left: 1),
+                      child: InkWell(
+                        onTap: () => _navigatorPage(context),
+                        child: Card(
+                          child: Wrap(children: [
+                            SizedBox(
+                              height: 190,
+                              width: 190,
+                              child: Image.network(
+                                item['image'],
+                                fit: BoxFit.cover,
+                                // width: imgwidth,
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      // padding: width < 400
+                      //     ? EdgeInsets.only(right: 15.0)
+                      //     : EdgeInsets.only(right: 32.0),
+                      padding: EdgeInsets.only(left: 9, top: 4),
+                      child: Container(
+                        child: Text(
+                          item['product_title'],
                           style: TextStyle(
                             fontSize: 9.75,
                             fontWeight: FontWeight.bold,

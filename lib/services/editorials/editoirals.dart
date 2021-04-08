@@ -1,15 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class FeaturedSplyrs {
-  Future<List<Map<String, dynamic>>> getFeaturedSplyrs() async {
+class Editorials {
+  Future<List<Map<String, dynamic>>> getEditorials() async {
     // String ck = 'ck_13f0f0565a1fe054e5275e937988bb73f17590a4';
     // String cs = 'cs_7548929da505bb246d7a11d76007cc465e3ce572';
     // String catID = id;
     // String numprod = "4";
     final String url =
-        "https://splystyle.net/wp-json/getfeaturedsplyrs/v1/get-featured-splyrs";
-    // consumer_key=" +
+        "https://splystyle.net/wp-json/geteditorialslisting/v1/get-editorials-listing";
+    // consumer_key="
+    // +
     //     ck +
     //     "&consumer_secret=" +
     //     cs +
@@ -18,7 +19,7 @@ class FeaturedSplyrs {
     //     "&per_page=" +
     //     numprod +
     //     "&status=publish";
-    print('SUCCESS');
+    print('Success');
     // print(page);
 
     final http.Response res = await http.get(
