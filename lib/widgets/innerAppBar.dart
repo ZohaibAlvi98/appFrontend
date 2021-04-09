@@ -343,7 +343,9 @@ Widget drawerAppBar(context, index, authenticated) {
                         },
                         child: ListTile(
                           title: Text('New Addition',
-                              style: TextStyle(color: Colors.white)),
+                              style: TextStyle(
+                                  fontFamily: 'RMNUEUSEMIBOLD',
+                                  color: Colors.white)),
                         ),
                       )
                     : null,
@@ -354,7 +356,9 @@ Widget drawerAppBar(context, index, authenticated) {
                         },
                         child: ListTile(
                           title: Text('Categories',
-                              style: TextStyle(color: Colors.white)),
+                              style: TextStyle(
+                                  fontFamily: 'RMNUEUSEMIBOLD',
+                                  color: Colors.white)),
                         ),
                       )
                     : null,
@@ -365,7 +369,9 @@ Widget drawerAppBar(context, index, authenticated) {
                         },
                         child: ListTile(
                           title: Text('Men',
-                              style: TextStyle(color: Colors.white)),
+                              style: TextStyle(
+                                  fontFamily: 'RMNUEUSEMIBOLD',
+                                  color: Colors.white)),
                         ),
                       )
                     : null,
@@ -376,7 +382,9 @@ Widget drawerAppBar(context, index, authenticated) {
                         },
                         child: ListTile(
                           title: Text('Women',
-                              style: TextStyle(color: Colors.white)),
+                              style: TextStyle(
+                                  fontFamily: 'RMNUEUSEMIBOLD',
+                                  color: Colors.white)),
                         ),
                       )
                     : null,
@@ -386,7 +394,8 @@ Widget drawerAppBar(context, index, authenticated) {
                   },
                   child: ListTile(
                     title: Text('Request to i-Shopper',
-                        style: TextStyle(color: Colors.white)),
+                        style: TextStyle(
+                            fontFamily: 'RMNUEUSEMIBOLD', color: Colors.white)),
                   ),
                 )
               ]).toList()),

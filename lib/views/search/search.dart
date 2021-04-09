@@ -43,7 +43,10 @@ class _SearchState extends State<Search> {
             child: Text(
               'SEARCH',
               style: TextStyle(
-                  fontSize: 30, fontWeight: FontWeight.w900, letterSpacing: 1),
+                  fontFamily: 'RMNUEU',
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1),
             ),
           ),
           Container(
@@ -69,6 +72,7 @@ class _SearchState extends State<Search> {
                 errorBorder: InputBorder.none,
                 disabledBorder: InputBorder.none,
                 hintText: '  Search Products, Design & etc',
+                hintStyle: TextStyle(fontFamily: 'RMNUEUREGULAR'),
                 border: new OutlineInputBorder(
                   borderRadius: BorderRadius.all(
                     Radius.circular(1.0),
@@ -105,6 +109,7 @@ class _SearchState extends State<Search> {
                                 Text(
                                   heading[index],
                                   style: TextStyle(
+                                      fontFamily: 'RMNUEUSEMIBOLD',
                                       fontSize: width < 400 ? 18 : 21,
                                       fontWeight: FontWeight.w700),
                                 ),

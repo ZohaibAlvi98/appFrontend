@@ -18,7 +18,7 @@ Widget Heading(context, text) {
     ),
     Text(
       text,
-      style: TextStyle(fontSize: 22, fontFamily: 'RMNUEU'),
+      style: TextStyle(fontSize: 17.5, fontFamily: 'Monument'),
     ),
     Expanded(
       child: new Container(

@@ -228,133 +228,143 @@ Widget editirialscards(
 
   final logo = "https:" + authorlogo;
   return Container(
-      padding: EdgeInsets.only(right: 15, left: 15, top: 0),
-      child: InkWell(
-        onTap: () {
-          _navigatorPage(context);
-        },
-        child: Padding(
-          padding: EdgeInsets.only(bottom: 7.0),
-          child: Card(
-            elevation: 1,
-            margin: EdgeInsets.only(bottom: 5),
-            child: Stack(
-              children: [
-                Image.network(
-                  image,
-                  height: 270,
-                  fit: BoxFit.contain,
-                ),
-                Align(
-                  // alignment: Alignment.centerLeft,
-                  child: Row(
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(top: 180, left: 5),
-                        width: width * 0.14,
-                        height: 50,
-                        // decoration: new BoxDecoration(
-                        //   border: new Border.all(
-                        //     color: Colors.grey[400],
-                        //     width: 2,
-                        //   ),
-                        //   color: Colors.white,
-                        //   shape: BoxShape.circle,
-                        // ),
+    padding: EdgeInsets.only(right: 15, left: 15, top: 0),
+    child: InkWell(
+      onTap: () {
+        _navigatorPage(context);
+      },
+      child: Padding(
+        padding: EdgeInsets.only(bottom: 7.0),
+        child: Card(
+          elevation: 1,
+          margin: EdgeInsets.only(bottom: 5),
+          child: Stack(
+            children: [
+              Image.network(
+                image,
+                height: 270,
+                fit: BoxFit.fill,
+              ),
+              Align(
+                // alignment: Alignment.centerLeft,
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 180, left: 5),
+                      width: width * 0.14,
+                      height: 60,
+                      // decoration: new BoxDecoration(
+                      //   border: new Border.all(
+                      //     color: Colors.grey[400],
+                      //     width: 2,
+                      //   ),
+                      //   color: Colors.white,
+                      //   shape: BoxShape.circle,
+                      // ),
 
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.8),
-                        //     spreadRadius: 0.1,
-                        //     blurRadius: 5,
-                        //     offset:
-                        //         Offset(0, 7), // changes position of shadow
-                        //   ),
-                        // ],
-                        // ),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey.withOpacity(0.8),
+                      //     spreadRadius: 0.1,
+                      //     blurRadius: 5,
+                      //     offset:
+                      //         Offset(0, 7), // changes position of shadow
+                      //   ),
+                      // ],
+                      // ),
 
-                        child: Padding(
-                          padding: width < 400
-                              ? EdgeInsets.only(left: 6.5, top: 10)
-                              : EdgeInsets.only(left: 6.0, top: 1),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.white,
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage(logo),
-                              radius: 30,
+                      child: Padding(
+                        padding: width < 400
+                            ? EdgeInsets.only(left: 6.5, top: 10)
+                            : EdgeInsets.only(left: 6.0, top: 1),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          backgroundImage: NetworkImage(logo),
+                          radius: 30,
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.4),
+                            spreadRadius: 0.5,
+                            blurRadius: 5,
+                            offset: Offset(2, 1), // changes position of shadow
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 285.0, left: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: width < 400
+                                  ? EdgeInsets.only(right: 50)
+                                  : EdgeInsets.only(right: 50.0),
+                              child: Text(
+                                author,
+                                style: TextStyle(
+                                    fontSize: width < 400 ? 18 : 20,
+                                    fontWeight: FontWeight.w900),
+                              ),
                             ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 0.0),
+                              child: Text(
+                                date,
+                                style:
+                                    TextStyle(fontSize: width < 400 ? 11 : 14),
+                              ),
+                            )
+                          ],
+                        )),
+                  ],
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 3),
+                child: Column(
+                  children: [
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 13.0, top: 335, right: 14),
+                          child: Text(
+                            title,
+                            maxLines: 2,
+                            style: TextStyle(
+                                fontSize: width < 400 ? 22 : 17,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.black),
+                          ),
+                        )),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: 7.0, left: 13, bottom: 10, right: 13),
+                        child: SizedBox(
+                          width: 500,
+                          child: Text(
+                            shorttext,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 12),
                           ),
                         ),
                       ),
-                      Padding(
-                          padding: EdgeInsets.only(top: 285.0, left: 7),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: width < 400
-                                    ? EdgeInsets.only(right: 50)
-                                    : EdgeInsets.only(right: 50.0),
-                                child: Text(
-                                  author,
-                                  style: TextStyle(
-                                      fontSize: width < 400 ? 18 : 20,
-                                      fontWeight: FontWeight.w900),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 0.0),
-                                child: Text(
-                                  date,
-                                  style: TextStyle(
-                                      fontSize: width < 400 ? 11 : 14),
-                                ),
-                              )
-                            ],
-                          )),
-                    ],
-                  ),
+                    )
+                  ],
                 ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 3),
-                  child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 13.0, top: 335, right: 14),
-                            child: Text(
-                              title,
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontSize: width < 400 ? 22 : 17,
-                                  fontWeight: FontWeight.w600,
-                                  color: Colors.black),
-                            ),
-                          )),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 7.0, left: 13, bottom: 10, right: 13),
-                          child: SizedBox(
-                            width: 500,
-                            child: Text(
-                              shorttext,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 12),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      ));
+      ),
+    ),
+  );
 }

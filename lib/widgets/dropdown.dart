@@ -96,7 +96,9 @@ class _DropDownState extends State<DropDown> {
                           title: new Text(
                             list2[i],
                             style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w500),
+                                fontFamily: 'RMNUEUSEMIBOLD',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500),
                           ),
                           children: list
                               .map((val) => new ListTile(

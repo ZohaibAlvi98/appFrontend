@@ -45,6 +45,7 @@ Widget RoundedCard(context, dividingWidth1, dividingWidth2) {
                   Text(
                     'End Clothing',
                     style: TextStyle(
+                        fontFamily: 'RMNUEU',
                         fontSize: 20,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),
@@ -52,7 +53,9 @@ Widget RoundedCard(context, dividingWidth1, dividingWidth2) {
                   Text(
                     'Nov 4, 2020           ',
                     style: TextStyle(
-                        color: Colors.grey[500], fontWeight: FontWeight.w500),
+                        fontFamily: 'RMNUEUREGULAR',
+                        color: Colors.grey[500],
+                        fontWeight: FontWeight.w500),
                   )
                 ],
               )),

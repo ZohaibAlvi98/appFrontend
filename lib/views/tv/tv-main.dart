@@ -99,6 +99,7 @@ class _TvState extends State<Tv> {
                       child: Text(
                           'S-PLY seemlessly blends interaction and e commerce. Connect yourself to daily shoppables featuring.',
                           style: TextStyle(
+                              fontFamily: 'RMNUEUREGULAR',
                               fontSize: 20,
                               height: 1.3,
                               color: Colors.black,
@@ -129,7 +130,8 @@ class _TvState extends State<Tv> {
                       padding: const EdgeInsets.only(top: 2.0),
                       child: Text(
                         'S-PLY TV ORIGINALS',
-                        style: TextStyle(fontSize: 19),
+                        style: TextStyle(
+                            fontFamily: 'RMNUEUREGULAR', fontSize: 19),
                       ),
                     ),
                     CarouselWithDots(

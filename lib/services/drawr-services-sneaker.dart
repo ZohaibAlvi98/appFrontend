@@ -6,7 +6,7 @@ class DrawrServices {
     String ck = 'ck_13f0f0565a1fe054e5275e937988bb73f17590a4';
     String cs = 'cs_7548929da505bb246d7a11d76007cc465e3ce572';
     String catID = id;
-    String numprod = "4";
+    String numprod = "12";
     final String url =
         "https://sneakerxp.com/wp-json/wc/v3/products?consumer_key=" +
             ck +
