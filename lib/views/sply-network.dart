@@ -243,7 +243,7 @@ Widget editirialscards(
               Image.network(
                 image,
                 height: 270,
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
               ),
               Align(
                 // alignment: Alignment.centerLeft,

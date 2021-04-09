@@ -80,25 +80,45 @@ class _HomeState extends State<Home> {
     ];
     return authenticated == null
         ? Scaffold(
-            body: StaggeredGridView.countBuilder(
-              crossAxisCount: 4,
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) => GestureDetector(
-                onTap: () => _onItemTapped(index),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset(img[index]),
-                    ],
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Card(
+                    child: Container(
+                      child: Image.asset(
+                        'assets/images/home/home-banner.jpg',
+                      ),
+                    ),
                   ),
-                ),
+                  GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.59),
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) =>
+                        GestureDetector(
+                      onTap: () => _onItemTapped(index),
+                      child: Card(
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20)),
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(
+                              img[index],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    padding: EdgeInsets.only(top: 5),
+                  ),
+                ],
               ),
-              padding: EdgeInsets.only(top: 5),
-              staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
-              mainAxisSpacing: 1.0,
-              crossAxisSpacing: 1.0,
             ),
           )
         : Dashboard();
