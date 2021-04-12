@@ -393,3 +393,47 @@ Widget drawerAppBar(context, index, authenticated) {
     ],
   ));
 }
+
+Widget appbarWithMenuNew(context) {
+  double width = MediaQuery.of(context).size.width;
+  double height =
+      MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top;
+
+  return AppBar(
+    leading: Builder(
+      builder: (context) => IconButton(
+        icon: new Icon(
+          Icons.menu,
+          color: Colors.black,
+          size: width * 0.11,
+        ),
+        onPressed: () => Scaffold.of(context).openDrawer(),
+      ),
+    ),
+    actions: [
+      IconButton(
+          padding: EdgeInsets.only(right: 20, bottom: 10),
+          icon: new Image.asset(
+            'assets/images/bag.png',
+            height: 30,
+          ),
+          onPressed: () {
+            _navigatorPage(context, 'cart', '');
+          })
+    ],
+    toolbarHeight: 60,
+    elevation: 0,
+    backgroundColor: Colors.white12,
+    automaticallyImplyLeading: false,
+    title: Center(
+      child: Padding(
+        padding: const EdgeInsets.only(left: 1.0),
+        child: Image.asset(
+          'assets/images/home3.png',
+          height: height * 40,
+          width: 160,
+        ),
+      ),
+    ),
+  );
+}

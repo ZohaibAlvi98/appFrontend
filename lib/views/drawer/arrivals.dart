@@ -8,6 +8,7 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
+import '../../services/prdocut-detail-api.dart';
 
 class Arrivals extends StatefulWidget {
   final bool authenticated;
@@ -44,6 +45,7 @@ class _ArrivalsState extends State<Arrivals> {
     Profile()
   ];
   DrawrServices data = DrawrServices();
+  DrawrProducts connect = DrawrProducts();
   List img = [
     'assets/images/splyrs/channels/prod1.jpg',
     'assets/images/splyrs/channels/prod2.jpg',
@@ -52,13 +54,15 @@ class _ArrivalsState extends State<Arrivals> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
-  void _navigatorPage(context) {
+  void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail();
+          return ProductDetail(
+            prdid: id,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -145,6 +149,7 @@ class _ArrivalsState extends State<Arrivals> {
                       ),
                       FutureBuilder(
                           future: data.getDrawrProducts("589"),
+
                           // artistService.getArtist(page),
 
                           builder: (BuildContext context,
@@ -173,7 +178,8 @@ class _ArrivalsState extends State<Arrivals> {
                                     final item = snapshot.data[index];
 
                                     return InkWell(
-                                      onTap: () => _navigatorPage(context),
+                                      onTap: () =>
+                                          _navigatorPage(context, item['id']),
                                       child: lists(
                                         context,
                                         'men',
@@ -182,6 +188,7 @@ class _ArrivalsState extends State<Arrivals> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
+
                                         // item['meta_data'
                                         //         .contains("_select_brand")]
                                         //     ['value'],

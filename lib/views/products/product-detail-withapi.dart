@@ -8,8 +8,12 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
+import '../../services/prdocut-detail-api.dart';
+import '../drawer/arrivals.dart';
 
 class ProductDetail extends StatefulWidget {
+  final String prdid;
+  ProductDetail({Key key, @required this.prdid}) : super(key: key);
   @override
   _ProductDetailState createState() => _ProductDetailState();
 }
@@ -43,14 +47,17 @@ class _ProductDetailState extends State<ProductDetail> {
   String _selectedColor;
 
   static List<Widget> _bottomNavList = [
-    ProductDetail(),
+    ProductDetail(
+      prdid: null,
+    ),
     Search(),
     ChatList(),
     SplyNetwork(),
     Signup()
   ];
+  DrawrProducts data = DrawrProducts();
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext contexts) {
     return WillPopScope(
       onWillPop: () async {
         if (_selectedIndex == 0) return true;
@@ -69,167 +76,202 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
             child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 0
-            ? SingleChildScrollView(
-                child: Column(
-                  children: [
-                    CarouselWithDots(carouselImg: carouselImg),
-                    Padding(
-                      padding: EdgeInsets.only(top: 10),
+            ? FutureBuilder(
+                future: data.getProducts(widget.prdid),
+                builder: (BuildContext context,
+                    AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  } else
+                  //  ListView.builder(
+                  //     padding: EdgeInsets.only(right: 20.0, left: 12),
+                  //     itemCount: snapshot.data.length,
+                  //     itemBuilder: (BuildContext context, int index) {
+                  {
+                    final item = snapshot.data;
+                    print(snapshot);
+
+                    return SingleChildScrollView(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Thome Brown',
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
+                          CarouselWithDots(carouselImg: carouselImg),
                           Padding(
-                            padding: EdgeInsets.only(top: 10, left: 20),
-                            child: Text(
-                              '4 Bar Jacket',
-                              style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                            padding: EdgeInsets.only(top: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Center(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 13, right: 13),
+                                    child: Text(
+                                      item['name'],
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10, left: 20),
+                                  child: Center(
+                                    child: Text(
+                                      // item['categories'][3]['name'],
+                                      'zoo',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 10, left: 20),
+                                  child: Center(
+                                    child: Text('Price  \$' + item['price'],
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.grey[700],
+                                            fontWeight: FontWeight.w700)),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          SizedBox(
+                            height: 30,
+                          ),
+                          Container(
+                            width: 230.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.blueGrey)),
+                            child: Center(
+                              child: DropdownButton(
+                                // itemHeight: 40,
+                                underline: SizedBox.shrink(),
+                                iconSize: 30.0,
+                                hint: Text(
+                                  'Select Size',
+                                  style: TextStyle(fontSize: 18),
+                                ), // Not necessary for Option 1
+                                value: _selectedsize,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _selectedsize = newValue;
+                                  });
+                                },
+                                items: _size.map((sizes) {
+                                  return DropdownMenuItem(
+                                    child: new Text(sizes),
+                                    value: sizes,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 230.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.blueGrey)),
+                            child: Center(
+                              child: DropdownButton(
+                                // itemHeight: 40,
+                                underline: SizedBox.shrink(),
+                                iconSize: 30.0,
+                                hint: Text(
+                                  'Select Color',
+                                  style: TextStyle(fontSize: 18),
+                                ), // Not necessary for Option 1
+                                value: _selectedColor,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _selectedColor = newValue;
+                                  });
+                                },
+                                items: _color.map((sizes) {
+                                  return DropdownMenuItem(
+                                    child: new Text(sizes),
+                                    value: sizes,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 230.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.blueGrey)),
+                            child: Center(
+                              child: DropdownButton(
+                                // itemHeight: 40,
+                                underline: SizedBox.shrink(),
+                                iconSize: 30.0,
+                                hint: Text(
+                                  'Select Quantity',
+                                  style: TextStyle(fontSize: 18),
+                                ), // Not necessary for Option 1
+                                value: _selectedQty,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _selectedQty = newValue;
+                                  });
+                                },
+                                items: _qty.map((sizes) {
+                                  return DropdownMenuItem(
+                                    child: new Text(sizes),
+                                    value: sizes,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30,
+                          ),
                           Padding(
-                            padding: EdgeInsets.only(top: 10, left: 20),
-                            child: Text('Price  \$200',
-                                style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.grey[700],
-                                    fontWeight: FontWeight.w700)),
+                            padding: EdgeInsets.all(8),
+                            child: Container(
+                              height: 55,
+                              width: 230,
+                              child: FlatButton(
+                                color: Colors.black,
+                                // height: 40,
+                                onPressed: () {},
+                                child: Text(
+                                  'GET NOW',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: 18),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          item['description'],
+                          DropDown(
+                              brand: 'Thome Brown',
+                              link: '',
+                              description: item['description']),
+                          SizedBox(
+                            height: 25,
                           ),
                         ],
                       ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Container(
-                      width: 230.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          border: Border.all(color: Colors.blueGrey)),
-                      child: Center(
-                        child: DropdownButton(
-                          // itemHeight: 40,
-                          underline: SizedBox.shrink(),
-                          iconSize: 30.0,
-                          hint: Text(
-                            'Select Size',
-                            style: TextStyle(fontSize: 18),
-                          ), // Not necessary for Option 1
-                          value: _selectedsize,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedsize = newValue;
-                            });
-                          },
-                          items: _size.map((sizes) {
-                            return DropdownMenuItem(
-                              child: new Text(sizes),
-                              value: sizes,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: 230.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          border: Border.all(color: Colors.blueGrey)),
-                      child: Center(
-                        child: DropdownButton(
-                          // itemHeight: 40,
-                          underline: SizedBox.shrink(),
-                          iconSize: 30.0,
-                          hint: Text(
-                            'Select Color',
-                            style: TextStyle(fontSize: 18),
-                          ), // Not necessary for Option 1
-                          value: _selectedColor,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedColor = newValue;
-                            });
-                          },
-                          items: _color.map((sizes) {
-                            return DropdownMenuItem(
-                              child: new Text(sizes),
-                              value: sizes,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      width: 230.0,
-                      height: 45.0,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30.0),
-                          border: Border.all(color: Colors.blueGrey)),
-                      child: Center(
-                        child: DropdownButton(
-                          // itemHeight: 40,
-                          underline: SizedBox.shrink(),
-                          iconSize: 30.0,
-                          hint: Text(
-                            'Select Quantity',
-                            style: TextStyle(fontSize: 18),
-                          ), // Not necessary for Option 1
-                          value: _selectedQty,
-                          onChanged: (newValue) {
-                            setState(() {
-                              _selectedQty = newValue;
-                            });
-                          },
-                          items: _qty.map((sizes) {
-                            return DropdownMenuItem(
-                              child: new Text(sizes),
-                              value: sizes,
-                            );
-                          }).toList(),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 30,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Container(
-                        height: 55,
-                        width: 230,
-                        child: FlatButton(
-                          color: Colors.black,
-                          // height: 40,
-                          onPressed: () {},
-                          child: Text(
-                            'GET NOW',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    DropDown(brand: 'Thome Brown', link: ''),
-                    SizedBox(
-                      height: 25,
-                    ),
-                  ],
-                ),
-              )
+                    );
+                  }
+                })
             : _bottomNavList.elementAt(_selectedIndex),
         bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
       ),

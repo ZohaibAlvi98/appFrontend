@@ -112,9 +112,7 @@ class _TvState extends State<Tv> {
                     SizedBox(
                       height: 20,
                     ),
-                    SizedBox(
-                        height: 270,
-                        child: sneakerListWith3(context, img, Colors.white12)),
+                    SizedBox(height: 270, child: featuredProductsTv(context)),
                     SizedBox(
                       height: 30,
                     ),

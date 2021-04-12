@@ -181,7 +181,7 @@ class _SplyrsState extends State<Splyrs> {
                                 childAspectRatio: MediaQuery.of(context)
                                         .size
                                         .width /
-                                    (MediaQuery.of(context).size.height / 2.6),
+                                    (MediaQuery.of(context).size.height / 1.42),
                               ),
                               // scrollDirection: Axis.vertical,
                               itemCount: snapshot.data.length,
@@ -189,16 +189,31 @@ class _SplyrsState extends State<Splyrs> {
                                 final item = snapshot.data[index];
                                 return InkWell(
                                   onTap: () => _navigatorPage(context),
-                                  child: featuredSplyrs(
-                                    width,
-                                    context,
-                                    'men',
-                                    _navigatorPage,
-                                    item['image'],
-                                    index,
-                                    item['title'],
-                                    item['splyr_cities'],
-                                    item['short_text'],
+                                  child: Column(
+                                    children: [
+                                      featuredSplyrs(
+                                        width,
+                                        context,
+                                        'men',
+                                        _navigatorPage,
+                                        item['image'],
+                                        index,
+                                        item['title'],
+                                        item['splyr_cities'],
+                                        item['short_text'],
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      SizedBox(
+                                        height: 270,
+                                        child: horizontalListWith3(
+                                            context, img, Colors.white12),
+                                      ),
+                                      SizedBox(
+                                        height: 25,
+                                      ),
+                                    ],
                                   ),
                                 );
                               });
@@ -208,16 +223,6 @@ class _SplyrsState extends State<Splyrs> {
                         }
                         return Center(child: CircularProgressIndicator());
                       }),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  SizedBox(
-                    height: 270,
-                    child: horizontalListWith3(context, img, Colors.white12),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
                   Container(
                       padding: EdgeInsets.only(left: 13, right: 13, top: 5),
                       child: ListView.builder(

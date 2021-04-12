@@ -2,11 +2,18 @@ import 'package:flutter/material.dart';
 // import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
+import 'package:html/parser.dart';
 
 class DropDown extends StatefulWidget {
   final String brand;
   final String link;
-  DropDown({Key key, @required this.brand, @required this.link})
+  final String description;
+  DropDown(
+      {Key key,
+      @required this.brand,
+      @required this.link,
+      @required this.description,
+      store})
       : super(key: key);
   @override
   _DropDownState createState() => _DropDownState();
@@ -102,7 +109,7 @@ class _DropDownState extends State<DropDown> {
                               .map((val) => new ListTile(
                                     title: i == 0
                                         ? Text(
-                                            'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.\n',
+                                            widget.description,
                                             style: TextStyle(height: 1.8),
                                           )
                                         : i == 1
