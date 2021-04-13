@@ -186,12 +186,13 @@ class _ShopperChannelState extends State<ShopperChannel> {
                         Center(
                           child: Padding(
                             padding:
-                                EdgeInsets.only(top: width < 400 ? 200 : 225.0),
+                                EdgeInsets.only(top: width < 400 ? 200 : 228.0),
                             child: Text(
                               'SHOPPER',
                               style: TextStyle(
-                                  fontSize: 27,
+                                  fontSize: 25,
                                   fontWeight: FontWeight.w900,
+                                  fontFamily: 'RMNUEU',
                                   letterSpacing: 1),
                             ),
                           ),
@@ -205,7 +206,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Padding(
-                                    padding: EdgeInsets.only(left: 5.0),
+                                    padding: EdgeInsets.only(left: 5),
                                     child: Icon(
                                       Icons.location_pin,
                                     ),
@@ -215,6 +216,10 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                     child: FittedBox(
                                       child: Text(
                                         'Willow House 72-74 Paul St., London',
+                                        style: TextStyle(
+                                          fontSize: width < 400 ? 13.5 : 16,
+                                          fontFamily: 'RMNUEUREGULAR',
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -235,7 +240,9 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                   Text(
                                     ' stylist01@s-plystyle.com',
                                     style: TextStyle(
-                                        fontSize: width < 400 ? 13.5 : 15.5),
+                                      fontSize: width < 400 ? 13.5 : 16,
+                                      fontFamily: 'RMNUEUREGULAR',
+                                    ),
                                   ),
                                 ],
                               ),
@@ -259,7 +266,10 @@ class _ShopperChannelState extends State<ShopperChannel> {
                       },
                       child: Text(
                         'SUBSCRIBE NOW',
-                        style: TextStyle(color: Colors.black, fontSize: 17),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                            fontFamily: 'RMNUEUREGULAR'),
                       ),
                       color: Colors.white,
                       minWidth: 160,
@@ -279,7 +289,10 @@ class _ShopperChannelState extends State<ShopperChannel> {
                     padding: EdgeInsets.only(left: 15, right: 14),
                     child: Text(
                       'I am a certified S-PLY i-Stylist. Have 12 years of experience in Fashion and Style Industry having the pashion to help customers in seleting the modern styles and products that suit best to their personalities.',
-                      style: TextStyle(fontSize: 14, height: 1.3),
+                      style: TextStyle(
+                          fontSize: 14,
+                          height: 1.3,
+                          fontFamily: 'RMNUEUREGULAR'),
                     ),
                   ),
                   SizedBox(
@@ -341,8 +354,8 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                   child: Text(
                                     'S-PLY Supreme Jackets',
                                     style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.bold),
+                                        fontSize: 16,
+                                        fontFamily: 'RMNUEUSEMIBOLD'),
                                   ),
                                 ),
                               ),
@@ -351,11 +364,11 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                 child: Padding(
                                   padding: EdgeInsets.only(top: 5, left: 10),
                                   child: Text(
-                                    'Price \$290',
+                                    'Price \$ 290',
                                     style: TextStyle(
-                                        fontSize: 15.5,
+                                        fontSize: 15,
                                         color: Colors.grey[600],
-                                        fontWeight: FontWeight.bold),
+                                        fontFamily: 'RMNUEUREGULAR'),
                                   ),
                                 ),
                               ),
@@ -428,12 +441,11 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                   alignment: Alignment.topLeft,
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 5, left: 10),
-                                    child: Text(
-                                      'MRKT Combo Pack',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    child: Text('MRKT Combo Pack',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          fontFamily: 'RMNUEUSEMIBOLD',
+                                        )),
                                   ),
                                 ),
                                 Align(
@@ -441,11 +453,11 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                   child: Padding(
                                     padding: EdgeInsets.only(top: 5, left: 10),
                                     child: Text(
-                                      'Price \$290',
+                                      'Price \$ 290',
                                       style: TextStyle(
-                                          fontSize: 15.5,
+                                          fontSize: 15,
                                           color: Colors.grey[600],
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: 'RMNUEUREGULAR'),
                                     ),
                                   ),
                                 ),

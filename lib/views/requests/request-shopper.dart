@@ -24,8 +24,11 @@ class _RequestShopperState extends State<RequestShopper> {
               ),
               child: Text(
                 'Request or Ask about any product item, style or stylebox through our exclusive Request or Inquire service. Send us your personal detail as well as your request/query by filling up a simple form below.',
-                style:
-                    TextStyle(fontSize: 16, height: 1.5, color: Colors.black87),
+                style: TextStyle(
+                    fontSize: 16,
+                    height: 1.5,
+                    color: Colors.black87,
+                    fontFamily: 'RMNUEUREGULAR'),
               ),
             ),
             SizedBox(

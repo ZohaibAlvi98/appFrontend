@@ -154,7 +154,10 @@ Widget lists(context, check, image, index, name, price, id) {
           padding: EdgeInsets.only(top: 5, left: 10, right: 10),
           child: Text(
             name,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'RMNUEUSEMIBOLD'),
             maxLines: 2,
           ),
         ),
@@ -164,11 +167,12 @@ Widget lists(context, check, image, index, name, price, id) {
         child: Padding(
           padding: EdgeInsets.only(top: 5, left: 10),
           child: Text(
-            'Price: \$' + price,
+            'Price: \$ ' + price,
             style: TextStyle(
-                fontSize: 15.5,
+                fontSize: 15,
                 color: Colors.grey[600],
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'RMNUEUREGULAR'),
           ),
         ),
       ),

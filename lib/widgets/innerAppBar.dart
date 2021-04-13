@@ -177,12 +177,12 @@ Widget innerAppbar(context, list) {
         ? Text(
             'CATEGORIES',
             style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+                fontSize: 20, color: Colors.black, fontFamily: 'RMNUEU'),
           )
         : Text(
             list,
             style: TextStyle(
-                fontSize: 20, color: Colors.black, fontWeight: FontWeight.w500),
+                fontSize: 20, color: Colors.black, fontFamily: 'RMNUEU'),
           ),
     bottom: list == 'categories'
         ? TabBar(

@@ -103,8 +103,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                     child: Text(
                                       item['name'],
                                       style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                          fontSize: 16,
+                                          fontFamily: 'RMNUEUSEMIBOLD'),
                                     ),
                                   ),
                                 ),
@@ -112,22 +112,25 @@ class _ProductDetailState extends State<ProductDetail> {
                                   padding: EdgeInsets.only(top: 10, left: 20),
                                   child: Center(
                                     child: Text(
-                                      // item['categories'][3]['name'],
-                                      'zoo',
+                                      item['categories'][3]['name'],
                                       style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w600),
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          fontFamily: 'RMNUEUREGULAR'),
                                     ),
                                   ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 10, left: 20),
                                   child: Center(
-                                    child: Text('Price  \$' + item['price'],
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.grey[700],
-                                            fontWeight: FontWeight.w700)),
+                                    child: Text(
+                                      'Price  \$' + item['price'],
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.grey[600],
+                                          fontWeight: FontWeight.w700,
+                                          fontFamily: 'RMNUEUREGULAR'),
+                                    ),
                                   ),
                                 ),
                               ],

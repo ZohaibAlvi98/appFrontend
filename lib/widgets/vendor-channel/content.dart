@@ -8,7 +8,7 @@ Widget content(heading, text1, text2) {
         padding: EdgeInsets.only(left: 15, right: 14),
         child: Text(
           heading,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(fontFamily: 'RMNUEU', fontSize: 16),
         ),
       ),
     ),
@@ -39,6 +39,7 @@ Widget content(heading, text1, text2) {
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.1,
+                      fontFamily: 'RMNUEUREGULAR',
                       color: Colors.grey[800],
                     ),
                   )),
@@ -64,10 +65,10 @@ Widget content(heading, text1, text2) {
                       child: Text(
                     text2,
                     style: TextStyle(
-                      fontSize: 14,
-                      height: 1.1,
-                      color: Colors.grey[800],
-                    ),
+                        fontSize: 14,
+                        height: 1.1,
+                        color: Colors.grey[800],
+                        fontFamily: 'RMNUEUREGULAR'),
                   )),
                 ),
               ),

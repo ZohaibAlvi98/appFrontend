@@ -25,8 +25,11 @@ class _RequestSupplierState extends State<RequestSupplier> {
               ),
               child: Text(
                 'Become a S-PLYR and maximize your product sale through our sate of the art Live Video Shopping platform. Your own channel will enable you to interact with potential customers to get maximum conversion.',
-                style:
-                    TextStyle(fontSize: 16, height: 1.5, color: Colors.black87),
+                style: TextStyle(
+                    fontSize: 16,
+                    height: 1.5,
+                    color: Colors.black87,
+                    fontFamily: 'RMNUEUREGULAR'),
               ),
             ),
             SizedBox(
