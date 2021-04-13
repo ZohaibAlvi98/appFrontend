@@ -125,7 +125,9 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              appBar: appbarWithMenu(context),
+              //appBar: appbarNew(context),
+              appBar: _selectedIndex == 0 ? null : appbarWithMenu(context),
+              // appBar: null,
               drawer: Theme(
                   data: Theme.of(context).copyWith(
                     canvasColor: Colors
@@ -135,7 +137,8 @@ class _BottomNavState extends State<BottomNav> {
                   child: drawerAppBar(context, '', false)),
               body: _bottomNavList.elementAt(_selectedIndex),
               bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
-            ))
+            ),
+          )
         : WillPopScope(
             onWillPop: () async {
               if (_selectedIndex == 0) return true;
@@ -145,11 +148,13 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              appBar: appbarWithMenu(context),
+              appBar: _selectedIndex == 0
+                  ? appbarNew(context)
+                  : appbarWithMenu(context),
               drawer: Theme(
                   data: Theme.of(context).copyWith(
-                    canvasColor: Colors
-                        .black, //This will change the drawer background to blue.
+                    canvasColor: Colors.black,
+                    //This will change the drawer background to blue.
                     //other styles
                   ),
                   child: drawerAppBar(context, '', true)),

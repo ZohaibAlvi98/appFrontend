@@ -38,7 +38,10 @@ class _CheckOutState extends State<CheckOut> {
       value: value,
       groupValue: _groupValue,
       onChanged: onChanged,
-      title: Text(title),
+      title: Text(
+        title,
+        style: TextStyle(fontFamily: 'RMNUEUREGULAR'),
+      ),
     );
   }
 
@@ -61,7 +64,8 @@ class _CheckOutState extends State<CheckOut> {
       ),
       title: Text(
         'Purchase',
-        style: TextStyle(color: Colors.black, fontSize: 22),
+        style:
+            TextStyle(color: Colors.black, fontSize: 22, fontFamily: 'RMNUEU'),
       ),
     );
     double width = MediaQuery.of(context).size.width;
@@ -102,7 +106,9 @@ class _CheckOutState extends State<CheckOut> {
                                 SizedBox(
                                   height: 15,
                                 ),
-                                textfields('First Name *'),
+                                textfields(
+                                  'First Name *',
+                                ),
                                 SizedBox(
                                   height: 15,
                                 ),
@@ -130,7 +136,8 @@ class _CheckOutState extends State<CheckOut> {
                                       'Country *',
                                       style: TextStyle(
                                           fontSize: 17,
-                                          fontWeight: FontWeight.bold),
+                                          //fontWeight: FontWeight.bold,
+                                          fontFamily: 'RMNUEUSEMIBOLD'),
                                     ),
                                   ),
                                 ),
@@ -150,7 +157,9 @@ class _CheckOutState extends State<CheckOut> {
                                       'Address *',
                                       style: TextStyle(
                                           fontSize: 17,
-                                          fontWeight: FontWeight.bold),
+                                          fontFamily: 'RMNUEUSEMIBOLD'
+                                          //fontWeight: FontWeight.bold
+                                          ),
                                     ),
                                   ),
                                 ),
@@ -213,8 +222,10 @@ class _CheckOutState extends State<CheckOut> {
                                     child: Text(
                                       'Card Number *',
                                       style: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
+                                        fontFamily: 'RMNUEUSEMIBOLD',
+                                        fontSize: 17,
+                                        //fontWeight: FontWeight.bold
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -226,6 +237,8 @@ class _CheckOutState extends State<CheckOut> {
                                         contentPadding:
                                             EdgeInsets.only(left: 5, top: 20),
                                         hintText: '1234 1234 1234 1234',
+                                        hintStyle: TextStyle(
+                                            fontFamily: 'RMNUEUREGULAR'),
                                         suffixIcon: Padding(
                                           padding: EdgeInsets.only(
                                               top:
@@ -265,6 +278,7 @@ class _CheckOutState extends State<CheckOut> {
                                         child: Text(
                                           'PLACE ORDER',
                                           style: TextStyle(
+                                              fontFamily: 'RMNUEUREGULAR',
                                               color: Colors.white,
                                               fontSize: 18),
                                         ),
@@ -327,7 +341,9 @@ Widget heading(width, heading, numb) {
           child: Text(
             heading,
             style: TextStyle(
-                fontSize: width < 400 ? 20 : 22, fontWeight: FontWeight.w400),
+                fontFamily: 'RMNUEUREGULAR',
+                fontSize: width < 400 ? 20 : 22,
+                fontWeight: FontWeight.w400),
           ),
         ),
       ],
@@ -353,6 +369,7 @@ class MyCountryPicker extends StatelessWidget {
                 onChanged: print,
                 // Initial selection and favorite can be one of code ('IT') OR dial_code('+39')
                 initialSelection: '+92',
+                textStyle: TextStyle(fontFamily: 'RMNUEUREGULAR'),
                 favorite: ['+44', 'UK'],
                 // optional. Shows only country name and flag
                 showCountryOnly: false,
@@ -384,6 +401,7 @@ Widget secondAppbar(_navigatorPage, width) {
             child: Text(
               "You are going to purchase 4 items. To review your \norder please tap the button below. ",
               style: TextStyle(
+                fontFamily: 'RMNUEUREGULAR',
                 color: Colors.black,
                 fontWeight: FontWeight.w400,
                 fontSize: 18,
@@ -400,9 +418,11 @@ Widget secondAppbar(_navigatorPage, width) {
                   child: Text(
                     'Total:  £1,600',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: width < 400 ? 20 : 22,
-                        fontWeight: FontWeight.w400),
+                      color: Colors.black,
+                      fontSize: width < 400 ? 20 : 22,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'RMNUEUSEMIBOLD',
+                    ),
                   )),
               Spacer(),
               Padding(
@@ -416,7 +436,10 @@ Widget secondAppbar(_navigatorPage, width) {
                   },
                   child: Text(
                     'REVIEW',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    style: TextStyle(
+                        fontFamily: 'RMNUEUREGULAR',
+                        color: Colors.white,
+                        fontSize: 15),
                   ),
                   color: Colors.redAccent,
                   minWidth: 100,

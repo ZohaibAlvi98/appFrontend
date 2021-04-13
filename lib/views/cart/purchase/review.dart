@@ -16,7 +16,10 @@ class _ReviewState extends State<Review> {
 
     print(widget.confirm);
     return Scaffold(
-      appBar: innerAppbar(context, 'REVIEW'),
+      appBar: innerAppbar(
+        context,
+        'REVIEW',
+      ),
       body: Container(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,14 +32,20 @@ class _ReviewState extends State<Review> {
                     padding: EdgeInsets.only(top: 10.0, left: 26),
                     child: Text(
                       'Your order has been Confirmed',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      style: TextStyle(
+                          fontFamily: 'RMNUEUSEMIBOLD',
+                          color: Colors.black,
+                          fontSize: 20),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 10.0, left: 26),
                     child: Text(
                       'Order Id: 123456',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      style: TextStyle(
+                          fontFamily: 'RMNUEUSEMIBOLD',
+                          color: Colors.black,
+                          fontSize: 20),
                     ),
                   ),
                 ],
@@ -46,7 +55,10 @@ class _ReviewState extends State<Review> {
                 padding: EdgeInsets.only(top: 10.0, left: 26),
                 child: Text(
                   'Order Summary',
-                  style: TextStyle(color: Colors.black, fontSize: 20),
+                  style: TextStyle(
+                      fontFamily: 'RMNUEUSEMIBOLD',
+                      color: Colors.black,
+                      fontSize: 20),
                 ),
               ),
             SizedBox(
@@ -74,6 +86,7 @@ class _ReviewState extends State<Review> {
                       padding: const EdgeInsets.all(8.0),
                       child: Text('PRODUCTS',
                           style: TextStyle(
+                              fontFamily: 'RMNUEUREGULAR',
                               fontSize: 17,
                               fontWeight: FontWeight.w600,
                               color: Colors.white)),
@@ -84,6 +97,7 @@ class _ReviewState extends State<Review> {
                       child: Text(
                         'TOTAL',
                         style: TextStyle(
+                            fontFamily: 'RMNUEUREGULAR',
                             fontSize: 17,
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
@@ -122,7 +136,9 @@ class _ReviewState extends State<Review> {
                       ),
                       child: Text('SUBTOTAL',
                           style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.bold)),
+                            fontFamily: 'RMNUEUSEMIBOLD',
+                            fontSize: 17,
+                          )),
                     ),
                     tableRowPrice('£ 1200', Colors.white12),
                   ]),
@@ -137,7 +153,9 @@ class _ReviewState extends State<Review> {
                         ),
                         child: Text('TOTAL',
                             style: TextStyle(
-                                fontSize: 17, fontWeight: FontWeight.bold)),
+                              fontFamily: 'RMNUEUSEMIBOLD',
+                              fontSize: 17,
+                            )),
                       ),
                     ),
                     tableRowPrice('£ 1600', Colors.grey[200]),
@@ -158,7 +176,10 @@ Widget tableRowProducts(text, color, width) {
     child: Padding(
       padding: width < 400 ? EdgeInsets.all(10.0) : EdgeInsets.all(8.0),
       child: Text(text,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
+          style: TextStyle(
+              fontFamily: 'RMNUEUREGULAR',
+              fontSize: 16,
+              fontWeight: FontWeight.w400)),
     ),
   );
 }
@@ -170,6 +191,9 @@ Widget tableRowPrice(text, color) {
     child: Center(
         heightFactor: 2.87,
         child: Text(text,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400))),
+            style: TextStyle(
+                fontFamily: 'RMNUEUREGULAR',
+                fontSize: 16,
+                fontWeight: FontWeight.w400))),
   );
 }
