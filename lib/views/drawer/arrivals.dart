@@ -8,7 +8,7 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
-import '../../services/prdocut-detail-api.dart';
+// import '../../services/prdocut-detail-api.dart';
 
 class Arrivals extends StatefulWidget {
   final bool authenticated;
@@ -45,7 +45,7 @@ class _ArrivalsState extends State<Arrivals> {
     Profile()
   ];
   DrawrServices data = DrawrServices();
-  DrawrProducts connect = DrawrProducts();
+  // DrawrProducts connect = DrawrProducts();
   List img = [
     'assets/images/splyrs/channels/prod1.jpg',
     'assets/images/splyrs/channels/prod2.jpg',
@@ -54,15 +54,15 @@ class _ArrivalsState extends State<Arrivals> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
-  void _navigatorPage(context, id) {
+  void _navigatorPage(context) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
           return ProductDetail(
-            prdid: id,
-          );
+              // prdid: id,
+              );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -178,8 +178,7 @@ class _ArrivalsState extends State<Arrivals> {
                                     final item = snapshot.data[index];
 
                                     return InkWell(
-                                      onTap: () =>
-                                          _navigatorPage(context, item['id']),
+                                      onTap: () => _navigatorPage(context),
                                       child: lists(
                                         context,
                                         'men',

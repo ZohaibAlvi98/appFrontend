@@ -12,8 +12,6 @@ import '../../services/prdocut-detail-api.dart';
 import '../drawer/arrivals.dart';
 
 class ProductDetail extends StatefulWidget {
-  final String prdid;
-  ProductDetail({Key key, @required this.prdid}) : super(key: key);
   @override
   _ProductDetailState createState() => _ProductDetailState();
 }
@@ -47,9 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
   String _selectedColor;
 
   static List<Widget> _bottomNavList = [
-    ProductDetail(
-      prdid: null,
-    ),
+    ProductDetail(),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -77,7 +73,7 @@ class _ProductDetailState extends State<ProductDetail> {
             child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 0
             ? FutureBuilder(
-                future: data.getProducts(widget.prdid),
+                future: data.getProducts(),
                 builder: (BuildContext context,
                     AsyncSnapshot<Map<String, dynamic>> snapshot) {
                   if (!snapshot.hasData) {
@@ -259,7 +255,7 @@ class _ProductDetailState extends State<ProductDetail> {
                           SizedBox(
                             height: 20,
                           ),
-                          item['description'],
+                          // item['description'],
                           DropDown(
                               brand: 'Thome Brown',
                               link: '',
