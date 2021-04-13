@@ -7,13 +7,8 @@ import 'package:html/parser.dart';
 class DropDown extends StatefulWidget {
   final String brand;
   final String link;
-  final String description;
-  DropDown(
-      {Key key,
-      @required this.brand,
-      @required this.link,
-      @required this.description,
-      store})
+  // final String description;
+  DropDown({Key key, @required this.brand, @required this.link, store})
       : super(key: key);
   @override
   _DropDownState createState() => _DropDownState();
@@ -109,7 +104,7 @@ class _DropDownState extends State<DropDown> {
                               .map((val) => new ListTile(
                                     title: i == 0
                                         ? Text(
-                                            widget.description,
+                                            "Lorem ipsum is a placeholder text commonly used to...",
                                             style: TextStyle(height: 1.8),
                                           )
                                         : i == 1

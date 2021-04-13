@@ -257,9 +257,9 @@ class _ProductDetailState extends State<ProductDetail> {
                           ),
                           // item['description'],
                           DropDown(
-                              brand: 'Thome Brown',
-                              link: '',
-                              description: item['description']),
+                            brand: 'Thome Brown',
+                            link: '',
+                          ),
                           SizedBox(
                             height: 25,
                           ),
