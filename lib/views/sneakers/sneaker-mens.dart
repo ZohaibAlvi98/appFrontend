@@ -138,7 +138,9 @@ class _SneakersMensState extends State<SneakersMens> {
                               child: Text(
                                 'FILTER',
                                 style: TextStyle(
-                                    color: Colors.black, fontSize: 16),
+                                    fontFamily: 'RMNUEUREGULAR',
+                                    color: Colors.black,
+                                    fontSize: 16),
                               ),
                               color: Colors.white,
                               minWidth: 140,
@@ -246,7 +248,10 @@ Widget lists(context, check, image, index, name, price, id) {
           padding: EdgeInsets.only(top: 5, left: 10, right: 10),
           child: Text(
             name,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontFamily: 'RMNUEUSEMIBOLD',
+                fontSize: 16,
+                fontWeight: FontWeight.bold),
             maxLines: 2,
           ),
         ),
@@ -258,7 +263,8 @@ Widget lists(context, check, image, index, name, price, id) {
           child: Text(
             'Price: \$' + price,
             style: TextStyle(
-                fontSize: 15.5,
+                fontFamily: 'RMNUEUREGULAR',
+                fontSize: 15,
                 color: Colors.grey[600],
                 fontWeight: FontWeight.bold),
           ),

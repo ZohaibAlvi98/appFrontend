@@ -56,6 +56,7 @@ Widget item(img, width, text, cross) {
                 child: Text(
                   text,
                   style: TextStyle(
+                      fontFamily: 'RMNUEUSEMIBOLD',
                       fontSize: width < 400 ? 14 : 18,
                       fontWeight: FontWeight.w700),
                 ),
@@ -68,6 +69,7 @@ Widget item(img, width, text, cross) {
                 child: Text(
                   'Item Id: 16455890',
                   style: TextStyle(
+                      fontFamily: 'RMNUEUREGULAR',
                       color: Colors.grey[700],
                       fontSize: width < 400 ? 13.5 : 15),
                 ),
@@ -84,7 +86,9 @@ Widget item(img, width, text, cross) {
                   child: Text(
                     'Size: M',
                     style: TextStyle(
-                        fontSize: width < 400 ? 14 : 14.5, color: Colors.black),
+                        fontFamily: 'RMNUEUREGULAR',
+                        fontSize: width < 400 ? 14 : 14.5,
+                        color: Colors.black),
                   )),
               SizedBox(
                 height: 6,
@@ -97,6 +101,7 @@ Widget item(img, width, text, cross) {
                   alignment: Alignment.centerLeft,
                   child: Text('Color: Red',
                       style: TextStyle(
+                          fontFamily: 'RMNUEUREGULAR',
                           fontSize: width < 400 ? 14 : 14.5,
                           color: Colors.black))),
               SizedBox(
@@ -111,7 +116,9 @@ Widget item(img, width, text, cross) {
                   child: Text(
                     'Qty: 1',
                     style: TextStyle(
-                        fontSize: width < 400 ? 14 : 14.5, color: Colors.black),
+                        fontFamily: 'RMNUEUREGULAR',
+                        fontSize: width < 400 ? 14 : 14.5,
+                        color: Colors.black),
                   )),
             ],
           )),
@@ -119,8 +126,10 @@ Widget item(img, width, text, cross) {
         padding: EdgeInsets.only(left: 175, top: 155),
         child: Text(
           'Price:  £400',
-          style:
-              TextStyle(color: Colors.black, fontSize: width < 400 ? 14 : 16.5),
+          style: TextStyle(
+              fontFamily: 'RMNUEUREGULAR',
+              color: Colors.black,
+              fontSize: width < 400 ? 14 : 16.5),
         ),
       )
     ],

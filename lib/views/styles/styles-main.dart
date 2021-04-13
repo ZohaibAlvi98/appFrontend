@@ -112,11 +112,12 @@ class _StylesState extends State<Styles> {
                       ),
                       Padding(
                         padding: width < 400
-                            ? EdgeInsets.only(top: 20.0, left: 41)
-                            : EdgeInsets.only(top: 20.0, left: 45),
+                            ? EdgeInsets.only(top: 20.0, left: 41, right: 15)
+                            : EdgeInsets.only(top: 20.0, left: 45, right: 65),
                         child: Text(
                             'Personalized style discovery and shopping as a service.\nWhere style meets fashion.',
                             style: TextStyle(
+                                fontFamily: 'RMNUEUREGULAR',
                                 fontSize: 20,
                                 height: 1.3,
                                 color: Colors.black,
@@ -158,6 +159,7 @@ class _StylesState extends State<Styles> {
                                                     child: Text(
                                                       'S-PLY CURATED STYLEBOXES',
                                                       style: TextStyle(
+                                                          fontFamily: 'RMNUEU',
                                                           fontSize: width < 400
                                                               ? 22
                                                               : 25,
@@ -177,6 +179,8 @@ class _StylesState extends State<Styles> {
                                                   child: Text(
                                                     'A S-PLY StyleBoxe contains a curated selection of designer products, ranging from exclusives, archive and current season pieces selected by our team of experienced stylists.',
                                                     style: TextStyle(
+                                                        fontFamily:
+                                                            'RMNUEUREGULAR',
                                                         height: 1.3,
                                                         fontSize: 15),
                                                   ),
@@ -227,7 +231,9 @@ class _StylesState extends State<Styles> {
                         child: Text(
                           'Thome Brown Winter Clothing Styling By End Clothing',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontFamily: 'RMNUEUSEMIBOLD',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Padding(
@@ -235,6 +241,7 @@ class _StylesState extends State<Styles> {
                         child: Text(
                           'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
                           style: TextStyle(
+                              fontFamily: 'RMNUEUREGULAR',
                               fontSize: 16,
                               height: 1.5,
                               color: Colors.grey[600],
@@ -278,7 +285,9 @@ class _StylesState extends State<Styles> {
                         child: Text(
                           'Thome Brown Winter Clothing Styling By End Clothing',
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontFamily: 'RMNUEUSEMIBOLD',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                       Container(
@@ -288,6 +297,7 @@ class _StylesState extends State<Styles> {
                         child: Text(
                           'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
                           style: TextStyle(
+                              fontFamily: 'RMNUEUREGULAR',
                               fontSize: 16,
                               height: 1.5,
                               color: Colors.grey[600],

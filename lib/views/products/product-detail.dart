@@ -79,20 +79,25 @@ class _ProductDetailState extends State<ProductDetail> {
                           Text(
                             'Thome Brown',
                             style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
+                                fontFamily: 'RMNUEU',
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10, left: 20),
                             child: Text(
                               '4 Bar Jacket',
                               style: TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.w600),
+                                  fontFamily: 'RMNUEUREGULAR',
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600),
                             ),
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 10, left: 20),
                             child: Text('Price  £200',
                                 style: TextStyle(
+                                    fontFamily: 'RMNUEUREGULAR',
                                     fontSize: 18,
                                     color: Colors.grey[700],
                                     fontWeight: FontWeight.w700)),
@@ -116,7 +121,8 @@ class _ProductDetailState extends State<ProductDetail> {
                           iconSize: 30.0,
                           hint: Text(
                             'Select a Size',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(
+                                fontFamily: 'RMNUEUREGULAR', fontSize: 18),
                           ), // Not necessary for Option 1
                           value: _selectedsize,
                           onChanged: (newValue) {
@@ -149,7 +155,8 @@ class _ProductDetailState extends State<ProductDetail> {
                           iconSize: 30.0,
                           hint: Text(
                             'Select Quantity',
-                            style: TextStyle(fontSize: 18),
+                            style: TextStyle(
+                                fontFamily: 'RMNUEUREGULAR', fontSize: 18),
                           ), // Not necessary for Option 1
                           value: _selectedQty,
                           onChanged: (newValue) {
@@ -180,7 +187,10 @@ class _ProductDetailState extends State<ProductDetail> {
                           onPressed: () {},
                           child: Text(
                             'GET NOW',
-                            style: TextStyle(color: Colors.white, fontSize: 18),
+                            style: TextStyle(
+                                fontFamily: 'RMNUEUREGULAR',
+                                color: Colors.white,
+                                fontSize: 18),
                           ),
                         ),
                       ),

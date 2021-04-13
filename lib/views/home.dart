@@ -72,6 +72,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+
     List img = [
       'assets/images/home/home4.png',
       'assets/images/home/home1.png',
@@ -80,25 +83,137 @@ class _HomeState extends State<Home> {
     ];
     return authenticated == null
         ? Scaffold(
-            body: StaggeredGridView.countBuilder(
-              crossAxisCount: 4,
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) => GestureDetector(
-                onTap: () => _onItemTapped(index),
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(25)),
-                  child: Column(
-                    children: <Widget>[
-                      Image.asset(img[index]),
+            body: Column(
+              children: [
+                Container(
+                  child: Stack(
+                    children: [
+                      Container(
+                        child: FittedBox(
+                          child: Image.asset(
+                            'assets/images/home/home-banner.jpg',
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                        height: 270,
+                      ),
+                      Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(
+                              top: height * 0.03,
+                              right: width * 0.88,
+                            ),
+                            child: IconButton(
+                              icon: Icon(
+                                Icons.menu,
+                                color: Colors.black,
+                                size: width * 0.07,
+                              ),
+                              onPressed: () =>
+                                  Scaffold.of(context).openDrawer(),
+                            ),
+                          ),
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: width * 0.03,
+                              right: width * 0.6,
+                              bottom: height * 0.01,
+                            ),
+                            child: Image.asset(
+                              'assets/images/home/home3.jpg',
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: width * 0.03, bottom: height * 0.006),
+                              child: Text(
+                                "Experimental Retail and\nInteractive Shopping Platform.",
+                                style: TextStyle(
+                                    fontFamily: 'RMNUEUSEMIBOLD',
+                                    fontSize: 16,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: width * 0.03,
+                              ),
+                              child: Text(
+                                "SPLY is a personalized style discovery\nand shopping as service where\nstyle meets fashion",
+                                style: TextStyle(
+                                    fontFamily: 'RMNUEUREGULAR',
+                                    fontSize: 14,
+                                    color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
-              ),
-              padding: EdgeInsets.only(top: 5),
-              staggeredTileBuilder: (int index) => new StaggeredTile.fit(2),
-              mainAxisSpacing: 1.0,
-              crossAxisSpacing: 1.0,
+                Container(
+                  color: Colors.white,
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    padding: EdgeInsets.only(left: 30, right: 30, top: 25),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      childAspectRatio: MediaQuery.of(context).size.width /
+                          (MediaQuery.of(context).size.height / 1.6),
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (BuildContext context, int index) =>
+                        GestureDetector(
+                      onTap: () => _onItemTapped(index),
+                      child: Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: <Widget>[
+                            Image.asset(img[index],
+                                fit: BoxFit.fill,
+                                // height: 220,
+                                width: 173),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                // GridView.builder(
+                //   shrinkWrap: true,
+                //   physics: const NeverScrollableScrollPhysics(),
+                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //       crossAxisCount: 2, childAspectRatio: 0.9
+                //       // MediaQuery.of(context).size.width /
+                //       //     (MediaQuery.of(context).size.height / 1.59),
+                //       ),
+                //   itemCount: 4,
+                //   itemBuilder: (BuildContext context, int index) =>
+                //       GestureDetector(
+                //     onTap: () => _onItemTapped(index),
+                //     child: Card(
+                //       elevation: 0,
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(20)),
+                //       child: Column(
+                //         children: <Widget>[
+                //           Image.asset(img[index], width: 100),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                //   padding: EdgeInsets.only(top: 5),
+                // ),
+              ],
             ),
           )
         : Dashboard();

@@ -152,7 +152,10 @@ class _SplyrsState extends State<Splyrs> {
                     },
                     child: Text(
                       'Become A SPLYR',
-                      style: TextStyle(color: Colors.black, fontSize: 20),
+                      style: TextStyle(
+                          fontFamily: 'RMNUEUREGULAR',
+                          color: Colors.black,
+                          fontSize: 20),
                     ),
                     color: Colors.white,
                     minWidth: 310,
@@ -238,7 +241,8 @@ class _SplyrsState extends State<Splyrs> {
                                     title: new Text(
                                       'OTHER SPLYRS',
                                       style: TextStyle(
-                                          fontSize: 18,
+                                          fontFamily: 'Monument',
+                                          fontSize: 16,
                                           fontWeight: FontWeight.w500),
                                     ),
                                     children: [
@@ -354,7 +358,8 @@ Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
         child: Text(
           title,
           style: TextStyle(
-              fontSize: width < 400 ? 22 : 25,
+              fontFamily: 'RMNUEU',
+              fontSize: width < 400 ? 22 : 23,
               color: Colors.white,
               fontWeight: FontWeight.w900),
         ),
@@ -364,6 +369,7 @@ Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
         child: Text(
           shorttext,
           style: TextStyle(
+              fontFamily: 'RMNUEUREGULAR',
               fontSize: width < 400 ? 9 : 12,
               color: Colors.white,
               fontWeight: FontWeight.w600),

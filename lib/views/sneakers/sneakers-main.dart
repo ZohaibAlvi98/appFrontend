@@ -119,6 +119,7 @@ class _SneakersState extends State<Sneakers> {
                         child: Text(
                             'A curated sneaker selection of new and popular drops.',
                             style: TextStyle(
+                                fontFamily: 'RMNUEUREGULAR',
                                 fontSize: 20,
                                 color: Colors.black,
                                 fontWeight: FontWeight.w400)),

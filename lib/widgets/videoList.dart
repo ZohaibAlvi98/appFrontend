@@ -217,6 +217,7 @@ class _VideoListState extends State<VideoList> {
               child: Text(
                 'S-PLY Store Items',
                 style: TextStyle(
+                    fontFamily: 'RMNUEUSEMIBOLD',
                     fontSize: width < 400 ? 12 : 15,
                     fontWeight: FontWeight.bold),
               ),

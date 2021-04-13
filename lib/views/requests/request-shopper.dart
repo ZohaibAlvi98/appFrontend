@@ -104,7 +104,11 @@ Widget textfields(text) {
         padding: EdgeInsets.only(left: 20),
         child: Text(
           text,
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontFamily: 'RMNUEUSEMIBOLD',
+            fontSize: 17,
+            //fontWeight: FontWeight.bold
+          ),
         ),
       ),
       Padding(

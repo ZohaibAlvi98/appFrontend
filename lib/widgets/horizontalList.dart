@@ -61,7 +61,10 @@ Widget horizontalListWith3(context, img, color) {
               padding: EdgeInsets.only(right: 23),
               child: Text(
                 'Thome Brown 4 Bar \nJackets',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontFamily: 'RMNUEUSEMIBOLD',
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
@@ -71,12 +74,19 @@ Widget horizontalListWith3(context, img, color) {
               padding: EdgeInsets.only(right: 23),
               child: Text(
                 'Brand: Thome Brown',
-                style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    fontFamily: 'RMNUEUREGULAR',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(right: 87),
-              child: Text('\$ 759.00'),
+              padding: EdgeInsets.only(top: 1, right: 87),
+              child: Text(
+                '\$ 759.00',
+                style: TextStyle(
+                    fontFamily: 'RMNUEUREGULAR', color: Colors.grey.shade800),
+              ),
             ),
           ],
         ),
@@ -178,12 +188,18 @@ Widget sneakerListWith3(context, img, color) {
               padding: EdgeInsets.only(right: 28),
               child: Text(
                 'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontFamily: 'RMNUEUSEMIBOLD',
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 5, right: 87),
-              child: Text('\$ 400.00'),
+              child: Text(
+                '\$ 400.00',
+                style: TextStyle(fontFamily: 'RMNUEUREGULAR'),
+              ),
             ),
           ],
         ),
@@ -222,7 +238,7 @@ Widget sneakerListWith4(context) {
                           child: Wrap(children: [
                             SizedBox(
                               height: 190,
-                              width: 190,
+                              width: 200,
                               child: Image.network(
                                 item['images'][0]['src'],
                                 fit: BoxFit.cover,
@@ -238,11 +254,16 @@ Widget sneakerListWith4(context) {
                       //     ? EdgeInsets.only(right: 15.0)
                       //     : EdgeInsets.only(right: 32.0),
                       padding: EdgeInsets.only(left: 9, top: 4),
-                      child: Container(
+                      // work here
+                      child: SizedBox(
+                        width: 200,
                         child: Text(
                           item['name'],
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: 9.75,
+                            fontFamily: 'RMNUEUSEMIBOLD',
+                            fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -253,7 +274,8 @@ Widget sneakerListWith4(context) {
                       child: Text(
                         'Price: \$' + item['price'],
                         style: TextStyle(
-                            fontSize: 9,
+                            fontFamily: 'RMNUEUREGULAR',
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                       ),
@@ -297,7 +319,7 @@ Widget sneakerListTopTrending(context) {
                           child: Wrap(children: [
                             SizedBox(
                               height: 190,
-                              width: 190,
+                              width: 200,
                               child: Image.network(
                                 item['image'],
                                 fit: BoxFit.cover,
@@ -314,11 +336,17 @@ Widget sneakerListTopTrending(context) {
                       //     : EdgeInsets.only(right: 32.0),
                       padding: EdgeInsets.only(left: 9, top: 4),
                       child: Container(
-                        child: Text(
-                          item['product_title'],
-                          style: TextStyle(
-                            fontSize: 9.75,
-                            fontWeight: FontWeight.bold,
+                        child: SizedBox(
+                          width: 200,
+                          child: Text(
+                            item['product_title'],
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontFamily: 'RMNUEUSEMIBOLD',
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -328,7 +356,8 @@ Widget sneakerListTopTrending(context) {
                       child: Text(
                         'Price: \$' + item['price'],
                         style: TextStyle(
-                            fontSize: 9,
+                            fontFamily: 'RMNUEUREGULAR',
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                             color: Colors.grey),
                       ),
