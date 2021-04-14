@@ -33,7 +33,7 @@ class _SplyNetworkState extends State<SplyNetwork> {
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 1,
                           childAspectRatio: MediaQuery.of(context).size.width /
-                              (MediaQuery.of(context).size.height / 1.7),
+                              (MediaQuery.of(context).size.height / 1.75),
                         ),
                         // scrollDirection: Axis.vertical,
                         itemCount: snapshot.data.length,
@@ -248,8 +248,7 @@ Widget editirialscards(
                 Row(
                   children: [
                     Container(
-                      margin:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                      margin: EdgeInsets.only(top: 5, left: 10, right: 10),
                       width: width * 0.13,
                       height: 60,
                       // decoration: new BoxDecoration(
@@ -262,8 +261,8 @@ Widget editirialscards(
                       // ),
                       child: Padding(
                         padding: width < 400
-                            ? EdgeInsets.only(left: 6.5, top: 10)
-                            : EdgeInsets.only(left: 3.0, top: 1),
+                            ? EdgeInsets.only(left: 6.5, top: 1, bottom: 3)
+                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 5),
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: NetworkImage(logo),
@@ -283,16 +282,18 @@ Widget editirialscards(
                               child: Text(
                                 author,
                                 style: TextStyle(
-                                    fontSize: width < 400 ? 18 : 20,
-                                    fontWeight: FontWeight.w700),
+                                    fontSize: width < 400 ? 18 : 18,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'RMNUEU'),
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(left: 1.0),
+                              padding: EdgeInsets.only(left: 1.0, top: 0),
                               child: Text(
                                 date,
-                                style:
-                                    TextStyle(fontSize: width < 400 ? 11 : 14),
+                                style: TextStyle(
+                                    fontSize: width < 400 ? 11 : 14,
+                                    fontFamily: 'RMNUEUREGULAR'),
                               ),
                             ),
                           ],
@@ -306,13 +307,14 @@ Widget editirialscards(
                       Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
-                            padding: EdgeInsets.only(left: 13.0, right: 13),
+                            padding:
+                                EdgeInsets.only(left: 13.0, right: 13, top: 0),
                             child: Text(
                               title,
                               maxLines: 2,
                               style: TextStyle(
-                                  fontSize: width < 400 ? 22 : 20,
-                                  fontWeight: FontWeight.w900,
+                                  fontSize: width < 400 ? 22 : 17,
+                                  fontFamily: 'RMNUEU',
                                   color: Colors.black),
                             ),
                           )),
@@ -320,11 +322,12 @@ Widget editirialscards(
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: EdgeInsets.only(
-                              top: 7.0, left: 13, bottom: 10, right: 13),
+                              top: 6.0, left: 13, bottom: 10, right: 13),
                           child: Text(
                             shorttext,
-                            maxLines: 2,
-                            style: TextStyle(height: 1),
+                            maxLines: 3,
+                            style: TextStyle(
+                                height: 1, fontFamily: 'RMNUEUREGULAR'),
                           ),
                         ),
                       )
