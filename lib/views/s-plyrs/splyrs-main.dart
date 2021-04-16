@@ -204,14 +204,15 @@ class _SplyrsState extends State<Splyrs> {
                                         item['title'],
                                         item['splyr_cities'],
                                         item['short_text'],
+                                        item['splyr_id'].toString(),
                                       ),
                                       SizedBox(
                                         height: 30,
                                       ),
                                       SizedBox(
                                         height: 270,
-                                        child: horizontalListWith3(
-                                            context, img, Colors.white12),
+                                        child: horizontalListFeaturedSplyrs(
+                                            context, item['splyr_id']),
                                       ),
                                       SizedBox(
                                         height: 25,
@@ -339,66 +340,61 @@ Widget lists(context, check, index) {
 }
 
 Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
-    title, location, shorttext) {
-  return InkWell(
-    onTap: () {
-      _navigatorPage('channel');
-    },
-    child: Container(
-        child: Stack(children: [
-      Container(
-        child: Image.network(
-          image,
-          fit: BoxFit.cover,
-        ),
-        padding: EdgeInsets.only(top: width / 15),
+    title, location, shorttext, ids) {
+  return Container(
+      child: Stack(children: [
+    Container(
+      child: Image.network(
+        image,
+        fit: BoxFit.cover,
       ),
-      Padding(
-        padding: EdgeInsets.only(top: width / 2.55, left: 20),
-        child: Text(
-          title,
-          style: TextStyle(
-              fontFamily: 'RMNUEU',
-              fontSize: width < 400 ? 22 : 23,
-              color: Colors.white,
-              fontWeight: FontWeight.w900),
-        ),
+      padding: EdgeInsets.only(top: width / 15),
+    ),
+    Padding(
+      padding: EdgeInsets.only(top: width / 2.55, left: 20),
+      child: Text(
+        title,
+        style: TextStyle(
+            fontFamily: 'RMNUEU',
+            fontSize: width < 400 ? 22 : 23,
+            color: Colors.white,
+            fontWeight: FontWeight.w900),
       ),
-      Padding(
-        padding: EdgeInsets.only(top: width / 2.2, left: 20),
-        child: Text(
-          shorttext,
-          style: TextStyle(
-              fontFamily: 'RMNUEUREGULAR',
-              fontSize: width < 400 ? 9 : 12,
-              color: Colors.white,
-              fontWeight: FontWeight.w600),
-        ),
+    ),
+    Padding(
+      padding: EdgeInsets.only(top: width / 2.2, left: 20),
+      child: Text(
+        shorttext,
+        style: TextStyle(
+            fontFamily: 'RMNUEUREGULAR',
+            fontSize: width < 400 ? 9 : 12,
+            color: Colors.white,
+            fontWeight: FontWeight.w600),
       ),
-      Padding(
-          padding: EdgeInsets.only(top: width / 2, left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  // Icon(
-                  //   Icons.location_pin,
-                  //   color: Colors.black,
-                  //   size: 12,
-                  // ),
-                  Text(
-                    location.toUpperCase(),
-                    style: TextStyle(
-                      fontSize: width < 400 ? 9 : 12,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
+    ),
+    Padding(
+        padding: EdgeInsets.only(top: width / 2, left: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                // Icon(
+                //   Icons.location_pin,
+                //   color: Colors.black,
+                //   size: 12,
+                // ),
+                Text(
+                  location.toUpperCase(),
+                  style: TextStyle(
+                    fontSize: width < 400 ? 9 : 12,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
-                ],
-              ),
-            ],
-          )),
-    ])),
-  );
+                ),
+              ],
+            ),
+          ],
+        )),
+  ]));
 }
