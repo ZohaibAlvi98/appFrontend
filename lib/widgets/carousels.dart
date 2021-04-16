@@ -480,3 +480,86 @@ class _RectangularSliderState extends State<RectangularSlider> {
     );
   }
 }
+
+// //product carousel with API
+// class ProductCarouselWithDots extends StatefulWidget {
+//   final List productImg;
+
+//   ProductCarouselWithDots({Key key, @required this.productImg})
+//       : super(key: key);
+//   @override
+//   _ProductCarouselWithDotsState createState() =>
+//       _ProductCarouselWithDotsState();
+// }
+
+// class _ProductCarouselWithDotsState extends State<ProductCarouselWithDots> {
+//   int _current = 1;
+//   void changeCurrent(index) {
+//     setState(() {
+//       _current = index;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     double width = MediaQuery.of(context).size.width;
+//     double size = MediaQuery.of(context).size.height -
+//         MediaQuery.of(context).padding.top -
+//         kToolbarHeight;
+
+//     List<T> map<T>(List list, Function handler) {
+//       List<T> result = [];
+//       for (var i = 0; i < list.length; i++) {
+//         result.add(handler(i, list[i]));
+//       }
+//       return result;
+//     }
+
+//     return Column(
+//       children: [
+//         CarouselSlider(
+//             items: widget.carouselImg.map((i) {
+//               return Container(
+//                 margin: EdgeInsets.symmetric(horizontal: 8),
+//                 decoration: BoxDecoration(
+//                     // borderRadius: BorderRadius.all(Radius.circular(35)),
+//                     image: DecorationImage(
+//                         image: AssetImage(i), fit: BoxFit.fitWidth)),
+//               );
+//             }).toList(),
+//             options: CarouselOptions(
+//                 initialPage: 1,
+//                 enableInfiniteScroll: false,
+//                 height: width < 400 ? size * 0.43 : size * 0.55,
+//                 onPageChanged: (i, reason) {
+//                   changeCurrent(i);
+//                 },
+//                 // autoPlay: true,
+//                 autoPlayCurve: Curves.easeInOut,
+//                 enlargeCenterPage: false)),
+//         SizedBox(
+//           height: 10,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: map<Widget>(widget.carouselImg, (index, url) {
+//             return Container(
+//               width: 10.0,
+//               height: 7.0,
+//               margin: width < 400
+//                   ? EdgeInsets.symmetric(vertical: 0.0, horizontal: 2.0)
+//                   : EdgeInsets.symmetric(vertical: 6.0, horizontal: 2.0),
+//               decoration: BoxDecoration(
+//                 shape: BoxShape.circle,
+//                 color: _current == index ? Colors.black : Colors.grey,
+//               ),
+//             );
+//           }),
+//         ),
+//         SizedBox(
+//           height: 20,
+//         )
+//       ],
+//     );
+//   }
+// }

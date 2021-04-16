@@ -56,15 +56,21 @@ class _ProfileState extends State<Profile> {
                 Center(
                   heightFactor: 2,
                   child: Text(
-                    'ALBION STAPLETON',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+                    'Mar Simons',
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w600,
+                        fontFamily: 'RMNUEU'),
                   ),
                 ),
                 Center(
                   heightFactor: 0.2,
                   child: Text(
-                    'albion.stapleton@gmail.com',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                    'mar.simons15@gmail.com',
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'RMNUEUREGULAR'),
                   ),
                 ),
               ],
@@ -110,7 +116,10 @@ Widget mainHeading(text, Widget img) {
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
             child: Text(text,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w600)),
+                style: TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: 'RMNUEUSEMIBOLD')),
           ),
         ],
       ),
@@ -145,7 +154,8 @@ Widget list(width, heading, length) {
                           heading[index],
                           style: TextStyle(
                               fontSize: width < 400 ? 15 : 17,
-                              fontWeight: FontWeight.w400),
+                              fontWeight: FontWeight.w400,
+                              fontFamily: 'RMNUEUREGULAR'),
                         ),
                         Padding(
                           padding: width < 400

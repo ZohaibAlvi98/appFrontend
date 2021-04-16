@@ -261,8 +261,8 @@ Widget editirialscards(
                       // ),
                       child: Padding(
                         padding: width < 400
-                            ? EdgeInsets.only(left: 6.5, top: 1, bottom: 3)
-                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 5),
+                            ? EdgeInsets.only(left: 6.5, top: 1)
+                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 3),
                         child: CircleAvatar(
                           backgroundColor: Colors.white,
                           backgroundImage: NetworkImage(logo),
@@ -313,7 +313,7 @@ Widget editirialscards(
                               title,
                               maxLines: 2,
                               style: TextStyle(
-                                  fontSize: width < 400 ? 22 : 17,
+                                  fontSize: width < 400 ? 22 : 15,
                                   fontFamily: 'RMNUEU',
                                   color: Colors.black),
                             ),
@@ -327,7 +327,7 @@ Widget editirialscards(
                             shorttext,
                             maxLines: 3,
                             style: TextStyle(
-                                height: 1, fontFamily: 'RMNUEUREGULAR'),
+                                height: 1.3, fontFamily: 'RMNUEUREGULAR'),
                           ),
                         ),
                       )

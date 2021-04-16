@@ -186,8 +186,8 @@ class _DashboardState extends State<Dashboard> {
                             child: Text(
                               'Hello, Mar Simons!',
                               style: TextStyle(
+                                  fontFamily: 'RMNUEU',
                                   fontSize: 22,
-                                  fontWeight: FontWeight.w600,
                                   color: Colors.white,
                                   letterSpacing: 1),
                             ),
@@ -202,6 +202,7 @@ class _DashboardState extends State<Dashboard> {
                             child: Text(
                               'Customer',
                               style: TextStyle(
+                                  fontFamily: 'RMNUEUREGULAR',
                                   fontSize: 17,
                                   color: Colors.grey[500],
                                   letterSpacing: 1),
@@ -227,6 +228,7 @@ class _DashboardState extends State<Dashboard> {
                                 'Profile',
                                 style: TextStyle(
                                     fontSize: 16,
+                                    fontFamily: 'RMNUEUREGULAR',
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                     letterSpacing: 1),
@@ -290,7 +292,10 @@ class _DashboardState extends State<Dashboard> {
                     },
                     child: Text(
                       'DISCOVER MORE',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontFamily: 'RMNUEUREGULAR'),
                     ),
                   ),
                 ),

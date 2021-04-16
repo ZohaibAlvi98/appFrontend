@@ -53,13 +53,15 @@ class _SneakersMensState extends State<SneakersMens> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
-  void _navigatorPage(context) {
+  void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail();
+          return ProductDetail(
+            prodId: id,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -179,7 +181,8 @@ class _SneakersMensState extends State<SneakersMens> {
                                     final item = snapshot.data[index];
 
                                     return InkWell(
-                                      onTap: () => _navigatorPage(context),
+                                      onTap: () => _navigatorPage(
+                                          context, item['id'].toString()),
                                       child: lists(
                                         context,
                                         'men',

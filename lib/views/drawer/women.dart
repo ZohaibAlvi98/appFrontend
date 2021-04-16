@@ -44,13 +44,15 @@ class _WomensState extends State<Womens> {
     SplyNetwork(),
     Profile()
   ];
-  void _navigatorPage(context) {
+  void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail();
+          return ProductDetail(
+            prodId: id,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -167,7 +169,8 @@ class _WomensState extends State<Womens> {
                                     final item = snapshot.data[index];
 
                                     return InkWell(
-                                      onTap: () => _navigatorPage(context),
+                                      onTap: () => _navigatorPage(
+                                          context, item['id'].toString()),
                                       child: lists(
                                         context,
                                         'men',

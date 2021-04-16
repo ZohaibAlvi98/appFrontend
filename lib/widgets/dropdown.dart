@@ -5,11 +5,18 @@ import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
 
 class DropDown extends StatefulWidget {
-  final String brand;
   final String link;
+  final String description;
+  final String vendor;
   // final String description;
-  DropDown({Key key, @required this.brand, @required this.link, store})
-      : super(key: key);
+  DropDown({
+    Key key,
+    @required this.link,
+    @required this.description,
+    @required this.vendor,
+    store,
+  }) : super(key: key);
+
   @override
   _DropDownState createState() => _DropDownState();
 }
@@ -67,13 +74,7 @@ class _DropDownState extends State<DropDown> {
   //   super.dispose();
   // }
 
-  final list2 = [
-    'Description',
-    'Video',
-    'Vendor',
-    'Sizing',
-    'Shipping & returns'
-  ];
+  final list2 = ['Description', 'Vendor', 'Sizing', 'Shipping & returns'];
 
   final list = new List.generate(1, (i) => "item");
 
@@ -106,115 +107,108 @@ class _DropDownState extends State<DropDown> {
                               .map((val) => new ListTile(
                                     title: i == 0
                                         ? Text(
-                                            "Lorem ipsum is a placeholder text commonly used to...",
+                                            widget.description,
                                             style: TextStyle(height: 1.8),
                                           )
+                                        // : i == 1
+                                        //     ? Padding(
+                                        //         padding: EdgeInsets.only(
+                                        //             bottom: 15.0),
+                                        //         child: YoutubePlayerIFrame(
+                                        //           aspectRatio: 10 / 9,
+                                        //         ),
+                                        //       )
                                         : i == 1
-                                            ? Padding(
-                                                padding: EdgeInsets.only(
-                                                    bottom: 15.0),
-                                                child: YoutubePlayerIFrame(
-                                                  aspectRatio: 10 / 9,
-                                                ),
+                                            ? Column(
+                                                children: [
+                                                  Text(
+                                                    widget.vendor,
+                                                    style: TextStyle(
+                                                        fontSize: width < 400
+                                                            ? 18
+                                                            : 20,
+                                                        fontWeight:
+                                                            FontWeight.w800),
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Padding(
+                                                    padding: EdgeInsets.all(8),
+                                                    child: Container(
+                                                      height: 45,
+                                                      width: 250,
+                                                      child: FlatButton(
+                                                        color: Colors.black,
+                                                        // height: 45,
+                                                        // minWidth: 23,
+                                                        onPressed: () {},
+                                                        child: FittedBox(
+                                                          fit: BoxFit.cover,
+                                                          child: Text(
+                                                            'More Products from ${widget.vendor}',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
                                               )
                                             : i == 2
                                                 ? Column(
                                                     children: [
-                                                      Text(
-                                                        widget.brand,
-                                                        style: TextStyle(
-                                                            fontSize:
-                                                                width < 400
-                                                                    ? 18
-                                                                    : 20,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w800),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 8,
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.all(8.0),
+                                                        child: Text(
+                                                          'Shoe Size Chart',
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
                                                       ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsets.all(8),
-                                                        child: Container(
-                                                          height: 45,
-                                                          width: 250,
-                                                          child: FlatButton(
-                                                            color: Colors.black,
-                                                            // height: 45,
-                                                            // minWidth: 23,
-                                                            onPressed: () {},
-                                                            child: FittedBox(
-                                                              fit: BoxFit.cover,
-                                                              child: Text(
-                                                                'More Products from ${widget.brand}',
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .white),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                        child: Image.asset(
+                                                            'assets/images/productDetail/size1.jpg'),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.fromLTRB(
+                                                                8.0, 20, 8, 10),
+                                                        child: Text(
+                                                          'Clothing Size Chart',
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
                                                         ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.all(8),
+                                                        child: Image.asset(
+                                                            'assets/images/productDetail/size2.jpg'),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 10,
                                                       )
                                                     ],
                                                   )
-                                                : i == 3
-                                                    ? Column(
-                                                        children: [
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8.0),
-                                                            child: Text(
-                                                              'Shoe Size Chart',
-                                                              style: TextStyle(
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8),
-                                                            child: Image.asset(
-                                                                'assets/images/productDetail/size1.jpg'),
-                                                          ),
-                                                          Padding(
-                                                            padding: EdgeInsets
-                                                                .fromLTRB(8.0,
-                                                                    20, 8, 10),
-                                                            child: Text(
-                                                              'Clothing Size Chart',
-                                                              style: TextStyle(
-                                                                  fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    8),
-                                                            child: Image.asset(
-                                                                'assets/images/productDetail/size2.jpg'),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 10,
-                                                          )
-                                                        ],
-                                                      )
-                                                    : Text(
-                                                        'For more information about return please click here.\n',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w400),
-                                                      ),
+                                                : Text(
+                                                    'For more information about return please click here.\n',
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight:
+                                                            FontWeight.w400),
+                                                  ),
                                   ))
                               .toList()),
                     ),

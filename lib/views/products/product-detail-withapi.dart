@@ -10,8 +10,22 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import '../../services/prdocut-detail-api.dart';
 import '../drawer/arrivals.dart';
+import '../drawer/men.dart';
+import '../drawer/women.dart';
+import '../drawer/category-detail/acessories.dart';
+import '../drawer/category-detail/bottom.dart';
+import '../drawer/category-detail/hoodies.dart';
+import '../drawer/category-detail/jackets-and-coats.dart';
+import '../drawer/category-detail/shorts.dart';
+import '../drawer/category-detail/sneakers.dart';
+import '../drawer/category-detail/sweaters.dart';
+import '../drawer/category-detail/tops.dart';
+import '../sneakers/sneaker-mens.dart';
+import '../sneakers/sneaker-womens.dart';
 
 class ProductDetail extends StatefulWidget {
+  final String prodId;
+  ProductDetail({Key key, @required this.prodId}) : super(key: key);
   @override
   _ProductDetailState createState() => _ProductDetailState();
 }
@@ -36,6 +50,7 @@ class _ProductDetailState extends State<ProductDetail> {
   }
 
   List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
+
   String _selectedsize;
 
   List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -45,7 +60,9 @@ class _ProductDetailState extends State<ProductDetail> {
   String _selectedColor;
 
   static List<Widget> _bottomNavList = [
-    ProductDetail(),
+    ProductDetail(
+      prodId: null,
+    ),
     Search(),
     ChatList(),
     SplyNetwork(),
@@ -73,7 +90,7 @@ class _ProductDetailState extends State<ProductDetail> {
             child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 0
             ? FutureBuilder(
-                future: data.getProducts(),
+                future: data.getProducts(widget.prodId),
                 builder: (BuildContext context,
                     AsyncSnapshot<Map<String, dynamic>> snapshot) {
                   if (!snapshot.hasData) {
@@ -112,7 +129,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                   padding: EdgeInsets.only(top: 10, left: 20),
                                   child: Center(
                                     child: Text(
-                                      item['categories'][3]['name'],
+                                      '',
+                                      // item['categories'][3]['name'],
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600,
@@ -124,7 +142,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   padding: EdgeInsets.only(top: 10, left: 20),
                                   child: Center(
                                     child: Text(
-                                      'Price  \$' + item['price'],
+                                      'Price:  \$' + item['price'],
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey[600],
@@ -258,10 +276,10 @@ class _ProductDetailState extends State<ProductDetail> {
                           SizedBox(
                             height: 20,
                           ),
-                          // item['description'],
                           DropDown(
-                            brand: 'Thome Brown',
                             link: '',
+                            description: item['description'],
+                            vendor: item['store_name'],
                           ),
                           SizedBox(
                             height: 25,

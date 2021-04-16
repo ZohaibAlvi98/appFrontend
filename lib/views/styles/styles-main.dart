@@ -155,14 +155,17 @@ class _StylesState extends State<Styles> {
                                                       Alignment.centerLeft,
                                                   child: Padding(
                                                     padding: EdgeInsets.only(
-                                                        left: 13.0, top: 10),
+                                                        left: 13.0,
+                                                        top: 10,
+                                                        right: 13),
                                                     child: Text(
                                                       'S-PLY CURATED STYLEBOXES',
                                                       style: TextStyle(
-                                                          fontFamily: 'RMNUEU',
+                                                          fontFamily:
+                                                              'RMNUEUSEMIBOLD',
                                                           fontSize: width < 400
-                                                              ? 22
-                                                              : 25,
+                                                              ? 20
+                                                              : 20,
                                                           fontWeight:
                                                               FontWeight.w900,
                                                           color: Colors.black),

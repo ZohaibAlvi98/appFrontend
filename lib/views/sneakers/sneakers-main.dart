@@ -128,7 +128,7 @@ class _SneakersState extends State<Sneakers> {
                         height: 50,
                       ),
                       // Featured Style Heading
-                      Heading(context, 'New Arrivals'),
+                      Heading(context, 'NEW ARRIVALS'),
                       SizedBox(
                         height: 20,
                       ),
@@ -172,17 +172,18 @@ class _SneakersState extends State<Sneakers> {
                                         ),
                                         Padding(
                                           padding: width < 400
-                                              ? EdgeInsets.only(top: 40.0)
-                                              : EdgeInsets.only(top: 50.0),
-                                          child: Center(
-                                              child: Text(
+                                              ? EdgeInsets.only(
+                                                  top: 40.0, left: 106)
+                                              : EdgeInsets.only(
+                                                  top: 50.0, left: 106),
+                                          child: Text(
                                             'MEN',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: width < 400 ? 30 : 40,
                                               fontWeight: FontWeight.w900,
                                             ),
-                                          )),
+                                          ),
                                         )
                                       ],
                                     )),
@@ -229,17 +230,18 @@ class _SneakersState extends State<Sneakers> {
                                         ),
                                         Padding(
                                           padding: width < 400
-                                              ? EdgeInsets.only(top: 40.0)
-                                              : EdgeInsets.only(top: 50.0),
-                                          child: Center(
-                                              child: Text(
+                                              ? EdgeInsets.only(
+                                                  top: 40.0, left: 75)
+                                              : EdgeInsets.only(
+                                                  top: 50.0, left: 75),
+                                          child: Text(
                                             'WOMEN',
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: width < 400 ? 30 : 40,
                                               fontWeight: FontWeight.w900,
                                             ),
-                                          )),
+                                          ),
                                         )
                                       ],
                                     )

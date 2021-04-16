@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class DrawrProducts {
-  Future<Map<String, dynamic>> getProducts() async {
-    String prodID = "26428";
+  Future<Map<String, dynamic>> getProducts(id) async {
+    String prodID = id;
 
     String ck = 'ck_dfa336f01dea059c26a82f16e1b547edf1fc7aa7';
     String cs = 'cs_2ad62fc78e4ec304311ede859aff8fc44a480646';
