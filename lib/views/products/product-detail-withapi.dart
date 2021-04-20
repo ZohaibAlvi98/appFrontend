@@ -179,8 +179,9 @@ class _ProductDetailState extends State<ProductDetail> {
                                     _selectedsize = newValue;
                                   });
                                 },
-                                items: _size.map((sizes) {
-                                  return DropdownMenuItem(
+                                items: item['attributes'][0]['options']
+                                    .map<DropdownMenuItem<String>>((sizes) {
+                                  return DropdownMenuItem<String>(
                                     child: new Text(sizes),
                                     value: sizes,
                                   );
@@ -212,8 +213,9 @@ class _ProductDetailState extends State<ProductDetail> {
                                     _selectedColor = newValue;
                                   });
                                 },
-                                items: _color.map((sizes) {
-                                  return DropdownMenuItem(
+                                items: item['attributes'][1]['options']
+                                    .map<DropdownMenuItem<String>>((sizes) {
+                                  return DropdownMenuItem<String>(
                                     child: new Text(sizes),
                                     value: sizes,
                                   );
