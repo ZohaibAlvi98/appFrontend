@@ -22,6 +22,7 @@ import '../drawer/category-detail/sweaters.dart';
 import '../drawer/category-detail/tops.dart';
 import '../sneakers/sneaker-mens.dart';
 import '../sneakers/sneaker-womens.dart';
+import 'package:html/parser.dart';
 
 class ProductDetail extends StatefulWidget {
   final String prodId;
@@ -278,7 +279,8 @@ class _ProductDetailState extends State<ProductDetail> {
                           ),
                           DropDown(
                             link: '',
-                            description: item['description'],
+                            description:
+                                parse(item['description']).documentElement.text,
                             vendor: item['store_name'],
                           ),
                           SizedBox(
