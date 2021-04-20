@@ -71,7 +71,7 @@ class _SplyrsState extends State<Splyrs> {
     'assets/images/styles/list8.jpg'
   ];
   FeaturedSplyrs data = new FeaturedSplyrs();
-  void _navigatorPage(index) {
+  void _navigatorPage(index, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
@@ -82,7 +82,9 @@ class _SplyrsState extends State<Splyrs> {
           else if (index == 'shopper') {
             return ShopperChannel();
           } else
-            return Channel();
+            return Channel(
+              splyrId: id,
+            );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -148,7 +150,7 @@ class _SplyrsState extends State<Splyrs> {
                         borderRadius: BorderRadius.circular(40.0),
                         side: BorderSide(color: Colors.black87, width: 1.4)),
                     onPressed: () {
-                      _navigatorPage('requestSplyr');
+                      _navigatorPage('requestSplyr', '');
                     },
                     child: Text(
                       'Become A SPLYR',
@@ -191,7 +193,8 @@ class _SplyrsState extends State<Splyrs> {
                               itemBuilder: (BuildContext context, int index) {
                                 final item = snapshot.data[index];
                                 return InkWell(
-                                  onTap: () => _navigatorPage(context),
+                                  onTap: () =>
+                                      _navigatorPage(context, item['splyr_id']),
                                   child: Column(
                                     children: [
                                       featuredSplyrs(
@@ -307,6 +310,7 @@ Widget lists(context, check, index) {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
+          var id;
           return ShopperChannel();
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
