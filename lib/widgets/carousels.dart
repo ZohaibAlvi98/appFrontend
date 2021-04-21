@@ -10,7 +10,7 @@ class CarouselWithDots extends StatefulWidget {
 }
 
 class _CarouselWithDotsState extends State<CarouselWithDots> {
-  int _current = 1;
+  int _current = 0;
   void changeCurrent(index) {
     setState(() {
       _current = index;
@@ -41,11 +41,11 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
                 decoration: BoxDecoration(
                     // borderRadius: BorderRadius.all(Radius.circular(35)),
                     image: DecorationImage(
-                        image: AssetImage(i), fit: BoxFit.fitWidth)),
+                        image: NetworkImage(i), fit: BoxFit.fitWidth)),
               );
             }).toList(),
             options: CarouselOptions(
-                initialPage: 1,
+                initialPage: 0,
                 enableInfiniteScroll: false,
                 height: width < 400 ? size * 0.43 : size * 0.55,
                 onPageChanged: (i, reason) {
@@ -159,22 +159,6 @@ class _CarouselWithTextDotsState extends State<CarouselWithTextDots> {
                                       ),
                                     ],
                                   ),
-                                  // Padding(
-                                  //   padding: width < 400
-                                  //       ? EdgeInsets.only(
-                                  //           top: 6, left: 7, right: 5)
-                                  //       : EdgeInsets.only(
-                                  //           top: 10, left: 7, right: 5),
-                                  //   child: Text(
-                                  //     'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document.',
-                                  //     style: TextStyle(
-                                  //         fontSize:
-                                  //             width < 400 ? 9 : 13,
-                                  //         color: Colors.grey[600],
-                                  //         fontWeight: FontWeight.w800,
-                                  //         height: 1.15),
-                                  //   ),
-                                  // )
                                 ],
                               ))
                         ],
@@ -481,85 +465,83 @@ class _RectangularSliderState extends State<RectangularSlider> {
   }
 }
 
-// //product carousel with API
-// class ProductCarouselWithDots extends StatefulWidget {
-//   final List productImg;
+class CarouselWithBox extends StatefulWidget {
+  final List carouselImg;
 
-//   ProductCarouselWithDots({Key key, @required this.productImg})
-//       : super(key: key);
-//   @override
-//   _ProductCarouselWithDotsState createState() =>
-//       _ProductCarouselWithDotsState();
-// }
+  CarouselWithBox({Key key, @required this.carouselImg}) : super(key: key);
+  @override
+  _CarouselWithBoxState createState() => _CarouselWithBoxState();
+}
 
-// class _ProductCarouselWithDotsState extends State<ProductCarouselWithDots> {
-//   int _current = 1;
-//   void changeCurrent(index) {
-//     setState(() {
-//       _current = index;
-//     });
-//   }
+class _CarouselWithBoxState extends State<CarouselWithBox> {
+  int _current = 1;
+  void changeCurrent(index) {
+    setState(() {
+      _current = index;
+    });
+  }
 
-//   @override
-//   Widget build(BuildContext context) {
-//     double width = MediaQuery.of(context).size.width;
-//     double size = MediaQuery.of(context).size.height -
-//         MediaQuery.of(context).padding.top -
-//         kToolbarHeight;
+  @override
+  Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double size = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        kToolbarHeight;
 
-//     List<T> map<T>(List list, Function handler) {
-//       List<T> result = [];
-//       for (var i = 0; i < list.length; i++) {
-//         result.add(handler(i, list[i]));
-//       }
-//       return result;
-//     }
+    List<T> map<T>(List list, Function handler) {
+      List<T> result = [];
+      for (var i = 0; i < list.length; i++) {
+        result.add(handler(i, list[i]));
+      }
 
-//     return Column(
-//       children: [
-//         CarouselSlider(
-//             items: widget.carouselImg.map((i) {
-//               return Container(
-//                 margin: EdgeInsets.symmetric(horizontal: 8),
-//                 decoration: BoxDecoration(
-//                     // borderRadius: BorderRadius.all(Radius.circular(35)),
-//                     image: DecorationImage(
-//                         image: AssetImage(i), fit: BoxFit.fitWidth)),
-//               );
-//             }).toList(),
-//             options: CarouselOptions(
-//                 initialPage: 1,
-//                 enableInfiniteScroll: false,
-//                 height: width < 400 ? size * 0.43 : size * 0.55,
-//                 onPageChanged: (i, reason) {
-//                   changeCurrent(i);
-//                 },
-//                 // autoPlay: true,
-//                 autoPlayCurve: Curves.easeInOut,
-//                 enlargeCenterPage: false)),
-//         SizedBox(
-//           height: 10,
-//         ),
-//         Row(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: map<Widget>(widget.carouselImg, (index, url) {
-//             return Container(
-//               width: 10.0,
-//               height: 7.0,
-//               margin: width < 400
-//                   ? EdgeInsets.symmetric(vertical: 0.0, horizontal: 2.0)
-//                   : EdgeInsets.symmetric(vertical: 6.0, horizontal: 2.0),
-//               decoration: BoxDecoration(
-//                 shape: BoxShape.circle,
-//                 color: _current == index ? Colors.black : Colors.grey,
-//               ),
-//             );
-//           }),
-//         ),
-//         SizedBox(
-//           height: 20,
-//         )
-//       ],
-//     );
-//   }
-// }
+      return result;
+    }
+
+    return Column(
+      children: [
+        CarouselSlider(
+            items: widget.carouselImg.map((i) {
+              return Container(
+                margin: EdgeInsets.symmetric(horizontal: 8),
+                decoration: BoxDecoration(
+                    // borderRadius: BorderRadius.all(Radius.circular(35)),
+                    image: DecorationImage(
+                        image: NetworkImage(i), fit: BoxFit.fitWidth)),
+              );
+            }).toList(),
+            options: CarouselOptions(
+                initialPage: 1,
+                enableInfiniteScroll: false,
+                height: width < 400 ? size * 0.43 : size * 0.55,
+                onPageChanged: (i, reason) {
+                  changeCurrent(i);
+                },
+                // autoPlay: true,
+                autoPlayCurve: Curves.easeInOut,
+                enlargeCenterPage: false)),
+        SizedBox(
+          height: 10,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: map<Widget>(widget.carouselImg, (index, url) {
+            return Container(
+              width: 10.0,
+              height: 7.0,
+              margin: width < 400
+                  ? EdgeInsets.symmetric(vertical: 0.0, horizontal: 2.0)
+                  : EdgeInsets.symmetric(vertical: 6.0, horizontal: 2.0),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: _current == index ? Colors.black : Colors.grey,
+              ),
+            );
+          }),
+        ),
+        SizedBox(
+          height: 20,
+        )
+      ],
+    );
+  }
+}

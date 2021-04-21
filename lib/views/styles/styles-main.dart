@@ -12,6 +12,9 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/widgets/carousels.dart';
 import '../auth/signup/signup.dart';
+import '../../services/styles/featured-style-boxes.dart';
+
+FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
 class Styles extends StatefulWidget {
   @override
@@ -44,11 +47,7 @@ class _StylesState extends State<Styles> {
     Signup()
   ];
 
-  List styleBoxImg = [
-    'assets/images/styles/boxList2.jpg',
-    'assets/images/styles/boxList1.jpg',
-    'assets/images/styles/boxList3.jpg',
-  ];
+  List styleBoxImg = [];
 
   void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
@@ -195,22 +194,34 @@ class _StylesState extends State<Styles> {
                         height: 50,
                       ),
                       Heading(context, 'FEATURED STYLE BOXES'),
-                      InkWell(
-                        onTap: () {
-                          _navigatorPage('styleBox');
-                        },
-                        child: CarouselWithDots(
-                          carouselImg: styleBoxImg,
-                        ),
-                      ),
+                      FutureBuilder(
+                          future: getstylebox.getFeaturedStyleBoxes(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<Map<String, dynamic>>>
+                                  snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(child: CircularProgressIndicator());
+                            } else {
+                              final item = snapshot.data;
+                              for (var a = 0; a < item.length; a++) {
+                                styleBoxImg.add(item[a]['image']);
+                              }
+                              return Container(
+                                child: InkWell(
+                                  onTap: () {
+                                    _navigatorPage('styleBox');
+                                  },
+                                  child: CarouselWithBox(
+                                    carouselImg: styleBoxImg,
+                                  ),
+                                ),
+                              );
+                            }
+                          }),
                       SizedBox(
                         height: 50,
                       ),
-                      // Heading(context, 'WHY STYLE BOXES'),
-                      // SizedBox(
-                      //   height: 30,
-                      // ),
-                      // Featured Style Heading
+
                       Heading(context, 'FEATURED STYLES'),
                       SizedBox(
                         height: 20,

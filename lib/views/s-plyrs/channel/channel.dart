@@ -12,10 +12,12 @@ import '../../../services/splyrs/splyrs-products.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 import '../../../services/splyrs/splyr-all-products.dart';
 import '../../../services/splyrs/splyrs-products.dart';
+import '../../../services/splyrs/splyr-logo&back.dart';
 
 SplyrsChannel data = SplyrsChannel();
 SplyrsProducts getdata = SplyrsProducts();
 SplyrsAllProducts returndata = SplyrsAllProducts();
+LogoAndBanner getlogoandbanner = LogoAndBanner();
 
 class Channel extends StatefulWidget {
   final String splyrId;
@@ -169,6 +171,7 @@ class _ChannelState extends State<Channel> {
               {
                 final item = snapshot.data;
                 print(snapshot);
+
                 return SingleChildScrollView(
                   child: Container(
                     child: YoutubePlayerControllerProvider(
