@@ -32,12 +32,7 @@ class ProductDetail extends StatefulWidget {
 }
 
 class _ProductDetailState extends State<ProductDetail> {
-  List carouselImg = [
-    'assets/images/productDetail/jacket1.jpg',
-    'assets/images/productDetail/jacket2.jpg',
-    'assets/images/productDetail/jacket3.jpg',
-    'assets/images/productDetail/jacket4.jpg'
-  ];
+  List carouselImg = [];
 
   int index = 0;
   int _selectedIndex = 0;
@@ -70,6 +65,17 @@ class _ProductDetailState extends State<ProductDetail> {
     Signup()
   ];
   DrawrProducts data = DrawrProducts();
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void getImages(var item) {
+    for (var a = 0; a < item['images'].length; a++) {
+      carouselImg.add(item['images'][a]['src']);
+    }
+  }
+
   @override
   Widget build(BuildContext contexts) {
     return WillPopScope(
@@ -104,7 +110,9 @@ class _ProductDetailState extends State<ProductDetail> {
                   {
                     final item = snapshot.data;
                     print(snapshot);
-
+                    for (var a = 0; a < item['images'].length; a++) {
+                      carouselImg.add(item['images'][a]['src']);
+                    }
                     return SingleChildScrollView(
                       child: Column(
                         children: [
