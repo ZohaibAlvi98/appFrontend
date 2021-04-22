@@ -14,6 +14,7 @@ import 'package:splyxp/widgets/carousels.dart';
 import '../auth/signup/signup.dart';
 import '../../services/styles/featured-style-boxes.dart';
 import 'package:splyxp/views/products/product-detail-stylebox.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
@@ -77,9 +78,36 @@ class _StylesState extends State<Styles> {
         }));
   }
 
+  String getId(imgUrl, styleList) {
+    for (var a = 0; a < styleList.length; a++) {
+      if (styleList[a]['image'] == imgUrl) {
+        return styleList[a]['box_id'].toString();
+      }
+    }
+  }
+
+  int _current = 1;
+  void changeCurrent(index) {
+    setState(() {
+      _current = index;
+    });
+  }
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double size = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        kToolbarHeight;
 
     return WillPopScope(
         onWillPop: () async {
@@ -208,18 +236,69 @@ class _StylesState extends State<Styles> {
                               return Center(child: CircularProgressIndicator());
                             } else {
                               final item = snapshot.data;
-                              for (var a = 0; a < item.length; a++) {
-                                styleBoxImg.add(item[a]['image']);
+                              if (styleBoxImg.isEmpty) {
+                                for (var a = 0; a < item.length; a++) {
+                                  styleBoxImg.add(item[a]['image']);
+                                }
                               }
-                              return Container(
-                                child: InkWell(
-                                  onTap: () {
-                                    _navigatorPage('boxDetail', '26048');
-                                  },
-                                  child: CarouselWithBox(
-                                    carouselImg: styleBoxImg,
+                              return Column(
+                                children: [
+                                  CarouselSlider(
+                                    items: styleBoxImg.map((i) {
+                                      return Container(
+                                        child: GestureDetector(
+                                          child: Image.network(i,
+                                              fit: BoxFit.fitWidth),
+                                          onTap: () {
+                                            String id = getId(i, item);
+                                            _navigatorPage('boxDetail', id);
+                                          },
+                                        ),
+                                        margin:
+                                            EdgeInsets.symmetric(horizontal: 8),
+                                      );
+                                    }).toList(),
+                                    options: CarouselOptions(
+                                        initialPage: 1,
+                                        enableInfiniteScroll: false,
+                                        height: width < 400
+                                            ? size * 0.43
+                                            : size * 0.55,
+                                        onPageChanged: (i, reason) {
+                                          changeCurrent(i);
+                                        },
+                                        // autoPlay: true,
+                                        autoPlayCurve: Curves.easeInOut,
+                                        enlargeCenterPage: false),
                                   ),
-                                ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children:
+                                        map<Widget>(styleBoxImg, (index, url) {
+                                      return Container(
+                                        width: 10.0,
+                                        height: 7.0,
+                                        margin: width < 400
+                                            ? EdgeInsets.symmetric(
+                                                vertical: 0.0, horizontal: 2.0)
+                                            : EdgeInsets.symmetric(
+                                                vertical: 6.0, horizontal: 2.0),
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: _current == index
+                                              ? Colors.black
+                                              : Colors.grey,
+                                        ),
+                                      );
+                                    }),
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  )
+                                ],
                               );
                             }
                           }),

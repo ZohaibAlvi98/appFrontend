@@ -7,6 +7,7 @@ import '../views/drawer/women.dart';
 import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:splyxp/views/home.dart';
 
 void _navigatorPage(context, index, auth) {
   // Navigator.of(context).pop(new PageRouteBuilder());
@@ -34,6 +35,8 @@ void _navigatorPage(context, index, auth) {
           );
         } else if (index == 'request') {
           return RequestShopper();
+        } else if (index == 'home') {
+          return Home();
         } else {
           return null;
         }
@@ -88,10 +91,9 @@ Widget appbarNew(context) {
   return AppBar(
     leading: Builder(
       builder: (context) => IconButton(
-        icon: new Icon(
-          Icons.menu,
-          color: Colors.black,
-          size: width * 0.08,
+        icon: Image.asset(
+          'assets/images/home/burger-menu.png',
+          height: height * 0.035,
         ),
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
@@ -111,10 +113,10 @@ Widget appbarWithMenu(context) {
   return AppBar(
     leading: Builder(
       builder: (context) => IconButton(
-        icon: new Icon(
-          Icons.menu,
-          color: Colors.black,
-          size: width * 0.08, //
+        padding: EdgeInsets.only(left: width * 0.025),
+        icon: Image.asset(
+          'assets/images/home/burger-menu.png',
+          height: height * 0.035,
         ),
         onPressed: () => Scaffold.of(context).openDrawer(),
       ),
@@ -350,6 +352,61 @@ Widget drawerAppBar(context, index, authenticated) {
             context: context,
             color: Colors.white,
             tiles: [
+              // index != 'home'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'home', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerName: 'Home',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'new'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'new', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerName: 'New Addition',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'new'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'new', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerName: 'New Addition',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'new'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'new', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerName: 'New Addition',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'new'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'new', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerName: 'New Addition',
+              //         ),
+              //       )
+              //     : null,
               index != 'new'
                   ? InkWell(
                       onTap: () {

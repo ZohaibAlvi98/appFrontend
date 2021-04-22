@@ -502,11 +502,15 @@ class _CarouselWithBoxState extends State<CarouselWithBox> {
         CarouselSlider(
             items: widget.carouselImg.map((i) {
               return Container(
+                child: GestureDetector(
+                  child: Image.network(i, fit: BoxFit.fitWidth),
+                  onTap: () {},
+                ),
                 margin: EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.all(Radius.circular(35)),
-                    image: DecorationImage(
-                        image: NetworkImage(i), fit: BoxFit.fitWidth)),
+                // decoration: BoxDecoration(
+                //     // borderRadius: BorderRadius.all(Radius.circular(35)),
+                //     image: DecorationImage(
+                //         image: NetworkImage(i), fit: BoxFit.fitWidth)),
               );
             }).toList(),
             options: CarouselOptions(

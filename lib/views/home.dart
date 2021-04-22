@@ -81,10 +81,9 @@ class _HomeState extends State<Home> {
                       left: width * 0.015,
                     ),
                     child: IconButton(
-                      icon: Icon(
-                        Icons.menu,
-                        color: Colors.black,
-                        size: width * 0.07,
+                      icon: Image.asset(
+                        'assets/images/home/burger-menu.png',
+                        height: height * 0.03,
                       ),
                       onPressed: () => Scaffold.of(context).openDrawer(),
                     ),
