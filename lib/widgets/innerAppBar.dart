@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splyxp/views/cart/cart.dart';
 import '../views/drawer/by-category.dart';
 import '../views/drawer/men.dart';
 import '../views/drawer/women.dart';
 import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void _navigatorPage(context, index, auth) {
   // Navigator.of(context).pop(new PageRouteBuilder());
@@ -338,92 +340,98 @@ Widget dashboardDrawer(context, index) {
 
 Widget drawerAppBar(context, index, authenticated) {
   return Drawer(
-      child: Column(
-    children: [
-      Padding(
-        padding: EdgeInsets.only(
-            top: (MediaQuery.of(context).size.height -
-                    MediaQuery.of(context).padding.top) *
-                0.06),
-        child: Center(
-          child: Image.asset(
-            'assets/images/drawerImg.jpg',
-            height: 35,
-          ),
-        ),
-      ),
-      ListView(
-          shrinkWrap: true,
-          children: ListTile.divideTiles(
-              //          <-- ListTile.divideTiles
-              context: context,
-              color: Colors.white,
-              tiles: [
-                index != 'new'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'new', authenticated);
-                        },
-                        child: ListTile(
-                          title: Text('New Addition',
-                              style: TextStyle(
-                                  fontFamily: 'RMNUEUSEMIBOLD',
-                                  color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'category'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'categories', authenticated);
-                        },
-                        child: ListTile(
-                          title: Text('Categories',
-                              style: TextStyle(
-                                  fontFamily: 'RMNUEUSEMIBOLD',
-                                  color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'mens'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'men', authenticated);
-                        },
-                        child: ListTile(
-                          title: Text('Men',
-                              style: TextStyle(
-                                  fontFamily: 'RMNUEUSEMIBOLD',
-                                  color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'womens'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'women', authenticated);
-                        },
-                        child: ListTile(
-                          title: Text('Women',
-                              style: TextStyle(
-                                  fontFamily: 'RMNUEUSEMIBOLD',
-                                  color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                InkWell(
-                  onTap: () {
-                    _navigatorPage(context, 'request', '');
-                  },
-                  child: ListTile(
-                    title: Text('Request to i-Shopper',
-                        style: TextStyle(
-                            fontFamily: 'RMNUEUSEMIBOLD', color: Colors.white)),
-                  ),
-                )
-              ]).toList()),
-    ],
+      child: Container(
+    padding: EdgeInsets.only(top: 30.0, left: 15.0),
+    color: Colors.white,
+    child: ListView(
+        shrinkWrap: true,
+        children: ListTile.divideTiles(
+            //          <-- ListTile.divideTiles
+            context: context,
+            color: Colors.white,
+            tiles: [
+              index != 'new'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'new', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerIcon: FontAwesomeIcons.tshirt,
+                        drawerName: 'New Addition',
+                      ),
+                    )
+                  : null,
+              index != 'category'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'categories', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerIcon: FontAwesomeIcons.buffer,
+                        drawerName: 'Categories',
+                      ),
+                    )
+                  : null,
+              index != 'mens'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'men', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerIcon: FontAwesomeIcons.male,
+                        drawerName: 'Men',
+                      ),
+                    )
+                  : null,
+              index != 'womens'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'women', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerIcon: FontAwesomeIcons.female,
+                        drawerName: 'Women',
+                      ),
+                    )
+                  : null,
+              InkWell(
+                onTap: () {
+                  _navigatorPage(context, 'request', '');
+                },
+                child: DrawerTile(
+                  drawerIcon: FontAwesomeIcons.edit,
+                  drawerName: 'Request to i-Shopper',
+                ),
+              )
+            ]).toList()),
   ));
+}
+
+class DrawerTile extends StatelessWidget {
+  final String drawerName;
+  final IconData drawerIcon;
+
+  DrawerTile({this.drawerName, this.drawerIcon});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Icon(
+        drawerIcon,
+        color: Colors.black54,
+        size: 30.0,
+      ),
+      title: Padding(
+        padding: EdgeInsets.only(top: 9.0),
+        child: Text(drawerName,
+            style: TextStyle(
+              fontFamily: 'RMNUEUREGULAR',
+              fontSize: 20.0,
+              color: Colors.black,
+            )),
+      ),
+    );
+  }
 }
 
 Widget appbarWithMenuNew(context) {
