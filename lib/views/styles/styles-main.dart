@@ -237,7 +237,7 @@ class _StylesState extends State<Styles> {
                           _navigatorPage('styleDetail', null);
                         },
                         child: Container(
-                          padding: EdgeInsets.only(right: 20, left: 20),
+                          padding: EdgeInsets.only(right: 20, left: 20.0),
                           child: Stack(children: [
                             Image.asset('assets/images/styles/styles4.jpg'),
                             RoundedCard(context, 0.97, 0.97),
