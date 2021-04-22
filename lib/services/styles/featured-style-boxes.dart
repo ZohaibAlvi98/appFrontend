@@ -10,7 +10,6 @@ class FeaturedStyleBoxes {
     final http.Response res = await http.get(
       url,
     );
-
     if (res.statusCode == 200) {
       print(res.body);
 

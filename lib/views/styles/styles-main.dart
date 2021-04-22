@@ -13,6 +13,7 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/widgets/carousels.dart';
 import '../auth/signup/signup.dart';
 import '../../services/styles/featured-style-boxes.dart';
+import 'package:splyxp/views/products/product-detail-stylebox.dart';
 
 FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
@@ -49,7 +50,7 @@ class _StylesState extends State<Styles> {
 
   List styleBoxImg = [];
 
-  void _navigatorPage(index) {
+  void _navigatorPage(index, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
@@ -57,6 +58,10 @@ class _StylesState extends State<Styles> {
         pageBuilder: (BuildContext context, _, __) {
           if (index == 'styleDetail') {
             return StyleDetail();
+          } else if (index == 'boxDetail') {
+            return ProductDetailStyleBox(
+              prodId: id,
+            );
           } else {
             return StylistChannel();
           }
@@ -133,7 +138,7 @@ class _StylesState extends State<Styles> {
                           padding: EdgeInsets.only(right: 15, left: 15, top: 0),
                           child: InkWell(
                               onTap: () {
-                                _navigatorPage('styleDetail');
+                                _navigatorPage('styleDetail', null);
                               },
                               child: Padding(
                                   padding: EdgeInsets.only(bottom: 7.0),
@@ -209,7 +214,7 @@ class _StylesState extends State<Styles> {
                               return Container(
                                 child: InkWell(
                                   onTap: () {
-                                    _navigatorPage('styleBox');
+                                    _navigatorPage('boxDetail', '26048');
                                   },
                                   child: CarouselWithBox(
                                     carouselImg: styleBoxImg,
@@ -229,7 +234,7 @@ class _StylesState extends State<Styles> {
                       // Image and Rounded Card
                       InkWell(
                         onTap: () {
-                          _navigatorPage('styleDetail');
+                          _navigatorPage('styleDetail', null);
                         },
                         child: Container(
                           padding: EdgeInsets.only(right: 20, left: 20),
@@ -278,7 +283,7 @@ class _StylesState extends State<Styles> {
                       // picture 2
                       InkWell(
                         onTap: () {
-                          _navigatorPage('styleDetail');
+                          _navigatorPage('styleDetail', null);
                         },
                         child: Container(
                           color: Colors.grey[100],
