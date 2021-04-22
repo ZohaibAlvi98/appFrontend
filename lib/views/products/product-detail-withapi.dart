@@ -110,8 +110,10 @@ class _ProductDetailState extends State<ProductDetail> {
                   {
                     final item = snapshot.data;
                     print(snapshot);
-                    for (var a = 0; a < item['images'].length; a++) {
-                      carouselImg.add(item['images'][a]['src']);
+                    if (carouselImg.isEmpty) {
+                      for (var a = 0; a < item['images'].length; a++) {
+                        carouselImg.add(item['images'][a]['src']);
+                      }
                     }
                     return SingleChildScrollView(
                       child: Column(
