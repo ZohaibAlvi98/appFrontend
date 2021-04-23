@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splyxp/views/cart/cart.dart';
 import '../views/drawer/by-category.dart';
 import '../views/drawer/men.dart';
 import '../views/drawer/women.dart';
 import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splyxp/views/home.dart';
 import 'package:splyxp/views/s-plyrs/splyrs-main.dart';
 import 'package:splyxp/views/styles/styles-main.dart';
@@ -281,65 +279,61 @@ Widget dashboardDrawer(context, index) {
       ),
       ListView(
           shrinkWrap: true,
-          children: ListTile.divideTiles(
-              //          <-- ListTile.divideTiles
-              context: context,
-              color: Colors.white,
-              tiles: [
-                index != 'new'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'new', '');
-                        },
-                        child: ListTile(
-                          title: Text('NEW ADDITION',
-                              style: TextStyle(color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'category'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'categories', '');
-                        },
-                        child: ListTile(
-                          title: Text('CATEGORIES',
-                              style: TextStyle(color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'men&women'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'men', '');
-                        },
-                        child: ListTile(
-                          title: Text('MEN',
-                              style: TextStyle(color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                index != 'men&women'
-                    ? InkWell(
-                        onTap: () {
-                          _navigatorPage(context, 'women', '');
-                        },
-                        child: ListTile(
-                          title: Text('WOMAN',
-                              style: TextStyle(color: Colors.white)),
-                        ),
-                      )
-                    : null,
-                InkWell(
-                  onTap: () {
-                    _navigatorPage(context, 'request', '');
-                  },
-                  child: ListTile(
-                    title: Text('REQUEST TO I-SHOPPER',
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                )
-              ]).toList()),
+          children: ListTile
+              .divideTiles(context: context, color: Colors.white, tiles: [
+            index != 'new'
+                ? InkWell(
+                    onTap: () {
+                      _navigatorPage(context, 'new', '');
+                    },
+                    child: ListTile(
+                      title: Text('NEW ADDITION',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  )
+                : null,
+            index != 'category'
+                ? InkWell(
+                    onTap: () {
+                      _navigatorPage(context, 'categories', '');
+                    },
+                    child: ListTile(
+                      title: Text('CATEGORIES',
+                          style: TextStyle(color: Colors.white)),
+                    ),
+                  )
+                : null,
+            index != 'men&women'
+                ? InkWell(
+                    onTap: () {
+                      _navigatorPage(context, 'men', '');
+                    },
+                    child: ListTile(
+                      title: Text('MEN', style: TextStyle(color: Colors.white)),
+                    ),
+                  )
+                : null,
+            index != 'men&women'
+                ? InkWell(
+                    onTap: () {
+                      _navigatorPage(context, 'women', '');
+                    },
+                    child: ListTile(
+                      title:
+                          Text('WOMAN', style: TextStyle(color: Colors.white)),
+                    ),
+                  )
+                : null,
+            InkWell(
+              onTap: () {
+                _navigatorPage(context, 'request', '');
+              },
+              child: ListTile(
+                title: Text('REQUEST TO I-SHOPPER',
+                    style: TextStyle(color: Colors.white)),
+              ),
+            )
+          ]).toList()),
     ],
   ));
 }
@@ -351,120 +345,117 @@ Widget drawerAppBar(context, index, authenticated) {
     color: Colors.white,
     child: ListView(
         shrinkWrap: true,
-        children: ListTile.divideTiles(
-            //          <-- ListTile.divideTiles
-            context: context,
-            color: Colors.white,
-            tiles: [
-              // index != 'home'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'home', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.home,
-              //           drawerName: 'Home',
-              //         ),
-              //       )
-              //     : null,
-              index != 'shop'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'shop', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerImage: 'assets/images/shop-nav-icon.png',
-                        drawerName: 'Shop',
-                      ),
-                    )
-                  : null,
-              index != 'styles'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'styles', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerImage: 'assets/images/styles-nav-icon.png',
-                        drawerName: 'Styles',
-                      ),
-                    )
-                  : null,
-              // index != 'tv'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'tv', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tv,
-              //           drawerName: 'TV',
-              //         ),
-              //       )
-              //     : null,
-              index != 'sneakers'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'sneakers', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerImage: 'assets/images/sneakers-nav-icon.png',
-                        drawerName: 'Sneakers',
-                      ),
-                    )
-                  : null,
-              index != 'new'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'new', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerImage: 'assets/images/new-arrival-nav-icon.png',
-                        drawerName: 'New Addition',
-                      ),
-                    )
-                  : null,
-              // index != 'category'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'categories', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.buffer,
-              //           drawerName: 'Categories',
-              //         ),
-              //       )
-              //     : null,
-              // index != 'mens'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'men', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.male,
-              //           drawerName: 'Men',
-              //         ),
-              //       )
-              //     : null,
-              // index != 'womens'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'women', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.female,
-              //           drawerName: 'Women',
-              //         ),
-              //       )
-              //     : null,
-              // InkWell(
-              //   onTap: () {
-              //     _navigatorPage(context, 'request', '');
-              //   },
-              //   child: DrawerTile(
-              //     drawerIcon: FontAwesomeIcons.edit,
-              //     drawerName: 'Request to i-Shopper',
-              //   ),
-              // )
-            ]).toList()),
+        children:
+            ListTile.divideTiles(context: context, color: Colors.white, tiles: [
+          // index != 'home'
+          //     ? InkWell(
+          //         onTap: () {
+          //           _navigatorPage(context, 'home', authenticated);
+          //         },
+          //         child: DrawerTile(
+          //           drawerIcon: FontAwesomeIcons.home,
+          //           drawerName: 'Home',
+          //         ),
+          //       )
+          //     : null,
+          index != 'new'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'new', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/new-arrival-nav-icon.png',
+                    drawerName: 'New Addition',
+                  ),
+                )
+              : null,
+          index != 'shop'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'shop', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/shop-nav-icon.png',
+                    drawerName: 'Shop',
+                  ),
+                )
+              : null,
+          index != 'styles'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'styles', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/styles-nav-icon.png',
+                    drawerName: 'Styles',
+                  ),
+                )
+              : null,
+          // index != 'tv'
+          //     ? InkWell(
+          //         onTap: () {
+          //           _navigatorPage(context, 'tv', authenticated);
+          //         },
+          //         child: DrawerTile(
+          //           drawerIcon: FontAwesomeIcons.tv,
+          //           drawerName: 'TV',
+          //         ),
+          //       )
+          //     : null,
+          index != 'sneakers'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'sneakers', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/sneakers-nav-icon.png',
+                    drawerName: 'Sneakers',
+                  ),
+                )
+              : null,
+          // index != 'category'
+          //     ? InkWell(
+          //         onTap: () {
+          //           _navigatorPage(context, 'categories', authenticated);
+          //         },
+          //         child: DrawerTile(
+          //           drawerIcon: FontAwesomeIcons.buffer,
+          //           drawerName: 'Categories',
+          //         ),
+          //       )
+          //     : null,
+          // index != 'mens'
+          //     ? InkWell(
+          //         onTap: () {
+          //           _navigatorPage(context, 'men', authenticated);
+          //         },
+          //         child: DrawerTile(
+          //           drawerIcon: FontAwesomeIcons.male,
+          //           drawerName: 'Men',
+          //         ),
+          //       )
+          //     : null,
+          // index != 'womens'
+          //     ? InkWell(
+          //         onTap: () {
+          //           _navigatorPage(context, 'women', authenticated);
+          //         },
+          //         child: DrawerTile(
+          //           drawerIcon: FontAwesomeIcons.female,
+          //           drawerName: 'Women',
+          //         ),
+          //       )
+          //     : null,
+          // InkWell(
+          //   onTap: () {
+          //     _navigatorPage(context, 'request', '');
+          //   },
+          //   child: DrawerTile(
+          //     drawerIcon: FontAwesomeIcons.edit,
+          //     drawerName: 'Request to i-Shopper',
+          //   ),
+          // )
+        ]).toList()),
   ));
 }
 
