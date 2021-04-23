@@ -465,16 +465,13 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
         } else {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            // physics: NeverScrollableScrollPhysics(),
-            // shrinkWrap: true,
-
             padding: EdgeInsets.only(right: 20.0, left: 12),
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
               final item = snapshot.data[index];
               return Container(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
@@ -496,11 +493,7 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                       ),
                     ),
                     Padding(
-                      // padding: width < 400
-                      //     ? EdgeInsets.only(right: 15.0)
-                      //     : EdgeInsets.only(right: 32.0),
-                      padding: EdgeInsets.only(left: 9, top: 4),
-                      // work here
+                      padding: EdgeInsets.only(top: 6),
                       child: SizedBox(
                         width: 175,
                         child: Text(
@@ -512,18 +505,19 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(top: 10),
                       child: Text(
-                        'Price: \$' + item['price'],
+                        '\$' + item['price'],
                         style: TextStyle(
-                            fontFamily: 'RMNUEUREGULAR',
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                          fontFamily: 'RMNUEUREGULAR',
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ),
                   ],

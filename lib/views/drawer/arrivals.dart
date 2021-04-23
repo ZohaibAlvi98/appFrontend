@@ -90,9 +90,7 @@ class _ArrivalsState extends State<Arrivals> {
         appBar: appbarWithMenu(context),
         drawer: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Colors
-                  .black, //This will change the drawer background to blue.
-              //other styles
+              canvasColor: Colors.black,
             ),
             child: drawerAppBar(context, 'new', widget.authenticated)),
         body: _selectedIndex == 0
@@ -149,9 +147,6 @@ class _ArrivalsState extends State<Arrivals> {
                       ),
                       FutureBuilder(
                           future: data.getDrawrProducts("589"),
-
-                          // artistService.getArtist(page),
-
                           builder: (BuildContext context,
                               AsyncSnapshot<List<Map<String, dynamic>>>
                                   snapshot) {
@@ -169,9 +164,8 @@ class _ArrivalsState extends State<Arrivals> {
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.22),
+                                            1.1),
                                   ),
-                                  // scrollDirection: Axis.vertical,
                                   itemCount: snapshot.data.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
@@ -219,60 +213,48 @@ class _ArrivalsState extends State<Arrivals> {
 }
 
 Widget lists(context, check, image, index, name, price, id) {
-  return Column(
-    children: [
-      // Align(
-      //   alignment: Alignment.topLeft,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(top: 5, left: 10),
-      //     child: Text(
-      //       metadata,
-      //       style: TextStyle(
-      //           fontSize: 15.5,
-      //           color: Colors.grey[600],
-      //           fontWeight: FontWeight.bold),
-      //     ),
-      //   ),
-      // ),
-      Padding(
-          padding: index != 0 && index != 1
-              ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
-              : EdgeInsets.only(left: 7.0, right: 7, top: 4),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
+  return Container(
+    margin: EdgeInsets.all(1.5),
+    color: Color(int.parse('#e5e6ea'.replaceAll('#', '0xff'))),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(1.0),
+          child: Image.network(
+            image,
+            fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Text(
+              name,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'RMNUEU'),
+              textAlign: TextAlign.center,
+              maxLines: 2,
             ),
-          )),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10, right: 10),
-          child: Text(
-            name,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUSEMIBOLD'),
-            maxLines: 2,
           ),
         ),
-      ),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10),
-          child: Text(
-            'Price: \$ ' + price,
-            style: TextStyle(
+        Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.only(top: 10),
+            child: Text(
+              '\$ ' + price,
+              style: TextStyle(
                 fontSize: 15,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUREGULAR'),
+                fontFamily: 'RMNUEUREGULAR',
+              ),
+            ),
           ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }
