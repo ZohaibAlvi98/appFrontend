@@ -14,6 +14,9 @@ import '../requests/request-splyr.dart';
 import '../../widgets/horizontalList.dart';
 import '../auth/signup/signup.dart';
 import '../../services/splyrs/featured-splyr-services.dart';
+import '../../services/splyrs/splyr-general-content.dart';
+
+SplyrContent splyrdata = SplyrContent();
 
 class Splyrs extends StatefulWidget {
   final bool authenticated;
@@ -124,25 +127,41 @@ class _SplyrsState extends State<Splyrs> {
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   child: Column(children: [
-                  Container(
-                    padding: EdgeInsets.only(right: 20, left: 20),
-                    child: Image.asset(
-                      'assets/images/splyrs/main.jpg',
-                    ),
-                  ),
-                  Padding(
-                    padding: width < 400
-                        ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
-                        : EdgeInsets.only(top: 20.0, left: 55, right: 65),
-                    child: Text(
-                        'Curated selection of fashion and lifestyle products from popular SPLYRS from across the world.',
-                        style: TextStyle(
-                            fontFamily: 'RMNUEUREGULAR',
-                            height: 1.3,
-                            fontSize: 20,
-                            color: Colors.black,
-                            fontWeight: FontWeight.w400)),
-                  ),
+                  FutureBuilder(
+                      future: splyrdata.getSplyrContent(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          final item = snapshot.data;
+                          print(snapshot);
+                          return Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 20, left: 20),
+                                child: Image.network(
+                                  item[0]['banner_image'],
+                                ),
+                              ),
+                              Padding(
+                                padding: width < 400
+                                    ? EdgeInsets.only(
+                                        top: 20.0, left: 50, right: 15)
+                                    : EdgeInsets.only(
+                                        top: 20.0, left: 55, right: 65),
+                                child: Text(item[0]['subtext'],
+                                    style: TextStyle(
+                                        fontFamily: 'RMNUEUREGULAR',
+                                        height: 1.3,
+                                        fontSize: 20,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                            ],
+                          );
+                        }
+                      }),
                   SizedBox(
                     height: width < 400 ? 12 : 10,
                   ),

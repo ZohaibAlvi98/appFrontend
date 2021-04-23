@@ -19,7 +19,7 @@ class HomeScreenButtonPictureText extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Image.asset(imgPath),
+              child: Image.network(imgPath),
             ),
             Expanded(
               child: Padding(

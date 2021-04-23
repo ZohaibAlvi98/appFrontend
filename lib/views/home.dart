@@ -9,6 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../dashboard.dart';
 import 'package:splyxp/widgets/homescreenpicturetext.dart';
 import 'package:splyxp/widgets/homescreentextpicture.dart';
+import '../services/home-api.dart';
+
+HomeContent homedata = HomeContent();
 
 class Home extends StatefulWidget {
   final bool authenticated;
@@ -84,18 +87,6 @@ class _HomeState extends State<Home> {
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Padding(
-                  //   padding: EdgeInsets.only(
-                  //     left: width * 0.015,
-                  //   ),
-                  //   child: IconButton(
-                  //     icon: Image.asset(
-                  //       'assets/images/home/burger-menu.png',
-                  //       height: height * 0.03,
-                  //     ),
-                  //     onPressed: () => Scaffold.of(context).openDrawer(),
-                  //   ),
-                  // ),
                   Center(
                     child: Container(
                       color: Colors.white,
@@ -124,57 +115,65 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   SizedBox(height: height * 0.04),
-                  Column(
-                    children: [
-                      HomeScreenButtonTextPicture(
-                        boldText: 'SHOP',
-                        infotext: 'Tap to shop from our\nSPLYR Directory',
-                        imgPath: 'assets/images/home/shophome.jpg',
-                        onPressed: () {
-                          setState(() {
-                            _selectedIndex = 0;
-                          });
-                          _navigatorPage();
-                        },
-                      ),
-                      HomeScreenButtonPictureText(
-                        boldText: 'STYLES',
-                        infotext:
-                            'Tap to see our collection\nof Featured Styles',
-                        imgPath: 'assets/images/home/styleshome.jpg',
-                        onPressed: () {
-                          setState(() {
-                            _selectedIndex = 1;
-                          });
-                          _navigatorPage();
-                        },
-                      ),
-                      HomeScreenButtonTextPicture(
-                        boldText: 'TV',
-                        infotext:
-                            'Tap to view our SPLYR\nChannels and Broadcasts',
-                        imgPath: 'assets/images/home/tvhome.jpg',
-                        onPressed: () {
-                          setState(() {
-                            _selectedIndex = 2;
-                          });
-                          _navigatorPage();
-                        },
-                      ),
-                      HomeScreenButtonPictureText(
-                        boldText: 'SNEAKERS',
-                        infotext:
-                            'Tap to view our latest\ncollection of sneakers',
-                        imgPath: 'assets/images/home/sneakershome.jpg',
-                        onPressed: () {
-                          setState(() {
-                            _selectedIndex = 3;
-                          });
-                          _navigatorPage();
-                        },
-                      ),
-                    ],
-                  ),
+                  FutureBuilder(
+                      future: homedata.getHomeContent(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          final item = snapshot.data;
+                          print(snapshot);
+                          return Column(
+                            children: [
+                              HomeScreenButtonTextPicture(
+                                boldText: item[0]['sec_1_heading'],
+                                infotext: item[0]['sec_1_text'],
+                                imgPath: item[0]['sec_1_image'],
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedIndex = 0;
+                                  });
+                                  _navigatorPage();
+                                },
+                              ),
+                              HomeScreenButtonPictureText(
+                                boldText: item[0]['sec_2_heading'],
+                                infotext: item[0]['sec_2_text'],
+                                imgPath: item[0]['sec_2_image'],
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedIndex = 1;
+                                  });
+                                  _navigatorPage();
+                                },
+                              ),
+                              HomeScreenButtonTextPicture(
+                                boldText: item[0]['sec_3_heading'],
+                                infotext: item[0]['sec_3_text'],
+                                imgPath: item[0]['sec_3_image'],
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedIndex = 2;
+                                  });
+                                  _navigatorPage();
+                                },
+                              ),
+                              HomeScreenButtonPictureText(
+                                boldText: item[0]['sec_4_heading'],
+                                infotext: item[0]['sec_4_text'],
+                                imgPath: item[0]['sec_4_image'],
+                                onPressed: () {
+                                  setState(() {
+                                    _selectedIndex = 3;
+                                  });
+                                  _navigatorPage();
+                                },
+                              ),
+                            ],
+                          );
+                        }
+                      }),
                 ],
               ),
             ),

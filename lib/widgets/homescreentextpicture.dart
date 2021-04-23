@@ -49,7 +49,7 @@ class HomeScreenButtonTextPicture extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Image.asset(imgPath),
+              child: Image.network(imgPath),
             ),
           ],
         ),
