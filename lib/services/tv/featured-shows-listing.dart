@@ -1,17 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class FeaturedSplyrs {
-  Future<List<Map<String, dynamic>>> getFeaturedSplyrs() async {
+class ShowsListing {
+  Future<List<Map<String, dynamic>>> getShowsListing() async {
     final String url =
-        "https://splystyle.net/wp-json/getfeaturedsplyrs/v1/get-featured-splyrs";
-
-    print('SUCCESS');
+        "https://splystyle.net/wp-json/getshowslisting/v1/get-shows-listing";
+    print('TV SHOWS LISTING Api -> Success');
 
     final http.Response res = await http.get(
       url,
     );
-
     if (res.statusCode == 200) {
       print(res.body);
 
