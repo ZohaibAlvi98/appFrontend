@@ -8,6 +8,10 @@ import '../views/drawer/arrivals.dart';
 import '../views/requests/request-shopper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:splyxp/views/home.dart';
+import 'package:splyxp/views/s-plyrs/splyrs-main.dart';
+import 'package:splyxp/views/styles/styles-main.dart';
+import 'package:splyxp/views/sneakers/sneakers-main.dart';
+import 'package:splyxp/views/tv/tv-main.dart';
 
 void _navigatorPage(context, index, auth) {
   // Navigator.of(context).pop(new PageRouteBuilder());
@@ -18,25 +22,25 @@ void _navigatorPage(context, index, auth) {
         if (index == 'cart') {
           return Cart();
         } else if (index == 'categories') {
-          return ByCategory(
-            authenticated: auth,
-          );
+          return ByCategory(authenticated: auth);
         } else if (index == 'men') {
-          return Mens(
-            authenticated: auth,
-          );
+          return Mens(authenticated: auth);
         } else if (index == 'women') {
-          return Womens(
-            authenticated: auth,
-          );
+          return Womens(authenticated: auth);
         } else if (index == 'new') {
-          return Arrivals(
-            authenticated: auth,
-          );
+          return Arrivals(authenticated: auth);
         } else if (index == 'request') {
           return RequestShopper();
         } else if (index == 'home') {
-          return Home();
+          return Home(authenticated: auth);
+        } else if (index == 'shop') {
+          return Splyrs(authenticated: auth);
+        } else if (index == 'styles') {
+          return Styles(authenticated: auth);
+        } else if (index == 'sneakers') {
+          return Sneakers(authenticated: auth);
+        } else if (index == 'tv') {
+          return Tv(authenticated: auth);
         } else {
           return null;
         }
@@ -358,133 +362,134 @@ Widget drawerAppBar(context, index, authenticated) {
               //           _navigatorPage(context, 'home', authenticated);
               //         },
               //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tshirt,
+              //           drawerIcon: FontAwesomeIcons.home,
               //           drawerName: 'Home',
               //         ),
               //       )
               //     : null,
-              // index != 'new'
+              index != 'shop'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'shop', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerImage: 'assets/images/shop-nav-icon.png',
+                        drawerName: 'Shop',
+                      ),
+                    )
+                  : null,
+              index != 'styles'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'styles', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerImage: 'assets/images/styles-nav-icon.png',
+                        drawerName: 'Styles',
+                      ),
+                    )
+                  : null,
+              // index != 'tv'
               //     ? InkWell(
               //         onTap: () {
-              //           _navigatorPage(context, 'new', authenticated);
+              //           _navigatorPage(context, 'tv', authenticated);
               //         },
               //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tshirt,
-              //           drawerName: 'New Addition',
+              //           drawerIcon: FontAwesomeIcons.tv,
+              //           drawerName: 'TV',
               //         ),
               //       )
               //     : null,
-              // index != 'new'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'new', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tshirt,
-              //           drawerName: 'New Addition',
-              //         ),
-              //       )
-              //     : null,
-              // index != 'new'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'new', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tshirt,
-              //           drawerName: 'New Addition',
-              //         ),
-              //       )
-              //     : null,
-              // index != 'new'
-              //     ? InkWell(
-              //         onTap: () {
-              //           _navigatorPage(context, 'new', authenticated);
-              //         },
-              //         child: DrawerTile(
-              //           drawerIcon: FontAwesomeIcons.tshirt,
-              //           drawerName: 'New Addition',
-              //         ),
-              //       )
-              //     : null,
+              index != 'sneakers'
+                  ? InkWell(
+                      onTap: () {
+                        _navigatorPage(context, 'sneakers', authenticated);
+                      },
+                      child: DrawerTile(
+                        drawerImage: 'assets/images/sneakers-nav-icon.png',
+                        drawerName: 'Sneakers',
+                      ),
+                    )
+                  : null,
               index != 'new'
                   ? InkWell(
                       onTap: () {
                         _navigatorPage(context, 'new', authenticated);
                       },
                       child: DrawerTile(
-                        drawerIcon: FontAwesomeIcons.tshirt,
+                        drawerImage: 'assets/images/new-arrival-nav-icon.png',
                         drawerName: 'New Addition',
                       ),
                     )
                   : null,
-              index != 'category'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'categories', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerIcon: FontAwesomeIcons.buffer,
-                        drawerName: 'Categories',
-                      ),
-                    )
-                  : null,
-              index != 'mens'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'men', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerIcon: FontAwesomeIcons.male,
-                        drawerName: 'Men',
-                      ),
-                    )
-                  : null,
-              index != 'womens'
-                  ? InkWell(
-                      onTap: () {
-                        _navigatorPage(context, 'women', authenticated);
-                      },
-                      child: DrawerTile(
-                        drawerIcon: FontAwesomeIcons.female,
-                        drawerName: 'Women',
-                      ),
-                    )
-                  : null,
-              InkWell(
-                onTap: () {
-                  _navigatorPage(context, 'request', '');
-                },
-                child: DrawerTile(
-                  drawerIcon: FontAwesomeIcons.edit,
-                  drawerName: 'Request to i-Shopper',
-                ),
-              )
+              // index != 'category'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'categories', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.buffer,
+              //           drawerName: 'Categories',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'mens'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'men', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.male,
+              //           drawerName: 'Men',
+              //         ),
+              //       )
+              //     : null,
+              // index != 'womens'
+              //     ? InkWell(
+              //         onTap: () {
+              //           _navigatorPage(context, 'women', authenticated);
+              //         },
+              //         child: DrawerTile(
+              //           drawerIcon: FontAwesomeIcons.female,
+              //           drawerName: 'Women',
+              //         ),
+              //       )
+              //     : null,
+              // InkWell(
+              //   onTap: () {
+              //     _navigatorPage(context, 'request', '');
+              //   },
+              //   child: DrawerTile(
+              //     drawerIcon: FontAwesomeIcons.edit,
+              //     drawerName: 'Request to i-Shopper',
+              //   ),
+              // )
             ]).toList()),
   ));
 }
 
 class DrawerTile extends StatelessWidget {
   final String drawerName;
-  final IconData drawerIcon;
+  final String drawerImage;
 
-  DrawerTile({this.drawerName, this.drawerIcon});
+  DrawerTile({this.drawerName, this.drawerImage});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(
-        drawerIcon,
-        color: Colors.black54,
-        size: 30.0,
+      leading: CircleAvatar(
+        backgroundImage: AssetImage(drawerImage),
+        backgroundColor: Colors.transparent,
+        radius: 20.0,
       ),
       title: Padding(
         padding: EdgeInsets.only(top: 9.0),
         child: Text(drawerName,
             style: TextStyle(
               fontFamily: 'RMNUEUREGULAR',
-              fontSize: 20.0,
+              fontSize: 18.0,
               color: Colors.black,
+              fontWeight: FontWeight.w500,
             )),
       ),
     );

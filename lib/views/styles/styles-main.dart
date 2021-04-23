@@ -19,6 +19,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
 class Styles extends StatefulWidget {
+  final bool authenticated;
+  Styles({Key key, this.authenticated}) : super(key: key);
   @override
   _StylesState createState() => _StylesState();
 }
@@ -126,8 +128,7 @@ class _StylesState extends State<Styles> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '', false)),
-
+              child: drawerAppBar(context, 'styles', widget.authenticated)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   // key: new PageStorageKey('feed'),

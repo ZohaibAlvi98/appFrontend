@@ -13,6 +13,8 @@ import '../../views/sply-network.dart';
 import '../auth/signup/signup.dart';
 
 class Tv extends StatefulWidget {
+  final bool authenticated;
+  Tv({Key key, this.authenticated}) : super(key: key);
   @override
   _TvState createState() => _TvState();
 }
@@ -76,12 +78,9 @@ class _TvState extends State<Tv> {
           appBar: appbarWithMenu(context),
           drawer: Theme(
               data: Theme.of(context).copyWith(
-                canvasColor: Colors
-                    .black, //This will change the drawer background to blue.
-                //other styles
+                canvasColor: Colors.black,
               ),
-              child: drawerAppBar(context, '', false)),
-
+              child: drawerAppBar(context, 'tv', widget.authenticated)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   child: Column(

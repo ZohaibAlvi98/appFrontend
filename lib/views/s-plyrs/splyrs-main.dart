@@ -16,6 +16,8 @@ import '../auth/signup/signup.dart';
 import '../../services/splyrs/featured-splyr-services.dart';
 
 class Splyrs extends StatefulWidget {
+  final bool authenticated;
+  Splyrs({Key key, this.authenticated}) : super(key: key);
   @override
   _SplyrsState createState() => _SplyrsState();
 }
@@ -118,8 +120,7 @@ class _SplyrsState extends State<Splyrs> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, '', false)),
-
+              child: drawerAppBar(context, 'shop', widget.authenticated)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   child: Column(children: [

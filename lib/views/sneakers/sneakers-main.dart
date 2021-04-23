@@ -15,6 +15,8 @@ import 'package:splyxp/views/sneakers/sneaker-mens.dart';
 import 'package:splyxp/views/sneakers/sneaker-womens.dart';
 
 class Sneakers extends StatefulWidget {
+  final bool authenticated;
+  Sneakers({Key key, this.authenticated}) : super(key: key);
   @override
   _SneakersState createState() => _SneakersState();
 }
@@ -96,12 +98,9 @@ class _SneakersState extends State<Sneakers> {
           appBar: appbarWithMenu(context),
           drawer: Theme(
               data: Theme.of(context).copyWith(
-                canvasColor: Colors
-                    .black, //This will change the drawer background to blue.
-                //other styles
+                canvasColor: Colors.black,
               ),
-              child: drawerAppBar(context, '', false)),
-
+              child: drawerAppBar(context, 'sneakers', widget.authenticated)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   child: Column(

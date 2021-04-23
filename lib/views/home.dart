@@ -11,6 +11,8 @@ import 'package:splyxp/widgets/homescreenpicturetext.dart';
 import 'package:splyxp/widgets/homescreentextpicture.dart';
 
 class Home extends StatefulWidget {
+  final bool authenticated;
+  Home({Key key, this.authenticated}) : super(key: key);
   @override
   _HomeState createState() => _HomeState();
 }
@@ -24,14 +26,14 @@ class _HomeState extends State<Home> {
     return name;
   }
 
-  bool authenticated;
+  bool authenticatedLogin;
 
   @override
   void initState() {
     getAuth().then((bool val) => {
           // print(val),
           setState(() {
-            this.authenticated = val;
+            this.authenticatedLogin = val;
           })
         });
     super.initState();
@@ -69,25 +71,31 @@ class _HomeState extends State<Home> {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
 
-    return authenticated == null
+    return authenticatedLogin == null
         ? SafeArea(
             child: Scaffold(
+              appBar: appbarNew(context),
+              drawer: Theme(
+                  data: Theme.of(context).copyWith(
+                    canvasColor: Colors.black,
+                  ),
+                  child: drawerAppBar(context, 'home', widget.authenticated)),
               backgroundColor: Colors.white,
               body: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(
-                      left: width * 0.015,
-                    ),
-                    child: IconButton(
-                      icon: Image.asset(
-                        'assets/images/home/burger-menu.png',
-                        height: height * 0.03,
-                      ),
-                      onPressed: () => Scaffold.of(context).openDrawer(),
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(
+                  //     left: width * 0.015,
+                  //   ),
+                  //   child: IconButton(
+                  //     icon: Image.asset(
+                  //       'assets/images/home/burger-menu.png',
+                  //       height: height * 0.03,
+                  //     ),
+                  //     onPressed: () => Scaffold.of(context).openDrawer(),
+                  //   ),
+                  // ),
                   Center(
                     child: Container(
                       color: Colors.white,
