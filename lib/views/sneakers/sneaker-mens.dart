@@ -7,7 +7,7 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
-import 'package:splyxp/views/products/product-detail-withapi.dart';
+import 'package:splyxp/views/products/product-sneaker-detail.dart';
 import '../../services/sneakers/mens-sneakers.dart';
 
 class SneakersMens extends StatefulWidget {
@@ -59,7 +59,7 @@ class _SneakersMensState extends State<SneakersMens> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail(
+          return ProductDetailSneaker(
             prodId: id,
           );
         },

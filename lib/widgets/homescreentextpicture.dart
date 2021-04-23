@@ -33,20 +33,23 @@ class HomeScreenButtonTextPicture extends StatelessWidget {
                         fontSize: 20.0,
                       ),
                     ),
-                    Text(
-                      infotext,
-                      style: TextStyle(
-                        fontFamily: 'RMNUEUREGULAR',
-                        fontSize: 15.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text(
+                        infotext,
+                        style: TextStyle(
+                          fontFamily: 'RMNUEUREGULAR',
+                          fontSize: 15.0,
+                        ),
+                        textAlign: TextAlign.right,
                       ),
-                      textAlign: TextAlign.right,
                     ),
                   ],
                 ),
               ),
             ),
             Expanded(
-              child: Image.asset(imgPath),
+              child: Image.network(imgPath),
             ),
           ],
         ),

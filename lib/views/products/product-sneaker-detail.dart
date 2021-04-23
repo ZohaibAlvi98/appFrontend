@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/carousels.dart';
-import 'package:splyxp/widgets/dropdown.dart';
+import 'package:splyxp/widgets/dropdown-sneakers.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import '../search/search.dart';
+import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
-import '../../services/prdocut-detail-api.dart';
-import 'package:html/parser.dart';
 
-class ProductDetailStyleBox extends StatefulWidget {
+import 'package:html/parser.dart';
+import '../../services/sneakers/sneaker-product-detail.dart';
+
+class ProductDetailSneaker extends StatefulWidget {
   final String prodId;
-  ProductDetailStyleBox({Key key, @required this.prodId}) : super(key: key);
+  ProductDetailSneaker({Key key, @required this.prodId}) : super(key: key);
   @override
-  _ProductDetailStyleBoxState createState() => _ProductDetailStyleBoxState();
+  _ProductDetailSneakerState createState() => _ProductDetailSneakerState();
 }
 
-class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
+class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
   List carouselImg = [];
 
   int index = 0;
@@ -31,11 +33,18 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
     });
   }
 
+  List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
+
+  String _selectedsize;
+
   List<String> _qty = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
   String _selectedQty;
 
+  List<String> _color = ['Black', 'Blue', 'Red'];
+  String _selectedColor;
+
   static List<Widget> _bottomNavList = [
-    ProductDetailStyleBox(
+    ProductDetailSneaker(
       prodId: null,
     ),
     Search(),
@@ -43,7 +52,7 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
     SplyNetwork(),
     Signup()
   ];
-  DrawrProducts data = DrawrProducts();
+  SneakerProductDetail data = SneakerProductDetail();
   @override
   void initState() {
     super.initState();
@@ -76,7 +85,7 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
             child: drawerAppBar(context, '', false)),
         body: _selectedIndex == 0
             ? FutureBuilder(
-                future: data.getProducts(widget.prodId),
+                future: data.getSneakerProductDetail(widget.prodId),
                 builder: (BuildContext context,
                     AsyncSnapshot<Map<String, dynamic>> snapshot) {
                   if (!snapshot.hasData) {
@@ -84,8 +93,10 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                   } else {
                     final item = snapshot.data;
                     print(snapshot);
-                    for (var a = 0; a < item['images'].length; a++) {
-                      carouselImg.add(item['images'][a]['src']);
+                    if (carouselImg.isEmpty) {
+                      for (var a = 0; a < item['images'].length; a++) {
+                        carouselImg.add(item['images'][a]['src']);
+                      }
                     }
                     return SingleChildScrollView(
                       child: Column(
@@ -99,30 +110,19 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                                 Center(
                                   child: Padding(
                                     padding:
-                                        EdgeInsets.only(left: 13, right: 13),
-                                    child: Text(
-                                      item['name'],
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontFamily: 'RMNUEUSEMIBOLD'),
+                                        EdgeInsets.only(left: 20, right: 20),
+                                    child: Center(
+                                      child: Text(
+                                        item['name'],
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'RMNUEUSEMIBOLD'),
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 20),
-                                  child: Center(
-                                    child: Text(
-                                      '',
-                                      // item['categories'][3]['name'],
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'RMNUEUREGULAR'),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 20),
+                                  padding: EdgeInsets.only(top: 10, left: 10),
                                   child: Center(
                                     child: Text(
                                       'Price:  \$' + item['price'],
@@ -139,6 +139,71 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                           ),
                           SizedBox(
                             height: 30,
+                          ),
+                          Container(
+                            width: 230.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.blueGrey)),
+                            child: Center(
+                              child: DropdownButton(
+                                // itemHeight: 40,
+                                underline: SizedBox.shrink(),
+                                iconSize: 30.0,
+                                hint: Text(
+                                  'Select Size',
+                                  style: TextStyle(fontSize: 18),
+                                ), // Not necessary for Option 1
+                                value: _selectedsize,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _selectedsize = newValue;
+                                  });
+                                },
+                                items: item['attributes'][0]['options']
+                                    .map<DropdownMenuItem<String>>((sizes) {
+                                  return DropdownMenuItem<String>(
+                                    child: new Text(sizes),
+                                    value: sizes,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            width: 230.0,
+                            height: 45.0,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30.0),
+                                border: Border.all(color: Colors.blueGrey)),
+                            child: Center(
+                              child: DropdownButton(
+                                // itemHeight: 40,
+                                underline: SizedBox.shrink(),
+                                iconSize: 30.0,
+                                hint: Text(
+                                  'Select Color',
+                                  style: TextStyle(fontSize: 18),
+                                ), // Not necessary for Option 1
+                                value: _selectedColor,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    _selectedColor = newValue;
+                                  });
+                                },
+                                items: item['attributes'][1]['options']
+                                    .map<DropdownMenuItem<String>>((sizes) {
+                                  return DropdownMenuItem<String>(
+                                    child: new Text(sizes),
+                                    value: sizes,
+                                  );
+                                }).toList(),
+                              ),
+                            ),
                           ),
                           SizedBox(
                             height: 20,

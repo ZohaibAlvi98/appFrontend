@@ -6,11 +6,14 @@ import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/videoList.dart';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import '../auth/signup/signup.dart';
+import '../../services/tv/featured-shows-listing.dart';
+
+ShowsListing getShow = ShowsListing();
 
 class Tv extends StatefulWidget {
   @override
@@ -54,15 +57,62 @@ class _TvState extends State<Tv> {
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
     'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
   ];
-  List carouselImg = [
-    'assets/images/tv/showCarousel1.jpg',
-    'assets/images/tv/showCarousel1.jpg',
-    'assets/images/tv/showCarousel1.jpg',
-    // 'assets/images/item4.jpg'
-  ];
+  List carouselImg = [];
+  // void _navigatorPage(index, id) {
+  //   // Navigator.of(context).pop(new PageRouteBuilder());
+  //   Navigator.of(context).push(new PageRouteBuilder(
+  //       opaque: true,
+  //       transitionDuration: const Duration(),
+  //       pageBuilder: (BuildContext context, _, __) {
+  //         if (index == 'styleDetail') {
+  //           return null();
+  //         } else if (index == 'boxDetail') {
+  //           return null();
+  //         } else {
+  //           return null();
+  //         }
+  //       },
+  //       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+  //         return new SlideTransition(
+  //           child: child,
+  //           position: new Tween<Offset>(
+  //             begin: const Offset(1.0, 0.0),
+  //             end: Offset.zero,
+  //           ).animate(animation),
+  //         );
+  //       }));
+  // }
+
+  String getId(imgUrl, styleList) {
+    for (var a = 0; a < styleList.length; a++) {
+      if (styleList[a]['image_gif'] == imgUrl) {
+        return styleList[a]['post_id'].toString();
+      }
+    }
+  }
+
+  int _current = 1;
+  void changeCurrent(index) {
+    setState(() {
+      _current = index;
+    });
+  }
+
+  List<T> map<T>(List list, Function handler) {
+    List<T> result = [];
+    for (var i = 0; i < list.length; i++) {
+      result.add(handler(i, list[i]));
+    }
+
+    return result;
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double size = MediaQuery.of(context).size.height -
+        MediaQuery.of(context).padding.top -
+        kToolbarHeight;
     return WillPopScope(
         onWillPop: () async {
           if (_selectedIndex == 0) return true;
@@ -132,9 +182,88 @@ class _TvState extends State<Tv> {
                             fontFamily: 'RMNUEUREGULAR', fontSize: 19),
                       ),
                     ),
-                    CarouselWithDots(
-                      carouselImg: carouselImg,
+                    SizedBox(
+                      height: 10,
                     ),
+                    FutureBuilder(
+                        future: getShow.getShowsListing(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<Map<String, dynamic>>>
+                                snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            final item = snapshot.data;
+                            if (carouselImg.isEmpty) {
+                              for (var a = 0; a < item.length; a++) {
+                                carouselImg.add(item[a]['image_gif']);
+                              }
+                            }
+                            return Column(
+                              children: [
+                                CarouselSlider(
+                                  items: carouselImg.map((i) {
+                                    return Container(
+                                      child: GestureDetector(
+                                        child: Image.network(i,
+                                            fit: BoxFit.fitHeight),
+                                        // onTap: () {
+                                        //   String id = getId(i, item);
+                                        //   _navigatorPage('boxDetail', id);
+                                        // },
+                                      ),
+                                      margin:
+                                          EdgeInsets.only(left: 10, right: 10),
+                                    );
+                                  }).toList(),
+                                  options: CarouselOptions(
+                                      initialPage: 1,
+                                      enableInfiniteScroll: false,
+                                      height: width < 400
+                                          ? size * 0.43
+                                          : size * 0.73,
+                                      onPageChanged: (i, reason) {
+                                        changeCurrent(i);
+                                      },
+                                      // autoPlay: true,
+                                      autoPlayCurve: Curves.easeInOut,
+                                      enlargeCenterPage: false),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children:
+                                      map<Widget>(carouselImg, (index, url) {
+                                    return Container(
+                                      width: 10.0,
+                                      height: 7.0,
+                                      margin: width < 400
+                                          ? EdgeInsets.symmetric(
+                                              vertical: 0.0, horizontal: 2.0)
+                                          : EdgeInsets.symmetric(
+                                              vertical: 6.0, horizontal: 2.0),
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: _current == index
+                                            ? Colors.black
+                                            : Colors.grey,
+                                      ),
+                                    );
+                                  }),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            );
+                          }
+                        }),
+
+                    // CarouselWithDots(
+                    //   carouselImg: carouselImg,
+                    // ),
                   ],
                 ))
               : _bottomNavList.elementAt(_selectedIndex),

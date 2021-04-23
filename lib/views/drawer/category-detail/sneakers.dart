@@ -10,7 +10,7 @@ import '../../profile.dart';
 import '../../sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../../auth/signup/signup.dart';
-import 'package:splyxp/views/products/product-detail-withapi.dart';
+import 'package:splyxp/views/products/product-sneaker-detail.dart';
 
 class Sneakers extends StatefulWidget {
   @override
@@ -43,7 +43,7 @@ class _SneakersState extends State<Sneakers> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail(
+          return ProductDetailSneaker(
             prodId: id,
           );
         },
