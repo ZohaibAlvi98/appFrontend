@@ -5,7 +5,7 @@ class StylesContent {
   Future<List<Map<String, dynamic>>> getStylesContent() async {
     final String url =
         "https://splystyle.net/wp-json/getappgeneralcontent/v1/get-app-general-content?page=styles";
-    print('Styles Page API SUCCESS');
+    print('Styles Page APIs SUCCESS');
 
     final http.Response res = await http.get(
       url,
