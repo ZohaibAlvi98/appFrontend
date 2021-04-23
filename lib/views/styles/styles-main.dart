@@ -15,7 +15,9 @@ import '../auth/signup/signup.dart';
 import '../../services/styles/featured-style-boxes.dart';
 import 'package:splyxp/views/products/product-detail-stylebox.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../../services/styles/styles-general-content.dart';
 
+StylesContent stylesdata = StylesContent();
 FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
 class Styles extends StatefulWidget {
@@ -137,93 +139,132 @@ class _StylesState extends State<Styles> {
                       SizedBox(
                         height: 10,
                       ),
-                      Container(
-                        padding: EdgeInsets.only(right: 20, left: 20),
-                        child: Image.asset(
-                          'assets/images/styles/styles2.png',
-                        ),
-                      ),
-                      Padding(
-                        padding: width < 400
-                            ? EdgeInsets.only(top: 20.0, left: 41, right: 15)
-                            : EdgeInsets.only(top: 20.0, left: 45, right: 65),
-                        child: Text(
-                            'Personalized style discovery and shopping as a service.\nWhere style meets fashion.',
-                            style: TextStyle(
-                                fontFamily: 'RMNUEUREGULAR',
-                                fontSize: 20,
-                                height: 1.3,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400)),
-                      ),
-                      SizedBox(
-                        height: 60,
-                      ),
-                      Heading(context, 'STYLE BOXES'),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                          padding: EdgeInsets.only(right: 15, left: 15, top: 0),
-                          child: InkWell(
-                              onTap: () {
-                                _navigatorPage('styleDetail', null);
-                              },
-                              child: Padding(
-                                  padding: EdgeInsets.only(bottom: 7.0),
-                                  child: Card(
-                                      elevation: 1,
-                                      margin: EdgeInsets.only(bottom: 5),
-                                      child: Column(children: [
-                                        Image.asset(
-                                          'assets/images/styles/styleBox1.jpg',
-                                          fit: BoxFit.contain,
-                                        ),
-                                        Container(
-                                            margin: EdgeInsets.symmetric(
-                                                vertical: 3),
-                                            child: Column(children: [
-                                              Align(
-                                                  alignment:
-                                                      Alignment.centerLeft,
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        left: 13.0,
-                                                        top: 10,
-                                                        right: 13),
-                                                    child: Text(
-                                                      'S-PLY CURATED STYLEBOXES',
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              'RMNUEUSEMIBOLD',
-                                                          fontSize: width < 400
-                                                              ? 20
-                                                              : 20,
-                                                          fontWeight:
-                                                              FontWeight.w900,
-                                                          color: Colors.black),
+                      FutureBuilder(
+                          future: stylesdata.getStylesContent(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<Map<String, dynamic>>>
+                                  snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(child: CircularProgressIndicator());
+                            } else {
+                              final item = snapshot.data;
+                              print(snapshot);
+                              return Column(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.only(
+                                            right: 20, left: 20),
+                                        child: Image.network(
+                                            item[0]['banner_image']),
+                                      ),
+                                      Padding(
+                                        padding: width < 400
+                                            ? EdgeInsets.only(
+                                                top: 20.0, left: 41, right: 15)
+                                            : EdgeInsets.only(
+                                                top: 20.0, left: 45, right: 65),
+                                        child: Text(item[0]['subtext'],
+                                            style: TextStyle(
+                                                fontFamily: 'RMNUEUREGULAR',
+                                                fontSize: 20,
+                                                height: 1.3,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.w400)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 60,
+                                  ),
+                                  Heading(context, 'STYLE BOXES'),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                      padding: EdgeInsets.only(
+                                          right: 15, left: 15, top: 0),
+                                      child: InkWell(
+                                          // onTap: () {
+                                          //   _navigatorPage('styleDetail', null);
+                                          // },
+                                          child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 7.0),
+                                              child: Card(
+                                                  elevation: 1,
+                                                  margin: EdgeInsets.only(
+                                                      bottom: 5),
+                                                  child: Column(children: [
+                                                    Image.network(
+                                                      item[0]['sec_1_image'],
+                                                      fit: BoxFit.contain,
                                                     ),
-                                                  )),
-                                              Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 12.0,
-                                                      left: 13,
-                                                      bottom: 10,
-                                                      right: 10),
-                                                  child: Text(
-                                                    'A S-PLY StyleBoxe contains a curated selection of designer products, ranging from exclusives, archive and current season pieces selected by our team of experienced stylists.',
-                                                    style: TextStyle(
-                                                        fontFamily:
-                                                            'RMNUEUREGULAR',
-                                                        height: 1.3,
-                                                        fontSize: 15),
-                                                  ),
-                                                ),
-                                              )
-                                            ])),
-                                      ]))))),
+                                                    Container(
+                                                        margin: EdgeInsets
+                                                            .symmetric(
+                                                                vertical: 3),
+                                                        child: Column(
+                                                            children: [
+                                                              Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child:
+                                                                      Padding(
+                                                                    padding: EdgeInsets.only(
+                                                                        left:
+                                                                            13.0,
+                                                                        top: 10,
+                                                                        right:
+                                                                            13),
+                                                                    child: Text(
+                                                                      item[0][
+                                                                          'sec_1_heading'],
+                                                                      style: TextStyle(
+                                                                          fontFamily:
+                                                                              'RMNUEUSEMIBOLD',
+                                                                          fontSize: width < 400
+                                                                              ? 20
+                                                                              : 20,
+                                                                          fontWeight: FontWeight
+                                                                              .w900,
+                                                                          color:
+                                                                              Colors.black),
+                                                                    ),
+                                                                  )),
+                                                              Align(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.only(
+                                                                      top: 12.0,
+                                                                      left: 13,
+                                                                      bottom:
+                                                                          10,
+                                                                      right:
+                                                                          10),
+                                                                  child: Text(
+                                                                    item[0][
+                                                                        'sec_1_text'],
+                                                                    style: TextStyle(
+                                                                        fontFamily:
+                                                                            'RMNUEUREGULAR',
+                                                                        height:
+                                                                            1.3,
+                                                                        fontSize:
+                                                                            15),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ])),
+                                                  ]))))),
+                                ],
+                              );
+                            }
+                          }),
+
                       SizedBox(
                         height: 50,
                       ),
