@@ -12,6 +12,9 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import '../auth/signup/signup.dart';
 import '../../services/tv/featured-shows-listing.dart';
+import '../../services/tv/tv-general-content.dart';
+
+TVContent tvdata = TVContent();
 
 ShowsListing getShow = ShowsListing();
 
@@ -135,25 +138,43 @@ class _TvState extends State<Tv> {
               ? SingleChildScrollView(
                   child: Column(
                   children: [
-                    Container(
-                      padding: EdgeInsets.only(right: 20, left: 20),
-                      child: Image.asset(
-                        'assets/images/tv/main.jpg',
-                      ),
-                    ),
-                    Padding(
-                      padding: width < 400
-                          ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
-                          : EdgeInsets.only(top: 20.0, left: 55, right: 32),
-                      child: Text(
-                          'S-PLY seemlessly blends interaction and e commerce. Connect yourself to daily shoppables featuring.',
-                          style: TextStyle(
-                              fontFamily: 'RMNUEUREGULAR',
-                              fontSize: 20,
-                              height: 1.3,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w400)),
-                    ),
+                    FutureBuilder(
+                        future: tvdata.getTVContent(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<Map<String, dynamic>>>
+                                snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            final item = snapshot.data;
+                            print(snapshot);
+                            return Column(
+                              children: [
+                                Container(
+                                  padding: EdgeInsets.only(right: 20, left: 20),
+                                  child: Image.network(
+                                    item[0]['banner_image'],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: width < 400
+                                      ? EdgeInsets.only(
+                                          top: 20.0, left: 50, right: 15)
+                                      : EdgeInsets.only(
+                                          top: 20.0, left: 55, right: 32),
+                                  child: Text(item[0]['subtext'],
+                                      style: TextStyle(
+                                          fontFamily: 'RMNUEUREGULAR',
+                                          fontSize: 20,
+                                          height: 1.3,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w400)),
+                                ),
+                              ],
+                            );
+                          }
+                        }),
+
                     SizedBox(
                       height: 50,
                     ),

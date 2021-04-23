@@ -13,6 +13,9 @@ import '../auth/signup/signup.dart';
 import 'package:splyxp/views/styles/style-detail.dart';
 import 'package:splyxp/views/sneakers/sneaker-mens.dart';
 import 'package:splyxp/views/sneakers/sneaker-womens.dart';
+import '../../services/sneakers/sneakers-general-content.dart';
+
+SneakersContent sneakersdata = SneakersContent();
 
 class Sneakers extends StatefulWidget {
   final bool authenticated;
@@ -105,24 +108,43 @@ class _SneakersState extends State<Sneakers> {
               ? SingleChildScrollView(
                   child: Column(
                     children: [
-                      Container(
-                        padding: EdgeInsets.only(right: 20, left: 20),
-                        child: Image.asset(
-                          'assets/images/sneakers/sneakers1.jpg',
-                        ),
-                      ),
-                      Padding(
-                        padding: width < 400
-                            ? EdgeInsets.only(top: 20.0, left: 50, right: 15)
-                            : EdgeInsets.only(top: 20.0, left: 55, right: 32),
-                        child: Text(
-                            'A curated sneaker selection of new and popular drops.',
-                            style: TextStyle(
-                                fontFamily: 'RMNUEUREGULAR',
-                                fontSize: 20,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w400)),
-                      ),
+                      FutureBuilder(
+                          future: sneakersdata.getSneakersContent(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<Map<String, dynamic>>>
+                                  snapshot) {
+                            if (!snapshot.hasData) {
+                              return Center(child: CircularProgressIndicator());
+                            } else {
+                              final item = snapshot.data;
+                              print(snapshot);
+                              return Column(
+                                children: [
+                                  Container(
+                                    padding:
+                                        EdgeInsets.only(right: 20, left: 20),
+                                    child: Image.network(
+                                      item[0]['banner_image'],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: width < 400
+                                        ? EdgeInsets.only(
+                                            top: 20.0, left: 50, right: 15)
+                                        : EdgeInsets.only(
+                                            top: 20.0, left: 55, right: 32),
+                                    child: Text(
+                                        'A curated sneaker selection of new and popular drops.',
+                                        style: TextStyle(
+                                            fontFamily: 'RMNUEUREGULAR',
+                                            fontSize: 20,
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.w400)),
+                                  ),
+                                ],
+                              );
+                            }
+                          }),
                       SizedBox(
                         height: 50,
                       ),
