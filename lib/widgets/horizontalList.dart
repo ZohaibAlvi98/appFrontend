@@ -60,34 +60,37 @@ Widget horizontalListWith3(context, img, color) {
               // padding: width < 400
               //     ? EdgeInsets.only(right: 7.0)
               //     : EdgeInsets.only(right: 19.0),
-              padding: EdgeInsets.only(right: 23),
+              padding: EdgeInsets.only(top: 3, right: 6, left: 6),
               child: Text(
                 'Thome Brown 4 Bar \nJackets',
                 style: TextStyle(
                     fontFamily: 'RMNUEUSEMIBOLD',
                     fontSize: 13,
                     fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
             ),
             Padding(
               // padding: width < 400
               //     ? EdgeInsets.only(top: 7.0, bottom: 5)
               //     : EdgeInsets.only(top: 7.0, bottom: 5, right: width / 17),
-              padding: EdgeInsets.only(right: 23),
+              padding: EdgeInsets.only(top: 3, right: 6, left: 6),
               child: Text(
                 'Brand: Thome Brown',
                 style: TextStyle(
                     fontFamily: 'RMNUEUREGULAR',
                     fontSize: 13,
                     fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 1, right: 87),
+              padding: EdgeInsets.only(top: 3, right: 6, left: 6),
               child: Text(
                 '\$ 759.00',
                 style: TextStyle(
                     fontFamily: 'RMNUEUREGULAR', color: Colors.grey.shade800),
+                textAlign: TextAlign.center,
               ),
             ),
           ],
@@ -493,7 +496,7 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 6),
+                      padding: EdgeInsets.only(top: 6, left: 6, right: 6),
                       child: SizedBox(
                         width: 175,
                         child: Text(

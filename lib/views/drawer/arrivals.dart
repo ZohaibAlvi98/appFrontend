@@ -229,7 +229,7 @@ Widget lists(context, check, image, index, name, price, id) {
         Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10, right: 10.0, left: 10.0),
             child: Text(
               name,
               style: TextStyle(

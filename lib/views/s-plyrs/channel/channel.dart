@@ -640,19 +640,6 @@ class _ChannelState extends State<Channel> {
 Widget lists(context, check, image, index, name, price, id) {
   return Column(
     children: [
-      // Align(
-      //   alignment: Alignment.topLeft,
-      //   child: Padding(
-      //     padding: EdgeInsets.only(top: 5, left: 10),
-      //     child: Text(
-      //       metadata,
-      //       style: TextStyle(
-      //           fontSize: 15.5,
-      //           color: Colors.grey[600],
-      //           fontWeight: FontWeight.bold),
-      //     ),
-      //   ),
-      // ),
       Padding(
           padding: index != 0 && index != 1
               ? EdgeInsets.only(left: 7.0, right: 7, top: 8)

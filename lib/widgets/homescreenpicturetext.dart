@@ -23,7 +23,7 @@ class HomeScreenButtonPictureText extends StatelessWidget {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(left: 20.0, top: 10.0),
+                padding: EdgeInsets.only(left: 15.0, top: 10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -32,17 +32,17 @@ class HomeScreenButtonPictureText extends StatelessWidget {
                       boldText,
                       style: TextStyle(
                         fontFamily: 'RMNUEU',
-                        fontWeight: FontWeight.w900,
+                        fontWeight: FontWeight.w700,
                         fontSize: 20.0,
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(right: 30),
+                      padding: EdgeInsets.only(right: 7),
                       child: Text(
                         infotext,
                         style: TextStyle(
                           fontFamily: 'RMNUEUREGULAR',
-                          fontSize: 15.0,
+                          fontSize: 13.0,
                         ),
                         textAlign: TextAlign.left,
                       ),

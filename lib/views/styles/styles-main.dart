@@ -304,7 +304,7 @@ class _StylesState extends State<Styles> {
                                         initialPage: 1,
                                         enableInfiniteScroll: false,
                                         height: width < 400
-                                            ? size * 0.43
+                                            ? size * 0.53
                                             : size * 0.55,
                                         onPageChanged: (i, reason) {
                                           changeCurrent(i);

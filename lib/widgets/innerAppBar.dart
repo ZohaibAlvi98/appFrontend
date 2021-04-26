@@ -347,17 +347,17 @@ Widget drawerAppBar(context, index, authenticated) {
         shrinkWrap: true,
         children:
             ListTile.divideTiles(context: context, color: Colors.white, tiles: [
-          // index != 'home'
-          //     ? InkWell(
-          //         onTap: () {
-          //           _navigatorPage(context, 'home', authenticated);
-          //         },
-          //         child: DrawerTile(
-          //           drawerIcon: FontAwesomeIcons.home,
-          //           drawerName: 'Home',
-          //         ),
-          //       )
-          //     : null,
+          index != 'home'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'home', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/home-nav-icon.png',
+                    drawerName: 'Home',
+                  ),
+                )
+              : null,
           index != 'new'
               ? InkWell(
                   onTap: () {
@@ -391,17 +391,17 @@ Widget drawerAppBar(context, index, authenticated) {
                   ),
                 )
               : null,
-          // index != 'tv'
-          //     ? InkWell(
-          //         onTap: () {
-          //           _navigatorPage(context, 'tv', authenticated);
-          //         },
-          //         child: DrawerTile(
-          //           drawerIcon: FontAwesomeIcons.tv,
-          //           drawerName: 'TV',
-          //         ),
-          //       )
-          //     : null,
+          index != 'tv'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'tv', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/tv-nav-icon.png',
+                    drawerName: 'TV',
+                  ),
+                )
+              : null,
           index != 'sneakers'
               ? InkWell(
                   onTap: () {
@@ -413,48 +413,48 @@ Widget drawerAppBar(context, index, authenticated) {
                   ),
                 )
               : null,
-          // index != 'category'
-          //     ? InkWell(
-          //         onTap: () {
-          //           _navigatorPage(context, 'categories', authenticated);
-          //         },
-          //         child: DrawerTile(
-          //           drawerIcon: FontAwesomeIcons.buffer,
-          //           drawerName: 'Categories',
-          //         ),
-          //       )
-          //     : null,
-          // index != 'mens'
-          //     ? InkWell(
-          //         onTap: () {
-          //           _navigatorPage(context, 'men', authenticated);
-          //         },
-          //         child: DrawerTile(
-          //           drawerIcon: FontAwesomeIcons.male,
-          //           drawerName: 'Men',
-          //         ),
-          //       )
-          //     : null,
-          // index != 'womens'
-          //     ? InkWell(
-          //         onTap: () {
-          //           _navigatorPage(context, 'women', authenticated);
-          //         },
-          //         child: DrawerTile(
-          //           drawerIcon: FontAwesomeIcons.female,
-          //           drawerName: 'Women',
-          //         ),
-          //       )
-          //     : null,
-          // InkWell(
-          //   onTap: () {
-          //     _navigatorPage(context, 'request', '');
-          //   },
-          //   child: DrawerTile(
-          //     drawerIcon: FontAwesomeIcons.edit,
-          //     drawerName: 'Request to i-Shopper',
-          //   ),
-          // )
+          index != 'category'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'categories', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/categories-nav-icon.png',
+                    drawerName: 'Categories',
+                  ),
+                )
+              : null,
+          index != 'mens'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'men', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/men2-nav-icon.png',
+                    drawerName: 'Men',
+                  ),
+                )
+              : null,
+          index != 'womens'
+              ? InkWell(
+                  onTap: () {
+                    _navigatorPage(context, 'women', authenticated);
+                  },
+                  child: DrawerTile(
+                    drawerImage: 'assets/images/women2-nav-icon.png',
+                    drawerName: 'Women',
+                  ),
+                )
+              : null,
+          InkWell(
+            onTap: () {
+              _navigatorPage(context, 'request', '');
+            },
+            child: DrawerTile(
+              drawerImage: 'assets/images/send-request-nav-icon.png',
+              drawerName: 'Request to i-Shopper',
+            ),
+          )
         ]).toList()),
   ));
 }
@@ -468,10 +468,14 @@ class DrawerTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: AssetImage(drawerImage),
-        backgroundColor: Colors.transparent,
-        radius: 20.0,
+      leading: ConstrainedBox(
+        constraints: BoxConstraints(
+          minWidth: 25,
+          minHeight: 25,
+          maxWidth: 35,
+          maxHeight: 35,
+        ),
+        child: Image.asset(drawerImage, fit: BoxFit.cover),
       ),
       title: Padding(
         padding: EdgeInsets.only(top: 9.0),
