@@ -111,15 +111,12 @@ Widget editirialscards(width, context, image, index, title, date, author,
                       margin: EdgeInsets.only(top: 5, left: 10, right: 10),
                       width: width * 0.13,
                       height: 60,
-                      child: Padding(
-                        padding: width < 400
-                            ? EdgeInsets.only(left: 6.5, top: 1)
-                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 3),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: NetworkImage(logo),
-                          radius: 30,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: NetworkImage(logo),
                         ),
+                        border: Border.all(color: Colors.grey),
                       ),
                     ),
                     Padding(

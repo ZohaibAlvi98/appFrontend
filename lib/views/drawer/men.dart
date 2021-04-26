@@ -9,6 +9,8 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 import '../../services/drawr-services.dart';
+import 'package:intl/intl.dart';
+import 'package:splyxp/widgets/lists.dart';
 
 class Mens extends StatefulWidget {
   final bool authenticated;
@@ -199,7 +201,7 @@ class _MensState extends State<Mens> {
                                     return InkWell(
                                       onTap: () => _navigatorPage(
                                           context, item['id'].toString()),
-                                      child: lists(
+                                      child: Lists(
                                         context,
                                         'men',
                                         item['images'][0]['src'],
@@ -231,50 +233,4 @@ class _MensState extends State<Mens> {
       ),
     );
   }
-}
-
-Widget lists(context, check, image, index, name, price, id) {
-  return Column(
-    children: [
-      Padding(
-          padding: index != 0 && index != 1
-              ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
-              : EdgeInsets.only(left: 7.0, right: 7, top: 4),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
-          )),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10, right: 10),
-          child: Text(
-            name,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUSEMIBOLD'),
-            maxLines: 2,
-          ),
-        ),
-      ),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10),
-          child: Text(
-            'Price: \$ ' + price,
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUREGULAR'),
-          ),
-        ),
-      ),
-    ],
-  );
 }

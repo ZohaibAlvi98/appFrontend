@@ -4,6 +4,7 @@ import '../services/drawr-services-sneaker.dart';
 import '../services/sneakers/sneakers-top-trending.dart';
 import '../services/tv/tv-fearured-products.dart';
 import '../services/splyrs/splyrs-products.dart';
+import 'package:intl/intl.dart';
 
 TrendingSneakers data = TrendingSneakers();
 DrawrServices collect = DrawrServices();
@@ -215,6 +216,7 @@ Widget sneakerListWith3(context, img, color) {
 
 Widget sneakerListWith4(context) {
   double width = MediaQuery.of(context).size.width;
+  final f = NumberFormat('#,###.0#');
   return FutureBuilder(
       future: collect.getDrawrProducts("15"),
       builder: (BuildContext context,
@@ -233,7 +235,7 @@ Widget sneakerListWith4(context) {
               final item = snapshot.data[index];
               return Container(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
@@ -258,7 +260,7 @@ Widget sneakerListWith4(context) {
                       // padding: width < 400
                       //     ? EdgeInsets.only(right: 15.0)
                       //     : EdgeInsets.only(right: 32.0),
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(left: 6, right: 6, top: 4),
                       // work here
                       child: SizedBox(
                         width: 200,
@@ -271,18 +273,18 @@ Widget sneakerListWith4(context) {
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(top: 4),
                       child: Text(
-                        'Price: \$' + item['price'],
+                        '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
                             fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                            color: Colors.grey[600]),
                       ),
                     ),
                   ],
@@ -296,6 +298,7 @@ Widget sneakerListWith4(context) {
 
 Widget sneakerListTopTrending(context) {
   double width = MediaQuery.of(context).size.width;
+  final f = NumberFormat('#,###.0#');
   return FutureBuilder(
       future: data.getTrendingSneakers(),
       builder: (BuildContext context,
@@ -314,7 +317,7 @@ Widget sneakerListTopTrending(context) {
               final item = snapshot.data[index];
               return Container(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
@@ -339,7 +342,7 @@ Widget sneakerListTopTrending(context) {
                       // padding: width < 400
                       //     ? EdgeInsets.only(right: 15.0)
                       //     : EdgeInsets.only(right: 32.0),
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(left: 6, right: 6, top: 3),
                       child: Container(
                         child: SizedBox(
                           width: 200,
@@ -352,6 +355,7 @@ Widget sneakerListTopTrending(context) {
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ),
                       ),
@@ -359,12 +363,12 @@ Widget sneakerListTopTrending(context) {
                     Padding(
                       padding: EdgeInsets.only(left: 9, top: 4),
                       child: Text(
-                        'Price: \$' + item['price'],
+                        '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                            color: Colors.grey[600]),
                       ),
                     ),
                   ],
@@ -378,6 +382,7 @@ Widget sneakerListTopTrending(context) {
 
 Widget featuredProductsTv(context) {
   double width = MediaQuery.of(context).size.width;
+  final f = NumberFormat('#,###.0#');
   return FutureBuilder(
       future: dataentry.getFeaturedTvProducts("154"),
       builder: (BuildContext context,
@@ -396,7 +401,7 @@ Widget featuredProductsTv(context) {
               final item = snapshot.data[index];
               return Container(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
@@ -405,8 +410,8 @@ Widget featuredProductsTv(context) {
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
-                              height: 190,
-                              width: 175,
+                              height: 180,
+                              width: 165,
                               child: Image.network(
                                 item['images'][0]['src'],
                                 fit: BoxFit.cover,
@@ -421,7 +426,7 @@ Widget featuredProductsTv(context) {
                       // padding: width < 400
                       //     ? EdgeInsets.only(right: 15.0)
                       //     : EdgeInsets.only(right: 32.0),
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(left: 6, right: 6, top: 3),
                       // work here
                       child: SizedBox(
                         width: 175,
@@ -431,21 +436,21 @@ Widget featuredProductsTv(context) {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: 'RMNUEUSEMIBOLD',
-                            fontSize: 16,
+                            fontSize: 15,
                             fontWeight: FontWeight.bold,
                           ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: 9, top: 4),
+                      padding: EdgeInsets.only(top: 4),
                       child: Text(
-                        'Price: \$' + item['price'],
+                        '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
                             fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey),
+                            color: Colors.grey[600]),
                       ),
                     ),
                   ],
@@ -459,6 +464,7 @@ Widget featuredProductsTv(context) {
 
 Widget horizontalListFeaturedSplyrs(context, splyrid) {
   double width = MediaQuery.of(context).size.width;
+  final f = NumberFormat('#,###.0#');
   return FutureBuilder(
       future: splyrdata.getSplyrsProducts(splyrid),
       builder: (BuildContext context,
@@ -483,8 +489,8 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
-                              height: 190,
-                              width: 175,
+                              height: 180,
+                              width: 165,
                               child: Image.network(
                                 item['images'][0]['src'],
                                 fit: BoxFit.cover,
@@ -496,7 +502,7 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 6, left: 6, right: 6),
+                      padding: EdgeInsets.only(top: 3, left: 6, right: 6),
                       child: SizedBox(
                         width: 175,
                         child: Text(
@@ -504,21 +510,21 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontFamily: 'RMNUEUSEMIBOLD',
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+                            fontFamily: 'RMNUEUREGULAR',
+                            fontSize: 15,
                           ),
                           textAlign: TextAlign.center,
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(top: 10),
+                      padding: EdgeInsets.only(top: 4),
                       child: Text(
-                        '\$' + item['price'],
+                        '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                           fontFamily: 'RMNUEUREGULAR',
-                          fontSize: 15,
+                          fontSize: 14,
+                          color: Colors.grey[600],
                         ),
                         textAlign: TextAlign.center,
                       ),
