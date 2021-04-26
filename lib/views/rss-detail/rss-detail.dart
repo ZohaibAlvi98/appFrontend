@@ -7,8 +7,16 @@ import 'package:splyxp/widgets/horizontalList.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import '../home.dart';
+import '../../services/editorials/editorials-detail.dart';
+import 'package:html/parser.dart';
+import '../../services/editorials/editorial-product-listing.dart';
+
+EditorialProducts eprod = EditorialProducts();
+EditorialsDetail editorialdata = EditorialsDetail();
 
 class RssDetail extends StatefulWidget {
+  final String postId;
+  RssDetail({Key key, @required this.postId}) : super(key: key);
   @override
   _RssDetailState createState() => _RssDetailState();
 }
@@ -31,7 +39,9 @@ class _RssDetailState extends State<RssDetail> {
     Home(),
     Search(),
     ChatList(),
-    RssDetail(),
+    RssDetail(
+      postId: null,
+    ),
     Profile()
   ];
 
@@ -65,145 +75,249 @@ class _RssDetailState extends State<RssDetail> {
         body: _selectedIndex == 3
             ? SingleChildScrollView(
                 child: Container(
-                    child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                        padding:
-                            EdgeInsets.only(left: 13.5, right: 13.5, top: 10),
-                        child: Text(
-                          '1017 Alyx 9sm x Stussy - Available Now',
-                          style: TextStyle(
-                              fontSize: width < 400 ? 25 : 29,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black),
-                        )),
-                    Padding(
-                      padding: EdgeInsets.only(left: 1.0),
-                      child: Row(
-                        children: [
-                          Container(
-                            margin: EdgeInsets.symmetric(
-                                vertical: 13, horizontal: 10),
-                            width: width * 0.13,
-                            height: 50,
-                            decoration: new BoxDecoration(
-                              border: new Border.all(
-                                color: Colors.grey[400],
-                                width: 1.0,
-                              ),
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Padding(
-                              padding: width < 400
-                                  ? EdgeInsets.only(left: 6.5, top: 13)
-                                  : EdgeInsets.only(left: 8.0, top: 13),
-                              child: Text(
-                                'End',
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 16 : 20,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.only(top: 5.0, left: .7),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: width < 400
-                                        ? EdgeInsets.only(right: 51.5)
-                                        : EdgeInsets.only(right: 63.0),
+                    child: FutureBuilder(
+                        future:
+                            editorialdata.getEditorialsDetail(widget.postId),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<List<Map<String, dynamic>>>
+                                snapshot) {
+                          if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                          } else {
+                            final item = snapshot.data;
+                            print(snapshot);
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                    padding: EdgeInsets.only(
+                                        left: 13.5, right: 13.5, top: 10),
                                     child: Text(
-                                      'END.',
+                                      item[0]['title'],
                                       style: TextStyle(
-                                          fontSize: width < 400 ? 18 : 20,
-                                          fontWeight: FontWeight.w700),
+                                          fontSize: width < 400 ? 25 : 25,
+                                          fontFamily: 'RMNUEU',
+                                          color: Colors.black),
+                                    )),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 1.0),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 5, left: 10, right: 10),
+                                        width: width * 0.13,
+                                        height: 60,
+                                        child: Padding(
+                                          padding: width < 400
+                                              ? EdgeInsets.only(
+                                                  left: 6.5, top: 1)
+                                              : EdgeInsets.only(
+                                                  left: 3.0, top: 1, bottom: 3),
+                                          child: CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            backgroundImage: NetworkImage(
+                                              "https:" + item[0]['author_logo'],
+                                            ),
+                                            radius: 30,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 5.0, left: .7),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: width < 400
+                                                    ? EdgeInsets.only(
+                                                        right: 51.5)
+                                                    : EdgeInsets.only(
+                                                        right: 63.0),
+                                                child: Text(
+                                                  item[0]['author'],
+                                                  style: TextStyle(
+                                                      fontSize:
+                                                          width < 400 ? 18 : 20,
+                                                      fontWeight:
+                                                          FontWeight.w700),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 0.0),
+                                                child: Text(
+                                                  item[0]['date'],
+                                                  style: TextStyle(
+                                                      fontSize: width < 400
+                                                          ? 11
+                                                          : 14),
+                                                ),
+                                              )
+                                            ],
+                                          )),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 14, left: 14, top: 0),
+                                  child: Image.network(
+                                    item[0]['image'],
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 14, left: 14, top: 13),
+                                  child: Text(
+                                    item[0]['short_text'],
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 18,
+                                        height: 1.5),
+                                  ),
+                                ),
+                                // Padding(
+                                //   padding: EdgeInsets.only(
+                                //       right: 14, left: 14, top: 13),
+                                //   child: Image.asset(
+                                //     'assets/images/rssDetail/rssDetail2.jpg',
+                                //     fit: BoxFit.contain,
+                                //   ),
+                                // ),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      right: 14, left: 14, top: 15),
+                                  child: Text(
+                                    parse(item[0]['content'])
+                                        .documentElement
+                                        .text,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.black,
+                                        height: 1.5),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.all(8),
+                                  child: Center(
+                                    child: Container(
+                                      height: 40,
+                                      width: 180,
+                                      child: FlatButton(
+                                        color: Colors.black,
+                                        // height: 40,
+                                        onPressed: () {},
+                                        child: Text(
+                                          'SHOP NOW',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 0.0),
-                                    child: Text(
-                                      'January 22, 2021',
-                                      style: TextStyle(
-                                          fontSize: width < 400 ? 11 : 14),
-                                    ),
-                                  )
-                                ],
-                              )),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 14, left: 14, top: 0),
-                      child: Image.asset(
-                        'assets/images/rss/rss1.jpg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 14, left: 14, top: 13),
-                      child: Text(
-                        'Fusing Californian spirit with contemporary utilitarianism, Stüssy and 1017 ALYX 9SM present their latest capsule for SS20.',
-                        style: TextStyle(
-                            color: Colors.black, fontSize: 18, height: 1.5),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 14, left: 14, top: 13),
-                      child: Image.asset(
-                        'assets/images/rssDetail/rssDetail2.jpg',
-                        fit: BoxFit.contain,
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 14, left: 14, top: 15),
-                      child: Text(
-                        'Two unique pillars of contemporary American menswear, 1017 ALYX 9SM and Stüssy, fuse their individual outlooks with their latest capsule collection. A workwear inspired selection from the Californian streetwear stalwarts and the luxury utilitarian outfit, classic design is coupled with exceptional fabric selections and a keen eye for detail to deliver an embodiment of both labels and their progressive attitudes to design.\n\nFeaturing a denim jacket and carpenter pant combination cut from premium cotton courtesy of Italy’s Loro Piana, this collaboration elevates classic style with a touch of subtle elegance and nods to the hard-wearing attributes of traditional workwear. Complete with two jersey long sleeve t-shirts, the duo pays homage to the late, great Bob Marley and his seminal piece, “No Woman, No Cry”. Emblazoned with the lyrics, “in this great future you can’t forget your past…”, the two brands celebrate reggae music and the importance of reflecting on the historical significance of cultural movements.',
-                        style: TextStyle(
-                            fontSize: 18, color: Colors.black, height: 1.5),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(8),
-                      child: Center(
-                        child: Container(
-                          height: 40,
-                          width: 180,
-                          child: FlatButton(
-                            color: Colors.black,
-                            // height: 40,
-                            onPressed: () {},
-                            child: Text(
-                              'SHOP NOW',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
-                    SizedBox(
-                        height: 270,
-                        child:
-                            horizontalListWith3(context, img, Colors.white12)),
-                    SizedBox(
-                      height: 20,
-                    )
-                  ],
-                )),
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                SizedBox(
+                                    height: 270,
+                                    child: horizontalListEditorialsProducts(
+                                        context,
+                                        item[0]['post_id'].toString())),
+                                SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            );
+                          }
+                        })),
               )
             : _bottomNavList.elementAt(_selectedIndex),
         bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
       ),
     );
   }
+}
+
+Widget horizontalListEditorialsProducts(context, postid) {
+  double width = MediaQuery.of(context).size.width;
+  return FutureBuilder(
+      future: eprod.getEditorialProducts(postid),
+      builder: (BuildContext context,
+          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+        if (!snapshot.hasData) {
+          return Center(child: CircularProgressIndicator());
+        } else {
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            padding: EdgeInsets.only(right: 20.0, left: 12),
+            itemCount: snapshot.data.length,
+            itemBuilder: (BuildContext context, int index) {
+              final item = snapshot.data[index];
+              return Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(right: 2, left: 1),
+                      child: InkWell(
+                        // onTap: () => _navigatorPage(context),
+                        child: Card(
+                          child: Wrap(children: [
+                            SizedBox(
+                              height: 190,
+                              width: 175,
+                              child: Image.network(
+                                item['image'],
+                                fit: BoxFit.cover,
+                                // width: imgwidth,
+                              ),
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 6),
+                      child: SizedBox(
+                        width: 175,
+                        child: Text(
+                          item['product_title'],
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontFamily: 'RMNUEUSEMIBOLD',
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 10),
+                      child: Text(
+                        '\$' + item['price'],
+                        style: TextStyle(
+                          fontFamily: 'RMNUEUREGULAR',
+                          fontSize: 15,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          );
+        }
+      });
 }

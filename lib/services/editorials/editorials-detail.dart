@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class Editorials {
-  Future<List<Map<String, dynamic>>> getEditorials() async {
+class EditorialsDetail {
+  Future<List<Map<String, dynamic>>> getEditorialsDetail(postid) async {
+    String id = postid;
     final String url =
-        "https://splystyle.net/wp-json/geteditorialslisting/v1/get-editorials-listing";
+        "https://splystyle.net/wp-json/geteditorialdetail/v1/get-editorial-detail?id=" +
+            id;
 
-    print('Editorial Listing Page Success');
+    print('Editorial Detail Page Success');
 
     final http.Response res = await http.get(
       url,

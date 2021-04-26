@@ -17,15 +17,11 @@ class _SplyNetworkState extends State<SplyNetwork> {
       child: Container(
         child: Column(
           children: [
-            // cards(width, 'assets/images/rss/rss1.jpg', context),
             FutureBuilder(
                 future: data.getEditorials(),
-                // artistService.getArtist(page),
-
                 builder: (BuildContext context,
                     AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                   if (snapshot.hasData) {
-                    // List<ArtistModel> artist = snapshot.data;
                     return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
@@ -35,22 +31,21 @@ class _SplyNetworkState extends State<SplyNetwork> {
                           childAspectRatio: MediaQuery.of(context).size.width /
                               (MediaQuery.of(context).size.height / 1.75),
                         ),
-                        // scrollDirection: Axis.vertical,
                         itemCount: snapshot.data.length,
                         itemBuilder: (BuildContext context, int index) {
                           final item = snapshot.data[index];
                           return editirialscards(
-                            width,
-                            context,
-                            // 'men',
-                            item['image'],
-                            index,
-                            item['title'],
-                            item['date'],
-                            item['author'],
-                            item['author_logo'],
-                            item['short_text'],
-                          );
+                              width,
+                              context,
+                              // 'men',
+                              item['image'],
+                              index,
+                              item['title'],
+                              item['date'],
+                              item['author'],
+                              item['author_logo'],
+                              item['short_text'],
+                              item['post_id'].toString());
                         });
                   } else if (snapshot.hasError) {
                     print(snapshot.error);
@@ -61,11 +56,6 @@ class _SplyNetworkState extends State<SplyNetwork> {
             SizedBox(
               height: 15,
             ),
-            // cards(width, 'assets/images/rss/rss2.jpg', context),
-            // SizedBox(
-            //   height: 15,
-            // ),
-            // cards(width, 'assets/images/rss/rss1.jpg', context),
           ],
         ),
       ),
@@ -73,14 +63,145 @@ class _SplyNetworkState extends State<SplyNetwork> {
   }
 }
 
-Widget cards(width, img, context) {
+Widget editirialscards(width, context, image, index, title, date, author,
+    authorlogo, shorttext, postid) {
   void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return RssDetail();
+          return RssDetail(
+            postId: postid,
+          );
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
+  final logo = "https:" + authorlogo;
+  return Container(
+      padding: EdgeInsets.only(right: 15, left: 15, top: 2),
+      child: InkWell(
+        onTap: () {
+          _navigatorPage(context);
+        },
+        child: Padding(
+          padding: EdgeInsets.only(bottom: 7.0),
+          child: Card(
+            elevation: 2,
+            margin: EdgeInsets.only(bottom: 5),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Image.network(
+                  image,
+                  fit: BoxFit.contain,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(top: 5, left: 10, right: 10),
+                      width: width * 0.13,
+                      height: 60,
+                      child: Padding(
+                        padding: width < 400
+                            ? EdgeInsets.only(left: 6.5, top: 1)
+                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 3),
+                        child: CircleAvatar(
+                          backgroundColor: Colors.white,
+                          backgroundImage: NetworkImage(logo),
+                          radius: 30,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                        padding: EdgeInsets.only(top: 5.0, left: .7),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: width < 400
+                                  ? EdgeInsets.only(right: 51.5)
+                                  : EdgeInsets.only(right: 63.0),
+                              child: Text(
+                                author,
+                                style: TextStyle(
+                                    fontSize: width < 400 ? 18 : 18,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: 'RMNUEU'),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 1.0, top: 0),
+                              child: Text(
+                                date,
+                                style: TextStyle(
+                                    fontSize: width < 400 ? 11 : 14,
+                                    fontFamily: 'RMNUEUREGULAR'),
+                              ),
+                            ),
+                          ],
+                        )),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.symmetric(vertical: 3),
+                  child: Column(
+                    children: [
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding:
+                                EdgeInsets.only(left: 13.0, right: 13, top: 0),
+                            child: Text(
+                              title,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontSize: width < 400 ? 22 : 15,
+                                  fontFamily: 'RMNUEU',
+                                  color: Colors.black),
+                            ),
+                          )),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: 6.0, left: 13, bottom: 10, right: 13),
+                          child: Text(
+                            shorttext,
+                            maxLines: 3,
+                            style: TextStyle(
+                                height: 1.3, fontFamily: 'RMNUEUREGULAR'),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ));
+}
+
+Widget cards(width, img, context) {
+  void _navigatorPage(index) {
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return RssDetail(
+            postId: null,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -111,7 +232,6 @@ Widget cards(width, img, context) {
                   fit: BoxFit.contain,
                 ),
                 Align(
-                  // alignment: Alignment.centerLeft,
                   child: Row(
                     children: [
                       Container(
@@ -192,142 +312,6 @@ Widget cards(width, img, context) {
                           child: Text(
                             'Lorem ipsum is a placeholder text commonly used to demonstrate the visual document...',
                             style: TextStyle(height: 1.3),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ));
-}
-
-Widget editirialscards(
-    width, context, image, index, title, date, author, authorlogo, shorttext) {
-  void _navigatorPage(index) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: true,
-        transitionDuration: const Duration(),
-        pageBuilder: (BuildContext context, _, __) {
-          return RssDetail();
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new SlideTransition(
-            child: child,
-            position: new Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(animation),
-          );
-        }));
-  }
-
-  final logo = "https:" + authorlogo;
-  return Container(
-      padding: EdgeInsets.only(right: 15, left: 15, top: 2),
-      child: InkWell(
-        onTap: () {
-          _navigatorPage(context);
-        },
-        child: Padding(
-          padding: EdgeInsets.only(bottom: 7.0),
-          child: Card(
-            elevation: 2,
-            margin: EdgeInsets.only(bottom: 5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.network(
-                  image,
-                  fit: BoxFit.contain,
-                ),
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 5, left: 10, right: 10),
-                      width: width * 0.13,
-                      height: 60,
-                      // decoration: new BoxDecoration(
-                      //   border: new Border.all(
-                      //     color: Colors.grey[400],
-                      //     width: 1.0,
-                      //   ),
-                      //   color: Colors.white,
-                      //   shape: BoxShape.circle,
-                      // ),
-                      child: Padding(
-                        padding: width < 400
-                            ? EdgeInsets.only(left: 6.5, top: 1)
-                            : EdgeInsets.only(left: 3.0, top: 1, bottom: 3),
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          backgroundImage: NetworkImage(logo),
-                          radius: 30,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                        padding: EdgeInsets.only(top: 5.0, left: .7),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: width < 400
-                                  ? EdgeInsets.only(right: 51.5)
-                                  : EdgeInsets.only(right: 63.0),
-                              child: Text(
-                                author,
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 18 : 18,
-                                    fontWeight: FontWeight.w700,
-                                    fontFamily: 'RMNUEU'),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 1.0, top: 0),
-                              child: Text(
-                                date,
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 11 : 14,
-                                    fontFamily: 'RMNUEUREGULAR'),
-                              ),
-                            ),
-                          ],
-                        )),
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(vertical: 3),
-                  child: Column(
-                    children: [
-                      Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding:
-                                EdgeInsets.only(left: 13.0, right: 13, top: 0),
-                            child: Text(
-                              title,
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontSize: width < 400 ? 22 : 15,
-                                  fontFamily: 'RMNUEU',
-                                  color: Colors.black),
-                            ),
-                          )),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: 6.0, left: 13, bottom: 10, right: 13),
-                          child: Text(
-                            shorttext,
-                            maxLines: 3,
-                            style: TextStyle(
-                                height: 1.3, fontFamily: 'RMNUEUREGULAR'),
                           ),
                         ),
                       )
