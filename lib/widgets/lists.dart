@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-Widget Lists(context, check, image, index, name, price, id) {
+Widget Lists(context, check, image, index, name, price, id, brand) {
   final f = NumberFormat('#,###.0#');
   return Container(
     margin: EdgeInsets.all(1.0),
@@ -14,6 +14,21 @@ Widget Lists(context, check, image, index, name, price, id) {
           child: Image.network(
             image,
             fit: BoxFit.cover,
+          ),
+        ),
+        Align(
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.only(top: 8, right: 10.0, left: 10.0),
+            child: Text(
+              brand,
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'RMNUEUREGULAR'),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+            ),
           ),
         ),
         Align(

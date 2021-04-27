@@ -120,6 +120,7 @@ class _HoodiesState extends State<Hoodies> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

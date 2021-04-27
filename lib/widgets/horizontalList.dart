@@ -216,7 +216,7 @@ Widget sneakerListWith3(context, img, color) {
 
 Widget sneakerListWith4(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###.0#');
+  final f = NumberFormat('#,###,###.0#');
   return FutureBuilder(
       future: collect.getDrawrProducts("15"),
       builder: (BuildContext context,
@@ -269,9 +269,8 @@ Widget sneakerListWith4(context) {
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontFamily: 'RMNUEUSEMIBOLD',
+                            fontFamily: 'RMNUEUREGULAR',
                             fontSize: 16,
-                            fontWeight: FontWeight.bold,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -298,7 +297,7 @@ Widget sneakerListWith4(context) {
 
 Widget sneakerListTopTrending(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###.0#');
+  final f = NumberFormat('#,###,###.0#');
   return FutureBuilder(
       future: data.getTrendingSneakers(),
       builder: (BuildContext context,
@@ -351,9 +350,8 @@ Widget sneakerListTopTrending(context) {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 2,
                             style: TextStyle(
-                              fontFamily: 'RMNUEUSEMIBOLD',
+                              fontFamily: 'RMNUEUREGULAR',
                               fontSize: 16,
-                              fontWeight: FontWeight.bold,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -367,7 +365,6 @@ Widget sneakerListTopTrending(context) {
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
                             fontSize: 15,
-                            fontWeight: FontWeight.bold,
                             color: Colors.grey[600]),
                       ),
                     ),
@@ -382,7 +379,7 @@ Widget sneakerListTopTrending(context) {
 
 Widget featuredProductsTv(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###.0#');
+  final f = NumberFormat('#,###,###.0#');
   return FutureBuilder(
       future: dataentry.getFeaturedTvProducts("154"),
       builder: (BuildContext context,

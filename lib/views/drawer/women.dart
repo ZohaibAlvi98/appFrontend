@@ -10,6 +10,7 @@ import '../auth/signup/signup.dart';
 import '../../services/drawr-services.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 import 'package:splyxp/widgets/lists.dart';
+import 'package:splyxp/widgets/lineHeading.dart';
 
 class Womens extends StatefulWidget {
   final bool authenticated;
@@ -95,24 +96,7 @@ class _WomensState extends State<Womens> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              'assets/images/womans/cover1.jpg',
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: 40, top: width / 4.6),
-                              // child: Text(
-                              //   '',
-                              //   style: TextStyle(
-                              //       fontSize: width < 400 ? 23 : 30,
-                              //       fontWeight: FontWeight.w900,
-                              //       letterSpacing: 1.1),
-                              // ),
-                            )
-                          ],
-                        ),
+                        child: Heading(context, 'WOMENS\'S COLLECTION'),
                       ),
                       Row(
                         children: [
@@ -180,6 +164,7 @@ class _WomensState extends State<Womens> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
+                                        'brand',
                                       ),
                                     );
                                   });

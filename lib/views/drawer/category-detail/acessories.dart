@@ -120,6 +120,7 @@ class _AccessoriesState extends State<Accessories> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

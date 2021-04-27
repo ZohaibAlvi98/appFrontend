@@ -103,6 +103,7 @@ class _ShortsState extends State<Shorts> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

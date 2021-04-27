@@ -11,6 +11,7 @@ import 'package:splyxp/views/products/product-detail-withapi.dart';
 import '../../services/drawr-services.dart';
 import 'package:intl/intl.dart';
 import 'package:splyxp/widgets/lists.dart';
+import 'package:splyxp/widgets/lineHeading.dart';
 
 class Mens extends StatefulWidget {
   final bool authenticated;
@@ -107,24 +108,7 @@ class _MensState extends State<Mens> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              'assets/images/mans/cover1.jpg',
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: 40, top: width / 4.6),
-                              // child: Text(
-                              //   'MENS',
-                              //   style: TextStyle(
-                              //       fontSize: width < 400 ? 23 : 30,
-                              //       fontWeight: FontWeight.w900,
-                              //       letterSpacing: 1.1),
-                              // ),
-                            )
-                          ],
-                        ),
+                        child: Heading(context, 'MEN\'S COLLECTION'),
                       ),
                       Row(
                         children: [
@@ -209,6 +193,7 @@ class _MensState extends State<Mens> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
+                                        'brand',
                                       ),
                                     );
                                   });

@@ -120,6 +120,7 @@ class _TopsState extends State<Tops> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

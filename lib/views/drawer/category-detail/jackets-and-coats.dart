@@ -103,6 +103,7 @@ class _JacketCoatsState extends State<JacketCoats> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

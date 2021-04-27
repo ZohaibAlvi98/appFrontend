@@ -103,6 +103,7 @@ class _SweatersState extends State<Sweaters> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
+                                'brand',
                               ),
                             );
                           });

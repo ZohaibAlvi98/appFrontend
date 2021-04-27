@@ -8,6 +8,8 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
+import 'package:splyxp/widgets/lineHeading.dart';
+import 'package:splyxp/widgets/lists.dart';
 // import '../../services/prdocut-detail-api.dart';
 
 class Arrivals extends StatefulWidget {
@@ -54,6 +56,15 @@ class _ArrivalsState extends State<Arrivals> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
@@ -100,24 +111,7 @@ class _ArrivalsState extends State<Arrivals> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Center(
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              'assets/images/arrivals/main.jpg',
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: 20, top: width / 4.6),
-                              child: Text(
-                                'NEW ARRIVALS',
-                                style: TextStyle(
-                                    fontSize: width < 400 ? 23 : 30,
-                                    fontWeight: FontWeight.w900,
-                                    letterSpacing: 1.1),
-                              ),
-                            )
-                          ],
-                        ),
+                        child: Heading(context, 'NEW ARRIVALS'),
                       ),
                       Row(
                         children: [
@@ -170,11 +164,11 @@ class _ArrivalsState extends State<Arrivals> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final item = snapshot.data[index];
-
+                                    final brand = getBrand(item);
                                     return InkWell(
                                       onTap: () => _navigatorPage(
                                           context, item['id'].toString()),
-                                      child: lists(
+                                      child: Lists(
                                         context,
                                         'men',
                                         item['images'][0]['src'],
@@ -182,10 +176,7 @@ class _ArrivalsState extends State<Arrivals> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
-
-                                        // item['meta_data'
-                                        //         .contains("_select_brand")]
-                                        //     ['value'],
+                                        brand,
                                       ),
                                     );
                                   });
@@ -210,51 +201,4 @@ class _ArrivalsState extends State<Arrivals> {
       ),
     );
   }
-}
-
-Widget lists(context, check, image, index, name, price, id) {
-  return Container(
-    margin: EdgeInsets.all(1.5),
-    color: Color(int.parse('#e5e6ea'.replaceAll('#', '0xff'))),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(1.0),
-          child: Image.network(
-            image,
-            fit: BoxFit.cover,
-          ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsets.only(top: 10, right: 10.0, left: 10.0),
-            child: Text(
-              name,
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'RMNUEU'),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-            ),
-          ),
-        ),
-        Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: EdgeInsets.only(top: 10),
-            child: Text(
-              '\$ ' + price,
-              style: TextStyle(
-                fontSize: 15,
-                fontFamily: 'RMNUEUREGULAR',
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
 }
