@@ -66,7 +66,6 @@ class _ArrivalsState extends State<Arrivals> {
   }
 
   void _navigatorPage(context, id) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
@@ -145,7 +144,6 @@ class _ArrivalsState extends State<Arrivals> {
                               AsyncSnapshot<List<Map<String, dynamic>>>
                                   snapshot) {
                             if (snapshot.hasData) {
-                              // List<ArtistModel> artist = snapshot.data;
                               return GridView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -184,7 +182,6 @@ class _ArrivalsState extends State<Arrivals> {
                               print(snapshot.error);
                               print('Sorry');
                             }
-
                             return Center(child: CircularProgressIndicator());
                           }),
                       SizedBox(

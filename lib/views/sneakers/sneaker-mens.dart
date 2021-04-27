@@ -9,6 +9,8 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-sneaker-detail.dart';
 import '../../services/sneakers/mens-sneakers.dart';
+import 'package:splyxp/widgets/lists.dart';
+import 'package:splyxp/widgets/lineHeading.dart';
 
 class SneakersMens extends StatefulWidget {
   final bool authenticated;
@@ -53,6 +55,15 @@ class _SneakersMensState extends State<SneakersMens> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
@@ -106,20 +117,7 @@ class _SneakersMensState extends State<SneakersMens> {
                       Center(
                         child: Stack(
                           children: [
-                            // Image.asset(
-                            //   '',
-                            // ),
-                            Padding(
-                              padding:
-                                  EdgeInsets.only(left: 20, top: width / 4.6),
-                              // child: Text(
-                              //   'NEW ARRIVALS',
-                              //   style: TextStyle(
-                              //       fontSize: width < 400 ? 23 : 30,
-                              //       fontWeight: FontWeight.w900,
-                              //       letterSpacing: 1.1),
-                              // ),
-                            )
+                            Heading(context, 'MEN\'S SNEAKERS'),
                           ],
                         ),
                       ),
@@ -153,13 +151,10 @@ class _SneakersMensState extends State<SneakersMens> {
                       ),
                       FutureBuilder(
                           future: data.getMensWomensSneakers("138"),
-                          // artistService.getArtist(page),
-
                           builder: (BuildContext context,
                               AsyncSnapshot<List<Map<String, dynamic>>>
                                   snapshot) {
                             if (snapshot.hasData) {
-                              // List<ArtistModel> artist = snapshot.data;
                               return GridView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -172,18 +167,17 @@ class _SneakersMensState extends State<SneakersMens> {
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.22),
+                                            1.2),
                                   ),
-                                  // scrollDirection: Axis.vertical,
                                   itemCount: snapshot.data.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final item = snapshot.data[index];
-
+                                    final brand = getBrand(item);
                                     return InkWell(
                                       onTap: () => _navigatorPage(
                                           context, item['id'].toString()),
-                                      child: lists(
+                                      child: Lists(
                                         context,
                                         'men',
                                         item['images'][0]['src'],
@@ -191,9 +185,7 @@ class _SneakersMensState extends State<SneakersMens> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
-                                        // item['meta_data'
-                                        //         .contains("_select_brand")]
-                                        //     ['value'],
+                                        brand,
                                       ),
                                     );
                                   });
@@ -201,7 +193,6 @@ class _SneakersMensState extends State<SneakersMens> {
                               print(snapshot.error);
                               print('Sorry');
                             }
-
                             return Center(child: CircularProgressIndicator());
                           }),
                       SizedBox(

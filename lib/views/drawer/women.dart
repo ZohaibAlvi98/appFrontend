@@ -46,8 +46,16 @@ class _WomensState extends State<Womens> {
     SplyNetwork(),
     Profile()
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   void _navigatorPage(context, id) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
@@ -82,9 +90,7 @@ class _WomensState extends State<Womens> {
         appBar: appbarWithMenu(context),
         drawer: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Colors
-                  .black, //This will change the drawer background to blue.
-              //other styles
+              canvasColor: Colors.black,
             ),
             child: _selectedIndex == 0
                 ? drawerAppBar(context, 'womens', widget.authenticated)
@@ -109,9 +115,7 @@ class _WomensState extends State<Womens> {
                                   borderRadius: BorderRadius.circular(30.0),
                                   side: BorderSide(
                                       color: Colors.black87, width: 1.4)),
-                              onPressed: () {
-                                // _navigatorPage();
-                              },
+                              onPressed: () {},
                               child: Text(
                                 'FILTER',
                                 style: TextStyle(
@@ -126,13 +130,10 @@ class _WomensState extends State<Womens> {
                       ),
                       FutureBuilder(
                           future: data.getDrawrProducts("113"),
-                          // artistService.getArtist(page),
-
                           builder: (BuildContext context,
                               AsyncSnapshot<List<Map<String, dynamic>>>
                                   snapshot) {
                             if (snapshot.hasData) {
-                              // List<ArtistModel> artist = snapshot.data;
                               return GridView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -145,14 +146,13 @@ class _WomensState extends State<Womens> {
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.22),
+                                            1.1),
                                   ),
-                                  // scrollDirection: Axis.vertical,
                                   itemCount: snapshot.data.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final item = snapshot.data[index];
-
+                                    final brand = getBrand(item);
                                     return InkWell(
                                       onTap: () => _navigatorPage(
                                           context, item['id'].toString()),
@@ -164,7 +164,7 @@ class _WomensState extends State<Womens> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
-                                        'brand',
+                                        brand,
                                       ),
                                     );
                                   });
@@ -172,7 +172,6 @@ class _WomensState extends State<Womens> {
                               print(snapshot.error);
                               print('Sorry');
                             }
-
                             return Center(child: CircularProgressIndicator());
                           }),
                       SizedBox(

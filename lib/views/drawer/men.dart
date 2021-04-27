@@ -57,6 +57,15 @@ class _MensState extends State<Mens> {
     SplyNetwork(),
     Profile()
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   void _navigatorPage(context, id) {
     // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
@@ -94,9 +103,7 @@ class _MensState extends State<Mens> {
         appBar: appbarWithMenu(context),
         drawer: Theme(
             data: Theme.of(context).copyWith(
-              canvasColor: Colors
-                  .black, //This will change the drawer background to blue.
-              //other styles
+              canvasColor: Colors.black,
             ),
             child: _selectedIndex == 0
                 ? drawerAppBar(context, 'mens', widget.authenticated)
@@ -136,32 +143,12 @@ class _MensState extends State<Mens> {
                           ),
                         ],
                       ),
-                      // GridView.builder(
-                      //     shrinkWrap: true,
-                      //     physics: const NeverScrollableScrollPhysics(),
-                      //     padding: EdgeInsets.only(left: 1, right: 1, top: 20),
-                      //     gridDelegate:
-                      //         SliverGridDelegateWithFixedCrossAxisCount(
-                      //       crossAxisCount: 2,
-                      //       childAspectRatio:
-                      //           MediaQuery.of(context).size.width /
-                      //               (MediaQuery.of(context).size.height / 1.49),
-                      //     ),
-                      //     // scrollDirection: Axis.vertical,
-                      //     itemCount: 6,
-                      //     itemBuilder: (context, index) {
-                      //       return lists(context, 'men', index);
-                      //     }),
-                      //                       FutureBuilder(
                       FutureBuilder(
                           future: data.getDrawrProducts("112"),
-                          // artistService.getArtist(page),
-
                           builder: (BuildContext context,
                               AsyncSnapshot<List<Map<String, dynamic>>>
                                   snapshot) {
                             if (snapshot.hasData) {
-                              // List<ArtistModel> artist = snapshot.data;
                               return GridView.builder(
                                   shrinkWrap: true,
                                   physics: const NeverScrollableScrollPhysics(),
@@ -174,14 +161,13 @@ class _MensState extends State<Mens> {
                                             .size
                                             .width /
                                         (MediaQuery.of(context).size.height /
-                                            1.22),
+                                            1.1),
                                   ),
-                                  // scrollDirection: Axis.vertical,
                                   itemCount: snapshot.data.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     final item = snapshot.data[index];
-
+                                    final brand = getBrand(item);
                                     return InkWell(
                                       onTap: () => _navigatorPage(
                                           context, item['id'].toString()),
@@ -193,7 +179,7 @@ class _MensState extends State<Mens> {
                                         item['name'],
                                         item['price'],
                                         item['id'].toString(),
-                                        'brand',
+                                        brand,
                                       ),
                                     );
                                   });
@@ -201,7 +187,6 @@ class _MensState extends State<Mens> {
                               print(snapshot.error);
                               print('Sorry');
                             }
-
                             return Center(child: CircularProgressIndicator());
                           }),
                       SizedBox(

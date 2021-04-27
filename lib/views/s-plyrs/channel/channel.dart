@@ -16,6 +16,7 @@ import '../../../services/splyrs/splyr-logo&back.dart';
 import '../../../services/splyrs/splyrs-stories.dart';
 import '../../../services/splyrs/splyrs-styles.dart';
 import '../../../services/splyrs/splyr-editorials.dart';
+import 'package:splyxp/widgets/lists.dart';
 
 SplyrEditorials editorialdata = SplyrEditorials();
 VendorStyles styledata = VendorStyles();
@@ -82,6 +83,14 @@ class _ChannelState extends State<Channel> {
     'assets/images/splyrs/channels/prod5.jpg',
     'assets/images/splyrs/channels/prod6.jpg'
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
 
   final url = 'https://www.youtube.com/watch?v=sR-PCwu9SBw&feature=youtu.be';
 
@@ -224,7 +233,7 @@ class _ChannelState extends State<Channel> {
                                 Center(
                                   child: Padding(
                                     padding: EdgeInsets.only(
-                                        top: width < 400 ? 200 : 233.0),
+                                        top: width < 400 ? 220 : 240),
                                     child: Text(
                                       item['shop']['title'].toUpperCase(),
                                       style: TextStyle(
@@ -374,18 +383,18 @@ class _ChannelState extends State<Channel> {
                                                   (MediaQuery.of(context)
                                                           .size
                                                           .height /
-                                                      1.22),
+                                                      1.1),
                                         ),
                                         // scrollDirection: Axis.vertical,
                                         itemCount: snapshot.data.length,
                                         itemBuilder:
                                             (BuildContext context, int index) {
                                           final item = snapshot.data[index];
-
+                                          final brand = getBrand(item);
                                           return InkWell(
                                             onTap: () => _navigatorPage(
                                                 context, item['id'].toString()),
-                                            child: lists(
+                                            child: Lists(
                                               context,
                                               'men',
                                               item['images'][0]['src'],
@@ -393,6 +402,7 @@ class _ChannelState extends State<Channel> {
                                               item['name'],
                                               item['price'],
                                               item['id'].toString(),
+                                              brand,
                                             ),
                                           );
                                         });
@@ -672,50 +682,4 @@ class _ChannelState extends State<Channel> {
       ],
     );
   }
-}
-
-Widget lists(context, check, image, index, name, price, id) {
-  return Column(
-    children: [
-      Padding(
-          padding: index != 0 && index != 1
-              ? EdgeInsets.only(left: 7.0, right: 7, top: 8)
-              : EdgeInsets.only(left: 7.0, right: 7, top: 4),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(12.0),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
-            ),
-          )),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10, right: 10),
-          child: Text(
-            name,
-            style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUSEMIBOLD'),
-            maxLines: 2,
-          ),
-        ),
-      ),
-      Align(
-        alignment: Alignment.topLeft,
-        child: Padding(
-          padding: EdgeInsets.only(top: 5, left: 10),
-          child: Text(
-            'Price: \$ ' + price,
-            style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey[600],
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RMNUEUREGULAR'),
-          ),
-        ),
-      ),
-    ],
-  );
 }

@@ -37,9 +37,17 @@ class _HoodiesState extends State<Hoodies> {
     SplyNetwork(),
     Signup()
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   DrawrServices data = DrawrServices();
   void _navigatorPage(context, id) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
@@ -68,31 +76,11 @@ class _HoodiesState extends State<Hoodies> {
         child: Container(
           child: Column(
             children: [
-              // GridView.builder(
-              //     shrinkWrap: true,
-              //     physics: const NeverScrollableScrollPhysics(),
-              //     padding: EdgeInsets.only(left: 5, right: 5, top: 0),
-              //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              //       crossAxisCount: 2,
-              //       childAspectRatio: width < 400
-              //           ? MediaQuery.of(context).size.width /
-              //               (MediaQuery.of(context).size.height / 1.49)
-              //           : MediaQuery.of(context).size.width /
-              //               (MediaQuery.of(context).size.height / 1.45),
-              //     ),
-              //     // scrollDirection: Axis.vertical,
-              //     itemCount: 6,
-              //     itemBuilder: (context, index) {
-              //       return lists(context, 'woman', index);
-              //     })
               FutureBuilder(
                   future: data.getDrawrProducts("86"),
-                  // artistService.getArtist(page),
-
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                     if (snapshot.hasData) {
-                      // List<ArtistModel> artist = snapshot.data;
                       return GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -102,13 +90,12 @@ class _HoodiesState extends State<Hoodies> {
                             crossAxisCount: 2,
                             childAspectRatio:
                                 MediaQuery.of(context).size.width /
-                                    (MediaQuery.of(context).size.height / 1.22),
+                                    (MediaQuery.of(context).size.height / 1.1),
                           ),
-                          // scrollDirection: Axis.vertical,
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             final item = snapshot.data[index];
-
+                            final brand = getBrand(item);
                             return InkWell(
                               onTap: () => _navigatorPage(
                                   context, item['id'].toString()),
@@ -120,7 +107,7 @@ class _HoodiesState extends State<Hoodies> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
-                                'brand',
+                                brand,
                               ),
                             );
                           });
@@ -128,7 +115,6 @@ class _HoodiesState extends State<Hoodies> {
                       print(snapshot.error);
                       print('Sorry');
                     }
-
                     return Center(child: CircularProgressIndicator());
                   }),
             ],

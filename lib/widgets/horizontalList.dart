@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:splyxp/views/products/product-detail.dart';
+// import 'package:splyxp/views/products/product-detail.dart';
 import '../services/drawr-services-sneaker.dart';
 import '../services/sneakers/sneakers-top-trending.dart';
 import '../services/tv/tv-fearured-products.dart';
 import '../services/splyrs/splyrs-products.dart';
 import 'package:intl/intl.dart';
+import 'package:splyxp/views/products/product-detail-withapi.dart';
 
 TrendingSneakers data = TrendingSneakers();
 DrawrServices collect = DrawrServices();
 FeaturedProducts dataentry = FeaturedProducts();
 SplyrsProducts splyrdata = SplyrsProducts();
-void _navigatorPage(context) {
+void _navigatorPage(context, id) {
   // Navigator.of(context).pop(new PageRouteBuilder());
   Navigator.of(context).push(new PageRouteBuilder(
       opaque: true,
       transitionDuration: const Duration(),
       pageBuilder: (BuildContext context, _, __) {
-        return ProductDetail();
+        return ProductDetail(
+          prodId: id,
+        );
       },
       transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
         return new SlideTransition(
@@ -45,7 +48,7 @@ Widget horizontalListWith3(context, img, color) {
             Container(
               padding: EdgeInsets.only(right: 4),
               child: InkWell(
-                onTap: () => _navigatorPage(context),
+                onTap: () => _navigatorPage(context, null),
                 child: Card(
                   child: Wrap(children: [
                     Image.asset(
@@ -117,7 +120,7 @@ Widget horizontalListWith2(context, img) {
                 ? EdgeInsets.only(right: 5)
                 : EdgeInsets.only(right: 10),
             child: InkWell(
-              onTap: () => _navigatorPage(context),
+              onTap: () => _navigatorPage(context, null),
               child: Card(
                 child: Wrap(children: [
                   Image.asset(
@@ -174,7 +177,7 @@ Widget sneakerListWith3(context, img, color) {
             Container(
               padding: EdgeInsets.only(right: 4),
               child: InkWell(
-                onTap: () => _navigatorPage(context),
+                onTap: () => _navigatorPage(context, null),
                 child: Card(
                   child: Wrap(children: [
                     Image.asset(
@@ -240,7 +243,7 @@ Widget sneakerListWith4(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context),
+                        onTap: () => _navigatorPage(context, null),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
@@ -321,7 +324,7 @@ Widget sneakerListTopTrending(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context),
+                        onTap: () => _navigatorPage(context, null),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
@@ -403,7 +406,7 @@ Widget featuredProductsTv(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context),
+                        onTap: () => _navigatorPage(context, null),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
@@ -482,7 +485,8 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context),
+                        onTap: () =>
+                            _navigatorPage(context, item['id'].toString()),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(

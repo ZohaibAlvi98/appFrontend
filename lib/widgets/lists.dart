@@ -6,7 +6,8 @@ Widget Lists(context, check, image, index, name, price, id, brand) {
   return Container(
     margin: EdgeInsets.all(1.0),
     color: Color(int.parse('#e5e6ea'.replaceAll('#', '0xff'))),
-    child: Column(
+    child: Flex(
+      direction: Axis.vertical,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ClipRRect(
@@ -19,7 +20,7 @@ Widget Lists(context, check, image, index, name, price, id, brand) {
         Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.only(top: 8, right: 10.0, left: 10.0),
+            padding: EdgeInsets.only(top: 10, right: 10.0, left: 10.0),
             child: Text(
               brand,
               style: TextStyle(
@@ -34,7 +35,7 @@ Widget Lists(context, check, image, index, name, price, id, brand) {
         Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: EdgeInsets.only(top: 8, right: 10.0, left: 10.0),
+            padding: EdgeInsets.only(top: 6, right: 10.0, left: 10.0),
             child: Text(
               name,
               style: TextStyle(

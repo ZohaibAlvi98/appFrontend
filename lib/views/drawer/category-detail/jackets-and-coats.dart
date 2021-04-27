@@ -37,9 +37,17 @@ class _JacketCoatsState extends State<JacketCoats> {
     SplyNetwork(),
     Signup()
   ];
+
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   DrawrServices data = DrawrServices();
   void _navigatorPage(context, id) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
     Navigator.of(context).push(new PageRouteBuilder(
         opaque: true,
         transitionDuration: const Duration(),
@@ -70,12 +78,9 @@ class _JacketCoatsState extends State<JacketCoats> {
             children: [
               FutureBuilder(
                   future: data.getDrawrProducts("87"),
-                  // artistService.getArtist(page),
-
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                     if (snapshot.hasData) {
-                      // List<ArtistModel> artist = snapshot.data;
                       return GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -85,13 +90,12 @@ class _JacketCoatsState extends State<JacketCoats> {
                             crossAxisCount: 2,
                             childAspectRatio:
                                 MediaQuery.of(context).size.width /
-                                    (MediaQuery.of(context).size.height / 1.22),
+                                    (MediaQuery.of(context).size.height / 1.1),
                           ),
-                          // scrollDirection: Axis.vertical,
                           itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             final item = snapshot.data[index];
-
+                            final brand = getBrand(item);
                             return InkWell(
                               onTap: () => _navigatorPage(
                                   context, item['id'].toString()),
@@ -103,7 +107,7 @@ class _JacketCoatsState extends State<JacketCoats> {
                                 item['name'],
                                 item['price'],
                                 item['id'].toString(),
-                                'brand',
+                                brand,
                               ),
                             );
                           });
@@ -111,7 +115,6 @@ class _JacketCoatsState extends State<JacketCoats> {
                       print(snapshot.error);
                       print('Sorry');
                     }
-
                     return Center(child: CircularProgressIndicator());
                   }),
             ],
