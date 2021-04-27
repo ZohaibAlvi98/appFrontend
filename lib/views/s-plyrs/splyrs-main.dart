@@ -263,7 +263,7 @@ class _SplyrsState extends State<Splyrs> {
                                     .copyWith(accentColor: Colors.black),
                                 child: ExpansionTile(
                                     title: new Text(
-                                      'OTHER SPLYRS',
+                                      'ALL SPLYRS',
                                       style: TextStyle(
                                           fontFamily: 'Monument',
                                           fontSize: 16,
@@ -403,11 +403,6 @@ Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
           children: [
             Row(
               children: [
-                // Icon(
-                //   Icons.location_pin,
-                //   color: Colors.black,
-                //   size: 12,
-                // ),
                 Text(
                   location.toUpperCase(),
                   style: TextStyle(

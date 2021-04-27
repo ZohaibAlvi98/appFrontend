@@ -9,7 +9,7 @@ class LogoAndBanner {
             reqId;
 
     print('Success');
-    // print(page);
+
 
     final http.Response res = await http.get(
       url,

@@ -5,8 +5,8 @@ class DrawrProducts {
   Future<Map<String, dynamic>> getProducts(id) async {
     String prodID = id;
 
-    String ck = 'ck_dfa336f01dea059c26a82f16e1b547edf1fc7aa7';
-    String cs = 'cs_2ad62fc78e4ec304311ede859aff8fc44a480646';
+    String ck = 'ck_b851e9504f4012f059015f17142994a30800445a';
+    String cs = 'cs_fd7852bae5792816821610a98dd59ae60d5ab983';
 
     // String numprod = "26";
     final String url = "https://splystyle.net/wp-json/wc/v2/products/" +

@@ -106,9 +106,9 @@ class _SneakersMensState extends State<SneakersMens> {
                       Center(
                         child: Stack(
                           children: [
-                            Image.asset(
-                              'assets/images/sneakers/sneakers-mens-cover.jpg',
-                            ),
+                            // Image.asset(
+                            //   '',
+                            // ),
                             Padding(
                               padding:
                                   EdgeInsets.only(left: 20, top: width / 4.6),
