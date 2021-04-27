@@ -206,7 +206,7 @@ class _SplyrsState extends State<Splyrs> {
                                 childAspectRatio: MediaQuery.of(context)
                                         .size
                                         .width /
-                                    (MediaQuery.of(context).size.height / 1.42),
+                                    (MediaQuery.of(context).size.height / 1.41),
                               ),
                               // scrollDirection: Axis.vertical,
                               itemCount: snapshot.data.length,

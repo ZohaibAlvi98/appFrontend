@@ -106,21 +106,16 @@ class _RssDetailState extends State<RssDetail> {
                                       Container(
                                         margin: EdgeInsets.only(
                                             top: 5, left: 10, right: 10),
-                                        width: width * 0.13,
-                                        height: 60,
-                                        child: Padding(
-                                          padding: width < 400
-                                              ? EdgeInsets.only(
-                                                  left: 6.5, top: 1)
-                                              : EdgeInsets.only(
-                                                  left: 3.0, top: 1, bottom: 3),
-                                          child: CircleAvatar(
-                                            backgroundColor: Colors.white,
-                                            backgroundImage: NetworkImage(
-                                              "https:" + item[0]['author_logo'],
-                                            ),
-                                            radius: 30,
+                                        width: width * 0.10,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                            image: NetworkImage("https:" +
+                                                item[0]['author_logo']),
                                           ),
+                                          border:
+                                              Border.all(color: Colors.grey),
                                         ),
                                       ),
                                       Padding(

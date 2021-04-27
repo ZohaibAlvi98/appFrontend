@@ -13,7 +13,13 @@ import 'package:splyxp/views/products/product-detail-withapi.dart';
 import '../../../services/splyrs/splyr-all-products.dart';
 import '../../../services/splyrs/splyrs-products.dart';
 import '../../../services/splyrs/splyr-logo&back.dart';
+import '../../../services/splyrs/splyrs-stories.dart';
+import '../../../services/splyrs/splyrs-styles.dart';
+import '../../../services/splyrs/splyr-editorials.dart';
 
+SplyrEditorials editorialdata = SplyrEditorials();
+VendorStyles styledata = VendorStyles();
+Stories storydata = Stories();
 SplyrsChannel data = SplyrsChannel();
 SplyrsProducts getdata = SplyrsProducts();
 SplyrsAllProducts returndata = SplyrsAllProducts();
@@ -163,12 +169,7 @@ class _ChannelState extends State<Channel> {
                 AsyncSnapshot<Map<String, dynamic>> snapshot) {
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
-              } else
-              //  ListView.builder(
-              //     padding: EdgeInsets.only(right: 20.0, left: 12),
-              //     itemCount: snapshot.data.length,
-              //     itemBuilder: (BuildContext context, int index) {
-              {
+              } else {
                 final item = snapshot.data;
                 print(snapshot);
 
@@ -392,10 +393,6 @@ class _ChannelState extends State<Channel> {
                                               item['name'],
                                               item['price'],
                                               item['id'].toString(),
-
-                                              // item['meta_data'
-                                              //         .contains("_select_brand")]
-                                              //     ['value'],
                                             ),
                                           );
                                         });
@@ -411,91 +408,123 @@ class _ChannelState extends State<Channel> {
                             height: 8,
                           ),
                           if (_pageIndex == 1)
-                            GridView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding:
-                                    EdgeInsets.only(left: 5, right: 5, top: 10),
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  childAspectRatio: width < 400
-                                      ? MediaQuery.of(context).size.width /
-                                          (MediaQuery.of(context).size.height /
-                                              1.49)
-                                      : MediaQuery.of(context).size.width /
-                                          (MediaQuery.of(context).size.height /
-                                              1.17),
-                                ),
-                                // scrollDirection: Axis.vertical,
-                                itemCount: 6,
-                                itemBuilder: (context, snapshot) {
-                                  return Column(
-                                    children: [
-                                      style(context,
-                                          'assets/images/styles/style3.jpg'),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      // style(context, 'assets/images/styles/styles4.jpg'),
-                                      // SizedBox(
-                                      //   height: 25,
-                                      // ),
-                                      // style(context, 'assets/images/styles/style3.jpg'),
-                                      // SizedBox(
-                                      //   height: 25,
-                                      // ),
-                                    ],
-                                  );
+                            FutureBuilder(
+                                future:
+                                    styledata.getVendorStyles(widget.splyrId),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<List<Map<String, dynamic>>>
+                                        snapshot) {
+                                  if (snapshot.hasData) {
+                                    return GridView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding: EdgeInsets.only(
+                                            left: 5, right: 5, top: 10),
+                                        gridDelegate:
+                                            SliverGridDelegateWithFixedCrossAxisCount(
+                                          crossAxisCount: 2,
+                                          childAspectRatio: width < 400
+                                              ? MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  (MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      1.42)
+                                              : MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  (MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      1.17),
+                                        ),
+                                        itemCount: snapshot.data.length,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          final item = snapshot.data[index];
+                                          return Column(
+                                            children: [
+                                              style(
+                                                  context,
+                                                  item['cover_image'],
+                                                  item['title'],
+                                                  item['created_at'],
+                                                  item['splyr_name']),
+                                              SizedBox(
+                                                height: 30,
+                                              ),
+                                            ],
+                                          );
+                                        });
+                                  } else if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    print('Sorry');
+                                  }
+
+                                  return Center(
+                                      child: CircularProgressIndicator());
                                 }),
                           if (_pageIndex == 3)
                             VideoListHorizontal(
                                 thumbnail: thumbnail, videoUrl: videoUrl),
-                          // Column(
-                          //   children: [
-                          //     Padding(
-                          //       padding: EdgeInsets.only(
-                          //           bottom: 20.0, right: 40, left: 40, top: 10),
-                          //       child: YoutubePlayerIFrame(
-                          //         aspectRatio: 10 / 6,
-                          //       ),
-                          //     ),
-                          //     Padding(
-                          //       padding: EdgeInsets.only(
-                          //           bottom: 20.0, right: 40, left: 40, top: 10),
-                          //       child: YoutubePlayerIFrame(
-                          //         aspectRatio: 10 / 6,
-                          //       ),
-                          //     ),
-                          //     Padding(
-                          //       padding: EdgeInsets.only(
-                          //           bottom: 20.0, right: 40, left: 40, top: 10),
-                          //       child: YoutubePlayerIFrame(
-                          //         aspectRatio: 10 / 6,
-                          //       ),
-                          //     ),
-                          //     SizedBox(
-                          //       height: 5,
-                          //     ),
-                          //   ],
-                          // ),
                           if (_pageIndex == 4)
-                            Column(
-                              children: [
-                                cards(width, 'assets/images/rss/rss1.jpg',
-                                    context),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                cards(width, 'assets/images/rss/rss2.jpg',
-                                    context),
-                                SizedBox(
-                                  height: 15,
-                                ),
-                                cards(width, 'assets/images/rss/rss1.jpg',
-                                    context),
-                              ],
-                            ),
+                            FutureBuilder(
+                                future: editorialdata
+                                    .getSplyrEditorials(widget.splyrId),
+                                builder: (BuildContext context,
+                                    AsyncSnapshot<List<Map<String, dynamic>>>
+                                        snapshot) {
+                                  if (snapshot.hasData) {
+                                    return GridView.builder(
+                                      shrinkWrap: true,
+                                      physics:
+                                          const NeverScrollableScrollPhysics(),
+                                      padding: EdgeInsets.only(
+                                          left: 0, right: 0, top: 0),
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 1,
+                                        childAspectRatio:
+                                            MediaQuery.of(context).size.width /
+                                                (MediaQuery.of(context)
+                                                        .size
+                                                        .height /
+                                                    1.7),
+                                      ),
+                                      itemCount: snapshot.data.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        final item = snapshot.data[index];
+                                        return Column(
+                                          children: [
+                                            editirialscards(
+                                                width,
+                                                context,
+                                                item['image'],
+                                                index,
+                                                item['title'],
+                                                item['date'],
+                                                item['author'],
+                                                item['author_logo'],
+                                                item['short_text'],
+                                                item['post_id'].toString()),
+                                            SizedBox(
+                                              height: 15,
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+                                  } else if (snapshot.hasError) {
+                                    print(snapshot.error);
+                                    print('Sorry');
+                                  }
+
+                                  return Center(
+                                      child: CircularProgressIndicator());
+                                }),
                         ],
                       ),
                     ),
@@ -505,7 +534,7 @@ class _ChannelState extends State<Channel> {
             }));
   }
 
-  Widget style(context, img) {
+  Widget style(context, img, styleTitle, styleDate, styleBrand) {
     void _navigatorPage() {
       // Navigator.of(context).pop(new PageRouteBuilder());
       Navigator.of(context).push(new PageRouteBuilder(
@@ -526,7 +555,6 @@ class _ChannelState extends State<Channel> {
           }));
     }
 
-    print('here');
     return InkWell(
       onTap: () {
         _navigatorPage();
@@ -534,10 +562,11 @@ class _ChannelState extends State<Channel> {
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
         child: Stack(children: [
-          Image.asset(
+          Image.network(
             img,
           ),
-          RoundedCardForGrid(context, 2.05, 2.05),
+          RoundedCardForGrid(
+              context, 2.05, 2.05, styleTitle, styleDate, styleBrand),
         ]),
       ),
     );
@@ -545,50 +574,58 @@ class _ChannelState extends State<Channel> {
 
   Widget story(context) {
     final stories = Expanded(
-      child: Padding(
-        padding: EdgeInsets.only(top: 5.0),
-        child: new ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: 5,
-            itemBuilder: (context, index) => new Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Container(
-                      margin: index != 0
-                          ? EdgeInsets.symmetric(horizontal: 6)
-                          : EdgeInsets.only(right: 6),
-                      width: 85,
-                      height: 120,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.redAccent,
-                          width: 2,
-                          style: BorderStyle.solid,
-                        ),
-                        shape: BoxShape.circle,
-                      ),
-                      child: Container(
-                        width: 80,
-                        height: 100,
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey[500],
-                              style: BorderStyle.solid,
+        child: FutureBuilder(
+            future: storydata.getStories(widget.splyrId),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+              if (!snapshot.hasData) {
+                return Center(child: CircularProgressIndicator());
+              } else {
+                return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    padding: EdgeInsets.only(right: 20.0, left: 12),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final item = snapshot.data[index];
+                      return Stack(
+                        alignment: Alignment.bottomRight,
+                        children: [
+                          Container(
+                            margin: index != 0
+                                ? EdgeInsets.symmetric(horizontal: 6)
+                                : EdgeInsets.only(right: 6),
+                            width: 85,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.redAccent,
+                                width: 2,
+                                style: BorderStyle.solid,
+                              ),
+                              shape: BoxShape.circle,
                             ),
-                            shape: BoxShape.circle,
-                            image: new DecorationImage(
-                                fit: BoxFit.fill,
-                                image: AssetImage(
-                                  'assets/images/sneakers/list2.jpg',
-                                ))),
-                        margin: EdgeInsets.symmetric(horizontal: 6),
-                      ),
-                    )
-                  ],
-                )),
-      ),
-    );
+                            child: Container(
+                              width: 80,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey[500],
+                                    style: BorderStyle.solid,
+                                  ),
+                                  shape: BoxShape.circle,
+                                  image: new DecorationImage(
+                                      fit: BoxFit.contain,
+                                      image: NetworkImage(
+                                        item['cover_image'],
+                                      ))),
+                              margin: EdgeInsets.symmetric(horizontal: 6),
+                            ),
+                          ),
+                        ],
+                      );
+                    });
+              }
+            }));
 
     var deviceSize = MediaQuery.of(context).size;
 

@@ -134,7 +134,7 @@ class _StylistChannelState extends State<StylistChannel> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: drawerAppBar(context, '',false)),
+            child: drawerAppBar(context, '', false)),
         body: SingleChildScrollView(
           child: Container(
             child: YoutubePlayerControllerProvider(
@@ -540,7 +540,7 @@ Widget style(context, img) {
         Image.asset(
           img,
         ),
-        RoundedCardForGrid(context, 2.05, 2.05),
+        RoundedCardForGrid(context, 2.05, 2.05, null, null, null),
       ]),
     ),
   );

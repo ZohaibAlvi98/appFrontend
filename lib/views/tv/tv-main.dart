@@ -240,7 +240,7 @@ class _TvState extends State<Tv> {
                                       initialPage: 1,
                                       enableInfiniteScroll: false,
                                       height: width < 400
-                                          ? size * 0.43
+                                          ? size * 0.70
                                           : size * 0.73,
                                       onPageChanged: (i, reason) {
                                         changeCurrent(i);
