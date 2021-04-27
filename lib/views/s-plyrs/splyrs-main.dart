@@ -270,39 +270,62 @@ class _SplyrsState extends State<Splyrs> {
                                           fontWeight: FontWeight.w500),
                                     ),
                                     children: [
-                                      GridView.builder(
-                                          shrinkWrap: true,
-                                          physics:
-                                              const NeverScrollableScrollPhysics(),
-                                          padding: EdgeInsets.only(
-                                              left: 1, right: 1, top: 20),
-                                          gridDelegate:
-                                              SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 2,
-                                            childAspectRatio: width < 400
-                                                ? MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    (MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                        2.3)
-                                                : MediaQuery.of(context)
-                                                        .size
-                                                        .width /
-                                                    (MediaQuery.of(context)
-                                                            .size
-                                                            .height /
-                                                        1.17),
-                                          ),
-                                          // scrollDirection: Axis.vertical,
-                                          itemCount: 6,
-                                          itemBuilder: (context, index) {
-                                            return lists(context, 'men', index);
+                                      FutureBuilder(
+                                          future: data.getFeaturedSplyrs(),
+                                          builder: (BuildContext context,
+                                              AsyncSnapshot<
+                                                      List<
+                                                          Map<String, dynamic>>>
+                                                  snapshot) {
+                                            if (snapshot.hasData) {
+                                              return GridView.builder(
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  padding: EdgeInsets.only(
+                                                      left: 1,
+                                                      right: 1,
+                                                      top: 20),
+                                                  gridDelegate:
+                                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 2,
+                                                    childAspectRatio: width <
+                                                            400
+                                                        ? MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height /
+                                                                2.3)
+                                                        : MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height /
+                                                                1.17),
+                                                  ),
+                                                  // scrollDirection: Axis.vertical,
+                                                  itemCount: 8,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return lists(
+                                                        context, 'men', index);
+                                                  });
+                                              // SizedBox(
+                                              //   height: 15,
+                                              // );
+                                            } else if (snapshot.hasError) {
+                                              print(snapshot.error);
+                                              print('Sorry');
+                                            }
+                                            return Center(
+                                                child:
+                                                    CircularProgressIndicator());
                                           }),
-                                      SizedBox(
-                                        height: 15,
-                                      )
                                     ]),
                               )))),
                   SizedBox(
@@ -323,6 +346,8 @@ Widget lists(context, check, index) {
     'assets/images/splyrs/grid6.jpg',
     'assets/images/splyrs/grid5.jpg',
     'assets/images/splyrs/grid1.jpg',
+    'assets/images/splyrs/grid3.jpg',
+    'assets/images/splyrs/grid5.jpg',
   ];
   void _navigatorPage(index) {
     // Navigator.of(context).pop(new PageRouteBuilder());

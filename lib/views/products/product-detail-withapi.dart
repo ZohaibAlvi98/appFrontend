@@ -45,6 +45,14 @@ class _ProductDetailState extends State<ProductDetail> {
     });
   }
 
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
 
   String _selectedsize;
@@ -109,6 +117,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   //     itemBuilder: (BuildContext context, int index) {
                   {
                     final item = snapshot.data;
+                    final brand = getBrand(item);
                     print(snapshot);
                     if (carouselImg.isEmpty) {
                       for (var a = 0; a < item['images'].length; a++) {
@@ -125,11 +134,21 @@ class _ProductDetailState extends State<ProductDetail> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Center(
+                                  child: Text(
+                                    brand,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'RMNUEUREGULAR'),
+                                  ),
+                                ),
+                                Center(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 13, right: 13),
+                                    padding: EdgeInsets.only(
+                                        left: 40, right: 40, top: 10),
                                     child: Text(
                                       item['name'],
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontFamily: 'RMNUEUSEMIBOLD'),
@@ -137,23 +156,10 @@ class _ProductDetailState extends State<ProductDetail> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 20),
+                                  padding: EdgeInsets.only(top: 15),
                                   child: Center(
                                     child: Text(
-                                      '',
-                                      // item['categories'][3]['name'],
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          fontFamily: 'RMNUEUREGULAR'),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 20),
-                                  child: Center(
-                                    child: Text(
-                                      'Price:  \$' + item['price'],
+                                      '\$ ' + item['price'],
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey[600],
@@ -248,7 +254,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                 underline: SizedBox.shrink(),
                                 iconSize: 30.0,
                                 hint: Text(
-                                  'Select Quantity',
+                                  'Select Qty',
                                   style: TextStyle(fontSize: 18),
                                 ), // Not necessary for Option 1
                                 value: _selectedQty,

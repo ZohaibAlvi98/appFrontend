@@ -162,24 +162,6 @@ class _DropDownState extends State<DropDown> {
                                                     children: [
                                                       Padding(
                                                         padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Shoe Size Chart',
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8),
-                                                        child: Image.asset(
-                                                            'assets/images/productDetail/size1.jpg'),
-                                                      ),
-                                                      Padding(
-                                                        padding:
                                                             EdgeInsets.fromLTRB(
                                                                 8.0, 20, 8, 10),
                                                         child: Text(
@@ -196,6 +178,24 @@ class _DropDownState extends State<DropDown> {
                                                             EdgeInsets.all(8),
                                                         child: Image.asset(
                                                             'assets/images/productDetail/size2.jpg'),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.all(8.0),
+                                                        child: Text(
+                                                          'Shoe Size Chart',
+                                                          style: TextStyle(
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500),
+                                                        ),
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.all(8),
+                                                        child: Image.asset(
+                                                            'assets/images/productDetail/size1.jpg'),
                                                       ),
                                                       SizedBox(
                                                         height: 10,

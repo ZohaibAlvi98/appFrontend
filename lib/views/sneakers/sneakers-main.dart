@@ -194,11 +194,12 @@ class _SneakersState extends State<Sneakers> {
                                         Padding(
                                           padding: width < 400
                                               ? EdgeInsets.only(
-                                                  top: 40.0, left: 106)
+                                                  top: 40.0, left: 87)
                                               : EdgeInsets.only(
-                                                  top: 50.0, left: 106),
+                                                  top: 50.0, left: 87),
                                           child: Text(
                                             'MEN',
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: width < 400 ? 30 : 40,
@@ -252,9 +253,9 @@ class _SneakersState extends State<Sneakers> {
                                         Padding(
                                           padding: width < 400
                                               ? EdgeInsets.only(
-                                                  top: 40.0, left: 75)
+                                                  top: 40.0, left: 60)
                                               : EdgeInsets.only(
-                                                  top: 50.0, left: 75),
+                                                  top: 50.0, left: 60),
                                           child: Text(
                                             'WOMEN',
                                             style: TextStyle(
