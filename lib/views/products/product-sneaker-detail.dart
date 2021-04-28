@@ -8,7 +8,7 @@ import '../../views/profile.dart';
 import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
-
+import 'package:intl/intl.dart';
 import 'package:html/parser.dart';
 import '../../services/sneakers/sneaker-product-detail.dart';
 
@@ -52,6 +52,9 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
     SplyNetwork(),
     Signup()
   ];
+
+  final f = NumberFormat('#,###,###.0#');
+
   SneakerProductDetail data = SneakerProductDetail();
   @override
   void initState() {
@@ -61,6 +64,22 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
   void getImages(var item) {
     for (var a = 0; a < item['images'].length; a++) {
       carouselImg.add(item['images'][a]['src']);
+    }
+  }
+
+  List getSize(var item) {
+    for (var a = 0; a < item['attributes'].length; a++) {
+      if (item['attributes'][a]['name'] == 'Size (US)') {
+        return item['attributes'][a]['options'];
+      }
+    }
+  }
+
+  List getColour(var item) {
+    for (var a = 0; a < item['attributes'].length; a++) {
+      if (item['attributes'][a]['name'] == 'Colorway') {
+        return item['attributes'][a]['options'];
+      }
     }
   }
 
@@ -122,14 +141,16 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 10, left: 10),
+                                  padding: EdgeInsets.only(
+                                    top: 10,
+                                  ),
                                   child: Center(
                                     child: Text(
-                                      'Price:  \$' + item['price'],
+                                      '\$' +
+                                          f.format(num.tryParse(item['price'])),
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey[600],
-                                          fontWeight: FontWeight.w700,
                                           fontFamily: 'RMNUEUREGULAR'),
                                     ),
                                   ),
@@ -161,7 +182,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                     _selectedsize = newValue;
                                   });
                                 },
-                                items: item['attributes'][0]['options']
+                                items: getSize(item)
                                     .map<DropdownMenuItem<String>>((sizes) {
                                   return DropdownMenuItem<String>(
                                     child: new Text(sizes),
@@ -195,7 +216,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                     _selectedColor = newValue;
                                   });
                                 },
-                                items: item['attributes'][1]['options']
+                                items: getColour(item)
                                     .map<DropdownMenuItem<String>>((sizes) {
                                   return DropdownMenuItem<String>(
                                     child: new Text(sizes),

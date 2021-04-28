@@ -6,6 +6,7 @@ import '../services/tv/tv-fearured-products.dart';
 import '../services/splyrs/splyrs-products.dart';
 import 'package:intl/intl.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
+import 'package:splyxp/views/products/product-sneaker-detail.dart';
 
 TrendingSneakers data = TrendingSneakers();
 DrawrServices collect = DrawrServices();
@@ -18,6 +19,27 @@ void _navigatorPage(context, id) {
       transitionDuration: const Duration(),
       pageBuilder: (BuildContext context, _, __) {
         return ProductDetail(
+          prodId: id,
+        );
+      },
+      transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+        return new SlideTransition(
+          child: child,
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+        );
+      }));
+}
+
+void _navigatorSneakerPage(context, id) {
+  // Navigator.of(context).pop(new PageRouteBuilder());
+  Navigator.of(context).push(new PageRouteBuilder(
+      opaque: true,
+      transitionDuration: const Duration(),
+      pageBuilder: (BuildContext context, _, __) {
+        return ProductDetailSneaker(
           prodId: id,
         );
       },
@@ -104,119 +126,6 @@ Widget horizontalListWith3(context, img, color) {
   );
 }
 
-Widget horizontalListWith2(context, img) {
-  double width = MediaQuery.of(context).size.width;
-  return ListView.builder(
-    scrollDirection: Axis.horizontal,
-    // physics: NeverScrollableScrollPhysics(),
-    // shrinkWrap: true,
-    itemCount: img.length,
-    padding: EdgeInsets.only(right: 15.0, left: 18),
-    itemBuilder: (context, index) {
-      return Column(
-        children: [
-          Container(
-            padding: width < 400
-                ? EdgeInsets.only(right: 5)
-                : EdgeInsets.only(right: 10),
-            child: InkWell(
-              onTap: () => _navigatorPage(context, null),
-              child: Card(
-                child: Wrap(children: [
-                  Image.asset(
-                    img[index],
-                    height: 260,
-                    // width: imgwidth,
-                  ),
-                ]),
-              ),
-            ),
-            color: Colors.white12,
-          ),
-          Padding(
-            padding: width < 400
-                ? EdgeInsets.only(top: 10, right: width / 5.1)
-                : EdgeInsets.only(top: 10, right: width / 4.5),
-            child: Text(
-              'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-            ),
-          ),
-          Padding(
-            padding: width < 400
-                ? EdgeInsets.only(right: 160, top: 10)
-                : EdgeInsets.only(right: 170, top: 10),
-            child: Text(
-              '\$ 400.00',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.grey[500]),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
-
-Widget sneakerListWith3(context, img, color) {
-  double width = MediaQuery.of(context).size.width;
-
-  return ListView.builder(
-    scrollDirection: Axis.horizontal,
-    // physics: NeverScrollableScrollPhysics(),
-    // shrinkWrap: true,
-    itemCount: img.length,
-    padding: EdgeInsets.only(right: 20.0, left: 12),
-    itemBuilder: (context, index) {
-      return Container(
-        color: color,
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.only(right: 4),
-              child: InkWell(
-                onTap: () => _navigatorPage(context, null),
-                child: Card(
-                  child: Wrap(children: [
-                    Image.asset(
-                      img[index],
-                      height: 175,
-                      // width: imgwidth,
-                    ),
-                  ]),
-                ),
-              ),
-              color: color,
-            ),
-            Padding(
-              // padding: width < 400
-              //     ? EdgeInsets.only(right: 15.0)
-              //     : EdgeInsets.only(right: 32.0),
-              padding: EdgeInsets.only(right: 28),
-              child: Text(
-                'AIR JORDAN 1 MID\n\"SISTERHOOD\"',
-                style: TextStyle(
-                    fontFamily: 'RMNUEUSEMIBOLD',
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 5, right: 87),
-              child: Text(
-                '\$ 400.00',
-                style: TextStyle(fontFamily: 'RMNUEUREGULAR'),
-              ),
-            ),
-          ],
-        ),
-      );
-    },
-  );
-}
-
 Widget sneakerListWith4(context) {
   double width = MediaQuery.of(context).size.width;
   final f = NumberFormat('#,###,###.0#');
@@ -229,9 +138,6 @@ Widget sneakerListWith4(context) {
         } else {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            // physics: NeverScrollableScrollPhysics(),
-            // shrinkWrap: true,
-
             padding: EdgeInsets.only(right: 20.0, left: 12),
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
@@ -243,7 +149,8 @@ Widget sneakerListWith4(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context, null),
+                        onTap: () => _navigatorSneakerPage(
+                            context, item['id'].toString()),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
@@ -252,7 +159,6 @@ Widget sneakerListWith4(context) {
                               child: Image.network(
                                 item['images'][0]['src'],
                                 fit: BoxFit.cover,
-                                // width: imgwidth,
                               ),
                             ),
                           ]),
@@ -260,11 +166,7 @@ Widget sneakerListWith4(context) {
                       ),
                     ),
                     Padding(
-                      // padding: width < 400
-                      //     ? EdgeInsets.only(right: 15.0)
-                      //     : EdgeInsets.only(right: 32.0),
                       padding: EdgeInsets.only(left: 6, right: 6, top: 4),
-                      // work here
                       child: SizedBox(
                         width: 200,
                         child: Text(
@@ -273,7 +175,7 @@ Widget sneakerListWith4(context) {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
-                            fontSize: 16,
+                            fontSize: 15,
                           ),
                           textAlign: TextAlign.center,
                         ),
@@ -285,7 +187,7 @@ Widget sneakerListWith4(context) {
                         '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
-                            fontSize: 15,
+                            fontSize: 14,
                             color: Colors.grey[600]),
                       ),
                     ),
@@ -310,9 +212,6 @@ Widget sneakerListTopTrending(context) {
         } else {
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            // physics: NeverScrollableScrollPhysics(),
-            // shrinkWrap: true,
-
             padding: EdgeInsets.only(right: 20.0, left: 12),
             itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, int index) {
@@ -324,7 +223,8 @@ Widget sneakerListTopTrending(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context, null),
+                        onTap: () => _navigatorSneakerPage(
+                            context, item['product_id'].toString()),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
@@ -333,7 +233,6 @@ Widget sneakerListTopTrending(context) {
                               child: Image.network(
                                 item['image'],
                                 fit: BoxFit.cover,
-                                // width: imgwidth,
                               ),
                             ),
                           ]),
@@ -341,9 +240,6 @@ Widget sneakerListTopTrending(context) {
                       ),
                     ),
                     Padding(
-                      // padding: width < 400
-                      //     ? EdgeInsets.only(right: 15.0)
-                      //     : EdgeInsets.only(right: 32.0),
                       padding: EdgeInsets.only(left: 6, right: 6, top: 3),
                       child: Container(
                         child: SizedBox(
@@ -354,7 +250,7 @@ Widget sneakerListTopTrending(context) {
                             maxLines: 2,
                             style: TextStyle(
                               fontFamily: 'RMNUEUREGULAR',
-                              fontSize: 16,
+                              fontSize: 15,
                             ),
                             textAlign: TextAlign.center,
                           ),
@@ -367,7 +263,7 @@ Widget sneakerListTopTrending(context) {
                         '\$' + f.format(num.tryParse(item['price'])),
                         style: TextStyle(
                             fontFamily: 'RMNUEUREGULAR',
-                            fontSize: 15,
+                            fontSize: 14,
                             color: Colors.grey[600]),
                       ),
                     ),
@@ -406,7 +302,8 @@ Widget featuredProductsTv(context) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        onTap: () => _navigatorPage(context, null),
+                        onTap: () =>
+                            _navigatorPage(context, item['id'].toString()),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
