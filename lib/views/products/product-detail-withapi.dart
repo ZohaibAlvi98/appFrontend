@@ -9,19 +9,6 @@ import '../../views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import '../../services/prdocut-detail-api.dart';
-import '../drawer/arrivals.dart';
-import '../drawer/men.dart';
-import '../drawer/women.dart';
-import '../drawer/category-detail/acessories.dart';
-import '../drawer/category-detail/bottom.dart';
-import '../drawer/category-detail/hoodies.dart';
-import '../drawer/category-detail/jackets-and-coats.dart';
-import '../drawer/category-detail/shorts.dart';
-import '../drawer/category-detail/sneakers.dart';
-import '../drawer/category-detail/sweaters.dart';
-import '../drawer/category-detail/tops.dart';
-import '../sneakers/sneaker-mens.dart';
-import '../sneakers/sneaker-womens.dart';
 import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 
@@ -97,6 +84,7 @@ class _ProductDetailState extends State<ProductDetail> {
         return false;
       },
       child: Scaffold(
+        backgroundColor: Colors.white,
         appBar: appbarWithMenu(context),
         drawer: Theme(
             data: Theme.of(context).copyWith(
