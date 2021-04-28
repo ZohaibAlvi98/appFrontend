@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 Widget Lists(context, check, image, index, name, price, id, brand) {
-  final f = NumberFormat('#,###.0#');
+  final f = NumberFormat('#,###.##');
   return Container(
     margin: EdgeInsets.all(1.0),
     color: Color(int.parse('#e5e6ea'.replaceAll('#', '0xff'))),

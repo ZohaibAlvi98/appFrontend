@@ -37,14 +37,15 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
         CarouselSlider(
             items: widget.carouselImg.map((i) {
               return Container(
-                margin: EdgeInsets.symmetric(horizontal: 8),
-                decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.all(Radius.circular(35)),
-                    image: DecorationImage(
-                        image: NetworkImage(i), fit: BoxFit.fitWidth)),
+                child: Image.network(
+                  i,
+                  fit: BoxFit.cover,
+                  width: 1000,
+                ),
               );
             }).toList(),
             options: CarouselOptions(
+                viewportFraction: 1,
                 initialPage: 0,
                 enableInfiniteScroll: false,
                 height: width < 400 ? size * 0.43 : size * 0.55,

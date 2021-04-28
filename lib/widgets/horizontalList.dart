@@ -128,7 +128,7 @@ Widget horizontalListWith3(context, img, color) {
 
 Widget sneakerListWith4(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###,###.0#');
+  final f = NumberFormat('#,###,###.##');
   return FutureBuilder(
       future: collect.getDrawrProducts("15"),
       builder: (BuildContext context,
@@ -152,6 +152,9 @@ Widget sneakerListWith4(context) {
                         onTap: () => _navigatorSneakerPage(
                             context, item['id'].toString()),
                         child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                          elevation: 0,
                           child: Wrap(children: [
                             SizedBox(
                               height: 190,
@@ -202,7 +205,7 @@ Widget sneakerListWith4(context) {
 
 Widget sneakerListTopTrending(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###,###.0#');
+  final f = NumberFormat('#,###,###.##');
   return FutureBuilder(
       future: data.getTrendingSneakers(),
       builder: (BuildContext context,
@@ -226,6 +229,9 @@ Widget sneakerListTopTrending(context) {
                         onTap: () => _navigatorSneakerPage(
                             context, item['product_id'].toString()),
                         child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                          elevation: 0,
                           child: Wrap(children: [
                             SizedBox(
                               height: 190,
@@ -278,7 +284,7 @@ Widget sneakerListTopTrending(context) {
 
 Widget featuredProductsTv(context) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###,###.0#');
+  final f = NumberFormat('#,###,###.##');
   return FutureBuilder(
       future: dataentry.getFeaturedTvProducts("154"),
       builder: (BuildContext context,
@@ -305,6 +311,9 @@ Widget featuredProductsTv(context) {
                         onTap: () =>
                             _navigatorPage(context, item['id'].toString()),
                         child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                          elevation: 0,
                           child: Wrap(children: [
                             SizedBox(
                               height: 180,
@@ -361,7 +370,7 @@ Widget featuredProductsTv(context) {
 
 Widget horizontalListFeaturedSplyrs(context, splyrid) {
   double width = MediaQuery.of(context).size.width;
-  final f = NumberFormat('#,###.0#');
+  final f = NumberFormat('#,###,###.##');
   return FutureBuilder(
       future: splyrdata.getSplyrsProducts(splyrid),
       builder: (BuildContext context,
@@ -385,6 +394,9 @@ Widget horizontalListFeaturedSplyrs(context, splyrid) {
                         onTap: () =>
                             _navigatorPage(context, item['id'].toString()),
                         child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.zero),
+                          elevation: 0,
                           child: Wrap(children: [
                             SizedBox(
                               height: 180,
