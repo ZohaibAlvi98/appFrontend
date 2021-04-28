@@ -23,6 +23,7 @@ import '../drawer/category-detail/tops.dart';
 import '../sneakers/sneaker-mens.dart';
 import '../sneakers/sneaker-womens.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetail extends StatefulWidget {
   final String prodId;
@@ -84,6 +85,7 @@ class _ProductDetailState extends State<ProductDetail> {
     }
   }
 
+  final f = NumberFormat('#,###,###.0#');
   @override
   Widget build(BuildContext contexts) {
     return WillPopScope(
@@ -159,7 +161,8 @@ class _ProductDetailState extends State<ProductDetail> {
                                   padding: EdgeInsets.only(top: 15),
                                   child: Center(
                                     child: Text(
-                                      '\$ ' + item['price'],
+                                      '\$ ' +
+                                          f.format(num.tryParse(item['price'])),
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey[600],
@@ -300,6 +303,7 @@ class _ProductDetailState extends State<ProductDetail> {
                             description:
                                 parse(item['description']).documentElement.text,
                             vendor: item['store_name'],
+                            vendorId: item['vendor'].toString(),
                           ),
                           SizedBox(
                             height: 25,

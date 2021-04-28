@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
+import '../views/s-plyrs/channel/channel.dart';
 
 class DropDown extends StatefulWidget {
   final String link;
   final String description;
   final String vendor;
+  final String vendorId;
   // final String description;
   DropDown({
     Key key,
     @required this.link,
     @required this.description,
     @required this.vendor,
+    @required this.vendorId,
     store,
   }) : super(key: key);
 
@@ -39,6 +42,32 @@ class _DropDownState extends State<DropDown> {
     // YoutubePlayer.convertUrlToId(url),
     // flags: YoutubePlayerFlags(
     //     enableCaption: false, isLive: false, autoPlay: false));
+  }
+
+  void _navigatorPage(index, id) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          if (index == 'vendorPage')
+            return Channel(
+              splyrId: id,
+            );
+          else
+            return Channel(
+              splyrId: id,
+            );
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
   }
 
   @override
@@ -142,7 +171,11 @@ class _DropDownState extends State<DropDown> {
                                                         color: Colors.black,
                                                         // height: 45,
                                                         // minWidth: 23,
-                                                        onPressed: () {},
+                                                        onPressed: () {
+                                                          _navigatorPage(
+                                                              'vendorPage',
+                                                              widget.vendorId);
+                                                        },
                                                         child: FittedBox(
                                                           fit: BoxFit.cover,
                                                           child: Text(
