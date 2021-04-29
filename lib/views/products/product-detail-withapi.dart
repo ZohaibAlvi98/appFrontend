@@ -72,7 +72,7 @@ class _ProductDetailState extends State<ProductDetail> {
     }
   }
 
-  final f = NumberFormat('#,###,###.0#');
+  final f = NumberFormat('#,###,###.##');
   @override
   Widget build(BuildContext contexts) {
     return WillPopScope(
@@ -100,12 +100,7 @@ class _ProductDetailState extends State<ProductDetail> {
                     AsyncSnapshot<Map<String, dynamic>> snapshot) {
                   if (!snapshot.hasData) {
                     return Center(child: CircularProgressIndicator());
-                  } else
-                  //  ListView.builder(
-                  //     padding: EdgeInsets.only(right: 20.0, left: 12),
-                  //     itemCount: snapshot.data.length,
-                  //     itemBuilder: (BuildContext context, int index) {
-                  {
+                  } else {
                     final item = snapshot.data;
                     final brand = getBrand(item);
                     print(snapshot);
@@ -149,7 +144,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   padding: EdgeInsets.only(top: 15),
                                   child: Center(
                                     child: Text(
-                                      '\$ ' +
+                                      '\$' +
                                           f.format(num.tryParse(item['price'])),
                                       style: TextStyle(
                                           fontSize: 16,
@@ -166,101 +161,107 @@ class _ProductDetailState extends State<ProductDetail> {
                             height: 30,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
-                            child: Center(
-                              child: DropdownButton(
-                                // itemHeight: 40,
-                                underline: SizedBox.shrink(),
-                                iconSize: 30.0,
-                                hint: Text(
-                                  'Select Size',
-                                  style: TextStyle(fontSize: 18),
-                                ), // Not necessary for Option 1
-                                value: _selectedsize,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedsize = newValue;
-                                  });
-                                },
-                                items: item['attributes'][0]['options']
-                                    .map<DropdownMenuItem<String>>((sizes) {
-                                  return DropdownMenuItem<String>(
-                                    child: new Text(sizes),
-                                    value: sizes,
-                                  );
-                                }).toList(),
-                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
+                            child: DropdownButton(
+                              isExpanded: true,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
+                              // itemHeight: 40,
+                              underline: SizedBox.shrink(),
+                              iconSize: 28.0,
+                              hint: Text(
+                                '   Select Size',
+                                style: TextStyle(fontSize: 16),
+                              ), // Not necessary for Option 1
+                              value: _selectedsize,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedsize = newValue;
+                                });
+                              },
+                              items: item['attributes'][0]['options']
+                                  .map<DropdownMenuItem<String>>((sizes) {
+                                return DropdownMenuItem<String>(
+                                  child: new Text(sizes),
+                                  value: sizes,
+                                );
+                              }).toList(),
                             ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
-                            child: Center(
-                              child: DropdownButton(
-                                // itemHeight: 40,
-                                underline: SizedBox.shrink(),
-                                iconSize: 30.0,
-                                hint: Text(
-                                  'Select Color',
-                                  style: TextStyle(fontSize: 18),
-                                ), // Not necessary for Option 1
-                                value: _selectedColor,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedColor = newValue;
-                                  });
-                                },
-                                items: item['attributes'][1]['options']
-                                    .map<DropdownMenuItem<String>>((sizes) {
-                                  return DropdownMenuItem<String>(
-                                    child: new Text(sizes),
-                                    value: sizes,
-                                  );
-                                }).toList(),
-                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
+                            child: DropdownButton(
+                              isExpanded: true,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
+                              // itemHeight: 40,
+                              underline: SizedBox.shrink(),
+                              iconSize: 28.0,
+                              hint: Text(
+                                '   Select Color',
+                                style: TextStyle(fontSize: 16),
+                              ), // Not necessary for Option 1
+                              value: _selectedColor,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedColor = newValue;
+                                });
+                              },
+                              items: item['attributes'][1]['options']
+                                  .map<DropdownMenuItem<String>>((sizes) {
+                                return DropdownMenuItem<String>(
+                                  child: new Text(sizes),
+                                  value: sizes,
+                                );
+                              }).toList(),
                             ),
                           ),
                           SizedBox(
                             height: 20,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
-                            child: Center(
-                              child: DropdownButton(
-                                // itemHeight: 40,
-                                underline: SizedBox.shrink(),
-                                iconSize: 30.0,
-                                hint: Text(
-                                  'Select Qty',
-                                  style: TextStyle(fontSize: 18),
-                                ), // Not necessary for Option 1
-                                value: _selectedQty,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    _selectedQty = newValue;
-                                  });
-                                },
-                                items: _qty.map((sizes) {
-                                  return DropdownMenuItem(
-                                    child: new Text(sizes),
-                                    value: sizes,
-                                  );
-                                }).toList(),
-                              ),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
+                            child: DropdownButton(
+                              isExpanded: true,
+                              icon: Icon(Icons.keyboard_arrow_down_sharp),
+                              // itemHeight: 40,
+                              underline: SizedBox.shrink(),
+                              iconSize: 28.0,
+                              hint: Text(
+                                '   Select Qty',
+                                style: TextStyle(fontSize: 16),
+                              ), // Not necessary for Option 1
+                              value: _selectedQty,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedQty = newValue;
+                                });
+                              },
+                              items: _qty.map((sizes) {
+                                return DropdownMenuItem(
+                                  child: new Text(sizes),
+                                  value: sizes,
+                                );
+                              }).toList(),
                             ),
                           ),
                           SizedBox(
@@ -300,7 +301,8 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                     );
                   }
-                })
+                },
+              )
             : _bottomNavList.elementAt(_selectedIndex),
         bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
       ),

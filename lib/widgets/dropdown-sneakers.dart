@@ -88,119 +88,115 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return YoutubePlayerControllerProvider(
-        controller: _controller,
-        // player: YoutubePlayer(controller: _controller),
-        // builder: (context, player) {
+      controller: _controller,
+      // player: YoutubePlayer(controller: _controller),
+      // builder: (context, player) {
 
-        child: Container(
-          padding: EdgeInsets.only(left: 13, right: 13, top: 5),
-          child: ListView.builder(
-              primary: false,
-              shrinkWrap: true,
-              itemCount: list2.length,
-              itemBuilder: (context, i) => Padding(
-                    padding: EdgeInsets.only(top: 5.0),
-                    child: Card(
-                      child: ExpansionTile(
-                          title: new Text(
-                            list2[i],
-                            style: TextStyle(
-                                fontFamily: 'RMNUEUSEMIBOLD',
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          children: list
-                              .map((val) => new ListTile(
-                                    title: i == 0
-                                        ? Text(
-                                            widget.description,
-                                            style: TextStyle(height: 1.8),
+      child: Container(
+        padding: EdgeInsets.only(left: 13, right: 13, top: 5),
+        child: ListView.builder(
+          primary: false,
+          shrinkWrap: true,
+          itemCount: list2.length,
+          itemBuilder: (context, i) => Column(
+            children: [
+              ExpansionTile(
+                title: new Text(
+                  list2[i],
+                  style: TextStyle(
+                      fontFamily: 'RMNUEUSEMIBOLD',
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500),
+                ),
+                children: list
+                    .map(
+                      (val) => new ListTile(
+                        title: i == 0
+                            ? Text(
+                                widget.description,
+                                style: TextStyle(height: 1.8),
+                              )
+                            // : i == 1
+                            //     ? Padding(
+                            //         padding: EdgeInsets.only(
+                            //             bottom: 15.0),
+                            //         child: YoutubePlayerIFrame(
+                            //           aspectRatio: 10 / 9,
+                            //         ),
+                            //       )
+                            : i == 1
+                                ? Column(
+                                    children: [
+                                      Text(
+                                        widget.vendor,
+                                        style: TextStyle(
+                                            fontSize: width < 400 ? 18 : 20,
+                                            fontWeight: FontWeight.w800),
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.all(8),
+                                        child: Container(
+                                          height: 45,
+                                          width: 250,
+                                          child: FlatButton(
+                                            color: Colors.black,
+                                            // height: 45,
+                                            // minWidth: 23,
+                                            onPressed: () {},
+                                            child: FittedBox(
+                                              fit: BoxFit.cover,
+                                              child: Text(
+                                                'More Products from ${widget.vendor}',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                : i == 2
+                                    ? Column(
+                                        children: [
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              'Shoe Size Chart',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8),
+                                            child: Image.asset(
+                                                'assets/images/productDetail/size1.jpg'),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
                                           )
-                                        // : i == 1
-                                        //     ? Padding(
-                                        //         padding: EdgeInsets.only(
-                                        //             bottom: 15.0),
-                                        //         child: YoutubePlayerIFrame(
-                                        //           aspectRatio: 10 / 9,
-                                        //         ),
-                                        //       )
-                                        : i == 1
-                                            ? Column(
-                                                children: [
-                                                  Text(
-                                                    widget.vendor,
-                                                    style: TextStyle(
-                                                        fontSize: width < 400
-                                                            ? 18
-                                                            : 20,
-                                                        fontWeight:
-                                                            FontWeight.w800),
-                                                  ),
-                                                  SizedBox(
-                                                    height: 8,
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.all(8),
-                                                    child: Container(
-                                                      height: 45,
-                                                      width: 250,
-                                                      child: FlatButton(
-                                                        color: Colors.black,
-                                                        // height: 45,
-                                                        // minWidth: 23,
-                                                        onPressed: () {},
-                                                        child: FittedBox(
-                                                          fit: BoxFit.cover,
-                                                          child: Text(
-                                                            'More Products from ${widget.vendor}',
-                                                            style: TextStyle(
-                                                                color: Colors
-                                                                    .white),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
-                                              )
-                                            : i == 2
-                                                ? Column(
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Shoe Size Chart',
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500),
-                                                        ),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.all(8),
-                                                        child: Image.asset(
-                                                            'assets/images/productDetail/size1.jpg'),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 10,
-                                                      )
-                                                    ],
-                                                  )
-                                                : Text(
-                                                    'For more information about return please click here.\n',
-                                                    style: TextStyle(
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w400),
-                                                  ),
-                                  ))
-                              .toList()),
-                    ),
-                  )),
-        ));
+                                        ],
+                                      )
+                                    : Text(
+                                        'For more information about return please click here.\n',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400),
+                                      ),
+                      ),
+                    )
+                    .toList(),
+              ),
+              Divider(),
+            ],
+          ),
+        ),
+      ),
+    );
     // });
   }
 }

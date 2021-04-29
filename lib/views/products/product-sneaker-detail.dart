@@ -53,7 +53,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
     Signup()
   ];
 
-  final f = NumberFormat('#,###,###.0#');
+  final f = NumberFormat('#,###,###.##');
 
   SneakerProductDetail data = SneakerProductDetail();
   @override
@@ -162,19 +162,23 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 30,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
                             child: Center(
                               child: DropdownButton(
+                                isExpanded: true,
+                                icon: Icon(Icons.keyboard_arrow_down_sharp),
                                 // itemHeight: 40,
                                 underline: SizedBox.shrink(),
-                                iconSize: 30.0,
+                                iconSize: 28.0,
                                 hint: Text(
-                                  'Select Size',
-                                  style: TextStyle(fontSize: 18),
+                                  '   Select Size',
+                                  style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedsize,
                                 onChanged: (newValue) {
@@ -196,19 +200,23 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 20,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
                             child: Center(
                               child: DropdownButton(
+                                isExpanded: true,
+                                icon: Icon(Icons.keyboard_arrow_down_sharp),
                                 // itemHeight: 40,
                                 underline: SizedBox.shrink(),
-                                iconSize: 30.0,
+                                iconSize: 28.0,
                                 hint: Text(
-                                  'Select Color',
-                                  style: TextStyle(fontSize: 18),
+                                  '   Select Size',
+                                  style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedColor,
                                 onChanged: (newValue) {
@@ -230,19 +238,23 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 20,
                           ),
                           Container(
-                            width: 230.0,
+                            width: 300.0,
                             height: 45.0,
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30.0),
-                                border: Border.all(color: Colors.blueGrey)),
+                              borderRadius: BorderRadius.circular(5.0),
+                              border:
+                                  Border.all(color: Colors.black, width: 0.5),
+                            ),
                             child: Center(
                               child: DropdownButton(
+                                isExpanded: true,
+                                icon: Icon(Icons.keyboard_arrow_down_sharp),
                                 // itemHeight: 40,
                                 underline: SizedBox.shrink(),
-                                iconSize: 30.0,
+                                iconSize: 28.0,
                                 hint: Text(
-                                  'Select Quantity',
-                                  style: TextStyle(fontSize: 18),
+                                  '   Select Size',
+                                  style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedQty,
                                 onChanged: (newValue) {

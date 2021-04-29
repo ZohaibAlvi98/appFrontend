@@ -39,8 +39,9 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
               return Container(
                 child: Image.network(
                   i,
-                  fit: BoxFit.cover,
-                  width: 1000,
+                  fit: BoxFit.contain,
+                  // height: double.infinity,
+                  // width: double.infinity,
                 ),
               );
             }).toList(),
@@ -48,7 +49,7 @@ class _CarouselWithDotsState extends State<CarouselWithDots> {
                 viewportFraction: 1,
                 initialPage: 0,
                 enableInfiniteScroll: false,
-                height: width < 400 ? size * 0.43 : size * 0.55,
+                height: 500,
                 onPageChanged: (i, reason) {
                   changeCurrent(i);
                 },

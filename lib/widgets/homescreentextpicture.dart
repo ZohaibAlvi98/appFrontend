@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class HomeScreenButtonTextPicture extends StatelessWidget {
   final String boldText;
@@ -49,7 +50,7 @@ class HomeScreenButtonTextPicture extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Image.network(imgPath),
+              child: CachedNetworkImage(imageUrl: imgPath),
             ),
           ],
         ),

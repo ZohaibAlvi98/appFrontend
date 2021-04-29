@@ -116,64 +116,65 @@ class _HomeState extends State<Home> {
                   ),
                   SizedBox(height: height * 0.04),
                   FutureBuilder(
-                      future: homedata.getHomeContent(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-                        if (!snapshot.hasData) {
-                          return Center(child: CircularProgressIndicator());
-                        } else {
-                          final item = snapshot.data;
-                          print(snapshot);
-                          return Column(
-                            children: [
-                              HomeScreenButtonTextPicture(
-                                boldText: item[0]['sec_1_heading'],
-                                infotext: item[0]['sec_1_text'],
-                                imgPath: item[0]['sec_1_image'],
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedIndex = 0;
-                                  });
-                                  _navigatorPage();
-                                },
-                              ),
-                              HomeScreenButtonPictureText(
-                                boldText: item[0]['sec_2_heading'],
-                                infotext: item[0]['sec_2_text'],
-                                imgPath: item[0]['sec_2_image'],
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedIndex = 1;
-                                  });
-                                  _navigatorPage();
-                                },
-                              ),
-                              HomeScreenButtonTextPicture(
-                                boldText: item[0]['sec_3_heading'],
-                                infotext: item[0]['sec_3_text'],
-                                imgPath: item[0]['sec_3_image'],
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedIndex = 2;
-                                  });
-                                  _navigatorPage();
-                                },
-                              ),
-                              HomeScreenButtonPictureText(
-                                boldText: item[0]['sec_4_heading'],
-                                infotext: item[0]['sec_4_text'],
-                                imgPath: item[0]['sec_4_image'],
-                                onPressed: () {
-                                  setState(() {
-                                    _selectedIndex = 3;
-                                  });
-                                  _navigatorPage();
-                                },
-                              ),
-                            ],
-                          );
-                        }
-                      }),
+                    future: homedata.getHomeContent(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(child: CircularProgressIndicator());
+                      } else {
+                        final item = snapshot.data;
+                        print(snapshot);
+                        return Column(
+                          children: [
+                            HomeScreenButtonTextPicture(
+                              boldText: item[0]['sec_1_heading'],
+                              infotext: item[0]['sec_1_text'],
+                              imgPath: item[0]['sec_1_image'],
+                              onPressed: () {
+                                setState(() {
+                                  _selectedIndex = 0;
+                                });
+                                _navigatorPage();
+                              },
+                            ),
+                            HomeScreenButtonPictureText(
+                              boldText: item[0]['sec_2_heading'],
+                              infotext: item[0]['sec_2_text'],
+                              imgPath: item[0]['sec_2_image'],
+                              onPressed: () {
+                                setState(() {
+                                  _selectedIndex = 1;
+                                });
+                                _navigatorPage();
+                              },
+                            ),
+                            HomeScreenButtonTextPicture(
+                              boldText: item[0]['sec_3_heading'],
+                              infotext: item[0]['sec_3_text'],
+                              imgPath: item[0]['sec_3_image'],
+                              onPressed: () {
+                                setState(() {
+                                  _selectedIndex = 2;
+                                });
+                                _navigatorPage();
+                              },
+                            ),
+                            HomeScreenButtonPictureText(
+                              boldText: item[0]['sec_4_heading'],
+                              infotext: item[0]['sec_4_text'],
+                              imgPath: item[0]['sec_4_image'],
+                              onPressed: () {
+                                setState(() {
+                                  _selectedIndex = 3;
+                                });
+                                _navigatorPage();
+                              },
+                            ),
+                          ],
+                        );
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
