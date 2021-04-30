@@ -15,6 +15,7 @@ import '../../widgets/horizontalList.dart';
 import '../auth/signup/signup.dart';
 import '../../services/splyrs/featured-splyr-services.dart';
 import '../../services/splyrs/splyr-general-content.dart';
+import 'dart:ui';
 
 SplyrContent splyrdata = SplyrContent();
 
@@ -401,24 +402,44 @@ Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
     ),
     Padding(
       padding: EdgeInsets.only(top: width / 2.55, left: 20),
-      child: Text(
-        title,
-        style: TextStyle(
-            fontFamily: 'RMNUEU',
-            fontSize: width < 400 ? 22 : 23,
-            color: Colors.white,
-            fontWeight: FontWeight.w900),
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 5.0,
+            sigmaY: 5.0,
+          ),
+          child: Container(
+            child: Text(
+              title,
+              style: TextStyle(
+                  fontFamily: 'RMNUEU',
+                  fontSize: width < 400 ? 22 : 23,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900),
+            ),
+          ),
+        ),
       ),
     ),
     Padding(
       padding: EdgeInsets.only(top: width / 2.2, left: 20),
-      child: Text(
-        shorttext,
-        style: TextStyle(
-            fontFamily: 'RMNUEUREGULAR',
-            fontSize: width < 400 ? 9 : 12,
-            color: Colors.white,
-            fontWeight: FontWeight.w600),
+      child: ClipRect(
+        child: BackdropFilter(
+          filter: ImageFilter.blur(
+            sigmaX: 10.0,
+            sigmaY: 10.0,
+          ),
+          child: Container(
+            child: Text(
+              shorttext,
+              style: TextStyle(
+                  fontFamily: 'RMNUEUREGULAR',
+                  fontSize: width < 400 ? 9 : 12,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
       ),
     ),
     Padding(
@@ -428,12 +449,22 @@ Widget featuredSplyrs(width, context, _navigatorPage, check, image, index,
           children: [
             Row(
               children: [
-                Text(
-                  location.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: width < 400 ? 9 : 12,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                ClipRect(
+                  child: BackdropFilter(
+                    filter: ImageFilter.blur(
+                      sigmaX: 10.0,
+                      sigmaY: 10.0,
+                    ),
+                    child: Container(
+                      child: Text(
+                        location.toUpperCase(),
+                        style: TextStyle(
+                          fontSize: width < 400 ? 9 : 12,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ],
