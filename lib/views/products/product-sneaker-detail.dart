@@ -162,7 +162,8 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 30,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -189,7 +190,9 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                 items: getSize(item)
                                     .map<DropdownMenuItem<String>>((sizes) {
                                   return DropdownMenuItem<String>(
-                                    child: new Text(sizes),
+                                    child: Container(
+                                        child: new Text(sizes),
+                                        alignment: Alignment.center),
                                     value: sizes,
                                   );
                                 }).toList(),
@@ -200,7 +203,8 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 20,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -227,7 +231,10 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                 items: getColour(item)
                                     .map<DropdownMenuItem<String>>((sizes) {
                                   return DropdownMenuItem<String>(
-                                    child: new Text(sizes),
+                                    child: Container(
+                                      child: new Text(sizes),
+                                      alignment: Alignment.center,
+                                    ),
                                     value: sizes,
                                   );
                                 }).toList(),
@@ -238,7 +245,8 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             height: 20,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -264,7 +272,9 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                 },
                                 items: _qty.map((sizes) {
                                   return DropdownMenuItem(
-                                    child: new Text(sizes),
+                                    child: Container(
+                                        child: new Text(sizes),
+                                        alignment: Alignment.center),
                                     value: sizes,
                                   );
                                 }).toList(),

@@ -144,7 +144,8 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                             height: 20,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -170,7 +171,9 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                                 },
                                 items: _qty.map((sizes) {
                                   return DropdownMenuItem(
-                                    child: new Text(sizes),
+                                    child: Container(
+                                        child: new Text(sizes),
+                                        alignment: Alignment.center),
                                     value: sizes,
                                   );
                                 }).toList(),

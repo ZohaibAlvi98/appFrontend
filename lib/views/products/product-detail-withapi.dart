@@ -161,7 +161,8 @@ class _ProductDetailState extends State<ProductDetail> {
                             height: 30,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -187,7 +188,10 @@ class _ProductDetailState extends State<ProductDetail> {
                               items: item['attributes'][0]['options']
                                   .map<DropdownMenuItem<String>>((sizes) {
                                 return DropdownMenuItem<String>(
-                                  child: new Text(sizes),
+                                  child: Container(
+                                    child: new Text(sizes),
+                                    alignment: Alignment.center,
+                                  ),
                                   value: sizes,
                                 );
                               }).toList(),
@@ -197,7 +201,8 @@ class _ProductDetailState extends State<ProductDetail> {
                             height: 20,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.center,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -223,7 +228,10 @@ class _ProductDetailState extends State<ProductDetail> {
                               items: item['attributes'][1]['options']
                                   .map<DropdownMenuItem<String>>((sizes) {
                                 return DropdownMenuItem<String>(
-                                  child: new Text(sizes),
+                                  child: Container(
+                                    child: new Text(sizes),
+                                    alignment: Alignment.center,
+                                  ),
                                   value: sizes,
                                 );
                               }).toList(),
@@ -233,7 +241,8 @@ class _ProductDetailState extends State<ProductDetail> {
                             height: 20,
                           ),
                           Container(
-                            width: 300.0,
+                            alignment: Alignment.bottomRight,
+                            width: 280.0,
                             height: 45.0,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5.0),
@@ -258,7 +267,10 @@ class _ProductDetailState extends State<ProductDetail> {
                               },
                               items: _qty.map((sizes) {
                                 return DropdownMenuItem(
-                                  child: new Text(sizes),
+                                  child: Container(
+                                    child: new Text(sizes),
+                                    alignment: Alignment.center,
+                                  ),
                                   value: sizes,
                                 );
                               }).toList(),
