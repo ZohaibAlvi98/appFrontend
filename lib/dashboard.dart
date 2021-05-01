@@ -13,6 +13,7 @@ import './services/styles/featured-styles-listing.dart';
 import 'package:splyxp/widgets/roundedCard.dart';
 import 'package:splyxp/views/styles/style-list-dashboard.dart';
 import 'package:splyxp/views/drawer/arrivals.dart';
+import 'package:splyxp/views/sply-network.dart';
 
 FeaturedStyleListing stylesListingData = FeaturedStyleListing();
 
@@ -83,7 +84,7 @@ class _DashboardState extends State<Dashboard> {
           else if (index == 'discoverupdates')
             return Arrivals();
           else
-            return StylesDashboard();
+            return null;
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -330,7 +331,7 @@ class _DashboardState extends State<Dashboard> {
               child: RectangularSlider(),
             ),
             SizedBox(
-              height: 30,
+              height: 10,
             ),
             Center(
               child: Padding(
@@ -342,7 +343,7 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.black,
                     // height: 40,
                     onPressed: () {
-                      // _navigatorPage(true);
+                      // _navigatorPage('discovereditorials', '');
                     },
                     child: Text(
                       'DISCOVER MORE',

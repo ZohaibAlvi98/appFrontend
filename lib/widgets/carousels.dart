@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import '../services/editorials/editoirals.dart';
+import 'package:splyxp/views/rss-detail/rss-detail.dart';
+
+Editorials data = new Editorials();
 
 class CarouselWithDots extends StatefulWidget {
   final List carouselImg;
@@ -269,7 +273,7 @@ class _SubscriptionCarouselWithTextDotsState
                                 fontWeight: FontWeight.w600),
                           ),
                           Padding(
-                              padding: EdgeInsets.only(top: 32),
+                              padding: EdgeInsets.only(top: 28),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -356,114 +360,140 @@ class RectangularSlider extends StatefulWidget {
 }
 
 class _RectangularSliderState extends State<RectangularSlider> {
+  void _navigatorPage(index, postid) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return RssDetail(
+            postId: postid,
+          );
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    Container EditorialImages(String imageVal) {
-      return Container(
-        padding: EdgeInsets.only(right: 0, left: 5, top: 0, bottom: 45),
-        width: 315.0,
-        child: Card(
-          child: Wrap(
-            children: <Widget>[
-              Image.asset(imageVal),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-                width: width * 0.13,
-                height: 60,
-                decoration: new BoxDecoration(
-                  border: new Border.all(
-                    color: Colors.grey[400],
-                    width: 1.0,
-                  ),
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                ),
-                child: Padding(
-                  padding: width < 400
-                      ? EdgeInsets.only(left: 6.5, top: 18)
-                      : EdgeInsets.only(left: 10.0, top: 18),
-                  child: Text(
-                    'End',
-                    style: TextStyle(
-                        fontSize: width < 400 ? 16 : 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ),
-              Padding(
-                  padding: EdgeInsets.only(top: 20, left: 0.6),
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: width < 400
-                            ? EdgeInsets.only(right: 51.5)
-                            : EdgeInsets.only(right: 60.0),
-                        child: Text(
-                          'END.',
-                          style: TextStyle(
-                              fontSize: width < 400 ? 18 : 20,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 0),
-                        child: Text(
-                          'January 22, 2021',
-                          style: TextStyle(fontSize: width < 400 ? 11 : 14),
-                        ),
-                      )
-                    ],
-                  )),
-              Container(
-                margin: EdgeInsets.symmetric(vertical: 2),
-                child: Column(
-                  children: [
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 13.0, right: 13, top: 0),
-                          child: Text(
-                            '1017 Alyx 9sm x Stussy - Available Now',
-                            style: TextStyle(
-                                fontSize: width < 400 ? 22 : 25,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.black),
+    return FutureBuilder(
+        future: data.getEditorials(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+          if (!snapshot.hasData) {
+            return Center(child: CircularProgressIndicator());
+          } else {
+            return ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (BuildContext context, int index) {
+                  final item = snapshot.data[index];
+                  return Container(
+                    padding:
+                        EdgeInsets.only(right: 0, left: 5, top: 0, bottom: 45),
+                    width: 315.0,
+                    child: InkWell(
+                        onTap: () {
+                          _navigatorPage(context, item['post_id'].toString());
+                        },
+                        child: Card(
+                          child: Wrap(
+                            children: <Widget>[
+                              Image.network(item['image']),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: 5, left: 10, right: 10),
+                                width: width * 0.13,
+                                height: 60,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        "https:" + item['author_logo']),
+                                  ),
+                                  border: Border.all(color: Colors.grey),
+                                ),
+                              ),
+                              Padding(
+                                  padding: EdgeInsets.only(top: 20, left: 0.6),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: width < 400
+                                            ? EdgeInsets.only(right: 51.5)
+                                            : EdgeInsets.only(right: 60.0),
+                                        child: Text(
+                                          item['author'],
+                                          style: TextStyle(
+                                              fontSize: width < 400 ? 18 : 20,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 0),
+                                        child: Text(
+                                          item['date'],
+                                          style: TextStyle(
+                                              fontSize: width < 400 ? 11 : 14),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                              Container(
+                                margin: EdgeInsets.symmetric(vertical: 2),
+                                child: Column(
+                                  children: [
+                                    Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 13.0, right: 13, top: 0),
+                                          child: Text(
+                                            item['title'],
+                                            maxLines: 2,
+                                            style: TextStyle(
+                                                fontSize: width < 400 ? 20 : 13,
+                                                fontFamily: 'RMNUEU',
+                                                color: Colors.black),
+                                          ),
+                                        )),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: 7.0,
+                                            left: 13,
+                                            bottom: 10,
+                                            right: 13),
+                                        child: Text(
+                                          item['short_text'],
+                                          maxLines: 3,
+                                          style: TextStyle(
+                                              height: 1.5,
+                                              fontFamily: 'RMNUEUREGULAR'),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         )),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: 7.0, left: 13, bottom: 10, right: 13),
-                        child: Text(
-                          'Lorem ipsum is a placeholder text commonly used to demonstrate the visual document...',
-                          style: TextStyle(height: 1.3),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
-    }
-
-    return Container(
-      height: 300,
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        children: <Widget>[
-          EditorialImages('assets/images/rss/rss2.jpg'),
-          EditorialImages('assets/images/rss/rss1.jpg'),
-          EditorialImages('assets/images/rss/rss3.jpg'),
-        ],
-      ),
-    );
+                  );
+                });
+          }
+        });
   }
 }
 

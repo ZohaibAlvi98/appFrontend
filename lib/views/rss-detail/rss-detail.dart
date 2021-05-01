@@ -10,6 +10,28 @@ import '../home.dart';
 import '../../services/editorials/editorials-detail.dart';
 import 'package:html/parser.dart';
 import '../../services/editorials/editorial-product-listing.dart';
+import 'package:splyxp/views/products/product-detail-withapi.dart';
+
+void _navigatorPage(context, id) {
+  // Navigator.of(context).pop(new PageRouteBuilder());
+  Navigator.of(context).push(new PageRouteBuilder(
+      opaque: true,
+      transitionDuration: const Duration(),
+      pageBuilder: (BuildContext context, _, __) {
+        return ProductDetail(
+          prodId: id,
+        );
+      },
+      transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+        return new SlideTransition(
+          child: child,
+          position: new Tween<Offset>(
+            begin: const Offset(1.0, 0.0),
+            end: Offset.zero,
+          ).animate(animation),
+        );
+      }));
+}
 
 EditorialProducts eprod = EditorialProducts();
 EditorialsDetail editorialdata = EditorialsDetail();
@@ -175,14 +197,6 @@ class _RssDetailState extends State<RssDetail> {
                                         height: 1.5),
                                   ),
                                 ),
-                                // Padding(
-                                //   padding: EdgeInsets.only(
-                                //       right: 14, left: 14, top: 13),
-                                //   child: Image.asset(
-                                //     'assets/images/rssDetail/rssDetail2.jpg',
-                                //     fit: BoxFit.contain,
-                                //   ),
-                                // ),
                                 Padding(
                                   padding: EdgeInsets.only(
                                       right: 14, left: 14, top: 15),
@@ -264,7 +278,8 @@ Widget horizontalListEditorialsProducts(context, postid) {
                     Container(
                       padding: EdgeInsets.only(right: 2, left: 1),
                       child: InkWell(
-                        // onTap: () => _navigatorPage(context),
+                        onTap: () => _navigatorPage(
+                            context, item['product_id'].toString()),
                         child: Card(
                           child: Wrap(children: [
                             SizedBox(
