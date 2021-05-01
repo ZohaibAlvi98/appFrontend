@@ -16,7 +16,9 @@ import '../../services/styles/featured-style-boxes.dart';
 import 'package:splyxp/views/products/product-detail-stylebox.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../services/styles/styles-general-content.dart';
+import '../../services/styles/featured-styles-listing.dart';
 
+FeaturedStyleListing datastyle = FeaturedStyleListing();
 StylesContent stylesdata = StylesContent();
 FeaturedStyleBoxes getstylebox = FeaturedStyleBoxes();
 
@@ -62,7 +64,9 @@ class _StylesState extends State<Styles> {
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
           if (index == 'styleDetail') {
-            return StyleDetail();
+            return StyleDetail(
+              styleId: null,
+            );
           } else if (index == 'boxDetail') {
             return ProductDetailStyleBox(
               prodId: id,
@@ -353,109 +357,116 @@ class _StylesState extends State<Styles> {
                         height: 20,
                       ),
                       // Image and Rounded Card
-                      InkWell(
-                        onTap: () {
-                          _navigatorPage('styleDetail', null);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.only(right: 20, left: 20.0),
-                          child: Stack(children: [
-                            Image.asset('assets/images/styles/styles4.jpg'),
-                            RoundedCard(context, 0.97, 0.97),
-                          ]),
-                        ),
-                      ),
-                      // Thome Brown Content
-                      Padding(
-                        padding: EdgeInsets.only(top: 35, left: 30, right: 30),
-                        child: Text(
-                          'Thome Brown Winter Clothing Styling By End Clothing',
-                          style: TextStyle(
-                              fontFamily: 'RMNUEUSEMIBOLD',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 18, left: 32, right: 30),
-                        child: Text(
-                          'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
-                          style: TextStyle(
-                              fontFamily: 'RMNUEUREGULAR',
-                              fontSize: 16,
-                              height: 1.5,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 50,
-                      ),
-                      // horizontal Scrolling list
-                      SizedBox(
-                        height: 270,
-                        child:
-                            horizontalListWith3(context, img, Colors.white12),
-                      ),
-                      // spacing
-                      SizedBox(
-                        height: 50,
-                      ),
-                      // picture 2
-                      InkWell(
-                        onTap: () {
-                          _navigatorPage('styleDetail', null);
-                        },
-                        child: Container(
-                          color: Colors.grey[100],
-                          padding: EdgeInsets.only(right: 20, left: 20),
-                          child: Stack(children: [
-                            Padding(
-                              padding: EdgeInsets.only(top: 35.0, bottom: 35),
-                              child: Image.asset(
-                                  'assets/images/styles/style3.jpg'),
-                            ),
-                            RoundedCard(context, 0.9, 0.88)
-                          ]),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.grey[100],
-                        padding: EdgeInsets.only(top: 35, left: 30, right: 30),
-                        child: Text(
-                          'Thome Brown Winter Clothing Styling By End Clothing',
-                          style: TextStyle(
-                              fontFamily: 'RMNUEUSEMIBOLD',
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        color: Colors.grey[100],
-                        padding: EdgeInsets.only(
-                            top: 18, left: 32, right: 30, bottom: 15),
-                        child: Text(
-                          'Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content',
-                          style: TextStyle(
-                              fontFamily: 'RMNUEUREGULAR',
-                              fontSize: 16,
-                              height: 1.5,
-                              color: Colors.grey[600],
-                              fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.only(top: 50.0),
-                        color: Colors.grey[100],
-                        child: SizedBox(
-                          height: 270,
-                          child: horizontalListWith3(
-                              context, img, Colors.grey[100]),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      FutureBuilder(
+                          future: datastyle.getFeaturedStyleList(),
+                          // artistService.getArtist(page),
+
+                          builder: (BuildContext context,
+                              AsyncSnapshot<List<Map<String, dynamic>>>
+                                  snapshot) {
+                            if (snapshot.hasData) {
+                              // List<ArtistModel> artist = snapshot.data;
+                              return GridView.builder(
+                                  shrinkWrap: true,
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  padding: EdgeInsets.only(
+                                      left: 0, right: 0, top: 2),
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 1,
+                                    childAspectRatio: MediaQuery.of(context)
+                                            .size
+                                            .width /
+                                        (MediaQuery.of(context).size.height /
+                                            0.82),
+                                  ),
+                                  // scrollDirection: Axis.vertical,
+                                  itemCount: snapshot.data.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    final item = snapshot.data[index];
+                                    return Column(
+                                      children: [
+                                        Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                              padding: EdgeInsets.only(
+                                                  right: 20, left: 20.0),
+                                              child: Stack(children: [
+                                                Image.network(
+                                                    item['images_data']
+                                                        ['image']),
+                                                RoundedCard(
+                                                    context,
+                                                    0.97,
+                                                    0.97,
+                                                    item['0']['style_owner'],
+                                                    item['0']['likes'],
+                                                    item['created_date'],
+                                                    item['splyr_logo']),
+                                              ]),
+                                            ),
+                                            // Thome Brown Content
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 30, left: 23, right: 20),
+                                              child: Text(
+                                                item['0']['style_title'],
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        'RMNUEUSEMIBOLD',
+                                                    fontSize: 20,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 15, left: 23, right: 23),
+                                              child: Text(
+                                                item['0']['style_description'],
+                                                style: TextStyle(
+                                                    fontFamily: 'RMNUEUREGULAR',
+                                                    fontSize: 16,
+                                                    height: 1.5,
+                                                    color: Colors.grey[600],
+                                                    fontWeight:
+                                                        FontWeight.w400),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 25,
+                                            ),
+                                          ],
+                                        ),
+                                        // horizontal Scrolling list
+                                        Column(
+                                          children: [
+                                            SizedBox(
+                                              height: 270,
+                                              child:
+                                                  horizontalListStylesProducts(
+                                                      context,
+                                                      item['0']['style_id']),
+                                            ),
+                                            // spacing
+                                            // SizedBox(
+                                            //   height: 25,
+                                            // ),
+                                          ],
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            } else if (snapshot.hasError) {
+                              print(snapshot.error);
+                              print('Sorry');
+                            }
+
+                            return Center(child: CircularProgressIndicator());
+                          }),
                     ],
                   ),
                 )

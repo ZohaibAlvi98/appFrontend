@@ -11,6 +11,8 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
 import './services/styles/featured-styles-listing.dart';
 import 'package:splyxp/widgets/roundedCard.dart';
+import 'package:splyxp/views/styles/style-list-dashboard.dart';
+import 'package:splyxp/views/drawer/arrivals.dart';
 
 FeaturedStyleListing stylesListingData = FeaturedStyleListing();
 
@@ -28,12 +30,7 @@ class _DashboardState extends State<Dashboard> {
 
     // 'assets/images/item4.jpg'
   ];
-  List img = [
-    'assets/images/styles/list1.png',
-    'assets/images/styles/list2.png',
-    'assets/images/styles/list7.jpg',
-    'assets/images/styles/list8.jpg'
-  ];
+
   List subscriptionCarouselImg = [
     'assets/images/splyrs/carousel4.jpg',
     'assets/images/splyrs/carousel1.jpg',
@@ -75,6 +72,30 @@ class _DashboardState extends State<Dashboard> {
     SplyNetwork(),
     Profile()
   ];
+  void _navigatorPage(index, id) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          if (index == 'discoverstyles')
+            return StylesDashboard();
+          else if (index == 'discoverupdates')
+            return Arrivals();
+          else
+            return StylesDashboard();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -253,7 +274,7 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.black,
                     // height: 40,
                     onPressed: () {
-                      // _navigatorPage(true);
+                      _navigatorPage('discoverstyles', '');
                     },
                     child: Text(
                       'DISCOVER MORE',
@@ -275,10 +296,7 @@ class _DashboardState extends State<Dashboard> {
             ),
             SizedBox(
               height: 280,
-              child: horizontalListWith3(context, img, Colors.white12),
-            ),
-            SizedBox(
-              height: 30,
+              child: recentUpdates(context),
             ),
             Center(
               child: Padding(
@@ -290,7 +308,7 @@ class _DashboardState extends State<Dashboard> {
                     color: Colors.black,
                     // height: 40,
                     onPressed: () {
-                      // _navigatorPage(true);
+                      _navigatorPage('discoverupdates', '');
                     },
                     child: Text(
                       'DISCOVER MORE',

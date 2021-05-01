@@ -10,18 +10,25 @@ import 'package:splyxp/widgets/roundedCard.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
-import '../../services/splyrs/splyr-style-detail.dart';
+import '../../services/styles/featured-styles-detail.dart';
 
-SplyrStyleDetail styledetaildata = SplyrStyleDetail();
+FeaturedStyleDetails styledetaildata = FeaturedStyleDetails();
 
-class StyleDetail extends StatefulWidget {
+class FeaturedStyleDetail extends StatefulWidget {
   final String styleId;
-  StyleDetail({Key key, @required this.styleId}) : super(key: key);
+  final String image;
+  final String date;
+  FeaturedStyleDetail({
+    Key key,
+    @required this.styleId,
+    @required this.image,
+    @required this.date,
+  }) : super(key: key);
   @override
-  _StyleDetailState createState() => _StyleDetailState();
+  _FeaturedStyleDetailState createState() => _FeaturedStyleDetailState();
 }
 
-class _StyleDetailState extends State<StyleDetail> {
+class _FeaturedStyleDetailState extends State<FeaturedStyleDetail> {
   List img = [
     'assets/images/styles/list1.png',
     'assets/images/styles/list2.png',
@@ -59,8 +66,10 @@ class _StyleDetailState extends State<StyleDetail> {
   }
 
   static List<Widget> _bottomNavList = [
-    StyleDetail(
+    FeaturedStyleDetail(
       styleId: null,
+      image: null,
+      date: null,
     ),
     Search(),
     ChatList(),
@@ -83,7 +92,8 @@ class _StyleDetailState extends State<StyleDetail> {
               child: drawerAppBar(context, '', false)),
           body: _selectedIndex == 0
               ? FutureBuilder(
-                  future: styledetaildata.getSplyrStyleDetail(widget.styleId),
+                  future:
+                      styledetaildata.getFeaturedStyleDetails(widget.styleId),
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                     if (!snapshot.hasData) {
@@ -99,21 +109,21 @@ class _StyleDetailState extends State<StyleDetail> {
                             Container(
                               padding: EdgeInsets.only(right: 20, left: 20),
                               child: Stack(children: [
-                                Image.network(item['cover_image']),
+                                Image.network(widget.image),
                                 RoundedCardDetail(
                                     context,
                                     0.97,
                                     0.97,
-                                    item['splyr_name'],
+                                    item['style_owner'],
                                     item['likes'],
-                                    item['created_at']),
+                                    widget.date),
                               ]),
                             ),
                             Padding(
                               padding:
                                   EdgeInsets.only(top: 30, left: 23, right: 20),
                               child: Text(
-                                item['title'],
+                                item['style_title'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -122,7 +132,7 @@ class _StyleDetailState extends State<StyleDetail> {
                               padding:
                                   EdgeInsets.only(top: 15, left: 23, right: 23),
                               child: Text(
-                                item['description'],
+                                item['style_description'],
                                 style: TextStyle(
                                     fontFamily: 'RMNUEUREGULAR',
                                     fontSize: 16,
@@ -138,8 +148,8 @@ class _StyleDetailState extends State<StyleDetail> {
                               children: [
                                 SizedBox(
                                   height: 270,
-                                  child: horizontalListStylesProductsSplyrs(
-                                      context, null),
+                                  child: horizontalListStylesProducts(
+                                      context, widget.styleId),
                                 ),
                               ],
                             ),

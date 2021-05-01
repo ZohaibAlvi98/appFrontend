@@ -516,7 +516,9 @@ Widget style(context, img) {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return StyleDetail();
+          return StyleDetail(
+            styleId: null,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
