@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/carousels.dart';
-import './views/vendor-channel/stylist-channel.dart';
+import 'package:splyxp/views/styles/style-detail-featured.dart';
 import 'package:splyxp/widgets/horizontalList.dart';
 import 'views/search/search.dart';
 import 'views/profile.dart';
 import 'views/sply-network.dart';
 import 'package:splyxp/views/chatList/chat-main.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
+import './services/styles/featured-styles-listing.dart';
+import 'package:splyxp/widgets/roundedCard.dart';
+
+FeaturedStyleListing stylesListingData = FeaturedStyleListing();
 
 class Dashboard extends StatefulWidget {
   @override
@@ -83,64 +87,6 @@ class _DashboardState extends State<Dashboard> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Row(
-                  //   children: [
-                  //     Padding(
-                  //       padding: EdgeInsets.only(left: 18, top: 10),
-                  //       child: Text(
-                  //         'HELLO',
-                  //         style: TextStyle(
-                  //             fontSize: 24, fontWeight: FontWeight.w700),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Padding(
-                  //       padding: EdgeInsets.only(top: 10, left: 18),
-                  //       child: Container(
-                  //         decoration: BoxDecoration(
-                  //           color: Colors.grey,
-                  //           shape: BoxShape.circle,
-                  //           boxShadow: [
-                  //             BoxShadow(
-                  //                 blurRadius: 3,
-                  //                 color: Colors.grey[500],
-                  //                 spreadRadius: 1.3)
-                  //           ],
-                  //         ),
-                  //         child: CircleAvatar(
-                  //           radius: 32.0,
-                  //           backgroundImage: AssetImage(
-                  //               'assets/images/profile/profileDashboard.png'),
-                  //           backgroundColor: Colors.transparent,
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Column(
-                  //       crossAxisAlignment: CrossAxisAlignment.start,
-                  //       children: [
-                  //         Padding(
-                  //           padding: EdgeInsets.only(left: 14, top: 15),
-                  //           child: Text(
-                  //             'MAR SIMONS TAYLOR',
-                  //             style: TextStyle(
-                  //                 fontSize: 20, fontWeight: FontWeight.w600),
-                  //           ),
-                  //         ),
-                  //         Padding(
-                  //           padding: EdgeInsets.only(left: 14, top: 2),
-                  //           child: Text(
-                  //             'Customer',
-                  //             style: TextStyle(
-                  //                 fontSize: 12.5, fontWeight: FontWeight.w400),
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // ),
                   Container(
                     width: double.infinity,
                     color: Colors.black87,
@@ -257,26 +203,45 @@ class _DashboardState extends State<Dashboard> {
             SizedBox(
               height: 20,
             ),
-            GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.only(left: 5, right: 5, top: 10),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: width < 400
-                      ? MediaQuery.of(context).size.width /
-                          (MediaQuery.of(context).size.height / 1.49)
-                      : MediaQuery.of(context).size.width /
-                          (MediaQuery.of(context).size.height / 1.17),
-                ),
-                // scrollDirection: Axis.vertical,
-                itemCount: 2,
-                itemBuilder: (context, snapshot) {
-                  return Column(
-                    children: [
-                      style(context, 'assets/images/styles/style3.jpg'),
-                    ],
-                  );
+            FutureBuilder(
+                future: stylesListingData.getFeaturedStyleList(),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                  if (snapshot.hasData) {
+                    return GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: EdgeInsets.only(left: 5, right: 5, top: 10),
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: width < 400
+                              ? MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 1.49)
+                              : MediaQuery.of(context).size.width /
+                                  (MediaQuery.of(context).size.height / 1.17),
+                        ),
+                        // scrollDirection: Axis.vertical,
+                        itemCount: 2,
+                        itemBuilder: (BuildContext context, int index) {
+                          final item = snapshot.data[index];
+                          return Column(
+                            children: [
+                              styleFeatured(
+                                context,
+                                item['images_data']['image'],
+                                item['0']['style_owner'],
+                                item['created_date'],
+                                item['splyr_logo'],
+                                item['0']['likes'],
+                                item['0']['style_id'].toString(),
+                              ),
+                            ],
+                          );
+                        });
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                  }
+                  return Center(child: CircularProgressIndicator());
                 }),
             Center(
               child: Padding(
@@ -386,4 +351,40 @@ class _DashboardState extends State<Dashboard> {
       ),
     ));
   }
+}
+
+Widget styleFeatured(context, img, author, date, logo, likes, styleid) {
+  void _navigatorPage(context, styleid) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return FeaturedStyleDetail(styleId: styleid, image: img, date: date);
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
+  return InkWell(
+    onTap: () {
+      _navigatorPage(context, styleid);
+    },
+    child: Container(
+      padding: EdgeInsets.only(right: 10, left: 10),
+      child: Stack(children: [
+        Image.network(
+          img,
+        ),
+        RoundedCardForStyle(context, 2.05, 2.05, author, date, logo, likes),
+      ]),
+    ),
+  );
 }
