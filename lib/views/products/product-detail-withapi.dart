@@ -72,6 +72,22 @@ class _ProductDetailState extends State<ProductDetail> {
     }
   }
 
+  List getSize(var item) {
+    for (var a = 0; a < item['attributes'].length; a++) {
+      if (item['attributes'][a]['name'] == 'Size') {
+        return item['attributes'][a]['options'];
+      }
+    }
+  }
+
+  List getColour(var item) {
+    for (var a = 0; a < item['attributes'].length; a++) {
+      if (item['attributes'][a]['name'] == 'Color') {
+        return item['attributes'][a]['options'];
+      }
+    }
+  }
+
   final f = NumberFormat('#,###,###.##');
   @override
   Widget build(BuildContext contexts) {
@@ -185,7 +201,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   _selectedsize = newValue;
                                 });
                               },
-                              items: item['attributes'][0]['options']
+                              items: getSize(item)
                                   .map<DropdownMenuItem<String>>((sizes) {
                                 return DropdownMenuItem<String>(
                                   child: Container(
@@ -225,7 +241,7 @@ class _ProductDetailState extends State<ProductDetail> {
                                   _selectedColor = newValue;
                                 });
                               },
-                              items: item['attributes'][1]['options']
+                              items: getColour(item)
                                   .map<DropdownMenuItem<String>>((sizes) {
                                 return DropdownMenuItem<String>(
                                   child: Container(

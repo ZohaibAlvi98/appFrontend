@@ -219,7 +219,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                 underline: SizedBox.shrink(),
                                 iconSize: 28.0,
                                 hint: Text(
-                                  '   Select Size',
+                                  '   Select Colour',
                                   style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedColor,
@@ -261,7 +261,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                                 underline: SizedBox.shrink(),
                                 iconSize: 28.0,
                                 hint: Text(
-                                  '   Select Size',
+                                  '   Select Quantity',
                                   style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedQty,
