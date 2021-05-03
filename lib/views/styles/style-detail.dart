@@ -139,7 +139,7 @@ class _StyleDetailState extends State<StyleDetail> {
                                 SizedBox(
                                   height: 270,
                                   child: horizontalListStylesProductsSplyrs(
-                                      context, null),
+                                      context, item['linked_products']),
                                 ),
                               ],
                             ),

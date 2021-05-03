@@ -329,9 +329,9 @@ class _SplyrsState extends State<Splyrs> {
                                           }),
                                     ]),
                               )))),
-                  SizedBox(
-                    height: 20,
-                  )
+                  // SizedBox(
+                  //   height: 20,
+                  // ),
                 ]))
               : _bottomNavList.elementAt(_selectedIndex),
           bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),

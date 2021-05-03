@@ -34,25 +34,6 @@ class Channel extends StatefulWidget {
 }
 
 class _ChannelState extends State<Channel> {
-  void _navigatorPage(context, styleid) {
-    // Navigator.of(context).pop(new PageRouteBuilder());
-    Navigator.of(context).push(new PageRouteBuilder(
-        opaque: true,
-        transitionDuration: const Duration(),
-        pageBuilder: (BuildContext context, _, __) {
-          return StyleDetail(styleId: styleid);
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new SlideTransition(
-            child: child,
-            position: new Tween<Offset>(
-              begin: const Offset(1.0, 0.0),
-              end: Offset.zero,
-            ).animate(animation),
-          );
-        }));
-  }
-
   int _pageIndex = 0;
   double height = 46;
   void _onTapped(int value) {
@@ -129,6 +110,27 @@ class _ChannelState extends State<Channel> {
     // YoutubePlayer.convertUrlToId(url),
     // flags: YoutubePlayerFlags(
     //     enableCaption: false, isLive: false, autoPlay: false));
+  }
+
+  void _navigatorPage(context, id) {
+    // Navigator.of(context).pop(new PageRouteBuilder());
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return ProductDetail(
+            prodId: id,
+          );
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
   }
 
   @override
@@ -543,10 +545,32 @@ class _ChannelState extends State<Channel> {
             }));
   }
 
-  Widget style(context, img, styleTitle, styleDate, styleBrand, styleid) {
+  Widget style(context, img, styleTitle, styleDate, styleBrand, styleId) {
+    void _navigatorPage() {
+      // Navigator.of(context).pop(new PageRouteBuilder());
+      Navigator.of(context).push(new PageRouteBuilder(
+          opaque: true,
+          transitionDuration: const Duration(),
+          pageBuilder: (BuildContext context, _, __) {
+            return StyleDetail(
+              styleId: styleId,
+            );
+          },
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) {
+            return new SlideTransition(
+              child: child,
+              position: new Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).animate(animation),
+            );
+          }));
+    }
+
     return InkWell(
       onTap: () {
-        _navigatorPage(context, styleid);
+        _navigatorPage();
       },
       child: Container(
         padding: EdgeInsets.only(right: 10, left: 10),
