@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/carousels.dart';
-import 'package:splyxp/widgets/dropdown.dart';
+import 'package:splyxp/widgets/dropdown-stylebox.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/widgets/navbar.dart';
 import '../search/search.dart';
@@ -86,9 +86,12 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                     return Center(child: CircularProgressIndicator());
                   } else {
                     final item = snapshot.data;
+
                     print(snapshot);
-                    for (var a = 0; a < item['images'].length; a++) {
-                      carouselImg.add(item['images'][a]['src']);
+                    if (carouselImg.isEmpty) {
+                      for (var a = 0; a < item['images'].length; a++) {
+                        carouselImg.add(item['images'][a]['src']);
+                      }
                     }
                     return SingleChildScrollView(
                       child: Column(

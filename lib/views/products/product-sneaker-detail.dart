@@ -33,6 +33,14 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
     });
   }
 
+  String getBrand(prodList) {
+    for (var a = 0; a < prodList['meta_data'].length; a++) {
+      if (prodList['meta_data'][a]['key'] == '_select_brand') {
+        return prodList['meta_data'][a]['value'];
+      }
+    }
+  }
+
   List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
 
   String _selectedsize;
@@ -111,6 +119,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                     return Center(child: CircularProgressIndicator());
                   } else {
                     final item = snapshot.data;
+                    final brand = getBrand(item);
                     print(snapshot);
                     if (carouselImg.isEmpty) {
                       for (var a = 0; a < item['images'].length; a++) {
@@ -127,15 +136,25 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Center(
+                                  child: Text(
+                                    brand,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        fontFamily: 'RMNUEUREGULAR'),
+                                  ),
+                                ),
+                                Center(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 20, right: 20),
+                                    padding: EdgeInsets.only(
+                                        left: 40, right: 40, top: 10),
                                     child: Center(
                                       child: Text(
                                         item['name'],
                                         style: TextStyle(
                                             fontSize: 15,
                                             fontFamily: 'RMNUEUSEMIBOLD'),
+                                        textAlign: TextAlign.center,
                                       ),
                                     ),
                                   ),
@@ -309,6 +328,7 @@ class _ProductDetailSneakerState extends State<ProductDetailSneaker> {
                             description:
                                 parse(item['description']).documentElement.text,
                             vendor: item['store_name'],
+                            vendorId: item['vendor'].toString(),
                           ),
                           SizedBox(
                             height: 25,

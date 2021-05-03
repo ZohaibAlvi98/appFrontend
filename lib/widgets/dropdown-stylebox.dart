@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
-import 'package:splyxp/views/s-plyrs/channel/sneaker-channel.dart';
+import '../views/s-plyrs/channel/channel.dart';
 
 class DropDown extends StatefulWidget {
   final String link;
@@ -51,11 +51,11 @@ class _DropDownState extends State<DropDown> {
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
           if (index == 'vendorPage')
-            return SneakerChannel(
+            return Channel(
               splyrId: id,
             );
           else
-            return SneakerChannel(
+            return Channel(
               splyrId: id,
             );
         },
@@ -103,13 +103,7 @@ class _DropDownState extends State<DropDown> {
   //   super.dispose();
   // }
 
-  final list2 = [
-    'Description',
-    // 'Video',
-    'Vendor',
-    'Sizing',
-    'Shipping & returns'
-  ];
+  final list2 = ['Description', 'Vendor', 'Sizing', 'Shipping & returns'];
 
   final list = new List.generate(1, (i) => "item");
 
@@ -175,8 +169,8 @@ class _DropDownState extends State<DropDown> {
                                             // height: 45,
                                             // minWidth: 23,
                                             onPressed: () {
-                                              _navigatorPage('vendorPage',
-                                                  widget.vendorId);
+                                              // _navigatorPage('vendorPage',
+                                              //     widget.vendorId);
                                             },
                                             child: FittedBox(
                                               fit: BoxFit.cover,
@@ -194,6 +188,21 @@ class _DropDownState extends State<DropDown> {
                                 : i == 2
                                     ? Column(
                                         children: [
+                                          Padding(
+                                            padding: EdgeInsets.fromLTRB(
+                                                8.0, 20, 8, 10),
+                                            child: Text(
+                                              'Clothing Size Chart',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8),
+                                            child: Image.asset(
+                                                'assets/images/productDetail/size2.jpg'),
+                                          ),
                                           Padding(
                                             padding: EdgeInsets.all(8.0),
                                             child: Text(

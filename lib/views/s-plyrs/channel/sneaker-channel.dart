@@ -7,33 +7,33 @@ import 'package:splyxp/widgets/roundedCard.dart';
 import '../../sply-network.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
-import '../../../services/splyrs/splyrs-channel.dart';
+import '../../../services/splyrs/sneakers-splyr-channel.dart';
 import '../../../services/splyrs/splyrs-products.dart';
-import 'package:splyxp/views/products/product-detail-withapi.dart';
-import '../../../services/splyrs/splyr-all-products.dart';
+import 'package:splyxp/views/products/product-sneaker-detail.dart';
 import '../../../services/splyrs/splyrs-products.dart';
 import '../../../services/splyrs/splyr-logo&back.dart';
 import '../../../services/splyrs/splyrs-stories.dart';
 import '../../../services/splyrs/splyrs-styles.dart';
 import '../../../services/splyrs/splyr-editorials.dart';
 import 'package:splyxp/widgets/lists.dart';
+import '../../../services/splyrs/sneaker-splyr-all-products.dart';
 
 SplyrEditorials editorialdata = SplyrEditorials();
 VendorStyles styledata = VendorStyles();
 Stories storydata = Stories();
-SplyrsChannel data = SplyrsChannel();
+SneakerSplyrsChannel data = SneakerSplyrsChannel();
 SplyrsProducts getdata = SplyrsProducts();
-SplyrsAllProducts returndata = SplyrsAllProducts();
+SneakerSplyrsAllProducts returndata = SneakerSplyrsAllProducts();
 LogoAndBanner getlogoandbanner = LogoAndBanner();
 
-class Channel extends StatefulWidget {
+class SneakerChannel extends StatefulWidget {
   final String splyrId;
-  Channel({Key key, @required this.splyrId}) : super(key: key);
+  SneakerChannel({Key key, @required this.splyrId}) : super(key: key);
   @override
-  _ChannelState createState() => _ChannelState();
+  _SneakerChannelState createState() => _SneakerChannelState();
 }
 
-class _ChannelState extends State<Channel> {
+class _SneakerChannelState extends State<SneakerChannel> {
   int _pageIndex = 0;
   double height = 46;
   void _onTapped(int value) {
@@ -118,7 +118,7 @@ class _ChannelState extends State<Channel> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          return ProductDetail(
+          return ProductDetailSneaker(
             prodId: id,
           );
         },
@@ -173,7 +173,7 @@ class _ChannelState extends State<Channel> {
             ),
             child: drawerAppBar(context, '', false)),
         body: FutureBuilder(
-            future: data.getSplyrChannel(widget.splyrId),
+            future: data.getSneakerSplyrChannel(widget.splyrId),
             builder: (BuildContext context,
                 AsyncSnapshot<Map<String, dynamic>> snapshot) {
               if (!snapshot.hasData) {
@@ -344,13 +344,13 @@ class _ChannelState extends State<Channel> {
                               style: TextStyle(fontSize: 14, height: 1.3),
                             ),
                           ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          story(context),
-                          SizedBox(
-                            height: width < 400 ? 25 : 30,
-                          ),
+                          // SizedBox(
+                          //   height: 15,
+                          // ),
+                          // story(context),
+                          // SizedBox(
+                          //   height: width < 400 ? 25 : 30,
+                          // ),
                           ProfileTabBar(height, _onTapped, 'splyr'),
                           SizedBox(
                             height: 1,
@@ -358,10 +358,7 @@ class _ChannelState extends State<Channel> {
                           if (_pageIndex == 0)
                             FutureBuilder(
                                 future: returndata
-                                    .getSplyrsAllProducts(widget.splyrId),
-
-                                // artistService.getArtist(page),
-
+                                    .getSplyrsSneakersProducts(widget.splyrId),
                                 builder: (BuildContext context,
                                     AsyncSnapshot<List<Map<String, dynamic>>>
                                         snapshot) {
