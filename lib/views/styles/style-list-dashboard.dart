@@ -94,7 +94,7 @@ class _StylesDashboardState extends State<StylesDashboard> {
                     .black, //This will change the drawer background to blue.
                 //other styles
               ),
-              child: drawerAppBar(context, 'styles', widget.authenticated)),
+              child: drawerAppBar(context, '', widget.authenticated)),
           body: _selectedIndex == 0
               ? SingleChildScrollView(
                   // key: new PageStorageKey('feed'),

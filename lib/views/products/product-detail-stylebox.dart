@@ -9,6 +9,7 @@ import 'package:splyxp/views/chatList/chat-main.dart';
 import '../auth/signup/signup.dart';
 import '../../services/prdocut-detail-api.dart';
 import 'package:html/parser.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetailStyleBox extends StatefulWidget {
   final String prodId;
@@ -54,6 +55,8 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
       carouselImg.add(item['images'][a]['src']);
     }
   }
+
+  final f = NumberFormat('#,###,###.##');
 
   @override
   Widget build(BuildContext contexts) {
@@ -125,7 +128,8 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                                   padding: EdgeInsets.only(top: 10, left: 20),
                                   child: Center(
                                     child: Text(
-                                      'Price:  \$' + item['price'],
+                                      '\$' +
+                                          f.format(num.tryParse(item['price'])),
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Colors.grey[600],
@@ -160,7 +164,7 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                                 underline: SizedBox.shrink(),
                                 iconSize: 28.0,
                                 hint: Text(
-                                  'Select Quantity',
+                                  '   Select Quantity',
                                   style: TextStyle(fontSize: 16),
                                 ), // Not necessary for Option 1
                                 value: _selectedQty,

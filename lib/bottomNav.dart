@@ -148,9 +148,9 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              appBar: _selectedIndex == 0
-                  ? appbarNew(context)
-                  : appbarWithMenu(context),
+              // appBar: _selectedIndex == 0
+              //     ? appbarNew(context)
+              //     : appbarWithMenu(context),
               drawer: Theme(
                   data: Theme.of(context).copyWith(
                     canvasColor: Colors.black,
