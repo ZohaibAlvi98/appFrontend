@@ -265,7 +265,7 @@ Widget RoundedCardForStyle(
             child: Container(
               margin: EdgeInsets.only(top: 0.5, left: 0, right: 0),
               width: width * 0.10,
-              height: 40,
+              height: 30,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 image: DecorationImage(
