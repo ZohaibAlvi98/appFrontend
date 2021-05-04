@@ -105,9 +105,7 @@ class _MensState extends State<Mens> {
             data: Theme.of(context).copyWith(
               canvasColor: Colors.black,
             ),
-            child: _selectedIndex == 0
-                ? drawerAppBar(context, 'mens', widget.authenticated)
-                : Container()),
+            child: drawerAppBar(context, 'mens', widget.authenticated)),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Container(

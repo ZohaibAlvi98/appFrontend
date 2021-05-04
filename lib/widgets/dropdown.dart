@@ -232,7 +232,7 @@ class _DropDownState extends State<DropDown> {
                     )
                     .toList(),
               ),
-              Divider(),
+              // Divider(),
             ],
           ),
         ),

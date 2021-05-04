@@ -9,7 +9,7 @@ class Splash extends StatefulWidget {
 
 class _SplashState extends State<Splash> {
   startTime() async {
-    return Timer(Duration(milliseconds: 4500), _navigatorPage);
+    return Timer(Duration(milliseconds: 1500), _navigatorPage);
   }
 
   void _navigatorPage() {

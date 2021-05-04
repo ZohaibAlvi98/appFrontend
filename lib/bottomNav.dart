@@ -9,6 +9,7 @@ import 'views/sply-network.dart';
 import './views/auth/signup/signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import './dashboard.dart';
+import 'widgets/gethomedata.dart';
 
 class BottomNav extends StatefulWidget {
   @override
@@ -125,18 +126,7 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              //appBar: appbarNew(context),
-              appBar: _selectedIndex == 0 ? null : appbarWithMenu(context),
-              // appBar: null,
-              drawer: Theme(
-                  data: Theme.of(context).copyWith(
-                    canvasColor: Colors
-                        .black, //This will change the drawer background to blue.
-                    //other styles
-                  ),
-                  child: drawerAppBar(context, '', false)),
-              body: _bottomNavList.elementAt(_selectedIndex),
-              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+              body: GetHomeData(),
             ),
           )
         : WillPopScope(
@@ -148,16 +138,7 @@ class _BottomNavState extends State<BottomNav> {
               return false;
             },
             child: Scaffold(
-              appBar: appbarWithMenu(context),
-              drawer: Theme(
-                  data: Theme.of(context).copyWith(
-                    canvasColor: Colors.black,
-                    //This will change the drawer background to blue.
-                    //other styles
-                  ),
-                  child: drawerAppBar(context, '', true)),
-              body: _bottomNavDashboardList.elementAt(_selectedIndex),
-              bottomNavigationBar: Navbar(_onItemTapped, _selectedIndex),
+              body: Dashboard(),
             ),
           );
   }

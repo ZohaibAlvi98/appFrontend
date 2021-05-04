@@ -10,6 +10,7 @@ import 'package:splyxp/views/s-plyrs/splyrs-main.dart';
 import 'package:splyxp/views/styles/styles-main.dart';
 import 'package:splyxp/views/sneakers/sneakers-main.dart';
 import 'package:splyxp/views/tv/tv-main.dart';
+import 'package:splyxp/widgets/gethomedata.dart';
 
 void _navigatorPage(context, index, auth) {
   // Navigator.of(context).pop(new PageRouteBuilder());
@@ -30,7 +31,7 @@ void _navigatorPage(context, index, auth) {
         } else if (index == 'request') {
           return RequestShopper();
         } else if (index == 'home') {
-          return Home(authenticated: auth);
+          return GetHomeData(authenticated: auth);
         } else if (index == 'shop') {
           return Splyrs(authenticated: auth);
         } else if (index == 'styles') {

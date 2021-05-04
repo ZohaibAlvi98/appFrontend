@@ -117,9 +117,7 @@ class _ByCategoryState extends State<ByCategory> {
                   .black, //This will change the drawer background to blue.
               //other styles
             ),
-            child: _selectedIndex == 0
-                ? drawerAppBar(context, 'category', widget.authenticated)
-                : Container()),
+            child: drawerAppBar(context, 'category', widget.authenticated)),
         body: _selectedIndex == 0
             ? SingleChildScrollView(
                 child: Column(
