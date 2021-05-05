@@ -41,6 +41,17 @@ class _ProductDetailState extends State<ProductDetail> {
     }
   }
 
+  String getType(typeFind) {
+    var typ1 = 'Get Now';
+    var typ2 = 'Buy Now';
+    for (var a = 0; a < typeFind.length; a++) {
+      if (typeFind['type'] == 'external') {
+        return typ1;
+      } else
+        return typ2;
+    }
+  }
+
   List<String> _size = ['S', 'M', 'L', 'XL']; // Option 2
 
   String _selectedsize;
@@ -119,6 +130,7 @@ class _ProductDetailState extends State<ProductDetail> {
                   } else {
                     final item = snapshot.data;
                     final brand = getBrand(item);
+                    final type = getType(item);
                     print(snapshot);
                     if (carouselImg.isEmpty) {
                       for (var a = 0; a < item['images'].length; a++) {
@@ -304,8 +316,9 @@ class _ProductDetailState extends State<ProductDetail> {
                                 color: Colors.black,
                                 // height: 40,
                                 onPressed: () {},
+
                                 child: Text(
-                                  'GET NOW',
+                                  type,
                                   style: TextStyle(
                                       color: Colors.white, fontSize: 18),
                                 ),

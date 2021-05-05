@@ -190,7 +190,7 @@ class _RssDetailState extends State<RssDetail> {
                                   padding: EdgeInsets.only(
                                       right: 14, left: 14, top: 13),
                                   child: Text(
-                                    item[0]['short_text'],
+                                    item[0]['content'],
                                     style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 18,

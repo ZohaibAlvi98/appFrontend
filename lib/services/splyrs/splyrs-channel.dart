@@ -13,7 +13,7 @@ class SplyrsChannel {
         ck +
         "&consumer_secret=" +
         cs;
-    print('Oh Yes');
+    print('Oh Yes splyr page success');
     // print(page);
 
     final http.Response res = await http.get(

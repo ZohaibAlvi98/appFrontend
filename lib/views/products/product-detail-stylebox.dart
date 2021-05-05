@@ -215,7 +215,7 @@ class _ProductDetailStyleBoxState extends State<ProductDetailStyleBox> {
                             description:
                                 parse(item['description']).documentElement.text,
                             vendor: item['store_name'],
-                            vendorId: null,
+                            vendorId: item['vendor'],
                           ),
                           SizedBox(
                             height: 25,

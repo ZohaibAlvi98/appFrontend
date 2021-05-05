@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import '../../services/splyrs/splyrs-channel.dart';
 import '../../services/splyrs/splyr-all-products.dart';
 import 'package:splyxp/widgets/lists.dart';
-import '../../services/vendor-channel/ishopper-list.dart';
+import '../../services/vendor-channel/stylist-list.dart';
 import '../../services/vendor-channel/vendor-info.dart';
 import '../../services/vendor-channel/vendor-splyrs.dart';
 import '../../services/splyrs/splyrs-stories.dart';
@@ -18,25 +18,29 @@ import '../../services/vendor-channel/vendor-stylebox.dart';
 import 'package:splyxp/views/products/product-detail-stylebox.dart';
 import '../../services/splyrs/splyr-editorials.dart';
 import '../../services/splyrs/splyr-videos.dart';
+import 'package:splyxp/widgets/roundedCard.dart';
+import 'package:splyxp/views/styles/style-detail.dart';
+import '../../services/splyrs/splyrs-styles.dart';
 
+VendorStyles styledata = VendorStyles();
 SplyrVideos videodata = SplyrVideos();
 SplyrEditorials editorialdata = SplyrEditorials();
 VendorStyleBox boxdata = VendorStyleBox();
 Stories storydata = Stories();
 VendorSplyrs splyrdata = VendorSplyrs();
 VendorInfo vendordata = VendorInfo();
-ShopperLogo logodata = ShopperLogo();
+StylistLogo logodata = StylistLogo();
 SplyrsChannel data = SplyrsChannel();
 SplyrsAllProducts returndata = SplyrsAllProducts();
 
-class ShopperChannel extends StatefulWidget {
+class StylistChannel extends StatefulWidget {
   final String vendorId;
-  ShopperChannel({Key key, @required this.vendorId}) : super(key: key);
+  StylistChannel({Key key, @required this.vendorId}) : super(key: key);
   @override
-  _ShopperChannelState createState() => _ShopperChannelState();
+  _StylistChannelState createState() => _StylistChannelState();
 }
 
-class _ShopperChannelState extends State<ShopperChannel> {
+class _StylistChannelState extends State<StylistChannel> {
   int _pageIndex = 0;
   double height = 46;
   void _onTapped(int value) {
@@ -68,6 +72,10 @@ class _ShopperChannelState extends State<ShopperChannel> {
           if (index == 'productDetail')
             return ProductDetail(
               prodId: id,
+            );
+          else if (index == 'styleDetail')
+            return StyleDetail(
+              styleId: id,
             );
           else
             return ProductDetailStyleBox(
@@ -102,6 +110,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
     'assets/images/styles/boxList1.jpg',
     'assets/images/styles/boxList3.jpg',
   ];
+
   String getBrand(prodList) {
     for (var a = 0; a < prodList['meta_data'].length; a++) {
       if (prodList['meta_data'][a]['key'] == '_select_brand') {
@@ -201,7 +210,7 @@ class _ShopperChannelState extends State<ShopperChannel> {
                       child: YoutubePlayerControllerProvider(
                         controller: _controller,
                         child: FutureBuilder(
-                            future: logodata.getShopperLogo(),
+                            future: logodata.getStylistLogo(),
                             builder: (BuildContext context,
                                 AsyncSnapshot<List<Map<String, dynamic>>>
                                     snapshot) {
@@ -561,39 +570,78 @@ class _ShopperChannelState extends State<ShopperChannel> {
                                     SizedBox(
                                       height: 8,
                                     ),
-                                    // if (_pageIndex == 1)
-                                    //   GridView.builder(
-                                    //       shrinkWrap: true,
-                                    //       physics: const NeverScrollableScrollPhysics(),
-                                    //       padding: EdgeInsets.only(left: 5, right: 5, top: 10),
-                                    //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                    //         crossAxisCount: 2,
-                                    //         childAspectRatio: width < 400
-                                    //             ? MediaQuery.of(context).size.width /
-                                    //                 (MediaQuery.of(context).size.height / 1.49)
-                                    //             : MediaQuery.of(context).size.width /
-                                    //                 (MediaQuery.of(context).size.height / 1.23),
-                                    //       ),
-                                    //       // scrollDirection: Axis.vertical,
-                                    //       itemCount: 6,
-                                    //       itemBuilder: (context, snapshot) {
-                                    //         return Column(
-                                    //           children: [
-                                    //             style(context, 'assets/images/styles/style3.jpg'),
-                                    //             SizedBox(
-                                    //               height: 10,
-                                    //             ),
-                                    //             // style(context, 'assets/images/styles/styles4.jpg'),
-                                    //             // SizedBox(
-                                    //             //   height: 25,
-                                    //             // ),
-                                    //             // style(context, 'assets/images/styles/style3.jpg'),
-                                    //             // SizedBox(
-                                    //             //   height: 25,
-                                    //             // ),
-                                    //           ],
-                                    //         );
-                                    //       }),
+                                    if (_pageIndex == 1)
+                                      FutureBuilder(
+                                          future: styledata
+                                              .getVendorStyles(widget.vendorId),
+                                          builder: (BuildContext context,
+                                              AsyncSnapshot<
+                                                      List<
+                                                          Map<String, dynamic>>>
+                                                  snapshot) {
+                                            if (snapshot.hasData) {
+                                              return GridView.builder(
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  padding: EdgeInsets.only(
+                                                      left: 5,
+                                                      right: 5,
+                                                      top: 10),
+                                                  gridDelegate:
+                                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                                    crossAxisCount: 2,
+                                                    childAspectRatio: width <
+                                                            400
+                                                        ? MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height /
+                                                                1.42)
+                                                        : MediaQuery.of(context)
+                                                                .size
+                                                                .width /
+                                                            (MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height /
+                                                                1.17),
+                                                  ),
+                                                  itemCount:
+                                                      snapshot.data.length,
+                                                  itemBuilder:
+                                                      (BuildContext context,
+                                                          int index) {
+                                                    final item =
+                                                        snapshot.data[index];
+                                                    return Column(
+                                                      children: [
+                                                        style(
+                                                            context,
+                                                            item['cover_image'],
+                                                            item['title'],
+                                                            item['created_at'],
+                                                            item['splyr_name'],
+                                                            item['id']
+                                                                .toString()),
+                                                        SizedBox(
+                                                          height: 30,
+                                                        ),
+                                                      ],
+                                                    );
+                                                  });
+                                            } else if (snapshot.hasError) {
+                                              print(snapshot.error);
+                                              print('Sorry');
+                                            }
+
+                                            return Center(
+                                                child:
+                                                    CircularProgressIndicator());
+                                          }),
                                     if (_pageIndex == 2)
                                       FutureBuilder(
                                           future: boxdata.getVendorStyleBox(
@@ -876,6 +924,46 @@ class _ShopperChannelState extends State<ShopperChannel> {
                   : Column()),
         )
       ],
+    );
+  }
+
+  Widget style(context, img, styleTitle, styleDate, styleBrand, styleId) {
+    void _navigatorPage() {
+      // Navigator.of(context).pop(new PageRouteBuilder());
+      Navigator.of(context).push(new PageRouteBuilder(
+          opaque: true,
+          transitionDuration: const Duration(),
+          pageBuilder: (BuildContext context, _, __) {
+            return StyleDetail(
+              styleId: styleId,
+            );
+          },
+          transitionsBuilder:
+              (_, Animation<double> animation, __, Widget child) {
+            return new SlideTransition(
+              child: child,
+              position: new Tween<Offset>(
+                begin: const Offset(1.0, 0.0),
+                end: Offset.zero,
+              ).animate(animation),
+            );
+          }));
+    }
+
+    return InkWell(
+      onTap: () {
+        _navigatorPage();
+      },
+      child: Container(
+        padding: EdgeInsets.only(right: 10, left: 10),
+        child: Stack(children: [
+          Image.network(
+            img,
+          ),
+          RoundedCardForGrid(
+              context, 2.05, 2.05, styleTitle, styleDate, styleBrand),
+        ]),
+      ),
     );
   }
 }
