@@ -476,7 +476,10 @@ class _SneakerChannelState extends State<SneakerChannel> {
                                 }),
                           if (_pageIndex == 3)
                             VideoListHorizontal(
-                                thumbnail: thumbnail, videoUrl: videoUrl),
+                                thumbnail: thumbnail,
+                                videoUrl: videoUrl,
+                                videoTitle: null,
+                                date: null),
                           if (_pageIndex == 4)
                             FutureBuilder(
                                 future: editorialdata

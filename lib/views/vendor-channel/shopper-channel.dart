@@ -668,8 +668,11 @@ class _ShopperChannelState extends State<ShopperChannel> {
 
                                     if (_pageIndex == 3)
                                       VideoListHorizontal(
-                                          thumbnail: thumbnail,
-                                          videoUrl: videoUrl),
+                                        thumbnail: thumbnail,
+                                        videoUrl: videoUrl,
+                                        videoTitle: null,
+                                        date: null,
+                                      ),
                                     // Column(
                                     //   children: [
                                     //     Padding(

@@ -731,8 +731,11 @@ class _StylistChannelState extends State<StylistChannel> {
                                             }),
                                       if (_pageIndex == 3)
                                         VideoListHorizontal(
-                                            thumbnail: thumbnail,
-                                            videoUrl: videoUrl),
+                                          thumbnail: thumbnail,
+                                          videoUrl: videoUrl,
+                                          date: null,
+                                          videoTitle: null,
+                                        ),
                                       // Column(
                                       //   children: [
                                       //     Padding(

@@ -479,7 +479,11 @@ class _ChannelState extends State<Channel> {
                                 }),
                           if (_pageIndex == 3)
                             VideoListHorizontal(
-                                thumbnail: thumbnail, videoUrl: videoUrl),
+                              thumbnail: thumbnail,
+                              videoUrl: videoUrl,
+                              date: null,
+                              videoTitle: null,
+                            ),
                           if (_pageIndex == 4)
                             FutureBuilder(
                                 future: editorialdata
