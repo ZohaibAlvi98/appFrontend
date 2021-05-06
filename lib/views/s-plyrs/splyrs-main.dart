@@ -17,8 +17,10 @@ import '../auth/signup/signup.dart';
 import '../../services/splyrs/featured-splyr-services.dart';
 import '../../services/splyrs/splyr-general-content.dart';
 import 'dart:ui';
+import '../../services/splyrs/all-splyrs-listing.dart';
 
 SplyrContent splyrdata = SplyrContent();
+AllSplyrs splyrlistdaya = AllSplyrs();
 
 class Splyrs extends StatefulWidget {
   final bool authenticated;
