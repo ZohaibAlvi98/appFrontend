@@ -13,8 +13,11 @@ import '../../views/sply-network.dart';
 import '../auth/signup/signup.dart';
 import '../../services/tv/featured-shows-listing.dart';
 import '../../services/tv/tv-general-content.dart';
+import 'package:splyxp/services/tv/get_supply_tv_listing.dart';
+import 'package:splyxp/views/tv/tv_show_detail.dart';
 
 TVContent tvdata = TVContent();
+TVListingContent tvlisting = TVListingContent();
 
 ShowsListing getShow = ShowsListing();
 
@@ -50,19 +53,10 @@ class _TvState extends State<Tv> {
     'assets/images/sneakers/list1.jpg',
     'assets/images/sneakers/list3.jpg',
   ];
-  List thumbnail = [
-    'assets/images/tv/v1.png',
-    'assets/images/tv/v2.png',
-    'assets/images/tv/v3.png',
-    'assets/images/tv/v4.png'
-  ];
-  List videoUrl = [
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4',
-    'https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4'
-  ];
+  List thumbnail = [];
+  List videoUrl = [];
   List carouselImg = [];
+  List videoTitle = [];
   // void _navigatorPage(index, id) {
   //   // Navigator.of(context).pop(new PageRouteBuilder());
   //   Navigator.of(context).push(new PageRouteBuilder(
@@ -139,42 +133,41 @@ class _TvState extends State<Tv> {
                   child: Column(
                   children: [
                     FutureBuilder(
-                        future: tvdata.getTVContent(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<List<Map<String, dynamic>>>
-                                snapshot) {
-                          if (!snapshot.hasData) {
-                            return Center(child: CircularProgressIndicator());
-                          } else {
-                            final item = snapshot.data;
-                            print(snapshot);
-                            return Column(
-                              children: [
-                                Container(
-                                  padding: EdgeInsets.only(right: 20, left: 20),
-                                  child: Image.network(
-                                    item[0]['banner_image'],
-                                  ),
+                      future: tvdata.getTVContent(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          final item = snapshot.data;
+                          print(snapshot);
+                          return Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 20, left: 20),
+                                child: Image.network(
+                                  item[0]['banner_image'],
                                 ),
-                                Padding(
-                                  padding: width < 400
-                                      ? EdgeInsets.only(
-                                          top: 20.0, left: 50, right: 15)
-                                      : EdgeInsets.only(
-                                          top: 20.0, left: 55, right: 32),
-                                  child: Text(item[0]['subtext'],
-                                      style: TextStyle(
-                                          fontFamily: 'RMNUEUREGULAR',
-                                          fontSize: 20,
-                                          height: 1.3,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w400)),
-                                ),
-                              ],
-                            );
-                          }
-                        }),
-
+                              ),
+                              Padding(
+                                padding: width < 400
+                                    ? EdgeInsets.only(
+                                        top: 20.0, left: 50, right: 15)
+                                    : EdgeInsets.only(
+                                        top: 20.0, left: 55, right: 32),
+                                child: Text(item[0]['subtext'],
+                                    style: TextStyle(
+                                        fontFamily: 'RMNUEUREGULAR',
+                                        fontSize: 20,
+                                        height: 1.3,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w400)),
+                              ),
+                            ],
+                          );
+                        }
+                      },
+                    ),
                     SizedBox(
                       height: 50,
                     ),
@@ -188,11 +181,34 @@ class _TvState extends State<Tv> {
                       height: 30,
                     ),
                     Heading(context, 'S-PLY TV'),
-                    SizedBox(
-                        height: width < 400 ? 230 : 240,
-                        child: VideoList(
-                            thumbnail: thumbnail, videoUrl: videoUrl)),
-
+                    FutureBuilder(
+                      future: tvlisting.getTVContent(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          final item = snapshot.data;
+                          for (var a = 0; a < item.length; a++) {
+                            thumbnail.add(item[a]['video_cover_image']);
+                          }
+                          for (var a = 0; a < item.length; a++) {
+                            videoUrl.add(item[a]['video_resource_uri']);
+                          }
+                          for (var a = 0; a < item.length; a++) {
+                            videoTitle.add(item[a]['video_title']);
+                          }
+                          return SizedBox(
+                            height: width < 400 ? 230 : 240,
+                            child: VideoList(
+                              thumbnail: thumbnail,
+                              videoUrl: videoUrl,
+                              videoTitle: videoTitle,
+                            ),
+                          );
+                        }
+                      },
+                    ),
                     Heading(context, 'OUR SHOWS'),
                     Padding(
                       padding: const EdgeInsets.only(top: 2.0),
@@ -227,10 +243,16 @@ class _TvState extends State<Tv> {
                                       child: GestureDetector(
                                         child: Image.network(i,
                                             fit: BoxFit.fitHeight),
-                                        // onTap: () {
-                                        //   String id = getId(i, item);
-                                        //   _navigatorPage('boxDetail', id);
-                                        // },
+                                        onTap: () {
+                                          String id = getId(i, item);
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return TvShowsDetail(
+                                              prodId: id,
+                                            );
+                                          }));
+                                        },
                                       ),
                                       margin:
                                           EdgeInsets.only(left: 10, right: 10),
