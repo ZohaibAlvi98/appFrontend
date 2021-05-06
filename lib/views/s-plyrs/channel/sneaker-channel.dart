@@ -222,7 +222,7 @@ class _SneakerChannelState extends State<SneakerChannel> {
                                       child: Text(
                                         item['shop']['title'].toUpperCase(),
                                         style: TextStyle(
-                                            fontSize: width < 400 ? 18 : 18,
+                                            fontSize: width < 400 ? 16 : 16,
                                             color: Colors.black,
                                             fontWeight: FontWeight.bold,
                                             letterSpacing: 1.2),

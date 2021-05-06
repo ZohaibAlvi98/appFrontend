@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:flutter/services.dart';
 import 'package:html/parser.dart';
-import '../views/s-plyrs/channel/channel.dart';
+import '../views/vendor-channel/shopper-channel.dart';
+import '../views/vendor-channel/stylist-channel.dart';
 
 class DropDown extends StatefulWidget {
   final String link;
@@ -50,13 +51,13 @@ class _DropDownState extends State<DropDown> {
         opaque: true,
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
-          if (index == 'vendorPage')
-            return Channel(
-              splyrId: id,
+          if (index == 'shopperPage')
+            return ShopperChannel(
+              vendorId: id,
             );
           else
-            return Channel(
-              splyrId: id,
+            return StylistChannel(
+              vendorId: id,
             );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
@@ -169,8 +170,12 @@ class _DropDownState extends State<DropDown> {
                                             // height: 45,
                                             // minWidth: 23,
                                             onPressed: () {
-                                              // _navigatorPage('vendorPage',
-                                              //     widget.vendorId);
+                                              if (widget.vendor == 'ishopper')
+                                                _navigatorPage('shopperPage',
+                                                    widget.vendorId);
+                                              else
+                                                _navigatorPage('StylistPage',
+                                                    widget.vendorId);
                                             },
                                             child: FittedBox(
                                               fit: BoxFit.cover,

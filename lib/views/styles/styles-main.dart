@@ -72,7 +72,9 @@ class _StylesState extends State<Styles> {
               prodId: id,
             );
           } else {
-            return StylistChannel();
+            return StylistChannel(
+              vendorId: null,
+            );
           }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {

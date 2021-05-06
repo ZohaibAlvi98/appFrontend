@@ -6,6 +6,7 @@ import 'package:splyxp/widgets/InnerAppBar.dart';
 import 'package:splyxp/widgets/lineHeading.dart';
 import 'package:splyxp/widgets/carousels.dart';
 import '../vendor-channel/shopper-channel.dart';
+import '../vendor-channel/stylist-channel.dart';
 import '../search/search.dart';
 import '../../views/profile.dart';
 import '../../views/sply-network.dart';
@@ -86,7 +87,9 @@ class _SplyrsState extends State<Splyrs> {
           if (index == 'requestSplyr')
             return RequestSupplier();
           else if (index == 'shopper') {
-            return ShopperChannel();
+            return ShopperChannel(
+              vendorId: null,
+            );
           } else
             return Channel(
               splyrId: id,
@@ -357,7 +360,9 @@ Widget lists(context, check, index) {
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
           var id;
-          return ShopperChannel();
+          return StylistChannel(
+            vendorId: null,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(

@@ -12,14 +12,22 @@ Widget content(heading, text1, text2) {
         ),
       ),
     ),
-    Align(
-      alignment: Alignment.topLeft,
-      child: Padding(
-        padding: EdgeInsets.only(left: 15, right: 14, top: 15),
-        child: Row(
-          children: [
-            if (text1 != '')
-              Container(
+    GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.only(left: 0, right: 0, top: 2),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 2.8,
+        ),
+        // scrollDirection: Axis.vertical,
+        itemCount: text1.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 14, top: 15),
+              child: Container(
                 height: 26.0,
                 width: 90,
                 color: Colors.transparent,
@@ -35,7 +43,7 @@ Widget content(heading, text1, text2) {
                       )),
                   child: Center(
                       child: Text(
-                    text1,
+                    text1[index],
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.1,
@@ -45,9 +53,40 @@ Widget content(heading, text1, text2) {
                   )),
                 ),
               ),
-            SizedBox(width: 15),
-            if (text2 != '')
-              Container(
+            ),
+          );
+        })
+  ]);
+}
+
+Widget content1(heading, text1, text2) {
+  return Column(children: [
+    Align(
+      alignment: Alignment.topLeft,
+      child: Padding(
+        padding: EdgeInsets.only(left: 15, right: 14),
+        child: Text(
+          heading,
+          style: TextStyle(fontFamily: 'RMNUEU', fontSize: 16),
+        ),
+      ),
+    ),
+    GridView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.only(left: 0, right: 0, top: 2),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          childAspectRatio: 2.8,
+        ),
+        // scrollDirection: Axis.vertical,
+        itemCount: text1.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(left: 15, right: 14, top: 15),
+              child: Container(
                 height: 26.0,
                 width: 90,
                 color: Colors.transparent,
@@ -63,18 +102,18 @@ Widget content(heading, text1, text2) {
                       )),
                   child: Center(
                       child: Text(
-                    text2,
+                    text1[index]['splyr_name'],
                     style: TextStyle(
-                        fontSize: 14,
-                        height: 1.1,
-                        color: Colors.grey[800],
-                        fontFamily: 'RMNUEUREGULAR'),
+                      fontSize: 14,
+                      height: 1.1,
+                      fontFamily: 'RMNUEUREGULAR',
+                      color: Colors.grey[800],
+                    ),
                   )),
                 ),
               ),
-          ],
-        ),
-      ),
-    ),
+            ),
+          );
+        })
   ]);
 }

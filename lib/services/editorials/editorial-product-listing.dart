@@ -16,7 +16,8 @@ class EditorialProducts {
 
     if (res.statusCode == 200) {
       print(res.body);
-
+      // if(res.body=='No Related Products Found')
+      // return
       return List<Map<String, dynamic>>.from(json.decode(res.body));
     } else {
       throw 'Something Went Wrong!';
