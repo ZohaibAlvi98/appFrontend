@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/views/search/categories/categories.dart';
 import 'package:splyxp/views/search/designer/designer.dart';
+import 'package:splyxp/views/search/bygender.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -15,7 +16,7 @@ class _SearchState extends State<Search> {
         transitionDuration: const Duration(),
         pageBuilder: (BuildContext context, _, __) {
           if (index == 'Categories') {
-            return Categories();
+            return ByGender();
           } else {
             return Designer();
           }
@@ -31,7 +32,7 @@ class _SearchState extends State<Search> {
         }));
   }
 
-  List heading = ['Designers', 'Categories'];
+  List heading = ['Brands', 'Categories'];
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
