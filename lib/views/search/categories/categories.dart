@@ -69,9 +69,38 @@ class _CategoriesState extends State<Categories> {
               opaque: true,
               transitionDuration: const Duration(),
               pageBuilder: (BuildContext context, _, __) {
-                return Accessories(
-                  gender: widget.gender,
-                );
+                if (index == 0) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 1) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 2) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 3) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 4) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 5) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else if (index == 6) {
+                  return Accessories(
+                    gender: widget.gender,
+                  );
+                } else
+                  return Accessories(
+                    gender: widget.gender,
+                  );
               },
               transitionsBuilder:
                   (_, Animation<double> animation, __, Widget child) {
