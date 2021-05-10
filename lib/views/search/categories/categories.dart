@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/views/search/categories/accessories_search.dart';
+import 'package:splyxp/views/search/categories/bottoms_search.dart';
+import 'package:splyxp/views/search/categories/hoodies_search.dart';
+import 'package:splyxp/views/search/categories/jackets&coacts_search.dart';
+import 'package:splyxp/views/search/categories/shoes_search.dart';
+import 'package:splyxp/views/search/categories/shorts_search.dart';
+import 'package:splyxp/views/search/categories/sweaters_search.dart';
+import 'package:splyxp/views/search/categories/tops_search.dart';
 
 class Categories extends StatefulWidget {
   final String gender;
@@ -74,31 +81,31 @@ class _CategoriesState extends State<Categories> {
                     gender: widget.gender,
                   );
                 } else if (index == 1) {
-                  return Accessories(
+                  return Bottoms(
                     gender: widget.gender,
                   );
                 } else if (index == 2) {
-                  return Accessories(
+                  return Hoodies(
                     gender: widget.gender,
                   );
                 } else if (index == 3) {
-                  return Accessories(
+                  return JacketsCoats(
                     gender: widget.gender,
                   );
                 } else if (index == 4) {
-                  return Accessories(
+                  return Shoes(
                     gender: widget.gender,
                   );
                 } else if (index == 5) {
-                  return Accessories(
+                  return Shorts(
                     gender: widget.gender,
                   );
                 } else if (index == 6) {
-                  return Accessories(
+                  return Sweaters(
                     gender: widget.gender,
                   );
                 } else
-                  return Accessories(
+                  return Tops(
                     gender: widget.gender,
                   );
               },

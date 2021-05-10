@@ -106,7 +106,6 @@ class _DropDownState extends State<DropDown> {
   final list2 = [
     'Description',
     // 'Video',
-    'Vendor',
     'Sizing',
     'Shipping & returns'
   ];
@@ -153,72 +152,72 @@ class _DropDownState extends State<DropDown> {
                             //           aspectRatio: 10 / 9,
                             //         ),
                             //       )
+                            // : i == 1
+                            //     ? Column(
+                            //         children: [
+                            //           Text(
+                            //             widget.vendor,
+                            //             style: TextStyle(
+                            //                 fontSize: width < 400 ? 18 : 20,
+                            //                 fontWeight: FontWeight.w800),
+                            //           ),
+                            //           SizedBox(
+                            //             height: 8,
+                            //           ),
+                            //           Padding(
+                            //             padding: EdgeInsets.all(8),
+                            //             child: Container(
+                            //               height: 45,
+                            //               width: 250,
+                            //               child: FlatButton(
+                            //                 color: Colors.black,
+                            //                 // height: 45,
+                            //                 // minWidth: 23,
+                            //                 onPressed: () {
+                            //                   _navigatorPage('vendorPage',
+                            //                       widget.vendorId);
+                            //                 },
+                            //                 child: FittedBox(
+                            //                   fit: BoxFit.cover,
+                            //                   child: Text(
+                            //                     'More Products from ${widget.vendor}',
+                            //                     style: TextStyle(
+                            //                         color: Colors.white),
+                            //                   ),
+                            //                 ),
+                            //               ),
+                            //             ),
+                            //           )
+                            //         ],
+                            //       )
                             : i == 1
                                 ? Column(
                                     children: [
-                                      Text(
-                                        widget.vendor,
-                                        style: TextStyle(
-                                            fontSize: width < 400 ? 18 : 20,
-                                            fontWeight: FontWeight.w800),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
+                                      Padding(
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Text(
+                                          'Shoe Size Chart',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.all(8),
-                                        child: Container(
-                                          height: 45,
-                                          width: 250,
-                                          child: FlatButton(
-                                            color: Colors.black,
-                                            // height: 45,
-                                            // minWidth: 23,
-                                            onPressed: () {
-                                              _navigatorPage('vendorPage',
-                                                  widget.vendorId);
-                                            },
-                                            child: FittedBox(
-                                              fit: BoxFit.cover,
-                                              child: Text(
-                                                'More Products from ${widget.vendor}',
-                                                style: TextStyle(
-                                                    color: Colors.white),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                        child: Image.asset(
+                                            'assets/images/productDetail/size1.jpg'),
+                                      ),
+                                      SizedBox(
+                                        height: 10,
                                       )
                                     ],
                                   )
-                                : i == 2
-                                    ? Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.all(8.0),
-                                            child: Text(
-                                              'Shoe Size Chart',
-                                              style: TextStyle(
-                                                  fontSize: 18,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.all(8),
-                                            child: Image.asset(
-                                                'assets/images/productDetail/size1.jpg'),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          )
-                                        ],
-                                      )
-                                    : Text(
-                                        'For more information about return please click here.\n',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
-                                      ),
+                                : Text(
+                                    'For more information about return please click here.\n',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400),
+                                  ),
                       ),
                     )
                     .toList(),

@@ -13,14 +13,14 @@ import '../../auth/signup/signup.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 import 'package:splyxp/widgets/lists.dart';
 
-class Accessories extends StatefulWidget {
+class Sweaters extends StatefulWidget {
   final String gender;
-  Accessories({Key key, @required this.gender}) : super(key: key);
+  Sweaters({Key key, @required this.gender}) : super(key: key);
   @override
-  _AccessoriesState createState() => _AccessoriesState();
+  _SweatersState createState() => _SweatersState();
 }
 
-class _AccessoriesState extends State<Accessories> {
+class _SweatersState extends State<Sweaters> {
   String getBrand(prodList) {
     for (var a = 0; a < prodList['meta_data'].length; a++) {
       if (prodList['meta_data'][a]['key'] == '_select_brand') {
@@ -77,13 +77,13 @@ class _AccessoriesState extends State<Accessories> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: innerAppbar(context, 'Accessories'),
+      appBar: innerAppbar(context, 'Sweaters'),
       body: SingleChildScrollView(
         child: Container(
           child: Column(
             children: [
               FutureBuilder(
-                  future: data.getDrawrProducts("88"),
+                  future: data.getDrawrProducts("698"),
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                     if (snapshot.hasData) {
