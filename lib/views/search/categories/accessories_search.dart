@@ -50,6 +50,20 @@ class _AccessoriesState extends State<Accessories> {
         }));
   }
 
+  getMapList(item) {
+    var listMap = <Map>[];
+    if (widget.gender == 'Men') {
+      for (var a = 0; a < item.data.length; a++) {
+        for (var i = 0; i < item.data[a]['categories'].length; i++) {
+          if (item.data[a]['categories'][i]['name'] == 'Men') {
+            listMap.add(item.data[a]);
+          }
+        }
+      }
+      return listMap;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -64,6 +78,7 @@ class _AccessoriesState extends State<Accessories> {
                   builder: (BuildContext context,
                       AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
                     if (snapshot.hasData) {
+                      final item = getMapList(snapshot);
                       return GridView.builder(
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
@@ -75,10 +90,34 @@ class _AccessoriesState extends State<Accessories> {
                                 MediaQuery.of(context).size.width /
                                     (MediaQuery.of(context).size.height / 1.1),
                           ),
-                          itemCount: snapshot.data.length,
+                          itemCount: item.length,
                           itemBuilder: (BuildContext context, int index) {
-                            final item = snapshot.data[index];
+                            final item = getMapList(snapshot)[index];
                             final brand = getBrand(item);
+
+                            // if (widget.gender == 'Men') {
+                            //   for (var a = 0;
+                            //       a < item['categories'].length;
+                            //       a++) {
+                            //     if (item['categories'][a]['name'] == 'Men') {
+                            //       return InkWell(
+                            //         onTap: () => _navigatorPage(
+                            //             context, item['id'].toString()),
+                            //         child: Lists(
+                            //           context,
+                            //           'men',
+                            //           item['images'][0]['src'],
+                            //           index,
+                            //           item['name'],
+                            //           item['price'],
+                            //           item['id'].toString(),
+                            //           brand,
+                            //         ),
+                            //       );
+                            //     }
+                            //     return null;
+                            //   }
+                            // }
                             return InkWell(
                               onTap: () => _navigatorPage(
                                   context, item['id'].toString()),

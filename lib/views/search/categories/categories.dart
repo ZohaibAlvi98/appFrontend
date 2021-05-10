@@ -37,23 +37,19 @@ class _CategoriesState extends State<Categories> {
           ListView.builder(
               scrollDirection: Axis.vertical,
               shrinkWrap: true,
-              itemCount: 12,
+              itemCount: 8,
               physics: AlwaysScrollableScrollPhysics(),
               padding: EdgeInsets.only(right: 20.0, left: 7, top: 10),
               itemBuilder: (context, index) {
                 List men = [
-                  'Shop By',
-                  'Clothing',
-                  'Activewear',
+                  'Accessories',
+                  'Bottoms',
+                  'Hoodies',
+                  'Jackets and Coats',
                   'Shoes',
-                  'Sneakers',
-                  'Watches',
-                  'Item 1',
-                  'Item 2',
-                  'Item 3',
-                  'Item 4',
-                  'Item 5',
-                  'Item 6',
+                  'Shorts',
+                  'Sweaters',
+                  'Tops',
                 ];
                 double width = MediaQuery.of(context).size.width;
                 return list(context, men, index, width);
