@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/views/search/categories/categories.dart';
 import 'package:splyxp/views/search/designer/designer.dart';
 import 'package:splyxp/views/search/bygender.dart';
+import 'package:splyxp/views/search/bybrand.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -18,7 +19,7 @@ class _SearchState extends State<Search> {
           if (index == 'Categories') {
             return ByGender();
           } else {
-            return Designer();
+            return ByBrand();
           }
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {

@@ -83,62 +83,62 @@ class _AccessoriesState extends State<Accessories> {
           child: Column(
             children: [
               FutureBuilder(
-                  future: data.getDrawrProducts("88"),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-                    if (snapshot.hasData) {
-                      final item = getMapList(snapshot);
-                      if (item.isEmpty) {
-                        return Center(
-                            child: Padding(
+                future: data.getDrawrProducts("88"),
+                builder: (BuildContext context,
+                    AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                  if (snapshot.hasData) {
+                    final item = getMapList(snapshot);
+                    if (item.isEmpty) {
+                      return Center(
+                        child: Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: Text(
                             'Sorry No Product Found!',
                             style:
                                 TextStyle(fontFamily: 'RMNUEU', fontSize: 18),
                           ),
-                        ));
-                      } else {
-                        return GridView.builder(
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            padding:
-                                EdgeInsets.only(left: 1, right: 1, top: 20),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              childAspectRatio: MediaQuery.of(context)
-                                      .size
-                                      .width /
-                                  (MediaQuery.of(context).size.height / 1.1),
-                            ),
-                            itemCount: item.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              final item = getMapList(snapshot)[index];
-                              final brand = getBrand(item);
+                        ),
+                      );
+                    } else {
+                      return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(left: 1, right: 1, top: 20),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.1),
+                          ),
+                          itemCount: item.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = getMapList(snapshot)[index];
+                            final brand = getBrand(item);
 
-                              return InkWell(
-                                onTap: () => _navigatorPage(
-                                    context, item['id'].toString()),
-                                child: Lists(
-                                  context,
-                                  'men',
-                                  item['images'][0]['src'],
-                                  index,
-                                  item['name'],
-                                  item['price'],
-                                  item['id'].toString(),
-                                  brand,
-                                ),
-                              );
-                            });
-                      }
-                    } else if (snapshot.hasError) {
-                      print(snapshot.error);
-                      print('Sorry');
+                            return InkWell(
+                              onTap: () => _navigatorPage(
+                                  context, item['id'].toString()),
+                              child: Lists(
+                                context,
+                                'men',
+                                item['images'][0]['src'],
+                                index,
+                                item['name'],
+                                item['price'],
+                                item['id'].toString(),
+                                brand,
+                              ),
+                            );
+                          });
                     }
-                    return Center(child: CircularProgressIndicator());
-                  }),
+                  } else if (snapshot.hasError) {
+                    print(snapshot.error);
+                    print('Sorry');
+                  }
+                  return Center(child: CircularProgressIndicator());
+                },
+              ),
             ],
           ),
         ),
