@@ -3,6 +3,7 @@ import 'package:splyxp/views/search/categories/categories.dart';
 import 'package:splyxp/views/search/designer/designer.dart';
 import 'package:splyxp/views/search/bygender.dart';
 import 'package:splyxp/views/search/bybrand.dart';
+import 'package:splyxp/views/search/search_products.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -21,6 +22,24 @@ class _SearchState extends State<Search> {
           } else {
             return ByBrand();
           }
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new SlideTransition(
+            child: child,
+            position: new Tween<Offset>(
+              begin: const Offset(1.0, 0.0),
+              end: Offset.zero,
+            ).animate(animation),
+          );
+        }));
+  }
+
+  void _nagvigatorsearch(value) {
+    Navigator.of(context).push(new PageRouteBuilder(
+        opaque: true,
+        transitionDuration: const Duration(),
+        pageBuilder: (BuildContext context, _, __) {
+          return SearchProducts(searchName: value);
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new SlideTransition(
@@ -55,6 +74,10 @@ class _SearchState extends State<Search> {
             width: 460,
             padding: EdgeInsets.symmetric(vertical: 18, horizontal: 26),
             child: new TextField(
+              onSubmitted: (value) {
+                _nagvigatorsearch(value);
+              },
+              textInputAction: TextInputAction.search,
               cursorColor: Colors.black,
               decoration: new InputDecoration(
                 prefixIcon: Icon(
