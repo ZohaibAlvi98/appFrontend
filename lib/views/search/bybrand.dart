@@ -160,7 +160,7 @@ class _ByBrandState extends State<ByBrand> {
                                   ),
                                   Padding(
                                     padding: width < 400
-                                        ? EdgeInsets.only(left: 291, top: 3)
+                                        ? EdgeInsets.only(left: 267, top: 3)
                                         : EdgeInsets.only(left: 343, top: 1.2),
                                     child: Icon(
                                       Icons.arrow_forward_ios,

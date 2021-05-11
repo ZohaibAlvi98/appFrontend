@@ -89,6 +89,7 @@ class _ProductDetailState extends State<ProductDetail> {
         return item['attributes'][a]['options'];
       }
     }
+    return ['One Size'];
   }
 
   List getColour(var item) {
@@ -97,6 +98,7 @@ class _ProductDetailState extends State<ProductDetail> {
         return item['attributes'][a]['options'];
       }
     }
+    return ['Display Color'];
   }
 
   final f = NumberFormat('#,###,###.##');

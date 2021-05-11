@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:splyxp/widgets/innerAppBar.dart';
 import 'package:splyxp/views/products/product-detail-withapi.dart';
 import 'package:splyxp/widgets/lists.dart';
+import '../../services/drawr-services.dart';
+import 'package:splyxp/widgets/lineHeading.dart';
+
+DrawrServices data = DrawrServices();
 
 class BrandProducts extends StatefulWidget {
   final String brandId;
@@ -52,74 +56,59 @@ class _BrandProductsState extends State<BrandProducts> {
             //other styles
           ),
           child: drawerAppBar(context, '', false)),
-      body: Center(
-        child: Text(widget.brandId + widget.brandname),
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Heading(context, widget.brandname),
+              FutureBuilder(
+                  future: data.getDrawrProducts(widget.brandId),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+                    if (snapshot.hasData) {
+                      return GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          padding: EdgeInsets.only(left: 1, right: 1, top: 20),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            childAspectRatio:
+                                MediaQuery.of(context).size.width /
+                                    (MediaQuery.of(context).size.height / 1.1),
+                          ),
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            final item = snapshot.data[index];
+                            final brand = getBrand(item);
+                            return InkWell(
+                              onTap: () => _navigatorPage(
+                                  context, item['id'].toString()),
+                              child: Lists(
+                                context,
+                                'men',
+                                item['images'][0]['src'],
+                                index,
+                                item['name'],
+                                item['price'],
+                                item['id'].toString(),
+                                brand,
+                              ),
+                            );
+                          });
+                    } else if (snapshot.hasError) {
+                      print(snapshot.error);
+                      print('Sorry');
+                    }
+                    return Center(child: CircularProgressIndicator());
+                  }),
+            ],
+          ),
+        ),
       ),
-      // SingleChildScrollView(
-      //   child: Container(
-      //     child: Column(
-      //       children: [
-      //         FutureBuilder(
-      //           future: data.getDrawrProducts("88"),
-      //           builder: (BuildContext context,
-      //               AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-      //             if (snapshot.hasData) {
-      //               final item = getMapList(snapshot);
-      //               if (item.isEmpty) {
-      //                 return Center(
-      //                   child: Padding(
-      //                     padding: EdgeInsets.only(top: 10),
-      //                     child: Text(
-      //                       'Sorry No Product Found!',
-      //                       style:
-      //                           TextStyle(fontFamily: 'RMNUEU', fontSize: 18),
-      //                     ),
-      //                   ),
-      //                 );
-      //               } else {
-      //                 return GridView.builder(
-      //                     shrinkWrap: true,
-      //                     physics: const NeverScrollableScrollPhysics(),
-      //                     padding: EdgeInsets.only(left: 1, right: 1, top: 20),
-      //                     gridDelegate:
-      //                         SliverGridDelegateWithFixedCrossAxisCount(
-      //                       crossAxisCount: 2,
-      //                       childAspectRatio:
-      //                           MediaQuery.of(context).size.width /
-      //                               (MediaQuery.of(context).size.height / 1.1),
-      //                     ),
-      //                     itemCount: item.length,
-      //                     itemBuilder: (BuildContext context, int index) {
-      //                       final item = getMapList(snapshot)[index];
-      //                       final brand = getBrand(item);
-
-      //                       return InkWell(
-      //                         onTap: () => _navigatorPage(
-      //                             context, item['id'].toString()),
-      //                         child: Lists(
-      //                           context,
-      //                           'men',
-      //                           item['images'][0]['src'],
-      //                           index,
-      //                           item['name'],
-      //                           item['price'],
-      //                           item['id'].toString(),
-      //                           brand,
-      //                         ),
-      //                       );
-      //                     });
-      //               }
-      //             } else if (snapshot.hasError) {
-      //               print(snapshot.error);
-      //               print('Sorry');
-      //             }
-      //             return Center(child: CircularProgressIndicator());
-      //           },
-      //         ),
-      //       ],
-      //     ),
-      //   ),
-      // )
     );
   }
 }
