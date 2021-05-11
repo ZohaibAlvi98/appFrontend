@@ -13,9 +13,18 @@ class ByBrand extends StatefulWidget {
 class _ByBrandState extends State<ByBrand> {
   getBrandsOf({item, letter}) {
     var letterList = <Map>[];
-    for (var a = 0; a < item.length; a++) {
-      if (item[a]['brand_name'].startsWith(letter)) {
-        letterList.add(item[a]);
+    if (letter == '#') {
+      for (var a = 0; a < item.length; a++) {
+        if (item[a]['brand_name'].startsWith(letter) ||
+            item[a]['brand_name'].startsWith(RegExp(r'[0-9]'))) {
+          letterList.add(item[a]);
+        }
+      }
+    } else {
+      for (var a = 0; a < item.length; a++) {
+        if (item[a]['brand_name'].startsWith(letter)) {
+          letterList.add(item[a]);
+        }
       }
     }
     return letterList;
@@ -49,11 +58,12 @@ class _ByBrandState extends State<ByBrand> {
             ListView.builder(
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
-                itemCount: 26,
+                itemCount: 27,
                 physics: NeverScrollableScrollPhysics(),
                 padding: EdgeInsets.only(right: 20.0, left: 7, top: 10),
                 itemBuilder: (context, index) {
                   List aplhabets = [
+                    '#',
                     'A',
                     'B',
                     'C',
@@ -147,30 +157,24 @@ class _ByBrandState extends State<ByBrand> {
                       },
                       child: Column(
                         children: [
-                          Row(children: [
-                            Padding(
-                              padding: EdgeInsets.only(left: 15, top: 5),
-                              child: Stack(
-                                children: [
-                                  Text(
-                                    item[index]['brand_name'],
-                                    style: TextStyle(
-                                        fontSize: width < 400 ? 15 : 17,
-                                        fontWeight: FontWeight.w500),
-                                  ),
-                                  Padding(
-                                    padding: width < 400
-                                        ? EdgeInsets.only(left: 267, top: 3)
-                                        : EdgeInsets.only(left: 343, top: 1.2),
-                                    child: Icon(
-                                      Icons.arrow_forward_ios,
-                                      size: 16,
-                                    ),
-                                  )
-                                ],
-                              ),
+                          Padding(
+                            padding: EdgeInsets.only(left: 15, top: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  item[index]['brand_name'],
+                                  style: TextStyle(
+                                      fontSize: width < 400 ? 15 : 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios,
+                                  size: 16,
+                                )
+                              ],
                             ),
-                          ]),
+                          ),
                           Padding(
                             padding: EdgeInsets.only(top: 1),
                             child: new Divider(
@@ -186,59 +190,8 @@ class _ByBrandState extends State<ByBrand> {
               return Center(child: CircularProgressIndicator());
             },
           ),
-          // Row(children: [
-          //   Padding(
-          //     padding: EdgeInsets.only(left: 15),
-          //     child: Stack(
-          //       children: [
-          //         Text(
-          //           headings[index],
-          //           style: TextStyle(
-          //               fontSize: width < 400 ? 15 : 17,
-          //               fontWeight: FontWeight.w500),
-          //         ),
-          //         Padding(
-          //           padding: width < 400
-          //               ? EdgeInsets.only(left: 291, top: 3)
-          //               : EdgeInsets.only(left: 343, top: 1.2),
-          //           child: Icon(
-          //             Icons.arrow_forward_ios,
-          //             size: 16,
-          //           ),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ]),
-          // Padding(
-          //   padding: EdgeInsets.only(top: 6),
-          //   child: new Divider(
-          //     color: Colors.grey[500],
-          //   ),
-          // ),
         ],
       ),
     );
   }
 }
-// onTap: () {
-//           Navigator.of(context).push(
-//             new PageRouteBuilder(
-//               opaque: true,
-//               transitionDuration: const Duration(),
-//               pageBuilder: (BuildContext context, _, __) {
-//                 return;
-//               },
-//               transitionsBuilder:
-//                   (_, Animation<double> animation, __, Widget child) {
-//                 return new SlideTransition(
-//                   child: child,
-//                   position: new Tween<Offset>(
-//                     begin: const Offset(1.0, 0.0),
-//                     end: Offset.zero,
-//                   ).animate(animation),
-//                 );
-//               },
-//             ),
-//           );
-//         }
