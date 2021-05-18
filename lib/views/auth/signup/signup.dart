@@ -3,10 +3,38 @@ import '../login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../bottomNav.dart';
 import 'package:connectycube_sdk/connectycube_sdk.dart';
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:splyxp/services/signup_posting.dart';
+import 'package:splyxp/widgets/sginupprocedure.dart';
 
 class Signup extends StatefulWidget {
   @override
   _SignupState createState() => _SignupState();
+}
+
+Future<SignUpPosting> createUser(
+    String username, String password, String email) async {
+  final String apiUrl = 'https://splystyle.net/wp-json/wp/v2/users/register';
+
+  final postResponse = await http.post(
+    apiUrl,
+    headers: <String, String>{'content-type': 'application/json'},
+    body: jsonEncode(<String, String>{
+      'username': username,
+      'email': email,
+      'password': password,
+    }),
+  );
+
+  if (postResponse.statusCode == 201) {
+    final String responseString = postResponse.body;
+
+    return signUpPostingFromJson(responseString);
+  } else {
+    return null;
+  }
 }
 
 class _SignupState extends State<Signup> {
@@ -20,10 +48,13 @@ class _SignupState extends State<Signup> {
   //   saveAuth();
   // }
 
+  SignUpPosting _user;
+
   final TextEditingController username = TextEditingController();
   final TextEditingController pass = TextEditingController();
   final TextEditingController email = TextEditingController();
-  final TextEditingController conPass = TextEditingController();
+  final TextEditingController firstname = TextEditingController();
+  final TextEditingController lastname = TextEditingController();
 
   @override
   void initState() {
@@ -38,10 +69,11 @@ class _SignupState extends State<Signup> {
   }
 
   final formKey = GlobalKey<FormState>();
+
+  Future<Album> _futureAlbum;
+
   String appId = "4451";
-
   String authKey = "nL5Ba8ywSMu-rGq";
-
   String authSecret = "vXM9T-QUXdx44pz";
   static int check = 0;
   Future signup() {
@@ -126,18 +158,25 @@ class _SignupState extends State<Signup> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           new Flexible(
-                              child: new TextField(
-                                  decoration: InputDecoration(
-                                      contentPadding: EdgeInsets.only(
-                                          left: 20, right: 5)))),
+                            child: new TextField(
+                              controller: firstname,
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.only(left: 20, right: 5),
+                              ),
+                            ),
+                          ),
                           SizedBox(
                             width: 30,
                           ),
                           new Flexible(
                             child: new TextField(
-                                decoration: InputDecoration(
-                                    contentPadding:
-                                        EdgeInsets.only(left: 20, right: 5))),
+                              controller: lastname,
+                              decoration: InputDecoration(
+                                contentPadding:
+                                    EdgeInsets.only(left: 20, right: 5),
+                              ),
+                            ),
                           ),
                         ],
                       ),
@@ -227,12 +266,11 @@ class _SignupState extends State<Signup> {
                       },
                       controller: pass,
                       decoration: InputDecoration(
-                          // helperText:
-                          //     '* Password should be greater than 8 characters',
-                          // helperStyle: TextStyle(color: Colors.red),
-                          focusedBorder: UnderlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.black87, width: 2))),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.black87, width: 2),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -247,12 +285,18 @@ class _SignupState extends State<Signup> {
                 child: Container(
                   child: FlatButton(
                     color: Colors.black,
-                    onPressed: () {
-                      // Navigate back to first route when tapped.
-                      // Navigator.pop(context);
+                    onPressed: () async {
                       if (formKey.currentState.validate()) {
-                        // setAuth(context);
-                        signup();
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return SignUpProc(
+                            firstname: firstname.text,
+                            lastname: lastname.text,
+                            username: username.text,
+                            email: email.text,
+                            password: pass.text,
+                          );
+                        }));
                       }
                     },
                     child: Text(
@@ -270,21 +314,23 @@ class _SignupState extends State<Signup> {
             children: [
               Text('Or Already have an account ? '),
               Padding(
-                  padding: EdgeInsets.fromLTRB(5, 20, 0, 0),
-                  child: GestureDetector(
-                      child: Text("Login",
-                          style: TextStyle(
-                              decoration: TextDecoration.underline,
-                              color: Colors.black)),
-                      onTap: () => Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (c, a1, a2) => Login(),
-                              transitionsBuilder: (c, anim, a2, child) =>
-                                  FadeTransition(opacity: anim, child: child),
-                              transitionDuration: Duration(milliseconds: 2),
-                            ),
-                          ))),
+                padding: EdgeInsets.fromLTRB(5, 20, 0, 0),
+                child: GestureDetector(
+                  child: Text("Login",
+                      style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          color: Colors.black)),
+                  onTap: () => Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      pageBuilder: (c, a1, a2) => Login(),
+                      transitionsBuilder: (c, anim, a2, child) =>
+                          FadeTransition(opacity: anim, child: child),
+                      transitionDuration: Duration(milliseconds: 2),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
           SizedBox(
@@ -394,4 +440,45 @@ Widget usernameTextField(String label, size, width, String page) {
       ],
     ),
   );
+}
+
+Future<Album> createAlbum(
+    {String email,
+    String firstname,
+    String lastname,
+    String username,
+    String password}) async {
+  final response = await http.post(
+    'https://splystyle.net/wp-json/wp/v2/users/register',
+    headers: <String, String>{
+      'Content-Type': 'application/json',
+    },
+    body: jsonEncode(<String, String>{
+      'username': username,
+      'email': email,
+      'password': password,
+      'firtname': firstname,
+      'lastname': lastname,
+    }),
+  );
+
+  if (response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to create album.');
+  }
+}
+
+class Album {
+  final int id;
+  final String username;
+
+  Album({this.id, this.username});
+
+  factory Album.fromJson(Map<String, dynamic> json) {
+    return Album(
+      id: json['id'],
+      username: json['username'],
+    );
+  }
 }
